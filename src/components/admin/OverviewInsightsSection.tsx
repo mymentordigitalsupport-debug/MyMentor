@@ -81,7 +81,6 @@ function CourseTrend({ points, color }: { points: string; color: string }) {
 }
 
 function buildStackedAreas() {
-  const width = 560;
   const height = 220;
   const bottom = 188;
   const stepX = 82;

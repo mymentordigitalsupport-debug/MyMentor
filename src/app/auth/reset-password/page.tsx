@@ -8,6 +8,10 @@ import { PasswordInput } from "@/components/ui/PasswordInput";
 import { Button } from "@/components/ui/Button";
 import { PageLoader } from "@/components/ui/PageLoader";
 
+function getErrorMessage(error: unknown) {
+  return error instanceof Error ? error.message : "Failed to update password. Please try again.";
+}
+
 export default function ResetPasswordPage() {
   const router = useRouter();
   const [newPassword, setNewPassword] = useState("");
@@ -84,8 +88,8 @@ export default function ResetPasswordPage() {
       setTimeout(() => {
         router.push("/login");
       }, 2000);
-    } catch (err: any) {
-      setError(err.message || "Failed to update password. Please try again.");
+    } catch (err: unknown) {
+      setError(getErrorMessage(err));
       console.error("Password update error:", err);
     } finally {
       setLoading(false);

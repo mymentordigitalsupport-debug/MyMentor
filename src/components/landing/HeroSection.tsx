@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, Play } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const sectionIds = ["hero"] as const;
 const sectionRail = [
@@ -19,15 +19,6 @@ export function HeroSection() {
   const pauseTimerRef = useRef<number | null>(null);
   const hasStartedVideoRef = useRef(false);
   const [activeSection, setActiveSection] = useState<(typeof sectionIds)[number]>("hero");
-
-  const sections = useMemo(
-    () =>
-      sectionIds.map((id) => ({
-        id,
-        label: id === "hero" ? "Hero" : id.replace(/-/g, " "),
-      })),
-    []
-  );
 
   useEffect(() => {
     const video = videoRef.current;

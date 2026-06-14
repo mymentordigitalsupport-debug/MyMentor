@@ -7,16 +7,16 @@ export function TodayBottomSection() {
       <Card variant="gold" padding="md">
         <div className="flex items-start gap-3">
           <span className="text-2xl" aria-hidden="true">
-            🌸
+            *
           </span>
           <div className="flex-1">
-            <h3 className="font-serif text-sm font-semibold text-forest mb-1">
+            <h3 className="mb-1 font-serif text-sm font-semibold text-forest">
               Encouragement
             </h3>
-            <p className="text-xs text-forest italic mb-3">
-              "You don't have to be perfect to make progress."
+            <p className="mb-3 text-xs italic text-forest">
+              &ldquo;You don&apos;t have to be perfect to make progress.&rdquo;
             </p>
-            <p className="text-xs text-muted">— You've got this.</p>
+            <p className="text-xs text-muted">You&apos;ve got this.</p>
           </div>
         </div>
       </Card>
@@ -24,13 +24,13 @@ export function TodayBottomSection() {
       <Card variant="default" padding="md">
         <div className="flex items-start gap-3">
           <span className="text-2xl" aria-hidden="true">
-            💬
+            +
           </span>
           <div className="flex-1">
-            <h3 className="font-serif text-sm font-semibold text-forest mb-1">
+            <h3 className="mb-1 font-serif text-sm font-semibold text-forest">
               Need to talk?
             </h3>
-            <p className="text-xs text-muted mb-3">
+            <p className="mb-3 text-xs text-muted">
               Message a mentor or join a support circle.
             </p>
             <Button variant="secondary" size="sm">

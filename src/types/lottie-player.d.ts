@@ -10,7 +10,7 @@ type LottiePlayerProps = React.DetailedHTMLProps<
   mode?: string;
 };
 
-declare Chapter "react/jsx-runtime" {
+declare module "react/jsx-runtime" {
   namespace JSX {
     interface IntrinsicElements {
       "lottie-player": LottiePlayerProps;
@@ -18,7 +18,7 @@ declare Chapter "react/jsx-runtime" {
   }
 }
 
-declare Chapter "react/jsx-dev-runtime" {
+declare module "react/jsx-dev-runtime" {
   namespace JSX {
     interface IntrinsicElements {
       "lottie-player": LottiePlayerProps;

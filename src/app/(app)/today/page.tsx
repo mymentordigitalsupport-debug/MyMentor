@@ -104,10 +104,6 @@ function toDateKey(value: string): string {
   }).format(new Date(value));
 }
 
-function toStringValue(value: unknown): string | null {
-  return typeof value === "string" && value.trim().length > 0 ? value.trim() : null;
-}
-
 export default async function TodayPage() {
   const supabase = await createSupabaseServerClient();
   const {

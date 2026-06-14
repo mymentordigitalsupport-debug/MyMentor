@@ -540,16 +540,6 @@ export async function getAdminUserDetail(userId: string) {
       },
     ])
   );
-  const chapterById = new Map(
-    chapters.map((chapter) => [
-      chapter.id,
-      {
-        title: chapter.title as string | null,
-        course_version_id: chapter.course_version_id as string,
-        is_published: Boolean(chapter.is_published),
-      },
-    ])
-  );
   const versionMap = new Map(
     (courseVersions ?? []).map((version) => [
       version.id,
