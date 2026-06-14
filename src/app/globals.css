@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Gunterz";
+  src: url("/assets/fonts/Fontspring-DEMO-gunterz-black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Flix";
+  src: url("/assets/fonts/Flix-Normal.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Flix Outline";
+  src: url("/assets/fonts/Flix-Outline.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-body: "Manrope", Aptos, "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-display: "Literata", "Iowan Old Style", Georgia, serif;
+  --sand: #f6f3ed;
+  --cream: #fbf9f5;
+  --mist: #e8e5df;
+  --sage: #7a9272;
+  --forest: #32453b;
+  --gold: #c7a86d;
+  --rose: #a97b7b;
+  --text: #1f2a24;
+  --muted: #6e746f;
+  --success: #8baa84;
+  --warning: #c9a15e;
+  --danger: #b06a6a;
+  --background: var(--cream);
+  --foreground: var(--text);
+  --primary: var(--forest);
+  --primary-foreground: var(--cream);
+  --secondary: var(--mist);
+  --secondary-foreground: var(--text);
+  --accent: var(--mist);
+  --accent-foreground: var(--forest);
+  --border: rgba(31, 42, 36, 0.12);
+  --input: rgba(31, 42, 36, 0.12);
+  --ring: rgba(122, 146, 114, 0.45);
+  --muted-foreground: var(--muted);
+  --destructive: var(--danger);
+  --destructive-foreground: var(--cream);
+}
+
+@theme inline {
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
+  --color-sand: var(--sand);
+  --color-cream: var(--cream);
+  --color-mist: var(--mist);
+  --color-sage: var(--sage);
+  --color-forest: var(--forest);
+  --color-gold: var(--gold);
+  --color-rose: var(--rose);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--sand);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at top, rgba(199, 168, 109, 0.12), transparent 30%),
+    linear-gradient(180deg, var(--cream) 0%, var(--sand) 48%, #f2eee7 100%);
+  color: var(--text);
+  font-family: var(--font-body);
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(122, 146, 114, 0.22);
+}
+
+.sidebar-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(50, 69, 59, 0.55) rgba(232, 229, 223, 0.85);
+}
+
+.sidebar-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-track {
+  background: rgba(232, 229, 223, 0.75);
+  border-radius: 999px;
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(122, 146, 114, 0.85), rgba(50, 69, 59, 0.85));
+  border-radius: 999px;
+  border: 2px solid rgba(232, 229, 223, 0.85);
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(50, 69, 59, 0.95), rgba(122, 146, 114, 0.95));
+}
