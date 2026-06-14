@@ -1,5 +1,6 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { ADMIN_OVERRIDE_COOKIE } from "@/lib/admin/auth";
 
 // Routes that require authentication
 const PROTECTED_ROUTES = [
@@ -30,6 +31,10 @@ function isAdminAuthPath(pathname: string) {
 }
 
 export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  const nextParam = request.nextUrl.searchParams.get("next") ?? "";
+  const hasAdminOverride = request.cookies.get(ADMIN_OVERRIDE_COOKIE)?.value === "1";
+
   // If Supabase env vars are not set, skip auth checks entirely (dev convenience)
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -39,6 +44,10 @@ export async function middleware(request: NextRequest) {
     !supabaseKey ||
     supabaseUrl === "https://your-project-ref.supabase.co"
   ) {
+    if (hasAdminOverride && isAdminAuthPath(pathname)) {
+      return NextResponse.redirect(new URL("/admin", request.url));
+    }
+
     return NextResponse.next({ request: { headers: request.headers } });
   }
 
@@ -76,9 +85,6 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const { pathname } = request.nextUrl;
-  const nextParam = request.nextUrl.searchParams.get("next") ?? "";
-
   let role: string | null = null;
   if (user) {
     const { data: profile } = await supabase
@@ -87,6 +93,16 @@ export async function middleware(request: NextRequest) {
       .eq("user_id", user.id)
       .maybeSingle();
     role = (user.app_metadata?.role as string | undefined) ?? profile?.role ?? null;
+  }
+
+  if (hasAdminOverride) {
+    if (isAdminAuthPath(pathname)) {
+      return NextResponse.redirect(new URL("/admin", request.url));
+    }
+
+    if (isAdminPath(pathname)) {
+      return response;
+    }
   }
 
   // Redirect authenticated users away from auth pages
