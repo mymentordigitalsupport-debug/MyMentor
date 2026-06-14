@@ -411,7 +411,7 @@ export default async function TodayPage() {
           course={{
             courseTitle,
             progressPercent,
-            ChaptersCompleted: completedChapters,
+            chaptersCompleted: completedChapters,
             totalChapters,
             lessonsCompleted: completedLessons,
             totalLessons,

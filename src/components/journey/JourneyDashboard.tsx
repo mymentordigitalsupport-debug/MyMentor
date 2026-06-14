@@ -89,8 +89,8 @@ export interface JourneyDashboardProps {
   progressPercent: number;
   completedLessons: number;
   totalLessons: number;
-  completedchapters: number;
-  totalchapters: number;
+  completedChapters: number;
+  totalChapters: number;
   activeChapter: JourneyChapter | null;
   activeLessonId: string | null;
   ChapterData: JourneyChapter[];

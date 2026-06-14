@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 export type ToastType = "success" | "error" | "warning" | "info";
@@ -17,6 +17,13 @@ interface ToastProps {
 export function Toast({ id, type, title, message, duration = 5000, onClose }: ToastProps) {
   const [isVisible, setIsVisible] = useState(false);
 
+  const handleClose = useCallback(() => {
+    setIsVisible(false);
+    setTimeout(() => {
+      onClose(id);
+    }, 400);
+  }, [id, onClose]);
+
   useEffect(() => {
     // Trigger animation on mount
     setIsVisible(true);
@@ -31,13 +38,6 @@ export function Toast({ id, type, title, message, duration = 5000, onClose }: To
       return () => clearTimeout(timer);
     }
   }, [duration, handleClose]);
-
-  const handleClose = () => {
-    setIsVisible(false);
-    setTimeout(() => {
-      onClose(id);
-    }, 400);
-  };
 
   const config = {
     success: {

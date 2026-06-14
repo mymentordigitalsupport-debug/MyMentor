@@ -14,7 +14,7 @@ interface TodayBannerProps {
     courseTitle: string;
     progressPercent: number;
     chaptersCompleted: number;
-    totalchapters: number;
+    totalChapters: number;
     lessonsCompleted: number;
     totalLessons: number;
     currentChapter: string;

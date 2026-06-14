@@ -178,6 +178,22 @@ export type AdminUserDetail = AdminUserRow & {
 
 type SupabaseAdmin = NonNullable<ReturnType<typeof createSupabaseAdminClient>>;
 
+function firstRelatedTitle(value: unknown): string | null {
+  if (Array.isArray(value)) {
+    const first = value[0];
+    if (first && typeof first === "object" && "title" in first && typeof first.title === "string") {
+      return first.title;
+    }
+    return null;
+  }
+
+  if (value && typeof value === "object" && "title" in value && typeof value.title === "string") {
+    return value.title;
+  }
+
+  return null;
+}
+
 async function listAllAuthUsers(admin: SupabaseAdmin) {
   const users: AdminAuthUser[] = [];
   const perPage = 200;
@@ -270,7 +286,7 @@ export async function getAdminUsersDirectory() {
       {
         title: version.title,
         guidance_path: version.guidance_path as GuidancePath,
-        course_title: (version.courses as { title: string } | null)?.title ?? null,
+        course_title: firstRelatedTitle(version.courses),
       },
     ])
   );
@@ -327,7 +343,7 @@ export async function getAdminUsersDirectory() {
       lesson.id,
       {
         title: lesson.title as string | null,
-        chapter_title: (lesson.chapters as { title: string } | null)?.title ?? null,
+        chapter_title: firstRelatedTitle(lesson.chapters),
       },
     ])
   );
@@ -379,7 +395,7 @@ export async function getAdminUsersDirectory() {
       anonymous_name: profile.anonymous_name ?? null,
       is_anonymous: profile.is_anonymous,
       guidance_path:
-        (profile.preferred_guidance_path as GuidancePath) === "general"
+        (profile.preferred_guidance_path as string | null) === "general"
           ? "religious"
           : ((profile.preferred_guidance_path as GuidancePath) ?? "religious"),
       role: (profile.role as UserRole) ?? "user",
@@ -536,7 +552,7 @@ export async function getAdminUserDetail(userId: string) {
       lesson.id,
       {
         title: lesson.title as string | null,
-        chapter_title: (lesson.chapters as { title: string } | null)?.title ?? null,
+        chapter_title: firstRelatedTitle(lesson.chapters),
       },
     ])
   );
@@ -546,7 +562,7 @@ export async function getAdminUserDetail(userId: string) {
       {
         title: version.title as string | null,
         guidance_path: version.guidance_path as GuidancePath,
-        course_title: (version.courses as { title: string } | null)?.title ?? null,
+        course_title: firstRelatedTitle(version.courses),
       },
     ])
   );

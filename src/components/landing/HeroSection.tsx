@@ -187,7 +187,7 @@ export function HeroSection() {
         >
           <div className="flex flex-col items-end gap-3 sm:gap-4">
             {sectionRail.map((section, index) => {
-              const isActive = index === 0 || activeSection === section.id;
+              const isActive = index === 0;
 
               return (
                 <button

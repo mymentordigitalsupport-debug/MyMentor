@@ -11,7 +11,7 @@ type SectionRevealProps = {
 };
 
 export function SectionReveal({ children, className, delayMs = 0 }: SectionRevealProps) {
-  const { ref, isVisible } = useInViewReveal<HTMLElement>();
+  const { ref, isVisible } = useInViewReveal<HTMLDivElement>();
 
   return (
     <div
