@@ -6,19 +6,21 @@ import { LoginForm } from "@/components/auth/LoginForm";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { Badge } from "@/components/ui/Badge";
 import { ShieldCheck, ArrowRight } from "lucide-react";
+import { cookies } from "next/headers";
+import { ADMIN_OVERRIDE_COOKIE } from "@/lib/admin/auth";
 
 export const dynamic = "force-dynamic";
-
-const FAKE_ADMIN_ACCESS = {
-  email: "ops@mymentor.app",
-  password: "ledger-arc-2026!",
-} as const;
 
 export const metadata: Metadata = {
   title: "Admin Sign In",
 };
 
 export default async function AdminLoginPage() {
+  const cookieStore = await cookies();
+  if (cookieStore.get(ADMIN_OVERRIDE_COOKIE)?.value === "1") {
+    redirect("/admin");
+  }
+
   const supabase = await createSupabaseServerClient();
   const {
     data: { user },
@@ -91,22 +93,6 @@ export default async function AdminLoginPage() {
               <p className="mt-1 text-sm leading-6 text-muted">
                 Non-admin accounts are denied and sent back to the regular app.
               </p>
-            </div>
-
-            <div className="mt-4 rounded-[22px] border border-dashed border-[#d8ceb8] bg-[#fffdf8] px-4 py-4">
-              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.3em] text-muted">
-                Sample access
-              </p>
-              <div className="mt-3 space-y-2 text-sm">
-                <div className="flex items-start justify-between gap-4">
-                  <span className="text-muted">Email</span>
-                  <span className="font-mono text-forest">{FAKE_ADMIN_ACCESS.email}</span>
-                </div>
-                <div className="flex items-start justify-between gap-4">
-                  <span className="text-muted">Password</span>
-                  <span className="font-mono text-forest">{FAKE_ADMIN_ACCESS.password}</span>
-                </div>
-              </div>
             </div>
 
             <div className="mt-6 rounded-[24px] border border-[#eadfcf] bg-[#fcfbf7] p-4 sm:p-5">

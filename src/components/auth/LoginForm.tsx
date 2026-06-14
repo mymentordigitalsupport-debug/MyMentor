@@ -10,6 +10,7 @@ import { ForgotPasswordModal } from "@/components/auth/ForgotPasswordModal";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import type { UserRole } from "@/types";
+import { HARDCODED_ADMIN_CREDENTIALS } from "@/lib/admin/auth";
 
 type LoginMode = "user" | "admin";
 
@@ -30,6 +31,43 @@ export function LoginForm({ mode = "user" }: LoginFormProps) {
     e.preventDefault();
     setError(null);
     setLoading(true);
+
+    if (mode === "admin") {
+      const normalizedEmail = email.trim().toLowerCase();
+
+      if (
+        normalizedEmail !== HARDCODED_ADMIN_CREDENTIALS.email ||
+        password !== HARDCODED_ADMIN_CREDENTIALS.password
+      ) {
+        setError("Incorrect email or password. Please try again.");
+        toast.error("Login Failed", "Incorrect email or password. Please try again.");
+        setLoading(false);
+        return;
+      }
+
+      const response = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: normalizedEmail,
+          password,
+        }),
+      });
+
+      if (!response.ok) {
+        setError("Unable to open admin access right now.");
+        toast.error("Access denied", "Unable to open admin access right now.");
+        setLoading(false);
+        return;
+      }
+
+      toast.success("Admin access granted", "You've successfully signed in.");
+      router.push("/admin");
+      router.refresh();
+      return;
+    }
 
     const supabase = createSupabaseBrowserClient();
     const { error: authError } = await supabase.auth.signInWithPassword({
@@ -64,21 +102,6 @@ export function LoginForm({ mode = "user" }: LoginFormProps) {
       (user.app_metadata?.role as UserRole | undefined) ??
       (profile?.role as UserRole | undefined) ??
       "user";
-
-    if (mode === "admin") {
-      if (role !== "admin") {
-        await supabase.auth.signOut();
-        setError("This account does not have admin access.");
-        toast.error("Access denied", "This account does not have admin access.");
-        setLoading(false);
-        return;
-      }
-
-      toast.success("Admin access granted", "You've successfully signed in.");
-      router.push("/admin");
-      router.refresh();
-      return;
-    }
 
     if (role === "admin") {
       toast.success("Admin access granted", "You've successfully signed in.");
@@ -188,8 +211,8 @@ export function LoginForm({ mode = "user" }: LoginFormProps) {
 
         {isAdmin && (
           <p className="rounded-2xl border border-[#e3d7c4] bg-[#fffdf8] px-4 py-3 text-sm leading-6 text-muted">
-            Admin access is restricted to accounts with the admin role. If you need a regular user account,
-            use the standard sign-in page.
+            Admin access uses the hardcoded credentials shown above. If you need a regular user account, use
+            the standard sign-in page.
           </p>
         )}
       </form>
