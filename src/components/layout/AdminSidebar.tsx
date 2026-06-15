@@ -28,6 +28,7 @@ const ADMIN_NAV = [
   { href: "/admin/quizzes", label: "Quizzes", icon: Sparkles },
   { href: "/admin/reflections", label: "Reflections", icon: ShieldCheck },
   { href: "/admin/resources", label: "Resources", icon: PlaySquare },
+  { href: "/", label: "Back to home page", icon: LogOut, isExit: true },
 ];
 
 export function AdminSidebar() {
@@ -69,7 +70,9 @@ export function AdminSidebar() {
                 "flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition-all duration-150",
                 active
                   ? "border border-sage/25 bg-sage/10 text-forest shadow-sm"
-                  : "text-muted hover:bg-sand hover:text-text"
+                  : item.isExit
+                    ? "border border-sage/20 bg-sage/10 text-forest hover:bg-sage/15"
+                    : "text-muted hover:bg-sand hover:text-text"
               )}
               aria-current={active ? "page" : undefined}
             >
@@ -79,16 +82,6 @@ export function AdminSidebar() {
           );
         })}
       </nav>
-
-      <div className="border-t border-mist/80 p-4">
-        <Link
-          href="/today"
-          className="flex items-center justify-between rounded-2xl border border-sage/20 bg-sage/10 px-4 py-3 text-sm font-medium text-forest transition-colors hover:bg-sage/15"
-        >
-          <span>Back to app</span>
-          <LogOut className="h-4 w-4" />
-        </Link>
-      </div>
     </aside>
   );
 }
