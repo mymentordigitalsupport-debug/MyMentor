@@ -9,7 +9,7 @@ import { NavBar } from "@/components/landing/NavBar";
 const navItems = [
   { name: "Sign up", url: "/register", icon: UserRoundPlus },
   { name: "Member login", url: "/login", icon: LogIn },
-  { name: "Admin login", url: "/admin-login", icon: ShieldCheck },
+  { name: "Our Community", url: "/admin-login", icon: ShieldCheck },
 ] as const;
 
 export function HeroSection() {

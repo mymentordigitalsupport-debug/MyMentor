@@ -13,7 +13,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const inputId = id ?? label?.toLowerCase().replace(/\s+/g, "-");
 
     return (
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-1">
         {label && (
           <label
             htmlFor={inputId}
@@ -26,7 +26,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           id={inputId}
           className={cn(
-            "w-full px-4 py-3 rounded-2xl",
+            "w-full rounded-2xl px-4 py-2.5",
             "bg-cream border border-mist",
             "text-text placeholder:text-muted",
             "transition-all duration-200",

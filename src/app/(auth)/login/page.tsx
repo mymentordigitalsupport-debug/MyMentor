@@ -81,13 +81,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
               <div className="mt-6 text-center text-sm text-muted">
                 New here?{" "}
                 <Link href="/register" className="text-forest hover:underline font-semibold">
-                  Start your course
-                </Link>
-              </div>
-              <div className="mt-3 text-center text-xs text-muted">
-                Admin?{" "}
-                <Link href="/admin/login" className="text-forest hover:underline font-semibold">
-                  Sign in to admin
+                  Sign up
                 </Link>
               </div>
             </div>

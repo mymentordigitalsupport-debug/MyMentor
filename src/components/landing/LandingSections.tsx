@@ -46,6 +46,13 @@ const pillars = [
   },
 ] as const;
 
+const buttonStyles = {
+  light:
+    "inline-flex min-h-11 items-center justify-center rounded-full border border-[#c7d6c1] bg-[#fffdf8] px-6 text-sm font-semibold text-forest shadow-[0_12px_30px_-18px_rgba(31,42,36,0.18)] transition hover:border-forest hover:bg-white",
+  dark:
+    "inline-flex min-h-12 items-center justify-center rounded-full bg-forest px-6 text-sm font-semibold text-cream shadow-[0_12px_30px_-18px_rgba(50,69,59,0.75)] transition hover:bg-[#223128]",
+} as const;
+
 export function LandingSections() {
   return (
     <div className="relative space-y-8 bg-cream px-4 pb-16 pt-0 sm:px-6 lg:px-8 lg:pb-28">
@@ -85,7 +92,7 @@ export function LandingSections() {
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <Link
                   href="/register"
-                  className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#c7d6c1] bg-[#fffdf8] px-6 text-sm font-semibold text-forest transition hover:border-forest hover:bg-white"
+                  className={buttonStyles.light}
                 >
                   Sign up
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -281,7 +288,7 @@ export function LandingSections() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
                   href="/register"
-                  className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#c7d6c1] bg-[#fffdf8] px-6 text-sm font-semibold text-forest transition hover:border-forest hover:bg-white"
+                  className={buttonStyles.dark}
                 >
                   Sign up
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -297,7 +304,7 @@ export function LandingSections() {
 
             <div className="relative min-h-[22rem] border-t border-white/10 lg:border-l lg:border-t-0">
               <Image
-                src="/assets/images/login-bg.png"
+                src="/assets/images/s1r.jpg"
                 alt="Transcendent landscape"
                 fill
                 className="object-cover object-center"

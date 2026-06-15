@@ -59,7 +59,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
     }, [value, showStrengthMeter]);
 
     return (
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-1">
         {label && (
           <label
             htmlFor={inputId}
@@ -76,7 +76,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
             value={value}
             onChange={onChange}
             className={cn(
-              "w-full px-4 py-3 pr-12 rounded-2xl",
+              "w-full rounded-2xl px-4 py-2.5 pr-12",
               "bg-cream border border-mist",
               "text-text placeholder:text-muted",
               "transition-all duration-200",
@@ -107,7 +107,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
         
         {/* Password Strength Meter */}
         {showStrengthMeter && value && typeof value === 'string' && value.length > 0 && (
-          <div className="space-y-1.5">
+          <div className="space-y-1">
             <div className="flex gap-1">
               {[1, 2, 3, 4].map((level) => (
                 <div

@@ -231,7 +231,7 @@ export function RegisterForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-6" noValidate>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
       {isAnonymousMode && (
         <div className="rounded-2xl border border-sage/30 bg-sage/10 px-4 py-3">
           <p className="text-sm text-forest">
@@ -268,8 +268,8 @@ export function RegisterForm() {
         required
       />
 
-      <div className="rounded-2xl border border-sage/20 bg-white/80 p-4 shadow-sm">
-        <div className="flex items-center justify-between gap-3">
+      <div className="rounded-2xl border border-sage/20 bg-white/80 p-3 shadow-sm">
+        <div className="flex items-center justify-between gap-2">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-forest">Choose your course</p>
             <p className="mt-1 text-sm text-muted">Pick one course to study first.</p>
@@ -282,12 +282,12 @@ export function RegisterForm() {
         </div>
 
         {loadingBooks ? (
-          <div className="mt-4 flex items-center justify-center rounded-2xl border border-mist bg-cream py-6">
+          <div className="mt-3 flex items-center justify-center rounded-2xl border border-mist bg-cream py-5">
             <div className="h-5 w-5 animate-spin rounded-full border-2 border-sage border-t-transparent" />
           </div>
         ) : (
-            <div className="mt-4 grid gap-3 md:grid-cols-3">
-              {books.map((book) => {
+          <div className="mt-3 grid gap-2.5 md:grid-cols-3">
+            {books.map((book) => {
               const selected = book.title === selectedBookTitle;
 
                 return (
@@ -302,18 +302,13 @@ export function RegisterForm() {
                         : "border-mist bg-cream hover:border-sage/35 hover:shadow-[0_12px_24px_-24px_rgba(31,42,36,0.2)] hover:-translate-y-0.5"
                     }`}
                   >
-                    <div className="relative flex h-[150px] items-center justify-center p-4">
+                    <div className="relative flex h-[136px] items-center justify-center p-3">
                       <div
                         className={`relative h-[108px] w-[80px] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                           selected ? "scale-[1.04]" : "group-hover:scale-[1.02]"
                         }`}
                       >
-                        <Image
-                          src={book.image}
-                          alt={book.title}
-                          fill
-                          className="object-contain"
-                        />
+                        <Image src={book.image} alt={book.title} fill className="object-contain" />
                       </div>
                       <span
                         className={`absolute bottom-3 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
@@ -331,11 +326,11 @@ export function RegisterForm() {
 
       {error && <p className="rounded-xl bg-danger/10 px-4 py-3 text-sm text-danger">{error}</p>}
 
-      <div className="rounded-2xl border border-sage/20 bg-white/70 px-4 py-4 text-left shadow-sm">
+      <div className="rounded-2xl border border-sage/20 bg-white/70 px-4 py-3 text-left shadow-sm">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-forest">
           POPIA notice
         </p>
-        <div className="mt-3 space-y-2 text-xs leading-relaxed text-muted">
+        <div className="mt-2.5 space-y-1.5 text-xs leading-relaxed text-muted">
           <p>
             By creating an account, you acknowledge that My Mentor will store and process your
             account information and profile settings, and any content you choose to add while
@@ -351,7 +346,7 @@ export function RegisterForm() {
           </p>
         </div>
 
-        <label className="mt-4 flex items-start gap-3 text-xs leading-relaxed text-text">
+        <label className="mt-3 flex items-start gap-3 text-xs leading-relaxed text-text">
           <input
             type="checkbox"
             checked={privacyAccepted}
@@ -362,7 +357,7 @@ export function RegisterForm() {
         </label>
       </div>
 
-      <div className="flex justify-center mt-2">
+      <div className="mt-1 flex justify-center">
         <FancyButton
           type="submit"
           loading={loading}
@@ -374,7 +369,7 @@ export function RegisterForm() {
         </FancyButton>
       </div>
 
-      <div className="relative my-8">
+      <div className="relative my-6">
         <div className="absolute inset-0 flex items-center">
           <div className="w-full border-t-2 border-sage/20"></div>
         </div>
@@ -385,7 +380,7 @@ export function RegisterForm() {
 
       <Link
         href={isAnonymousMode ? "/register" : "/register?mode=anonymous"}
-        className="inline-flex w-full items-center justify-center rounded-full border-2 border-sage/30 bg-sage/5 px-6 py-3 font-medium text-forest transition-all duration-300 hover:bg-sage/10"
+        className="inline-flex w-full items-center justify-center rounded-full border-2 border-sage/30 bg-sage/5 px-6 py-2.5 font-medium text-forest transition-all duration-300 hover:bg-sage/10"
       >
         {isAnonymousMode ? "Continue with Name" : "Continue Anonymously"}
       </Link>
