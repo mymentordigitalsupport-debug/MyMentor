@@ -87,7 +87,7 @@ export function LandingSections() {
                   href="/register"
                   className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#c7d6c1] bg-[#fffdf8] px-6 text-sm font-semibold text-forest transition hover:border-forest hover:bg-white"
                 >
-                  Create account
+                  Sign up
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
                 <a
@@ -99,24 +99,18 @@ export function LandingSections() {
               </div>
             </div>
 
-            <div className="relative min-h-[28rem] border-t border-[#d8cfbf] bg-[#e6dfd1] lg:min-h-full lg:border-l lg:border-t-0">
+            <div className="relative min-h-[28rem] overflow-hidden border-t border-[#d8cfbf] bg-[#e6dfd1] lg:min-h-full lg:border-l lg:border-t-0">
               <Image
-                src="/assets/images/register-bg.png"
+                src="/assets/images/s1L.jpg"
                 alt="My Mentor transformation poster"
                 fill
-                className="object-contain object-center p-6"
+                className="object-cover object-center"
                 style={{ objectPosition: "center center" }}
                 priority
               />
-              <div className="absolute inset-0 bg-[#11110e]/18" />
+              <div className="absolute inset-0 bg-[#11110e]/12" />
               <div className="absolute left-4 top-4 max-w-[14rem] rounded-full border border-white/20 bg-[#11110e]/80 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-cream backdrop-blur-sm">
                 Guided change
-              </div>
-              <div className="absolute bottom-4 left-4 right-4 rounded-[1.5rem] border border-white/12 bg-[#11110e]/82 p-6 text-cream shadow-[0_16px_60px_-30px_rgba(0,0,0,0.8)] backdrop-blur-sm sm:p-7">
-                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cream/65">Platform promise</p>
-                <p className="mt-3 max-w-none text-base leading-7 text-cream/88 sm:text-[1.05rem] sm:leading-8">
-                  My Mentor is designed to feel like a mentor beside you: direct, grounded, and consistent.
-                </p>
               </div>
             </div>
           </div>
@@ -287,9 +281,9 @@ export function LandingSections() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
                   href="/register"
-                  className="inline-flex min-h-12 items-center justify-center rounded-full bg-cream px-6 text-sm font-semibold text-forest transition hover:bg-mist"
+                  className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#c7d6c1] bg-[#fffdf8] px-6 text-sm font-semibold text-forest transition hover:border-forest hover:bg-white"
                 >
-                  Create your account
+                  Sign up
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
                 <a
@@ -356,7 +350,7 @@ export function LandingSections() {
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">Get started</p>
             <div className="mt-4 flex flex-col gap-3 text-sm font-medium">
               <a href="/register" className="text-text transition hover:text-forest">
-                Create account
+                Sign up
               </a>
               <a href="/login" className="text-text transition hover:text-forest">
                 Sign in
