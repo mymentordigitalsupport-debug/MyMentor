@@ -320,6 +320,58 @@ export function LandingSections() {
           </div>
         </section>
       </SectionReveal>
+
+      <footer className="mx-auto mt-2 max-w-7xl overflow-hidden rounded-[2rem] border border-[#d8cfbf] bg-[#f5efe5] px-6 py-8 text-text shadow-[0_18px_60px_-40px_rgba(31,42,36,0.35)] sm:px-8 lg:px-10 lg:py-10">
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr_0.7fr]">
+          <div className="space-y-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage">My Mentor</p>
+            <p className="font-serif max-w-md text-3xl font-semibold tracking-[-0.04em] text-forest">
+              Guidance, structure, and daily action that keep people moving forward.
+            </p>
+            <p className="max-w-lg text-sm leading-7 text-muted">
+              Built to feel calm, grounded, and useful. The goal is simple: one clear path, one honest step at a time.
+            </p>
+          </div>
+
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">Explore</p>
+            <div className="mt-4 flex flex-col gap-3 text-sm font-medium">
+              <a href="#mission" className="text-text transition hover:text-forest">
+                Mission
+              </a>
+              <a href="#books" className="text-text transition hover:text-forest">
+                Books
+              </a>
+              <a href="#owner" className="text-text transition hover:text-forest">
+                Creator
+              </a>
+              <a href="#start" className="text-text transition hover:text-forest">
+                Start
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">Get started</p>
+            <div className="mt-4 flex flex-col gap-3 text-sm font-medium">
+              <a href="/register" className="text-text transition hover:text-forest">
+                Create account
+              </a>
+              <a href="/login" className="text-text transition hover:text-forest">
+                Sign in
+              </a>
+              <a href="/admin-login" className="text-text transition hover:text-forest">
+                Admin login
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 flex flex-col gap-3 border-t border-[#d8cfbf] pt-5 text-xs uppercase tracking-[0.22em] text-muted sm:flex-row sm:items-center sm:justify-between">
+          <span>My Mentor</span>
+          <span>Walk with purpose. Build with clarity.</span>
+        </div>
+      </footer>
     </div>
   );
 }
