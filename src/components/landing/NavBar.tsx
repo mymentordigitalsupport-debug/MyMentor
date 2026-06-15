@@ -23,7 +23,7 @@ export function NavBar({ items, className }: NavBarProps) {
   return (
     <nav
       aria-label="Primary"
-      className={cn("fixed right-4 top-4 z-50", className)}
+      className={cn("absolute right-4 top-4 z-50 sm:right-6 sm:top-6", className)}
     >
       <div className="flex items-center gap-1 rounded-full border border-white/14 bg-[#0c0d0b]/78 px-1 py-1 shadow-[0_18px_55px_-30px_rgba(0,0,0,0.7)] backdrop-blur-xl">
         {items.map((item) => {

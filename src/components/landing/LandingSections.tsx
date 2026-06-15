@@ -54,7 +54,7 @@ export function LandingSections() {
           id="mission"
           className="texture-noise mx-auto -mt-14 max-w-7xl overflow-hidden rounded-[2.5rem] border border-[#cbc1b2] bg-[#f4efe6] shadow-[0_24px_90px_-55px_rgba(31,42,36,0.55)]"
         >
-          <div className="grid lg:grid-cols-[1.08fr_0.92fr]">
+          <div className="grid lg:grid-cols-2">
             <div className="relative p-6 sm:p-8 lg:p-10">
               <div className="max-w-2xl space-y-6">
                 <span className="inline-flex items-center gap-2 rounded-full border border-[#a9b099] bg-[#f8f4eb] px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-forest">
@@ -85,14 +85,14 @@ export function LandingSections() {
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <Link
                   href="/register"
-                  className="inline-flex min-h-11 items-center justify-center rounded-full bg-forest px-6 text-sm font-semibold text-cream transition hover:bg-[#223128]"
+                  className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#c7d6c1] bg-[#fffdf8] px-6 text-sm font-semibold text-forest transition hover:border-forest hover:bg-white"
                 >
                   Create account
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
                 <a
                   href="#books"
-                  className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#b8ae9d] px-6 text-sm font-semibold text-text transition hover:border-forest hover:text-forest"
+                  className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#c7d6c1] bg-[#fffdf8] px-6 text-sm font-semibold text-forest transition hover:border-forest hover:bg-white"
                 >
                   Explore the books
                 </a>
@@ -104,16 +104,17 @@ export function LandingSections() {
                 src="/assets/images/register-bg.png"
                 alt="My Mentor transformation poster"
                 fill
-                className="object-cover object-left"
+                className="object-contain object-center p-6"
+                style={{ objectPosition: "center center" }}
                 priority
               />
               <div className="absolute inset-0 bg-[#11110e]/18" />
               <div className="absolute left-4 top-4 max-w-[14rem] rounded-full border border-white/20 bg-[#11110e]/80 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-cream backdrop-blur-sm">
                 Guided change
               </div>
-              <div className="absolute bottom-4 left-4 right-4 rounded-[1.5rem] border border-white/12 bg-[#11110e]/82 p-5 text-cream shadow-[0_16px_60px_-30px_rgba(0,0,0,0.8)] backdrop-blur-sm">
+              <div className="absolute bottom-4 left-4 right-4 rounded-[1.5rem] border border-white/12 bg-[#11110e]/82 p-6 text-cream shadow-[0_16px_60px_-30px_rgba(0,0,0,0.8)] backdrop-blur-sm sm:p-7">
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cream/65">Platform promise</p>
-                <p className="mt-3 max-w-md text-lg leading-8 text-cream/88">
+                <p className="mt-3 max-w-none text-base leading-7 text-cream/88 sm:text-[1.05rem] sm:leading-8">
                   My Mentor is designed to feel like a mentor beside you: direct, grounded, and consistent.
                 </p>
               </div>

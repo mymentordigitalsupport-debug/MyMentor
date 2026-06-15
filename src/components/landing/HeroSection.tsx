@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { LogIn, Play, ShieldCheck, UserRoundPlus } from "lucide-react";
+import { LogIn, ShieldCheck, UserRoundPlus } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { NavBar } from "@/components/landing/NavBar";
 
@@ -85,7 +85,7 @@ export function HeroSection() {
             <div className="flex items-center gap-4">
               <span className="h-28 w-px bg-sage/90 sm:h-32" aria-hidden="true" />
               <p
-                className="max-w-[18rem] text-[3.25rem] font-medium uppercase leading-[0.94] tracking-[0.06em] text-white sm:max-w-[20rem] sm:text-[3.45rem]"
+                className="max-w-[15.5rem] text-[2.35rem] font-medium uppercase leading-[0.9] tracking-[0.05em] text-white sm:max-w-[17rem] sm:text-[2.85rem] lg:max-w-[18rem] lg:text-[3.05rem]"
                 style={{ fontFamily: '"Gunterz", sans-serif' }}
               >
                 <span className="block whitespace-nowrap">WE TRANSFORM</span>
@@ -94,26 +94,6 @@ export function HeroSection() {
             </div>
           </div>
 
-          <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
-            <button
-              type="button"
-              className="pointer-events-auto group inline-flex h-20 w-20 items-center justify-center rounded-full border border-white/78 bg-black/20 text-cream shadow-[0_18px_60px_-28px_rgba(0,0,0,0.9)] transition duration-300 hover:border-sage hover:bg-black/35 sm:h-24 sm:w-24"
-              aria-label="Play video"
-              onClick={async () => {
-                const video = videoRef.current;
-                if (!video) return;
-
-                try {
-                  video.currentTime = 0;
-                  await video.play();
-                } catch {
-                  video.pause();
-                }
-              }}
-            >
-              <Play className="ml-1 h-8 w-8 fill-current text-cream transition duration-300 group-hover:text-sage sm:h-9 sm:w-9" />
-            </button>
-          </div>
         </div>
       </div>
     </section>
