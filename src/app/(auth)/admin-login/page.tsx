@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/Badge";
 import { ShieldCheck, ArrowRight } from "lucide-react";
 import { cookies } from "next/headers";
 import { ADMIN_OVERRIDE_COOKIE } from "@/lib/admin/auth";
+import { Button } from "@/components/ui/Button";
 
 export const dynamic = "force-dynamic";
 
@@ -57,6 +58,17 @@ export default async function AdminLoginPage() {
         />
 
         <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-2xl flex-col justify-center px-5 py-8 sm:px-8 lg:px-10">
+          <div className="mb-5 flex justify-center sm:justify-start">
+            <Button
+              asChild
+              variant="outline"
+              size="sm"
+              className="rounded-full border-[#c7d6c1] bg-[#fffdf8] text-forest shadow-none hover:border-forest hover:bg-white hover:text-forest"
+            >
+              <Link href="/">Home</Link>
+            </Button>
+          </div>
+
           <div className="mb-5 flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#d8ceb8] bg-[#fcfbf7] shadow-[0_10px_24px_-18px_rgba(50,69,59,0.25)]">
               <ShieldCheck className="h-6 w-6 text-forest" />

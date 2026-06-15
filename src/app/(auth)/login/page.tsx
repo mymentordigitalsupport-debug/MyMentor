@@ -4,6 +4,7 @@ import Image from "next/image";
 import { PageLoader } from "@/components/ui/PageLoader";
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";
+import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "Sign In",
@@ -44,6 +45,17 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
         {/* Content Overlay */}
         <div className="relative z-10 w-full flex items-center justify-end p-6 lg:p-12">
           <div className="w-full max-w-md lg:mr-48 xl:mr-56">
+            <div className="mb-6 flex justify-center lg:justify-start">
+              <Button
+                asChild
+                variant="outline"
+                size="sm"
+                className="rounded-full border-[#c7d6c1] bg-[#fffdf8] text-forest shadow-none hover:border-forest hover:bg-white hover:text-forest"
+              >
+                <Link href="/">Home</Link>
+              </Button>
+            </div>
+
             {/* Mobile Logo */}
             <div className="lg:hidden text-center mb-8">
               <Image
