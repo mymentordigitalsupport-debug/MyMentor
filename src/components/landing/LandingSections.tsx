@@ -12,9 +12,9 @@ import { SectionReveal } from "@/components/landing/SectionReveal";
 
 const books = [
   {
-    title: "From Addicts to Leaders",
-    description: "A leadership pathway for moving from destruction to responsibility, character, and service.",
-    accent: "sage",
+    title: "Uprooting Drug Abuse",
+    description: "A biblical and practical framework for understanding addiction, breaking bondage, and restoring people.",
+    accent: "forest",
     number: "01",
   },
   {
@@ -24,9 +24,9 @@ const books = [
     number: "02",
   },
   {
-    title: "Uprooting Drug Abuse",
-    description: "A biblical and practical framework for understanding addiction, breaking bondage, and restoring people.",
-    accent: "forest",
+    title: "From Addicts to Leaders",
+    description: "A leadership pathway for moving from destruction to responsibility, character, and service.",
+    accent: "sage",
     number: "03",
   },
 ] as const;
@@ -140,13 +140,11 @@ export function LandingSections() {
               </p>
             </div>
 
-            <div className="mt-10 grid gap-5 lg:grid-cols-[1.05fr_1.12fr_0.95fr] lg:items-end">
-              {books.map((book, index) => (
+            <div className="mt-10 grid gap-5 lg:grid-cols-3 lg:items-stretch">
+              {books.map((book) => (
                 <article
                   key={book.title}
-                  className={`relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#191a16] p-6 shadow-[0_20px_80px_-55px_rgba(0,0,0,0.85)] transition duration-300 hover:-translate-y-1 hover:border-white/20 ${
-                    index === 1 ? "lg:-mt-10" : index === 2 ? "lg:mt-10" : ""
-                  }`}
+                  className="relative h-full overflow-hidden rounded-[2rem] border border-white/10 bg-[#191a16] p-6 shadow-[0_20px_80px_-55px_rgba(0,0,0,0.85)] transition duration-300 hover:-translate-y-1 hover:border-white/20"
                 >
                   <div
                     className={`absolute right-4 top-4 text-7xl font-semibold tracking-[-0.08em] ${
@@ -160,12 +158,12 @@ export function LandingSections() {
                   >
                     {book.number}
                   </div>
-                  <div className="relative">
+                  <div className="relative flex h-full flex-col">
                     <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cream/55">Course {book.number}</p>
                     <h3 className="font-serif mt-4 max-w-xs text-3xl font-semibold tracking-[-0.04em] text-cream">
                       {book.title}
                     </h3>
-                    <p className="mt-5 text-sm leading-7 text-cream/72">{book.description}</p>
+                    <p className="mt-5 flex-1 text-sm leading-7 text-cream/72">{book.description}</p>
 
                     <div className="mt-8 flex items-center gap-3">
                       <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/6">
