@@ -56,7 +56,7 @@ export function StepSetGoal({ value, onChange }: StepSetGoalProps) {
   return (
     <div className="flex-1 flex flex-col px-6 py-10">
       <h2 className="font-serif text-2xl text-forest font-semibold mb-2">
-        What are you hoping for?
+        What is your goal for doing this course?
       </h2>
       <p className="text-muted text-sm mb-6 leading-relaxed">
         Setting a personal intention helps anchor your course. This is just

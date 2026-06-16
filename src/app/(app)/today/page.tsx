@@ -406,10 +406,9 @@ export default async function TodayPage() {
         <TodayBanner
           greeting={greeting}
           userName={resolvedName}
-          isAnonymous={profile?.is_anonymous ?? false}
           latestMood={latestMood}
           course={{
-            courseTitle,
+            courseTitle: activeCourseVersion.title,
             progressPercent,
             chaptersCompleted: completedChapters,
             totalChapters,
@@ -434,95 +433,12 @@ export default async function TodayPage() {
               todayCheckinId={todayCheckin?.id ?? null}
             />
 
-            {currentLessonCard ? (
-              <Card variant="elevated" padding="md" className="overflow-hidden border-[#e4d9c8]">
-                <div className="flex items-center justify-between gap-3">
-                  <div>
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">Continue course</p>
-                    <h2
-                      className="mt-2 text-[1.7rem] font-semibold tracking-[-0.04em] text-forest"
-                      style={{ fontFamily: "var(--font-serif)" }}
-                    >
-                      What should I do next?
-                    </h2>
-                  </div>
-                  <Badge variant="sage">{progressPercent}% complete</Badge>
-                </div>
-
-                <div className="mt-6 grid gap-5 lg:grid-cols-[1.25fr_0.75fr]">
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.22em] text-muted">Current course</p>
-                    <p className="mt-2 text-sm font-medium text-text">{courseTitle}</p>
-                    <p
-                      className="mt-4 text-[1.35rem] font-semibold leading-tight text-forest"
-                      style={{ fontFamily: "var(--font-serif)" }}
-                    >
-                      {currentChapter?.title ?? "Current Chapter"}
-                    </p>
-                    <p className="mt-2 text-sm leading-6 text-muted">
-                      {currentLessonCard.description ?? courseDescription ?? "Your next lesson is ready."}
-                    </p>
-
-                    <div className="mt-5 flex flex-wrap items-center gap-2">
-                      <span className="rounded-full border border-[#e5ddd0] bg-white px-3 py-1.5 text-xs font-medium text-muted">
-                        Lesson {currentLessonCard.sort_order + 1}
-                      </span>
-                      <span className="rounded-full border border-[#e5ddd0] bg-white px-3 py-1.5 text-xs font-medium text-muted">
-                        {currentLessonCard.estimated_minutes ?? 8} minutes
-                      </span>
-                      <span className="rounded-full border border-[#e5ddd0] bg-white px-3 py-1.5 text-xs font-medium text-muted">
-                        {currentLessonCard.ChapterName}
-                      </span>
-                    </div>
-
-                    <div className="mt-6">
-                      <Link
-                        href={`/course/${courseId}/${currentChapter?.id}/${currentLessonCard.id}`}
-                        className="inline-flex items-center gap-2 rounded-full bg-sage px-5 py-3 text-sm font-semibold text-cream transition hover:bg-forest"
-                      >
-                        Continue lesson
-                        <span aria-hidden="true">→</span>
-                      </Link>
-                    </div>
-                  </div>
-
-                  <div className="rounded-[24px] border border-[#eadfcf] bg-[#fbf9f5] p-5">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">Quick look</p>
-                    <div className="mt-4 space-y-3">
-                      <div className="rounded-2xl border border-mist bg-white p-4">
-                        <p className="text-xs uppercase tracking-[0.18em] text-muted">Estimated time</p>
-                        <p className="mt-2 text-xl font-semibold text-forest">{currentLessonCard.estimated_minutes ?? 8} min</p>
-                      </div>
-                      <div className="rounded-2xl border border-mist bg-white p-4">
-                        <p className="text-xs uppercase tracking-[0.18em] text-muted">Progress</p>
-                        <p className="mt-2 text-xl font-semibold text-forest">{progressPercent}%</p>
-                      </div>
-                      <div className="rounded-2xl border border-mist bg-white p-4">
-                        <p className="text-xs uppercase tracking-[0.18em] text-muted">Current lesson</p>
-                        <p className="mt-2 text-sm font-medium text-text">{currentLessonCard.title}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            ) : (
-              <Card variant="mist" padding="lg" className="text-center">
-                <p className="text-sm text-muted">No current lesson is available yet.</p>
-              </Card>
-            )}
-
             <Card variant="default" padding="md">
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">Today&apos;s focus</p>
                   <h2 className="mt-2 text-lg font-semibold text-text">Small steps become lasting change.</h2>
                 </div>
-                <Link
-                  href={currentLessonCard ? `/course/${courseId}/${currentChapter?.id}/${currentLessonCard.id}` : "/course"}
-                  className="text-sm font-medium text-forest hover:underline"
-                >
-                  Continue
-                </Link>
               </div>
               <div className="mt-4 rounded-2xl border border-[#eadfcf] bg-[#fbf9f5] px-4 py-4">
                 <p className="text-xs uppercase tracking-[0.18em] text-muted">Lesson</p>
@@ -532,7 +448,7 @@ export default async function TodayPage() {
               </div>
             </Card>
 
-            <Card variant="default" padding="md">
+            <Card variant="default" padding="md" className="relative top-[8px]">
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">Course progress</p>
@@ -628,18 +544,12 @@ export default async function TodayPage() {
                 </div>
               </div>
 
-              <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                <Link
-                  href={currentLessonCard ? `/course/${courseId}/${currentChapter?.id}/${currentLessonCard.id}` : "/course"}
-                  className="rounded-2xl border border-mist bg-cream px-4 py-3 text-sm font-medium text-forest transition hover:border-sage"
-                >
-                  Continue Lesson
-                </Link>
+              <div className="mt-4 grid gap-2">
                 <Link
                   href="/course"
                   className="rounded-2xl border border-mist bg-cream px-4 py-3 text-sm font-medium text-forest transition hover:border-sage"
                 >
-                  Open Course
+                  Open course page
                 </Link>
               </div>
             </Card>

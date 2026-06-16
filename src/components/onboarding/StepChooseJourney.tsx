@@ -134,12 +134,9 @@ export function StepChooseJourney({ guidancePath, courseId, onSelect }: StepChoo
 
   return (
     <div className="flex-1 flex flex-col px-6 py-10">
-      <h2 className="font-serif text-2xl text-forest font-semibold mb-2">
-        Choose your course
+      <h2 className="font-serif text-2xl text-forest font-semibold mb-8">
+        Your current course is.
       </h2>
-      <p className="text-muted text-sm mb-8 leading-relaxed">
-        Select the path that feels right for where you are today.
-      </p>
 
       {loading ? (
         <div className="flex-1 flex items-center justify-center">
