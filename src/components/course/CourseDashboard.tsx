@@ -110,6 +110,10 @@ const tabs: Array<{ id: CourseTab; label: string }> = [
   { id: "achievements", label: "Achievements" },
 ];
 
+function formatLessonCount(count: number) {
+  return `${count} lesson${count === 1 ? "" : "s"}`;
+}
+
 function TabPill({
   active,
   children,
@@ -236,7 +240,7 @@ export function CourseDashboard({
                 className="mt-7 text-[clamp(2.6rem,4vw,4.6rem)] leading-[0.96] tracking-[-0.05em] text-forest"
                 style={{ fontFamily: "var(--font-serif)" }}
               >
-                My Course
+                We Transform Together
               </h1>
               <p className="mt-6 max-w-2xl text-[1rem] leading-7 text-muted">
                 Your transformation happens one lesson at a time.
@@ -244,9 +248,6 @@ export function CourseDashboard({
                 Stay consistent, stay honest, keep moving forward.
               </p>
               <div className="mt-8 flex flex-wrap gap-2">
-                <Badge variant={guidancePath === "christian" ? "gold" : "sage"}>
-                  {guidancePath === "christian" ? "Christian Guidance" : "Religious Guidance"}
-                </Badge>
                 <Badge variant="muted">{courseVersionTitle}</Badge>
               </div>
             </div>
@@ -412,6 +413,7 @@ export function CourseDashboard({
 
               <button
                 type="button"
+                onClick={() => setActiveTab("Chapters")}
                 className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#e5ddd0] bg-[#fbf9f5] px-5 py-3 text-[0.95rem] font-medium text-text transition hover:bg-[#f7f3eb]"
               >
                 View all {totalChapters} Chapters
@@ -514,6 +516,7 @@ export function CourseDashboard({
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 <button
                   type="button"
+                  onClick={() => setActiveTab("insights")}
                   className="inline-flex items-center justify-center gap-2 rounded-full border border-[#e5ddd0] bg-[#fbf9f5] px-5 py-3 text-[0.95rem] font-medium text-text transition hover:bg-[#f7f3eb]"
                 >
                   <BarChart3 className="h-4 w-4" />
@@ -521,10 +524,11 @@ export function CourseDashboard({
                 </button>
                 <button
                   type="button"
+                  onClick={() => setActiveTab("lessons")}
                   className="inline-flex items-center justify-center gap-2 rounded-full border border-[#e5ddd0] bg-[#fbf9f5] px-5 py-3 text-[0.95rem] font-medium text-text transition hover:bg-[#f7f3eb]"
                 >
                   <BookMarked className="h-4 w-4" />
-                  Download Chapter Guide
+                  View all lessons
                 </button>
               </div>
             </div>
@@ -544,6 +548,7 @@ export function CourseDashboard({
               <div className="mt-4 space-y-3">
                 {ChapterData.map((Chapter) => {
                   const complete = Chapter.lessonsTotal > 0 && Chapter.lessonsCompleted === Chapter.lessonsTotal;
+                  const lessonPreview = Chapter.lessons.slice(0, 3);
                   return (
                     <Link key={Chapter.id} href={`/course/${courseId}/${Chapter.id}`}>
                       <div className="rounded-2xl border border-mist bg-cream p-4 hover:border-sage/40 hover:shadow-sm transition">
@@ -551,6 +556,19 @@ export function CourseDashboard({
                           <div className="min-w-0">
                             <p className="text-sm font-medium text-text">{Chapter.title}</p>
                             {Chapter.description ? <p className="mt-1 text-xs leading-5 text-muted">{Chapter.description}</p> : null}
+                            <div className="mt-3 flex flex-wrap items-center gap-2">
+                              <span className="rounded-full bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted">
+                                {formatLessonCount(Chapter.lessonsTotal)}
+                              </span>
+                              {lessonPreview.map((lesson) => (
+                                <span
+                                  key={lesson.id}
+                                  className="rounded-full border border-[#e5ddd0] bg-[#fffdf9] px-2.5 py-1 text-[10px] text-muted"
+                                >
+                                  {lesson.title}
+                                </span>
+                              ))}
+                            </div>
                           </div>
                           <span className={cn("rounded-full px-2.5 py-1 text-[10px] font-semibold", complete ? "bg-sage/15 text-forest" : "bg-mist text-muted")}>
                             {Chapter.lessonsCompleted}/{Chapter.lessonsTotal}
@@ -566,9 +584,11 @@ export function CourseDashboard({
             <Card variant="mist" padding="md">
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">Chapter Summary</p>
               <h3 className="mt-2 text-lg font-semibold text-text">{activeChapter?.title ?? "No active Chapter"}</h3>
-              <p className="mt-2 text-sm leading-6 text-muted">
-                The Chapter list is powered by `Chapters`, and each Chapter is linked to its lessons via `lessons`.
-              </p>
+              {activeChapter?.description ? (
+                <p className="mt-2 text-sm leading-6 text-muted">{activeChapter.description}</p>
+              ) : (
+                <p className="mt-2 text-sm leading-6 text-muted">This view shows the active chapter and its lesson progress.</p>
+              )}
               <div className="mt-4 space-y-2 text-sm text-text">
                 <div className="flex items-center justify-between rounded-2xl bg-white px-4 py-3">
                   <span>Published Chapters</span>
@@ -581,6 +601,10 @@ export function CourseDashboard({
                 <div className="flex items-center justify-between rounded-2xl bg-white px-4 py-3">
                   <span>Completion</span>
                   <span className="font-medium">{progressPercent}%</span>
+                </div>
+                <div className="flex items-center justify-between rounded-2xl bg-white px-4 py-3">
+                  <span>Lessons in this Chapter</span>
+                  <span className="font-medium">{activeChapter?.lessonsTotal ?? 0}</span>
                 </div>
               </div>
             </Card>
@@ -611,7 +635,9 @@ export function CourseDashboard({
                               {completedLessonIds.includes(lesson.id) ? <CheckCircle2 className="h-4 w-4" /> : <Circle className="h-3.5 w-3.5" />}
                             </span>
                             <div className="min-w-0">
-                              <p className="truncate text-[0.98rem] font-medium text-text">{lesson.title}</p>
+                              <p className="truncate text-[0.98rem] font-medium text-text">
+                                Lesson {lesson.sort_order}: {lesson.title}
+                              </p>
                               {lesson.description ? <p className="mt-1 text-[0.82rem] text-muted">{lesson.description}</p> : null}
                             </div>
                             <span className="text-[0.82rem] text-muted">{lesson.estimated_minutes ?? 8} min</span>
