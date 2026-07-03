@@ -47,6 +47,7 @@ export function DesktopSidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const toast = useToast();
+  const isLessonRoute = /^\/(?:course|journey)\/[^/]+\/[^/]+\/[^/]+$/.test(pathname);
 
   const [profile, setProfile] = useState<ProfilePreview | null>(null);
   const [authName, setAuthName] = useState<string | null>(null);
@@ -128,17 +129,17 @@ export function DesktopSidebar() {
   };
 
   return (
-    <aside className="relative hidden shrink-0 lg:block w-[305px]">
-      <main className="sticky top-0 flex h-screen w-[305px] flex-col overflow-y-auto border-r border-white/6 bg-[linear-gradient(180deg,#133225_0%,#102b1f_45%,#0f271c_100%)] shadow-[0_20px_44px_-28px_rgba(7,16,11,0.55)]">
-        <header className="px-4 pt-4 pb-3 text-[#fbf9f5]">
-          <div className="flex items-start gap-3">
-            <div className="flex min-w-0 items-start gap-3">
+    <aside className={cn("relative hidden shrink-0 lg:block transition-[width] duration-300 ease-out", isLessonRoute ? "w-[92px]" : "w-[305px]")}>
+      <main className={cn("sticky top-0 flex h-screen flex-col overflow-y-auto border-r border-white/6 bg-[linear-gradient(180deg,#133225_0%,#102b1f_45%,#0f271c_100%)] shadow-[0_20px_44px_-28px_rgba(7,16,11,0.55)] transition-[width] duration-300 ease-out", isLessonRoute ? "w-[92px]" : "w-[305px]")}>
+        <header className={cn("text-[#fbf9f5]", isLessonRoute ? "px-3 pt-4 pb-4" : "px-4 pt-4 pb-3")}>
+          <div className={cn("flex items-start", isLessonRoute ? "justify-center" : "gap-3")}>
+            <div className={cn("flex min-w-0 items-start", isLessonRoute ? "justify-center" : "gap-3")}>
               <IdentityAvatar
                 name={displayName}
                 isAnonymous={profile?.is_anonymous ?? false}
                 className="mt-0.5 h-10 w-10 bg-[#7a8b5c] text-[#fbf9f5] shadow-[0_0_0_1px_rgba(255,255,255,0.08)]"
               />
-              <div className="min-w-0 pt-0.5">
+              <div className={cn("min-w-0 pt-0.5", isLessonRoute && "hidden")}>
                 <div className="flex items-center gap-2">
                   <span className="truncate text-[0.95rem] font-semibold tracking-[-0.02em] text-[#fbf9f5]">
                     {loadingProfile ? "Loading..." : displayName}
@@ -154,7 +155,7 @@ export function DesktopSidebar() {
           </div>
         </header>
 
-        <section className="px-4 pb-3 pt-1.5">
+        <section className={cn(isLessonRoute ? "px-2 pb-3 pt-1.5" : "px-4 pb-3 pt-1.5")}>
           <div className="space-y-2.5">
             {PRIMARY_NAV.map((item) => {
               const Icon = item.icon;
@@ -165,7 +166,8 @@ export function DesktopSidebar() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "group flex min-h-[56px] items-center gap-3 rounded-[18px] px-3 py-2 transition",
+                    "group flex min-h-[56px] items-center rounded-[18px] py-2 transition",
+                    isLessonRoute ? "justify-center px-2" : "gap-3 px-3",
                     isActive
                       ? "border-l-[3px] border-l-[#7a9272] bg-white/8 shadow-none"
                       : "hover:bg-white/[0.035]"
@@ -180,7 +182,7 @@ export function DesktopSidebar() {
                     <Icon className="h-[16px] w-[16px]" />
                   </span>
 
-                  <span className="min-w-0 flex-1">
+                  <span className={cn("min-w-0 flex-1", isLessonRoute && "hidden")}>
                     <span className="flex items-center gap-2">
                       <span
                         className={cn(
@@ -206,8 +208,8 @@ export function DesktopSidebar() {
           </div>
         </section>
 
-        <footer className="mt-auto px-4 pb-3 pt-1.5">
-          <div className="rounded-[22px] border border-white/10 bg-white/4 p-3.5 text-[#fbf9f5]">
+        <footer className={cn("mt-auto pt-1.5", isLessonRoute ? "px-2 pb-3" : "px-4 pb-3")}>
+          <div className={cn("rounded-[22px] border border-white/10 bg-white/4 text-[#fbf9f5]", isLessonRoute ? "p-2.5" : "p-3.5")}>
             <div className="flex items-center justify-between gap-3">
               <div className="flex min-w-0 items-center gap-3">
                 <IdentityAvatar
@@ -215,7 +217,7 @@ export function DesktopSidebar() {
                   isAnonymous={profile?.is_anonymous ?? false}
                   className="h-10 w-10 bg-[#5d6f50] text-[#fbf9f5]"
                 />
-                <div className="min-w-0">
+                <div className={cn("min-w-0", isLessonRoute && "hidden")}>
                   <p className="truncate text-[0.9rem] font-semibold">{displayName}</p>
                   <p className="truncate text-[0.76rem] text-white/66">
                     {profile?.is_anonymous ? "Anonymous identity" : "Personal account"}
@@ -226,7 +228,7 @@ export function DesktopSidebar() {
               <button
                 type="button"
                 className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-white/10 bg-white/6 text-white/70 transition hover:bg-white/10 hover:text-white"
-                aria-label="More options"
+                aria-label={isLessonRoute ? "Account options" : "More options"}
               >
                 <MoreHorizontal className="h-[15px] w-[15px]" />
               </button>
@@ -236,10 +238,10 @@ export function DesktopSidebar() {
               <button
                 type="button"
                 onClick={handleLogout}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white/10 px-4 py-2.5 text-[0.9rem] font-semibold text-[#fbf9f5] transition hover:bg-white/12"
+                className={cn("inline-flex w-full items-center justify-center gap-2 rounded-full bg-white/10 text-[0.9rem] font-semibold text-[#fbf9f5] transition hover:bg-white/12", isLessonRoute ? "px-3 py-2" : "px-4 py-2.5")}
               >
                 <LogOut className="h-[15px] w-[15px]" />
-                Logout
+                {isLessonRoute ? <span className="sr-only">Logout</span> : "Logout"}
               </button>
             </div>
           </div>

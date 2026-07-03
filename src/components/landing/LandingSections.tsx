@@ -247,20 +247,8 @@ export function LandingSections() {
                   </div>
                 </div>
 
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <div className="rounded-[1.5rem] border border-white/10 bg-white/6 p-5">
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage">For the user</p>
-                    <p className="mt-3 text-sm leading-7 text-cream/74">
-                      The experience should feel calm, serious, and easy to trust from the first scroll.
-                    </p>
-                  </div>
-                  <div className="rounded-[1.5rem] border border-white/10 bg-white/6 p-5">
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">Brand posture</p>
-                    <p className="mt-3 text-sm leading-7 text-cream/74">
-                      Less hype. More conviction. A page that feels authored rather than assembled.
-                    </p>
-                  </div>
-                </div>
+
+
               </div>
             </div>
           </div>
@@ -375,3 +363,4 @@ export function LandingSections() {
     </div>
   );
 }
+
