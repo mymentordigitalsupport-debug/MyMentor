@@ -322,6 +322,27 @@ export function RegisterForm() {
               })}
           </div>
         )}
+
+        {selectedBook ? (
+          <div className="mt-3 rounded-2xl border border-sage/20 bg-sage/10 px-4 py-3">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-forest">
+                  Selected course
+                </p>
+                <p className="mt-1 text-sm font-medium text-forest">
+                  {selectedBook.title}
+                </p>
+              </div>
+              <Link
+                href="/#books"
+                className="inline-flex min-h-9 shrink-0 items-center justify-center rounded-full border border-sage/25 bg-white/70 px-3 text-xs font-semibold text-forest transition hover:border-sage/40 hover:bg-white"
+              >
+                View course details
+              </Link>
+            </div>
+          </div>
+        ) : null}
       </div>
 
       {error && <p className="rounded-xl bg-danger/10 px-4 py-3 text-sm text-danger">{error}</p>}

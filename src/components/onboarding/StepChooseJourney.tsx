@@ -112,7 +112,7 @@ export function StepChooseJourney({ guidancePath, courseId, onSelect }: StepChoo
     if (!opt) return;
 
     if (opt.courseVersionId) {
-      onSelect(opt.courseVersionId, opt.guidancePath);
+      onSelect(opt.courseVersionId, guidancePath);
       return;
     }
 
@@ -128,7 +128,7 @@ export function StepChooseJourney({ guidancePath, courseId, onSelect }: StepChoo
       null;
 
     if (resolvedVersion) {
-      onSelect(resolvedVersion.id, resolvedVersion.guidance_path as GuidancePath);
+      onSelect(resolvedVersion.id, guidancePath);
     }
   }
 
@@ -224,4 +224,3 @@ export function StepChooseJourney({ guidancePath, courseId, onSelect }: StepChoo
     </div>
   );
 }
-

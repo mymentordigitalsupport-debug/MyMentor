@@ -11,13 +11,13 @@ export const COURSE_LIBRARY: CourseLibraryItem[] = [
     image: "/assets/images/books/Uprooting drug abuse.png",
   },
   {
-    title: "From Addicts to Leader",
-    description: "Equip, protect, and empower the next generation to thrive.",
+    title: "From Addicts to Leaders",
+    description: "Move from destruction to responsibility, character, and service.",
     image: "/assets/images/books/From Addicts to leader.png",
   },
   {
     title: "Protecting the Next Generation",
-    description: "Stand for truth, speak with courage, and make your voice count.",
+    description: "Help families build safer homes and stronger futures for children.",
     image: "/assets/images/books/Protecting the next generation.png",
   },
 ];

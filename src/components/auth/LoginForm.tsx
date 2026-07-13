@@ -32,89 +32,102 @@ export function LoginForm({ mode = "user" }: LoginFormProps) {
     setError(null);
     setLoading(true);
 
-    if (mode === "admin") {
-      const normalizedEmail = email.trim().toLowerCase();
+    try {
+      if (mode === "admin") {
+        const normalizedEmail = email.trim().toLowerCase();
 
-      if (
-        normalizedEmail !== HARDCODED_ADMIN_CREDENTIALS.email ||
-        password !== HARDCODED_ADMIN_CREDENTIALS.password
-      ) {
+        if (
+          normalizedEmail !== HARDCODED_ADMIN_CREDENTIALS.email ||
+          password !== HARDCODED_ADMIN_CREDENTIALS.password
+        ) {
+          setError("Incorrect email or password. Please try again.");
+          toast.error("Login Failed", "Incorrect email or password. Please try again.");
+          setLoading(false);
+          return;
+        }
+
+        const response = await fetch("/api/admin/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: normalizedEmail,
+            password,
+          }),
+        });
+
+        if (!response.ok) {
+          setError("Unable to open admin access right now.");
+          toast.error("Access denied", "Unable to open admin access right now.");
+          setLoading(false);
+          return;
+        }
+
+        toast.success("Admin access granted", "You've successfully signed in.");
+        router.push("/admin");
+        router.refresh();
+        return;
+      }
+
+      const supabase = createSupabaseBrowserClient();
+      const { error: authError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (authError) {
         setError("Incorrect email or password. Please try again.");
         toast.error("Login Failed", "Incorrect email or password. Please try again.");
         setLoading(false);
         return;
       }
 
-      const response = await fetch("/api/admin/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: normalizedEmail,
-          password,
-        }),
-      });
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
 
-      if (!response.ok) {
-        setError("Unable to open admin access right now.");
-        toast.error("Access denied", "Unable to open admin access right now.");
+      if (!user?.id) {
         setLoading(false);
+        router.push("/login");
         return;
       }
 
-      toast.success("Admin access granted", "You've successfully signed in.");
-      router.push("/admin");
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("onboarding_completed, role")
+        .eq("id", user.id)
+        .maybeSingle();
+
+      const role =
+        (user.app_metadata?.role as UserRole | undefined) ??
+        (profile?.role as UserRole | undefined) ??
+        "user";
+
+      if (role === "admin") {
+        toast.success("Admin access granted", "You've successfully signed in.");
+        router.push("/admin");
+      } else if (!profile?.onboarding_completed) {
+        toast.success("Welcome Back!", "You've successfully signed in.");
+        router.push("/onboarding");
+      } else {
+        toast.success("Welcome Back!", "You've successfully signed in.");
+        router.push("/today");
+      }
+
       router.refresh();
-      return;
-    }
+    } catch (caughtError) {
+      const message =
+        caughtError instanceof Error &&
+        caughtError.message.includes("Supabase client is not configured")
+          ? "Supabase env vars are missing. Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY, then restart the dev server."
+          : "Unable to sign in right now.";
 
-    const supabase = createSupabaseBrowserClient();
-    const { error: authError } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (authError) {
-      setError("Incorrect email or password. Please try again.");
-      toast.error("Login Failed", "Incorrect email or password. Please try again.");
+      setError(message);
+      toast.error("Login unavailable", message);
+    } finally {
       setLoading(false);
-      return;
     }
-
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    if (!user?.id) {
-      setLoading(false);
-      router.push("/login");
-      return;
-    }
-
-    const { data: profile } = await supabase
-      .from("profiles")
-      .select("onboarding_completed, role")
-      .eq("id", user.id)
-      .maybeSingle();
-
-    const role =
-      (user.app_metadata?.role as UserRole | undefined) ??
-      (profile?.role as UserRole | undefined) ??
-      "user";
-
-    if (role === "admin") {
-      toast.success("Admin access granted", "You've successfully signed in.");
-      router.push("/admin");
-    } else if (!profile?.onboarding_completed) {
-      toast.success("Welcome Back!", "You've successfully signed in.");
-      router.push("/onboarding");
-    } else {
-      toast.success("Welcome Back!", "You've successfully signed in.");
-      router.push("/today");
-    }
-
-    router.refresh();
   }
 
   const isAdmin = mode === "admin";

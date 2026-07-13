@@ -1,0 +1,322 @@
+{
+  "courseTitle": "From Addicts to Leaders",
+  "guidancePath": "general",
+  "description": "A recovery and leadership journey focused on character, responsibility, family restoration, and social renewal.",
+  "chapters": [
+    {
+      "sortOrder": 1,
+      "title": "Leadership and Recovery",
+      "description": "Why lasting recovery must grow into leadership, service, maturity, and responsible influence.",
+      "lessons": [
+        {
+          "lessonNumber": 1,
+          "title": "Why Recovery Needs Leadership",
+          "estimatedMinutes": 8,
+          "blocks": [
+            { "type": "welcome", "content": { "heading": "Recovery and direction", "message": "Recovery is not only about what you stop. It is also about who you become." } },
+            { "type": "reading", "content": { "title": "Beyond survival", "body": "This course begins with the idea that treatment alone is not enough. Lasting change needs direction, responsibility, purpose, and a healthier identity." } },
+            { "type": "mentor_note", "content": { "note": "A person who cannot lead self well will struggle to rebuild life well." } },
+            { "type": "pause_reflect", "content": { "question": "Where have you thought of recovery only as stopping behavior?", "context": "Consider what still needs to be built after destructive habits are left behind." } },
+            { "type": "journal_prompt", "content": { "prompt": "Describe what a healthy, responsible life would look like for you six months from now." } },
+            { "type": "daily_action", "content": { "title": "Begin with intention", "action": "Choose one area of life where you will start acting with more purpose this week." } },
+            { "type": "complete", "content": { "message": "You reframed recovery as a path toward growth and leadership.", "encouragement": "Small honest steps toward responsibility matter." } }
+          ]
+        },
+        {
+          "lessonNumber": 2,
+          "title": "Leadership as Character, Not Status",
+          "estimatedMinutes": 8,
+          "blocks": [
+            { "type": "welcome", "content": { "heading": "Character first", "message": "Leadership is not mainly about title, attention, or position." } },
+            { "type": "reading", "content": { "title": "The kind of person you are", "body": "This manuscript defines leadership through integrity, humility, service, and truthfulness. Leadership begins in character before it is seen in influence." } },
+            { "type": "mentor_note", "content": { "note": "Title can be given quickly. Character is formed slowly." } },
+            { "type": "pause_reflect", "content": { "question": "Which character traits do you trust most in others?", "context": "Think about the traits that make someone safe to follow or listen to." } },
+            { "type": "journal_prompt", "content": { "prompt": "List three traits you want people to experience when they are around you." } },
+            { "type": "daily_action", "content": { "title": "Practice integrity", "action": "Do one quiet, honest thing today that no one needs to praise." } },
+            { "type": "complete", "content": { "message": "You connected leadership with character rather than image.", "encouragement": "The strongest kind of growth is the kind that becomes part of who you are." } }
+          ]
+        },
+        {
+          "lessonNumber": 3,
+          "title": "Service, Responsibility, and Influence",
+          "estimatedMinutes": 8,
+          "blocks": [
+            { "type": "welcome", "content": { "heading": "Dependable influence", "message": "Real influence grows when people become dependable." } },
+            { "type": "reading", "content": { "title": "Responsibility that serves", "body": "Leadership in this course is tied to service, practical care, and responsibility. Healthy influence helps people flourish rather than using them." } },
+            { "type": "mentor_note", "content": { "note": "Influence without responsibility quickly becomes harm." } },
+            { "type": "pause_reflect", "content": { "question": "Who has influenced your life through steady care rather than loud words?", "context": "Notice how consistency often carries more weight than image." } },
+            { "type": "journal_prompt", "content": { "prompt": "Write about one responsibility you have avoided and why it matters." } },
+            { "type": "daily_action", "content": { "title": "Carry one thing well", "action": "Finish one neglected task as an act of responsibility." } },
+            { "type": "complete", "content": { "message": "You linked leadership with trustworthy service.", "encouragement": "Dependability is one of the clearest signs of change." } }
+          ]
+        },
+        {
+          "lessonNumber": 4,
+          "title": "What a True Leader Is",
+          "estimatedMinutes": 8,
+          "blocks": [
+            { "type": "welcome", "content": { "heading": "Healthy leadership", "message": "Good leadership has a recognizable shape." } },
+            { "type": "reading", "content": { "title": "Building people", "body": "A true leader pursues fairness, maturity, wisdom, and growth in others. Strong leadership builds people instead of controlling them." } },
+            { "type": "mentor_note", "content": { "note": "Strong people do not need to dominate in order to guide." } },
+            { "type": "pause_reflect", "content": { "question": "What kind of presence makes you feel safe to grow?", "context": "Think about the qualities that make guidance feel trustworthy." } },
+            { "type": "journal_prompt", "content": { "prompt": "Write a short definition of the kind of leader you want to become." } },
+            { "type": "daily_action", "content": { "title": "Encourage growth", "action": "Offer one sincere encouragement to another person today." } },
+            { "type": "complete", "content": { "message": "You began shaping a healthier picture of leadership.", "encouragement": "The kind of leader you become affects the kind of healing you can sustain." } }
+          ]
+        },
+        {
+          "lessonNumber": 5,
+          "title": "What a True Leader Is Not",
+          "estimatedMinutes": 8,
+          "blocks": [
+            { "type": "welcome", "content": { "heading": "What to reject", "message": "Clarity grows when we identify the patterns that harm people." } },
+            { "type": "reading", "content": { "title": "Pride, control, and manipulation", "body": "The book rejects selfishness, deception, pride, and controlling behavior. These may look strong on the surface, but they damage trust and dignity." } },
+            { "type": "mentor_note", "content": { "note": "Control can imitate strength while hiding insecurity." } },
+            { "type": "pause_reflect", "content": { "question": "Which harmful pattern most easily disguises itself as strength?", "context": "Be honest about the behaviors that can hide behind confidence." } },
+            { "type": "journal_prompt", "content": { "prompt": "Name one manipulative or self-protective habit you want to leave behind." } },
+            { "type": "daily_action", "content": { "title": "Choose honesty", "action": "Correct one small dishonest or controlling behavior if you notice it today." } },
+            { "type": "complete", "content": { "message": "You named the difference between leadership and domination.", "encouragement": "Real strength leaves people more whole, not more diminished." } }
+          ]
+        },
+        {
+          "lessonNumber": 6,
+          "title": "Stewardship and Trust",
+          "estimatedMinutes": 8,
+          "blocks": [
+            { "type": "welcome", "content": { "heading": "Caring for what is in your hands", "message": "Leadership includes caring well for people, time, and responsibility." } },
+            { "type": "reading", "content": { "title": "Faithful oversight", "body": "Stewardship in this manuscript means protection, encouragement, wise care, and dignified responsibility. It asks how we handle what has been entrusted to us." } },
+            { "type": "mentor_note", "content": { "note": "Stewardship asks what has been placed in your hands and how you will honor it." } },
+            { "type": "pause_reflect", "content": { "question": "What in your life currently needs better stewardship?", "context": "Think about relationships, habits, work, and commitments." } },
+            { "type": "journal_prompt", "content": { "prompt": "Write about one relationship, one habit, and one responsibility you want to manage better." } },
+            { "type": "daily_action", "content": { "title": "Improve follow-through", "action": "Put one practical system in place to help you follow through." } },
+            { "type": "complete", "content": { "message": "You connected leadership with faithful care.", "encouragement": "Trust grows where care becomes consistent." } }
+          ]
+        },
+        {
+          "lessonNumber": 7,
+          "title": "Growing Into Mature Leadership",
+          "estimatedMinutes": 8,
+          "blocks": [
+            { "type": "welcome", "content": { "heading": "Growth over time", "message": "Leadership is formed, not rushed." } },
+            { "type": "reading", "content": { "title": "Maturity through hardship", "body": "The manuscript shows that maturity often grows through truth, discipline, hardship, and teachability. Growth is not instant, but it can be deep and durable." } },
+            { "type": "mentor_note", "content": { "note": "Maturity is not the absence of struggle. It is the way you grow through it." } },
+            { "type": "pause_reflect", "content": { "question": "What challenge in your life could shape you for good?", "context": "Consider how difficulty might become part of your growth story." } },
+            { "type": "journal_prompt", "content": { "prompt": "Describe one hardship that could become part of your leadership development." } },
+            { "type": "daily_action", "content": { "title": "Choose teachability", "action": "Identify one mentor, practice, or habit that can help you mature." } },
+            { "type": "complete", "content": { "message": "You ended the chapter seeing growth as a disciplined journey.", "encouragement": "Lasting maturity is built one faithful response at a time." } }
+          ]
+        }
+      ]
+    },
+    {
+      "sortOrder": 2,
+      "title": "The Individual and Inner Change",
+      "description": "Understanding the whole person, purpose, character, addictive behavior, and why freedom needs inner renewal.",
+      "lessons": [
+        {
+          "lessonNumber": 1,
+          "title": "Seeing the Whole Person",
+          "estimatedMinutes": 8,
+          "blocks": [
+            { "type": "welcome", "content": { "heading": "More than a label", "message": "A person is more than a problem to fix." } },
+            { "type": "reading", "content": { "title": "The whole human story", "body": "This manuscript urges a whole-person view that includes abilities, inner life, relationships, and responsibility. Addiction harms many parts of life, so healing must reach many parts too." } },
+            { "type": "mentor_note", "content": { "note": "Healing deepens when a person is treated as human, not reduced to one label." } },
+            { "type": "pause_reflect", "content": { "question": "Where have you felt reduced to one part of your story?", "context": "Consider how a fuller picture of yourself changes the way you approach recovery." } },
+            { "type": "journal_prompt", "content": { "prompt": "Write down the roles, strengths, and hopes that still belong to you." } },
+            { "type": "daily_action", "content": { "title": "Speak a fuller truth", "action": "Say one truthful sentence about yourself that is larger than your struggle." } },
+            { "type": "complete", "content": { "message": "You widened the lens on who you are.", "encouragement": "A larger, truer story creates room for deeper healing." } }
+          ]
+        },
+        {
+          "lessonNumber": 2,
+          "title": "Character Traits for a Better Life",
+          "estimatedMinutes": 8,
+          "blocks": [
+            { "type": "welcome", "content": { "heading": "Traits that sustain change", "message": "Recovery needs more than relief. It needs character." } },
+            { "type": "reading", "content": { "title": "Inner strength", "body": "Love, compassion, self-control, kindness, wisdom, and humility are presented as traits that support a more stable and humane life." } },
+            { "type": "mentor_note", "content": { "note": "Character is what remains when emotion changes." } },
+            { "type": "pause_reflect", "content": { "question": "Which trait would most change your relationships if it grew stronger?", "context": "Think about the qualities that could reshape daily life if practiced consistently." } },
+            { "type": "journal_prompt", "content": { "prompt": "Choose two character traits you want to practice this week and explain why." } },
+            { "type": "daily_action", "content": { "title": "Practice one trait", "action": "Show one deliberate act of kindness, patience, or restraint today." } },
+            { "type": "complete", "content": { "message": "You identified the kind of inner strength recovery needs.", "encouragement": "Steady character often protects freedom more than emotion does." } }
+          ]
+        },
+        {
+          "lessonNumber": 3,
+          "title": "Discovering Purpose",
+          "estimatedMinutes": 8,
+          "blocks": [
+            { "type": "welcome", "content": { "heading": "Direction matters", "message": "People endure more when they can see meaning ahead." } },
+            { "type": "reading", "content": { "title": "Purpose and movement", "body": "Purpose is described as direction, contribution, determination, and meaningful function. It becomes clearer through growth, responsibility, and lived experience." } },
+            { "type": "mentor_note", "content": { "note": "A person with purpose is less easily owned by chaos." } },
+            { "type": "pause_reflect", "content": { "question": "What gives your life a sense of direction?", "context": "Notice the activities, values, and hopes that create movement rather than drift." } },
+            { "type": "journal_prompt", "content": { "prompt": "Write a simple purpose statement for the season of life you are in now." } },
+            { "type": "daily_action", "content": { "title": "Take one aligned step", "action": "Do one small thing today that aligns with the future you want." } },
+            { "type": "complete", "content": { "message": "You named direction instead of drifting.", "encouragement": "Purpose does not have to be grand to be powerful." } }
+          ]
+        },
+        {
+          "lessonNumber": 4,
+          "title": "Gifts, Growth, and Personal Development",
+          "estimatedMinutes": 8,
+          "blocks": [
+            { "type": "welcome", "content": { "heading": "Recovering potential", "message": "Recovery should uncover potential, not only repair damage." } },
+            { "type": "reading", "content": { "title": "Cultivating what is in you", "body": "The manuscript points to gifts, abilities, and personal development as part of healing. Growth becomes meaningful when it benefits both the individual and others." } },
+            { "type": "mentor_note", "content": { "note": "What is developed in you can become a gift to others." } },
+            { "type": "pause_reflect", "content": { "question": "What strengths have been buried under struggle?", "context": "Think about capacities that deserve recovery and attention." } },
+            { "type": "journal_prompt", "content": { "prompt": "List three abilities or interests you want to recover or grow." } },
+            { "type": "daily_action", "content": { "title": "Invest in growth", "action": "Spend focused time today on one healthy skill or interest." } },
+            { "type": "complete", "content": { "message": "You linked recovery with cultivation, not just repair.", "encouragement": "Healthy growth helps freedom become fruitful." } }
+          ]
+        },
+        {
+          "lessonNumber": 5,
+          "title": "Understanding Addictive Behavior",
+          "estimatedMinutes": 8,
+          "blocks": [
+            { "type": "welcome", "content": { "heading": "More than substance use", "message": "Substance use is only part of addiction's damage." } },
+            { "type": "reading", "content": { "title": "Patterns that remain", "body": "Manipulation, lying, chaos, impulsivity, broken trust, and reckless choices are described as common addictive patterns that can continue even after substance use stops." } },
+            { "type": "mentor_note", "content": { "note": "If behavior stays unchanged, relapse often stays close." } },
+            { "type": "pause_reflect", "content": { "question": "Which behavior pattern has caused the most harm in your life?", "context": "Look beyond the surface habit and name the repeated pattern around it." } },
+            { "type": "journal_prompt", "content": { "prompt": "Describe one repeated behavior that needs change, not excuses." } },
+            { "type": "daily_action", "content": { "title": "Interrupt the cycle", "action": "Stop one unhealthy pattern before it completes its usual cycle." } },
+            { "type": "complete", "content": { "message": "You faced the behavior side of addiction.", "encouragement": "Honest awareness creates the possibility of real change." } }
+          ]
+        },
+        {
+          "lessonNumber": 6,
+          "title": "Why Stopping Use Is Not Enough",
+          "estimatedMinutes": 8,
+          "blocks": [
+            { "type": "welcome", "content": { "heading": "Freedom needs more", "message": "Freedom needs a new way of living, not only a stopped habit." } },
+            { "type": "reading", "content": { "title": "Beyond abstinence", "body": "The manuscript is clear that stopping use is major, but incomplete by itself. Lifestyle, responsibility, honesty, and trust also need rebuilding." } },
+            { "type": "mentor_note", "content": { "note": "What is removed from your life must be replaced with something better." } },
+            { "type": "pause_reflect", "content": { "question": "What would still need healing even if substance use stopped today?", "context": "Think about thinking patterns, routines, relationships, and responsibility." } },
+            { "type": "journal_prompt", "content": { "prompt": "Write about the kinds of change that must happen beyond abstinence." } },
+            { "type": "daily_action", "content": { "title": "Add one stabilizer", "action": "Start one healthy routine that supports long-term stability." } },
+            { "type": "complete", "content": { "message": "You expanded your picture of what real freedom involves.", "encouragement": "A changed life is stronger than a stopped habit alone." } }
+          ]
+        },
+        {
+          "lessonNumber": 7,
+          "title": "Renewing Lifestyle, Habits, and Responsibility",
+          "estimatedMinutes": 8,
+          "blocks": [
+            { "type": "welcome", "content": { "heading": "Visible change", "message": "Change becomes believable when it becomes visible." } },
+            { "type": "reading", "content": { "title": "Daily renewal", "body": "This lesson turns toward routines, habits, and repeated responsibility. Trust grows where change becomes daily and observable." } },
+            { "type": "mentor_note", "content": { "note": "Stability is built through repetition, not dramatic promises." } },
+            { "type": "pause_reflect", "content": { "question": "What daily habit would most strengthen your recovery?", "context": "Think about rhythms that make clarity and responsibility more likely." } },
+            { "type": "journal_prompt", "content": { "prompt": "Design a simple daily rhythm that supports responsibility and clarity." } },
+            { "type": "daily_action", "content": { "title": "Practice a steady rhythm", "action": "Follow one new healthy routine for the next three days." } },
+            { "type": "complete", "content": { "message": "You ended the chapter with a practical picture of renewal.", "encouragement": "Steady rhythms make healthy identity more believable." } }
+          ]
+        }
+      ]
+    },
+    {
+      "sortOrder": 3,
+      "title": "Family, Restoration, and Social Renewal",
+      "description": "How addiction affects family systems, why care and responsibility matter in the home, and how recovery can become social good.",
+      "lessons": [
+        {
+          "lessonNumber": 1,
+          "title": "Why Family Matters in Recovery",
+          "estimatedMinutes": 8,
+          "blocks": [
+            { "type": "welcome", "content": { "heading": "Recovery is relational", "message": "Addiction rarely harms only one person." } },
+            { "type": "reading", "content": { "title": "Family as foundation", "body": "The manuscript treats family as one of society's most important foundations. Because addiction damages trust and belonging, recovery must also address relationships." } },
+            { "type": "mentor_note", "content": { "note": "Healing grows stronger when it reaches the places where pain spread." } },
+            { "type": "pause_reflect", "content": { "question": "How has your struggle affected people close to you?", "context": "Reflect on the relational impact of destructive patterns." } },
+            { "type": "journal_prompt", "content": { "prompt": "Write honestly about one family relationship touched by addiction." } },
+            { "type": "daily_action", "content": { "title": "Take one respectful step", "action": "Do one small thing that supports rebuilding connection." } },
+            { "type": "complete", "content": { "message": "You began seeing recovery in relational terms.", "encouragement": "Repair often starts with humble, steady movement." } }
+          ]
+        },
+        {
+          "lessonNumber": 2,
+          "title": "Addiction and Family Breakdown",
+          "estimatedMinutes": 8,
+          "blocks": [
+            { "type": "welcome", "content": { "heading": "Patterns that weaken the home", "message": "Households weaken when destructive patterns go unchallenged." } },
+            { "type": "reading", "content": { "title": "Dysfunction and instability", "body": "The book names addiction, neglect, conflict, irresponsibility, and instability as forces that damage family life and spread pain across generations." } },
+            { "type": "mentor_note", "content": { "note": "Dysfunction grows in silence and confusion." } },
+            { "type": "pause_reflect", "content": { "question": "Which pattern has most weakened stability in your family story?", "context": "Look honestly at the patterns that keep peace and trust from growing." } },
+            { "type": "journal_prompt", "content": { "prompt": "Describe the difference between blaming and taking responsibility in family life." } },
+            { "type": "daily_action", "content": { "title": "Refuse one repeated pattern", "action": "Name one destructive pattern you no longer want to repeat." } },
+            { "type": "complete", "content": { "message": "You faced the wider impact of dysfunction.", "encouragement": "Naming the pattern is often the first step to breaking it." } }
+          ]
+        },
+        {
+          "lessonNumber": 3,
+          "title": "Responsibility in the Home",
+          "estimatedMinutes": 8,
+          "blocks": [
+            { "type": "welcome", "content": { "heading": "Love in action", "message": "Care becomes real through responsibility." } },
+            { "type": "reading", "content": { "title": "Support, wisdom, and contribution", "body": "Families need protection, support, and wise care. Recovery becomes stronger when people contribute to order, stability, and shared wellbeing." } },
+            { "type": "mentor_note", "content": { "note": "Responsibility is one of love's clearest forms." } },
+            { "type": "pause_reflect", "content": { "question": "What kind of responsibility has been missing most?", "context": "Think about the forms of care that would create more steadiness at home." } },
+            { "type": "journal_prompt", "content": { "prompt": "Write one way you can contribute to more peace or order at home." } },
+            { "type": "daily_action", "content": { "title": "Carry something fully", "action": "Take full responsibility for one household task or commitment this week." } },
+            { "type": "complete", "content": { "message": "You tied love to responsibility.", "encouragement": "Practical care often says more than promises." } }
+          ]
+        },
+        {
+          "lessonNumber": 4,
+          "title": "Parent Roles, Care, and Stability",
+          "estimatedMinutes": 8,
+          "blocks": [
+            { "type": "welcome", "content": { "heading": "Steady guidance matters", "message": "Children and families need dependable care and role modeling." } },
+            { "type": "reading", "content": { "title": "Protection and example", "body": "The manuscript emphasizes parental care, household stability, and the importance of environments where children can grow with structure, dignity, and safety." } },
+            { "type": "mentor_note", "content": { "note": "The next generation learns as much from household patterns as from household words." } },
+            { "type": "pause_reflect", "content": { "question": "What kind of example did you receive, and what kind do you want to give?", "context": "Think about how stability and care are modeled over time." } },
+            { "type": "journal_prompt", "content": { "prompt": "Describe the home atmosphere that best helps people flourish." } },
+            { "type": "daily_action", "content": { "title": "Increase steadiness", "action": "Do one thing this week that makes your close environment feel more stable." } },
+            { "type": "complete", "content": { "message": "You linked recovery with the kind of home life that protects others.", "encouragement": "Stability is often one of the most generous things a person can offer." } }
+          ]
+        },
+        {
+          "lessonNumber": 5,
+          "title": "Rebuilding Trust and Relationships",
+          "estimatedMinutes": 8,
+          "blocks": [
+            { "type": "welcome", "content": { "heading": "Trust returns slowly", "message": "Trust can return, but it usually returns through consistency." } },
+            { "type": "reading", "content": { "title": "Lived change", "body": "The manuscript calls for patience, dignity, truth, and repeated trustworthy behavior. Trust is restored by lived change more than by promises alone." } },
+            { "type": "mentor_note", "content": { "note": "People often believe patterns before words." } },
+            { "type": "pause_reflect", "content": { "question": "What would trustworthy living look like in your context?", "context": "Think about how someone close to you would recognize real change." } },
+            { "type": "journal_prompt", "content": { "prompt": "Write down three ways someone could recognize real change in you." } },
+            { "type": "daily_action", "content": { "title": "Keep one commitment", "action": "Follow through on one clear commitment today." } },
+            { "type": "complete", "content": { "message": "You grounded restoration in repeated action.", "encouragement": "Slow rebuilding is still real rebuilding." } }
+          ]
+        },
+        {
+          "lessonNumber": 6,
+          "title": "Leadership for Stronger Communities",
+          "estimatedMinutes": 8,
+          "blocks": [
+            { "type": "welcome", "content": { "heading": "Growth beyond self", "message": "Personal growth can become social good." } },
+            { "type": "reading", "content": { "title": "From healed life to helpful life", "body": "The manuscript imagines recovered people, stronger families, and principled leaders helping communities become more stable, wise, and humane." } },
+            { "type": "mentor_note", "content": { "note": "A healed life can become a shelter for others." } },
+            { "type": "pause_reflect", "content": { "question": "How might your growth benefit more than just you?", "context": "Consider the people, spaces, or communities that could be strengthened by your change." } },
+            { "type": "journal_prompt", "content": { "prompt": "Write about one way your recovery could serve family, work, or community." } },
+            { "type": "daily_action", "content": { "title": "Offer one service", "action": "Offer one practical act of service to another person this week." } },
+            { "type": "complete", "content": { "message": "You connected personal change to public good.", "encouragement": "Constructive influence grows when healing becomes service." } }
+          ]
+        },
+        {
+          "lessonNumber": 7,
+          "title": "From Recovery to Social Renewal",
+          "estimatedMinutes": 8,
+          "blocks": [
+            { "type": "welcome", "content": { "heading": "A wider vision", "message": "The course ends where responsibility widens." } },
+            { "type": "reading", "content": { "title": "Healing, dignity, and renewal", "body": "This final lesson invites the learner to imagine recovery as part of a larger story of healing, dignity, trust, and constructive influence in the world." } },
+            { "type": "mentor_note", "content": { "note": "Freedom becomes fuller when it begins to bless others." } },
+            { "type": "pause_reflect", "content": { "question": "What kind of legacy do you want your recovery to leave?", "context": "Think about what you want your healing to make possible for others." } },
+            { "type": "journal_prompt", "content": { "prompt": "Write a closing reflection on the kind of person you are becoming." } },
+            { "type": "daily_action", "content": { "title": "Choose a guiding value", "action": "Choose one long-term value you want to lead by from this point on." } },
+            { "type": "complete", "content": { "message": "You completed the course with a vision that reaches beyond self.", "encouragement": "Your growth can become part of something larger than recovery alone." } }
+          ]
+        }
+      ]
+    }
+  ]
+}
