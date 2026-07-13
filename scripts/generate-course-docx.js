@@ -64,7 +64,7 @@ function blockLabel(type, index) {
     "Complete",
   ];
 
-  return `Step ${index + 1}: ${stepLabels[index] ?? type}`;
+  return `STEP ${index + 1}: ${stepLabels[index] ?? type}`.toUpperCase();
 }
 
 function blockBody(block) {
@@ -154,7 +154,7 @@ function stripTags(html) {
     .trim();
 }
 
-function pushTextParagraph(lines, text, style = null) {
+function pushTextParagraph(lines, text, style = "BodyText") {
   const clean = String(text || "").trim();
   if (!clean) return;
 
@@ -168,22 +168,33 @@ function pushTextParagraph(lines, text, style = null) {
     const joinedRuns = runs.join(
       `<w:r><w:br/></w:r>`
     );
-    const styleXml = style ? `<w:pPr><w:pStyle w:val="${style}"/></w:pPr>` : "";
+    const styleXml = style ? `<w:pPr><w:pStyle w:val="${style}" /></w:pPr>` : "";
     lines.push(`<w:p>${styleXml}${joinedRuns}</w:p>`);
   }
 }
 
 function pushBlock(lines, label, htmlBody) {
-  pushTextParagraph(lines, label, "Heading2");
-  pushTextParagraph(lines, stripTags(htmlBody));
+  pushTextParagraph(lines, label, "Heading1");
+
+  const body = stripTags(htmlBody);
+  for (const paragraph of body.split(/\n{2,}/)) {
+    const clean = paragraph.trim();
+    if (!clean) continue;
+    const style = /^(Title|Question|Prompt|Message):/.test(clean)
+      ? "FirstParagraph"
+      : "BodyText";
+    pushTextParagraph(lines, clean, style);
+  }
 }
 
 function lessonDocumentXml(course, chapter, lesson) {
   const lines = [];
-  pushTextParagraph(lines, `Course: ${course.courseTitle}`, "Title");
-  pushTextParagraph(lines, `Chapter ${chapter.sortOrder}: ${chapter.title}`, "Heading1");
-  pushTextParagraph(lines, `Lesson ${lesson.lessonNumber}: ${lesson.title}`, "Heading2");
-  pushTextParagraph(lines, `Estimated Minutes: ${lesson.estimatedMinutes}`);
+  pushTextParagraph(lines, `COURSE: ${course.courseTitle}`, "Heading1");
+  pushTextParagraph(lines, `CHAPTER ${chapter.sortOrder}: ${chapter.title}`, "Heading2");
+  pushTextParagraph(lines, `LESSON ${lesson.lessonNumber}: ${lesson.title}`, "Heading3");
+  pushTextParagraph(lines, `estimated_minutes: ${lesson.estimatedMinutes}`, "FirstParagraph");
+  pushTextParagraph(lines, `sort_order: ${lesson.lessonNumber}`, "FirstParagraph");
+  pushTextParagraph(lines, "is_published: true", "FirstParagraph");
 
   for (const [index, block] of lesson.blocks.entries()) {
     pushBlock(lines, blockLabel(block.type, index), blockBody(block));
@@ -194,14 +205,14 @@ function lessonDocumentXml(course, chapter, lesson) {
 
 function chapterDocumentXml(course, chapter) {
   const lines = [];
-  pushTextParagraph(lines, `Course: ${course.courseTitle}`, "Title");
-  pushTextParagraph(lines, `Chapter ${chapter.sortOrder}: ${chapter.title}`, "Heading1");
-  pushTextParagraph(lines, "Chapter Overview", "Heading2");
-  pushTextParagraph(lines, chapter.description || "");
-  pushTextParagraph(lines, "Chapter Lessons", "Heading2");
+  pushTextParagraph(lines, `COURSE: ${course.courseTitle}`, "Heading1");
+  pushTextParagraph(lines, `CHAPTER ${chapter.sortOrder}: ${chapter.title}`, "Heading2");
+  pushTextParagraph(lines, "CHAPTER OVERVIEW", "Heading1");
+  pushTextParagraph(lines, chapter.description || "", "BodyText");
+  pushTextParagraph(lines, "CHAPTER LESSONS", "Heading1");
 
   for (const lesson of chapter.lessons) {
-    pushTextParagraph(lines, `Lesson ${lesson.lessonNumber}: ${lesson.title}`);
+    pushTextParagraph(lines, `LESSON ${lesson.lessonNumber}: ${lesson.title}`, "BodyText");
   }
 
   return buildDocumentXml(lines.join(""));
@@ -237,40 +248,101 @@ function buildDocumentXml(bodyXml) {
 
 function stylesXml() {
   return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
-  <w:style w:type="paragraph" w:default="1" w:styleId="Normal">
-    <w:name w:val="Normal"/>
-    <w:qFormat/>
+<w:styles xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+  <w:docDefaults>
+    <w:rPrDefault>
+      <w:rPr>
+        <w:rFonts w:asciiTheme="minorHAnsi" w:cstheme="minorBidi" w:eastAsiaTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" />
+        <w:sz w:val="24" />
+        <w:szCs w:val="24" />
+        <w:lang w:bidi="ar-SA" w:eastAsia="en-US" w:val="en-US" />
+      </w:rPr>
+    </w:rPrDefault>
+    <w:pPrDefault>
+      <w:pPr>
+        <w:spacing w:after="200" />
+      </w:pPr>
+    </w:pPrDefault>
+  </w:docDefaults>
+  <w:latentStyles w:count="276" w:defLockedState="0" w:defQFormat="0" w:defSemiHidden="0" w:defUIPriority="0" w:defUnhideWhenUsed="0" />
+  <w:style w:default="1" w:styleId="Normal" w:type="paragraph">
+    <w:name w:val="Normal" />
+    <w:qFormat />
+  </w:style>
+  <w:style w:styleId="BodyText" w:type="paragraph">
+    <w:name w:val="Body Text" />
+    <w:basedOn w:val="Normal" />
+    <w:qFormat />
+    <w:pPr>
+      <w:spacing w:after="180" w:before="180" />
+    </w:pPr>
+  </w:style>
+  <w:style w:customStyle="1" w:styleId="FirstParagraph" w:type="paragraph">
+    <w:name w:val="First Paragraph" />
+    <w:basedOn w:val="BodyText" />
+    <w:next w:val="BodyText" />
+    <w:qFormat />
+  </w:style>
+  <w:style w:customStyle="1" w:styleId="Compact" w:type="paragraph">
+    <w:name w:val="Compact" />
+    <w:basedOn w:val="BodyText" />
+    <w:qFormat />
+    <w:pPr>
+      <w:spacing w:after="36" w:before="36" />
+    </w:pPr>
+  </w:style>
+  <w:style w:styleId="Heading1" w:type="paragraph">
+    <w:name w:val="heading 1" />
+    <w:basedOn w:val="Normal" />
+    <w:next w:val="BodyText" />
+    <w:qFormat />
+    <w:pPr>
+      <w:keepNext />
+      <w:keepLines />
+      <w:spacing w:after="80" w:before="360" />
+      <w:outlineLvl w:val="0" />
+    </w:pPr>
     <w:rPr>
-      <w:rFonts w:ascii="Arial" w:hAnsi="Arial"/>
-      <w:sz w:val="22"/>
+      <w:rFonts w:asciiTheme="majorHAnsi" w:cstheme="majorBidi" w:eastAsiaTheme="majorEastAsia" w:hAnsiTheme="majorHAnsi" />
+      <w:color w:themeColor="accent1" w:themeShade="BF" w:val="0F4761" />
+      <w:sz w:val="40" />
+      <w:szCs w:val="40" />
     </w:rPr>
   </w:style>
-  <w:style w:type="paragraph" w:styleId="Title">
-    <w:name w:val="Title"/>
-    <w:basedOn w:val="Normal"/>
-    <w:qFormat/>
+  <w:style w:styleId="Heading2" w:type="paragraph">
+    <w:name w:val="heading 2" />
+    <w:basedOn w:val="Normal" />
+    <w:next w:val="BodyText" />
+    <w:qFormat />
+    <w:pPr>
+      <w:keepNext />
+      <w:keepLines />
+      <w:spacing w:after="80" w:before="160" />
+      <w:outlineLvl w:val="1" />
+    </w:pPr>
     <w:rPr>
-      <w:b/>
-      <w:sz w:val="32"/>
+      <w:rFonts w:asciiTheme="majorHAnsi" w:cstheme="majorBidi" w:eastAsiaTheme="majorEastAsia" w:hAnsiTheme="majorHAnsi" />
+      <w:color w:themeColor="accent1" w:themeShade="BF" w:val="0F4761" />
+      <w:sz w:val="32" />
+      <w:szCs w:val="32" />
     </w:rPr>
   </w:style>
-  <w:style w:type="paragraph" w:styleId="Heading1">
-    <w:name w:val="heading 1"/>
-    <w:basedOn w:val="Normal"/>
-    <w:qFormat/>
+  <w:style w:styleId="Heading3" w:type="paragraph">
+    <w:name w:val="heading 3" />
+    <w:basedOn w:val="Normal" />
+    <w:next w:val="BodyText" />
+    <w:qFormat />
+    <w:pPr>
+      <w:keepNext />
+      <w:keepLines />
+      <w:spacing w:after="80" w:before="160" />
+      <w:outlineLvl w:val="2" />
+    </w:pPr>
     <w:rPr>
-      <w:b/>
-      <w:sz w:val="28"/>
-    </w:rPr>
-  </w:style>
-  <w:style w:type="paragraph" w:styleId="Heading2">
-    <w:name w:val="heading 2"/>
-    <w:basedOn w:val="Normal"/>
-    <w:qFormat/>
-    <w:rPr>
-      <w:b/>
-      <w:sz w:val="24"/>
+      <w:rFonts w:cstheme="majorBidi" w:eastAsiaTheme="majorEastAsia" />
+      <w:color w:themeColor="accent1" w:themeShade="BF" w:val="0F4761" />
+      <w:sz w:val="28" />
+      <w:szCs w:val="28" />
     </w:rPr>
   </w:style>
 </w:styles>`;
