@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { getDisplayCourseTitle, getDisplayCourseVersionTitle } from "@/lib/course-library";
 import {
   CourseDashboard,
   type CourseChapter,
@@ -170,9 +171,9 @@ export default async function CoursePage() {
 
   const course = activeCourseVersion.courses?.[0] ?? null;
   const courseId = course?.id ?? activeCourseVersion.course_id ?? "";
-  const courseTitle = course?.title ?? activeCourseVersion.title;
+  const courseTitle = getDisplayCourseTitle(course?.title ?? activeCourseVersion.title);
   const courseDescription = course?.description ?? activeCourseVersion.description;
-  const courseVersionTitle = activeCourseVersion.title;
+  const courseVersionTitle = getDisplayCourseVersionTitle(courseTitle, activeCourseVersion.title);
 
   const { data: Chapters } = await supabase
     .from("chapters")
@@ -306,6 +307,5 @@ export default async function CoursePage() {
     />
   );
 }
-
 
 

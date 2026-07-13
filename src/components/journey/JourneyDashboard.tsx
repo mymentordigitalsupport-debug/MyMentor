@@ -6,6 +6,7 @@ import Image from "next/image";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
+import { getDisplayCourseVersionTitle, shouldHideGuidanceLabel } from "@/lib/course-library";
 import { cn, formatDate, formatShortDate, truncate } from "@/lib/utils";
 import {
   Award,
@@ -222,6 +223,8 @@ export function JourneyDashboard({
   const recentJournalEntries = journalEntries.slice(0, 3);
   const recentInsights = savedInsights.slice(0, 4);
   const recentMoodCheckins = moodCheckins.slice(0, 5);
+  const hideGuidanceLabel = shouldHideGuidanceLabel(courseTitle);
+  const displayCourseVersionTitle = getDisplayCourseVersionTitle(courseTitle, courseVersionTitle);
 
   return (
     <PageTransition>
@@ -244,10 +247,12 @@ export function JourneyDashboard({
                 Stay consistent, stay honest, keep moving forward.
               </p>
               <div className="mt-8 flex flex-wrap gap-2">
-                <Badge variant={guidancePath === "christian" ? "gold" : "sage"}>
-                  {guidancePath === "christian" ? "Christian Guidance" : "Religious Guidance"}
-                </Badge>
-                <Badge variant="muted">{courseVersionTitle}</Badge>
+                {!hideGuidanceLabel ? (
+                  <Badge variant={guidancePath === "christian" ? "gold" : "sage"}>
+                    {guidancePath === "christian" ? "Christian Guidance" : "Religious Guidance"}
+                  </Badge>
+                ) : null}
+                <Badge variant="muted">{displayCourseVersionTitle}</Badge>
               </div>
             </div>
 
@@ -769,4 +774,3 @@ export function JourneyDashboard({
     </PageTransition>
   );
 }
-

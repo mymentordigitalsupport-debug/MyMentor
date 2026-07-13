@@ -43,21 +43,27 @@ export function RegisterForm() {
       try {
         const supabase = createSupabaseBrowserClient();
         const { data } = await supabase
-          .from("courses")
-          .select("id, title, description, slug, is_published")
-          .eq("is_published", true)
-          .order("sort_order");
+          .from("course_versions")
+          .select("course_id, title, description, status, guidance_path")
+          .eq("status", "published")
+          .eq("guidance_path", "religious");
 
-        const courseMap = new Map(
-          (data ?? []).map((course) => [
-            normalizeCourseKey(course.title),
-            {
-              id: course.id,
-              title: course.title,
-              description: course.description ?? "",
-            },
-          ])
-        );
+        const courseMap = new Map<string, { id: string; description: string }>();
+
+        for (const version of data ?? []) {
+          const matchedBook = COURSE_LIBRARY.find((book) =>
+            normalizeCourseKey(version.title).startsWith(normalizeCourseKey(book.title))
+          );
+
+          if (!matchedBook || courseMap.has(normalizeCourseKey(matchedBook.title))) {
+            continue;
+          }
+
+          courseMap.set(normalizeCourseKey(matchedBook.title), {
+            id: version.course_id,
+            description: version.description ?? "",
+          });
+        }
 
         if (isMounted) {
           setBooks(
@@ -127,16 +133,34 @@ export function RegisterForm() {
       return;
     }
 
-    if (!selectedBookCourseId) {
+    setLoading(true);
+
+    const supabase = createSupabaseBrowserClient();
+    let resolvedCourseId = selectedBookCourseId;
+
+    if (!resolvedCourseId) {
+      const { data: fallbackCourse, error: fallbackError } = await supabase
+        .from("course_versions")
+        .select("course_id")
+        .eq("status", "published")
+        .eq("guidance_path", "religious")
+        .ilike("title", `${selectedBook.title} - %`)
+        .maybeSingle();
+
+      if (!fallbackError) {
+        resolvedCourseId = fallbackCourse?.course_id ?? null;
+      }
+    }
+
+    if (!resolvedCourseId) {
       setError("That book is not available yet.");
       toast.error(
         "Book Unavailable",
         "The selected book does not have an active study path yet. Please choose the available book."
       );
+      setLoading(false);
       return;
     }
-
-    setLoading(true);
 
     // First, check if email already exists
     try {
@@ -159,8 +183,6 @@ export function RegisterForm() {
       // Continue with signup anyway
     }
 
-    const supabase = createSupabaseBrowserClient();
-
     // Generate a display name for anonymous mode
     const baseUsername = email.split("@")[0]?.trim() || "Friend";
     const displayName = isAnonymousMode
@@ -176,7 +198,7 @@ export function RegisterForm() {
           anonymous_name: isAnonymousMode ? displayName : null,
           is_anonymous: isAnonymousMode,
           preferred_guidance_path: "religious",
-          selected_course_id: selectedBookCourseId,
+          selected_course_id: resolvedCourseId,
           username: isAnonymousMode ? null : baseUsername,
         },
       },
@@ -217,7 +239,7 @@ export function RegisterForm() {
         display_name_mode: isAnonymousMode ? "nickname" : "real_name",
         anonymous_name: isAnonymousMode ? displayName : null,
         is_anonymous: isAnonymousMode,
-        selected_course_id: selectedBookCourseId,
+        selected_course_id: resolvedCourseId,
         username: isAnonymousMode ? null : baseUsername,
       })
       .eq("user_id", data.user.id);

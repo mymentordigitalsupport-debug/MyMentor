@@ -7,6 +7,7 @@ import { TodayBanner } from "@/components/today/TodayBanner";
 import { MoodCheckIn } from "@/components/today/MoodCheckIn";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
+import { getDisplayCourseTitle } from "@/lib/course-library";
 import { formatShortDate, percent, truncate } from "@/lib/utils";
 import type { MoodValue } from "@/types";
 
@@ -217,7 +218,7 @@ export default async function TodayPage() {
   const course = activeCourseVersion.courses;
   const courseInfo = course?.[0] ?? null;
   const courseId = courseInfo?.id ?? activeCourseVersion.course_id ?? "";
-  const courseTitle = courseInfo?.title ?? activeCourseVersion.title;
+  const courseTitle = getDisplayCourseTitle(courseInfo?.title ?? activeCourseVersion.title);
   const courseDescription = courseInfo?.description ?? activeCourseVersion.description;
 
   const { data: chapters, error: chaptersError } = await supabase
@@ -408,7 +409,7 @@ export default async function TodayPage() {
           userName={resolvedName}
           latestMood={latestMood}
           course={{
-            courseTitle: activeCourseVersion.title,
+            courseTitle,
             progressPercent,
             chaptersCompleted: completedChapters,
             totalChapters,
@@ -559,4 +560,3 @@ export default async function TodayPage() {
     </PageTransition>
   );
 }
-

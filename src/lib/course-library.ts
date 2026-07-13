@@ -4,6 +4,17 @@ export type CourseLibraryItem = {
   image: string;
 };
 
+const SINGLE_VERSION_COURSE_TITLES = new Set([
+  "From Addicts to Leaders",
+  "Protecting the Next Generation",
+]);
+
+const GUIDANCE_SUFFIXES = [
+  " - Religious Guidance",
+  " - Christian Guidance",
+  " - Christian Guided",
+];
+
 export const COURSE_LIBRARY: CourseLibraryItem[] = [
   {
     title: "Uprooting Drug Abuse",
@@ -24,4 +35,38 @@ export const COURSE_LIBRARY: CourseLibraryItem[] = [
 
 export function normalizeCourseKey(value: string) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, "");
+}
+
+export function getBaseCourseTitle(value: string) {
+  for (const suffix of GUIDANCE_SUFFIXES) {
+    if (value.endsWith(suffix)) {
+      return value.slice(0, -suffix.length);
+    }
+  }
+
+  return value;
+}
+
+export function isSingleVersionCourseTitle(value: string) {
+  return SINGLE_VERSION_COURSE_TITLES.has(getBaseCourseTitle(value));
+}
+
+export function shouldHideGuidanceLabel(courseTitle: string) {
+  return isSingleVersionCourseTitle(courseTitle);
+}
+
+export function getDisplayCourseVersionTitle(courseTitle: string, courseVersionTitle: string) {
+  if (shouldHideGuidanceLabel(courseTitle)) {
+    return getBaseCourseTitle(courseTitle);
+  }
+
+  return courseVersionTitle;
+}
+
+export function getDisplayCourseTitle(courseTitle: string) {
+  if (shouldHideGuidanceLabel(courseTitle)) {
+    return getBaseCourseTitle(courseTitle);
+  }
+
+  return courseTitle;
 }

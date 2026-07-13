@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Card } from "@/components/ui/Card";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { Badge } from "@/components/ui/Badge";
+import { shouldHideGuidanceLabel } from "@/lib/course-library";
 import { percent } from "@/lib/utils";
 
 interface CourseCardProps {
@@ -22,14 +23,17 @@ export function CourseCard({
   lessonsTotal,
 }: CourseCardProps) {
   const pct = percent(lessonsCompleted, lessonsTotal);
+  const hideGuidanceLabel = shouldHideGuidanceLabel(title);
 
   return (
     <Link href={`/course/${courseId}`}>
       <Card variant="elevated" className="hover:shadow-md transition-shadow duration-200">
         <div className="flex items-start justify-between gap-3 mb-3">
-          <Badge variant={guidancePath === "christian" ? "gold" : "sage"}>
-            {guidancePath === "christian" ? "Christian Guided" : "Religious Guidance"}
-          </Badge>
+          {!hideGuidanceLabel ? (
+            <Badge variant={guidancePath === "christian" ? "gold" : "sage"}>
+              {guidancePath === "christian" ? "Christian Guided" : "Religious Guidance"}
+            </Badge>
+          ) : <span />}
           {pct > 0 && (
             <span className="text-xs text-muted">{pct}% complete</span>
           )}

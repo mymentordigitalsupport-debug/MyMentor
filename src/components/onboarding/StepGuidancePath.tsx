@@ -7,6 +7,7 @@ import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
 interface StepGuidancePathProps {
   value: GuidancePath;
+  courseId?: string | null;
   onChange: (path: GuidancePath) => void;
 }
 
@@ -32,12 +33,61 @@ const OPTIONS: Array<{
   },
 ];
 
-export function StepGuidancePath({ value, onChange }: StepGuidancePathProps) {
+export function StepGuidancePath({ value, courseId, onChange }: StepGuidancePathProps) {
   const [selected, setSelected] = useState<GuidancePath>(value);
+  const [availablePaths, setAvailablePaths] = useState<GuidancePath[]>(OPTIONS.map((option) => option.value));
 
   useEffect(() => {
     setSelected(value);
   }, [value]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadAvailablePaths() {
+      if (!courseId) {
+        if (isMounted) {
+          setAvailablePaths(OPTIONS.map((option) => option.value));
+        }
+        return;
+      }
+
+      const supabase = createSupabaseBrowserClient();
+      const { data } = await supabase
+        .from("course_versions")
+        .select("guidance_path, status")
+        .eq("course_id", courseId)
+        .eq("status", "published");
+
+      const paths = Array.from(
+        new Set(
+          (data ?? [])
+            .map((item) => item.guidance_path as GuidancePath)
+            .filter((path): path is GuidancePath => path === "religious" || path === "christian")
+        )
+      );
+
+      if (!isMounted) {
+        return;
+      }
+
+      const nextPaths = paths.length > 0 ? paths : OPTIONS.map((option) => option.value);
+      setAvailablePaths(nextPaths);
+
+      if (!nextPaths.includes(selected)) {
+        setSelected(nextPaths[0] ?? value);
+      }
+    }
+
+    void loadAvailablePaths();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [courseId, selected, value]);
+
+  const visibleOptions = OPTIONS.filter((option) => availablePaths.includes(option.value));
+  const singlePathOnly = visibleOptions.length === 1;
 
   async function handleContinue() {
     const supabase = createSupabaseBrowserClient();
@@ -58,15 +108,16 @@ export function StepGuidancePath({ value, onChange }: StepGuidancePathProps) {
   return (
     <div className="flex-1 flex flex-col px-6 py-10">
       <h2 className="font-serif text-2xl text-forest font-semibold mb-2">
-        Choose your guidance style
+        {singlePathOnly ? "Your guidance style" : "Choose your guidance style"}
       </h2>
       <p className="text-muted text-sm mb-8 leading-relaxed">
-        Both paths lead to the same destination. Choose what feels most
-        natural to you.
+        {singlePathOnly
+          ? "This course is currently available in one guidance style."
+          : "Both paths lead to the same destination. Choose what feels most natural to you."}
       </p>
 
       <div className="flex flex-col gap-3 mb-8">
-        {OPTIONS.map((opt) => (
+        {visibleOptions.map((opt) => (
           <button
             key={opt.value}
             type="button"

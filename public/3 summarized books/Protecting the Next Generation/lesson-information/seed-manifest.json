@@ -11,71 +11,271 @@
         {
           "lessonNumber": 1,
           "title": "Why Prevention Matters",
-          "estimatedMinutes": 7,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Protect before crisis", "message": "Prevention is one of the strongest forms of care." } },
-            { "type": "reading", "content": { "title": "A proactive task", "body": "This course frames prevention as practical protection for children, teenagers, and students before harmful patterns take root." } },
-            { "type": "mentor_note", "content": { "note": "Wise prevention is love acting early." } },
-            { "type": "pause_reflect", "content": { "question": "How much of your caregiving is reactive rather than proactive?", "context": "Think about where earlier awareness could strengthen your guidance." } },
-            { "type": "journal_prompt", "content": { "prompt": "Write why prevention matters in your family or caregiving context." } },
-            { "type": "daily_action", "content": { "title": "Start one conversation", "action": "Identify one prevention conversation that needs to happen soon." } },
-            { "type": "complete", "content": { "message": "You began the course with a protective mindset.", "encouragement": "Prevention often starts with attention, honesty, and timely care." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Protect before crisis",
+                "message": "Prevention is one of the strongest forms of care. This lesson sits inside Understanding the Risk, where the focus is why prevention matters, why the teenage years are vulnerable, and how drug abuse harms body, mind, and future. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "A proactive task",
+                "body": "This course frames prevention as practical protection for children, teenagers, and students before harmful patterns take root.\n\nThis course is about prevention, watchfulness, communication, boundaries, and building a safer home environment. The theme of \"Why Prevention Matters\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: Why prevention matters, why the teenage years are vulnerable, and how drug abuse harms body, mind, and future. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Wise prevention is love acting early. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "How much of your caregiving is reactive rather than proactive?",
+                "context": "Think about where earlier awareness could strengthen your guidance. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Write why prevention matters in your family or caregiving context. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Start one conversation",
+                "action": "Identify one prevention conversation that needs to happen soon. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You began the course with a protective mindset.",
+                "encouragement": "Prevention often starts with attention, honesty, and timely care. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 2,
           "title": "The Teenage Years and Growing Responsibility",
-          "estimatedMinutes": 7,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "A vulnerable stage", "message": "Teen years are full of growth, curiosity, and pressure." } },
-            { "type": "reading", "content": { "title": "Exposure and development", "body": "The manuscript describes adolescence as a stage where responsibility grows while maturity is still forming. This makes guidance especially important." } },
-            { "type": "mentor_note", "content": { "note": "Freedom without guidance can become vulnerability." } },
-            { "type": "pause_reflect", "content": { "question": "What pressures do teenagers face now that may be easy to underestimate?", "context": "Consider school, peers, image, online influence, and identity formation." } },
-            { "type": "journal_prompt", "content": { "prompt": "Describe the kind of support a teenager most needs during school years." } },
-            { "type": "daily_action", "content": { "title": "Listen before advising", "action": "Use your next meaningful conversation to ask more than you tell." } },
-            { "type": "complete", "content": { "message": "You named adolescence as a key prevention window.", "encouragement": "Timely guidance matters most when responsibility grows faster than judgment." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "A vulnerable stage",
+                "message": "Teen years are full of growth, curiosity, and pressure. This lesson sits inside Understanding the Risk, where the focus is why prevention matters, why the teenage years are vulnerable, and how drug abuse harms body, mind, and future. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Exposure and development",
+                "body": "The manuscript describes adolescence as a stage where responsibility grows while maturity is still forming. This makes guidance especially important.\n\nThis course is about prevention, watchfulness, communication, boundaries, and building a safer home environment. The theme of \"The Teenage Years and Growing Responsibility\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: Why prevention matters, why the teenage years are vulnerable, and how drug abuse harms body, mind, and future. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Freedom without guidance can become vulnerability. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "What pressures do teenagers face now that may be easy to underestimate?",
+                "context": "Consider school, peers, image, online influence, and identity formation. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Describe the kind of support a teenager most needs during school years. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Listen before advising",
+                "action": "Use your next meaningful conversation to ask more than you tell. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You named adolescence as a key prevention window.",
+                "encouragement": "Timely guidance matters most when responsibility grows faster than judgment. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 3,
           "title": "Physical Dangers of Drug Abuse",
-          "estimatedMinutes": 7,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Understanding the harm", "message": "Prevention becomes stronger when danger is understood clearly." } },
-            { "type": "reading", "content": { "title": "Effects on the body", "body": "The manuscript highlights physical risks such as heart strain, weakened immunity, sleep disruption, appetite changes, withdrawal pain, and the greater vulnerability of younger bodies." } },
-            { "type": "mentor_note", "content": { "note": "A young person's future can be altered by choices that first looked small." } },
-            { "type": "pause_reflect", "content": { "question": "Which physical consequences would be most important to explain clearly to a teenager?", "context": "Think about what would make the risk feel real without becoming alarmist." } },
-            { "type": "journal_prompt", "content": { "prompt": "Write a short explanation of drug risk in simple, honest language." } },
-            { "type": "daily_action", "content": { "title": "Learn one fact well", "action": "Choose one health fact and learn it well enough to explain it calmly." } },
-            { "type": "complete", "content": { "message": "You strengthened the health-awareness side of prevention.", "encouragement": "Clear knowledge helps protection stay grounded rather than vague." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Understanding the harm",
+                "message": "Prevention becomes stronger when danger is understood clearly. This lesson sits inside Understanding the Risk, where the focus is why prevention matters, why the teenage years are vulnerable, and how drug abuse harms body, mind, and future. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Effects on the body",
+                "body": "The manuscript highlights physical risks such as heart strain, weakened immunity, sleep disruption, appetite changes, withdrawal pain, and the greater vulnerability of younger bodies.\n\nThis course is about prevention, watchfulness, communication, boundaries, and building a safer home environment. The theme of \"Physical Dangers of Drug Abuse\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: Why prevention matters, why the teenage years are vulnerable, and how drug abuse harms body, mind, and future. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "A young person's future can be altered by choices that first looked small. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "Which physical consequences would be most important to explain clearly to a teenager?",
+                "context": "Think about what would make the risk feel real without becoming alarmist. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Write a short explanation of drug risk in simple, honest language. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Learn one fact well",
+                "action": "Choose one health fact and learn it well enough to explain it calmly. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You strengthened the health-awareness side of prevention.",
+                "encouragement": "Clear knowledge helps protection stay grounded rather than vague. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 4,
           "title": "Mental and Emotional Effects of Abuse",
-          "estimatedMinutes": 7,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Not only physical", "message": "The dangers of drug use are not only visible in the body." } },
-            { "type": "reading", "content": { "title": "Effects on thinking and feeling", "body": "The text highlights hallucinations, distorted thinking, anxiety, depression, memory loss, impaired judgment, and the worsening of underlying mental struggles." } },
-            { "type": "mentor_note", "content": { "note": "Anything that distorts thinking can also distort decision-making and identity." } },
-            { "type": "pause_reflect", "content": { "question": "What emotional or psychological signs would concern you most?", "context": "Notice the kinds of changes that may signal something deeper than normal stress." } },
-            { "type": "journal_prompt", "content": { "prompt": "Note the difference between occasional moodiness and more serious warning signs." } },
-            { "type": "daily_action", "content": { "title": "Observe more carefully", "action": "Pay closer attention to one behavior change you may have dismissed too quickly." } },
-            { "type": "complete", "content": { "message": "You deepened your understanding of non-visible harm.", "encouragement": "Awareness of inner warning signs helps prevention happen earlier." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Not only physical",
+                "message": "The dangers of drug use are not only visible in the body. This lesson sits inside Understanding the Risk, where the focus is why prevention matters, why the teenage years are vulnerable, and how drug abuse harms body, mind, and future. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Effects on thinking and feeling",
+                "body": "The text highlights hallucinations, distorted thinking, anxiety, depression, memory loss, impaired judgment, and the worsening of underlying mental struggles.\n\nThis course is about prevention, watchfulness, communication, boundaries, and building a safer home environment. The theme of \"Mental and Emotional Effects of Abuse\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: Why prevention matters, why the teenage years are vulnerable, and how drug abuse harms body, mind, and future. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Anything that distorts thinking can also distort decision-making and identity. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "What emotional or psychological signs would concern you most?",
+                "context": "Notice the kinds of changes that may signal something deeper than normal stress. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Note the difference between occasional moodiness and more serious warning signs. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Observe more carefully",
+                "action": "Pay closer attention to one behavior change you may have dismissed too quickly. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You deepened your understanding of non-visible harm.",
+                "encouragement": "Awareness of inner warning signs helps prevention happen earlier. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 5,
           "title": "Why Early Awareness Protects the Future",
-          "estimatedMinutes": 7,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Readiness, not fear", "message": "Awareness is one of prevention's simplest and strongest tools." } },
-            { "type": "reading", "content": { "title": "Intentional attention", "body": "The book encourages parents and guardians to become informed, attentive, and wise before warning signs turn into deeper problems." } },
-            { "type": "mentor_note", "content": { "note": "Early awareness does not create fear. It creates readiness." } },
-            { "type": "pause_reflect", "content": { "question": "Where do you most need to become more aware right now?", "context": "Consider friends, routines, health, online media, and emotional changes." } },
-            { "type": "journal_prompt", "content": { "prompt": "Write three ways awareness can protect a young person without becoming controlling." } },
-            { "type": "daily_action", "content": { "title": "Create one awareness habit", "action": "Start one weekly routine that helps you notice before problems deepen." } },
-            { "type": "complete", "content": { "message": "You finished the chapter with a practical call to pay attention early.", "encouragement": "Prepared caregivers protect more effectively than surprised ones." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Readiness, not fear",
+                "message": "Awareness is one of prevention's simplest and strongest tools. This lesson sits inside Understanding the Risk, where the focus is why prevention matters, why the teenage years are vulnerable, and how drug abuse harms body, mind, and future. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Intentional attention",
+                "body": "The book encourages parents and guardians to become informed, attentive, and wise before warning signs turn into deeper problems.\n\nThis course is about prevention, watchfulness, communication, boundaries, and building a safer home environment. The theme of \"Why Early Awareness Protects the Future\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: Why prevention matters, why the teenage years are vulnerable, and how drug abuse harms body, mind, and future. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Early awareness does not create fear. It creates readiness. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "Where do you most need to become more aware right now?",
+                "context": "Consider friends, routines, health, online media, and emotional changes. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Write three ways awareness can protect a young person without becoming controlling. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Create one awareness habit",
+                "action": "Start one weekly routine that helps you notice before problems deepen. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You finished the chapter with a practical call to pay attention early.",
+                "encouragement": "Prepared caregivers protect more effectively than surprised ones. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         }
       ]
@@ -88,71 +288,271 @@
         {
           "lessonNumber": 1,
           "title": "Common Drugs and Substances",
-          "estimatedMinutes": 7,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Know what exists", "message": "Awareness begins with naming the substances that young people may encounter." } },
-            { "type": "reading", "content": { "title": "Common points of exposure", "body": "The manuscript names alcohol, cigarettes, cocaine, methamphetamine, heroin, cannabis, LSD, and other common substances as part of the prevention picture." } },
-            { "type": "mentor_note", "content": { "note": "It is hard to guard against what you refuse to name." } },
-            { "type": "pause_reflect", "content": { "question": "Which substances are most likely to appear in your context?", "context": "Think realistically about what is most common around the young people in your care." } },
-            { "type": "journal_prompt", "content": { "prompt": "List the substances you most need to understand better and why." } },
-            { "type": "daily_action", "content": { "title": "Learn one clearly", "action": "Choose one common substance and learn its basic signs and risks." } },
-            { "type": "complete", "content": { "message": "You started building practical awareness.", "encouragement": "Clear naming helps caregivers respond more wisely." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Know what exists",
+                "message": "Awareness begins with naming the substances that young people may encounter. This lesson sits inside Social Influences and Exposure, where the focus is how common substances, peer groups, media, and risky environments create pathways of exposure for young people. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Common points of exposure",
+                "body": "The manuscript names alcohol, cigarettes, cocaine, methamphetamine, heroin, cannabis, LSD, and other common substances as part of the prevention picture.\n\nThis course is about prevention, watchfulness, communication, boundaries, and building a safer home environment. The theme of \"Common Drugs and Substances\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: How common substances, peer groups, media, and risky environments create pathways of exposure for young people. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "It is hard to guard against what you refuse to name. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "Which substances are most likely to appear in your context?",
+                "context": "Think realistically about what is most common around the young people in your care. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "List the substances you most need to understand better and why. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Learn one clearly",
+                "action": "Choose one common substance and learn its basic signs and risks. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You started building practical awareness.",
+                "encouragement": "Clear naming helps caregivers respond more wisely. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 2,
           "title": "Peer Influence and Social Belonging",
-          "estimatedMinutes": 7,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Belonging shapes behavior", "message": "Young people often follow people before they follow ideas." } },
-            { "type": "reading", "content": { "title": "The pull of groups", "body": "The book explains that teenagers are drawn toward groups, identity, and belonging. This makes peer patterns especially powerful in shaping decisions." } },
-            { "type": "mentor_note", "content": { "note": "The need to belong can quietly overpower the need to think clearly." } },
-            { "type": "pause_reflect", "content": { "question": "How did belonging shape your own choices when you were younger?", "context": "Use your own story to better understand why peer influence matters." } },
-            { "type": "journal_prompt", "content": { "prompt": "Write what healthy belonging could look like for the young people in your care." } },
-            { "type": "daily_action", "content": { "title": "Ask about friendships", "action": "Ask one open, non-accusing question about current friendships this week." } },
-            { "type": "complete", "content": { "message": "You connected prevention with relational awareness.", "encouragement": "Belonging can either protect or expose, depending on where it leads." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Belonging shapes behavior",
+                "message": "Young people often follow people before they follow ideas. This lesson sits inside Social Influences and Exposure, where the focus is how common substances, peer groups, media, and risky environments create pathways of exposure for young people. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "The pull of groups",
+                "body": "The book explains that teenagers are drawn toward groups, identity, and belonging. This makes peer patterns especially powerful in shaping decisions.\n\nThis course is about prevention, watchfulness, communication, boundaries, and building a safer home environment. The theme of \"Peer Influence and Social Belonging\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: How common substances, peer groups, media, and risky environments create pathways of exposure for young people. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "The need to belong can quietly overpower the need to think clearly. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "How did belonging shape your own choices when you were younger?",
+                "context": "Use your own story to better understand why peer influence matters. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Write what healthy belonging could look like for the young people in your care. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Ask about friendships",
+                "action": "Ask one open, non-accusing question about current friendships this week. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You connected prevention with relational awareness.",
+                "encouragement": "Belonging can either protect or expose, depending on where it leads. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 3,
           "title": "Music, Media, and Lifestyle Messaging",
-          "estimatedMinutes": 7,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Culture teaches too", "message": "Media and lifestyle signals often shape values long before adults speak." } },
-            { "type": "reading", "content": { "title": "What gets normalized", "body": "The manuscript warns that music, films, online content, and lifestyle imagery can glamorize drug use and make harmful patterns feel attractive or normal." } },
-            { "type": "mentor_note", "content": { "note": "Repeated images can slowly become accepted truths." } },
-            { "type": "pause_reflect", "content": { "question": "What messages about drugs, sex, or status are being repeated in the media young people consume?", "context": "Notice what is constantly celebrated, excused, or stylized." } },
-            { "type": "journal_prompt", "content": { "prompt": "Write about one cultural message you want to challenge more clearly." } },
-            { "type": "daily_action", "content": { "title": "Review one influence", "action": "Look at one media influence with curiosity rather than panic." } },
-            { "type": "complete", "content": { "message": "You named culture as a major prevention factor.", "encouragement": "What is normalized in culture often becomes easier to excuse in life." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Culture teaches too",
+                "message": "Media and lifestyle signals often shape values long before adults speak. This lesson sits inside Social Influences and Exposure, where the focus is how common substances, peer groups, media, and risky environments create pathways of exposure for young people. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "What gets normalized",
+                "body": "The manuscript warns that music, films, online content, and lifestyle imagery can glamorize drug use and make harmful patterns feel attractive or normal.\n\nThis course is about prevention, watchfulness, communication, boundaries, and building a safer home environment. The theme of \"Music, Media, and Lifestyle Messaging\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: How common substances, peer groups, media, and risky environments create pathways of exposure for young people. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Repeated images can slowly become accepted truths. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "What messages about drugs, sex, or status are being repeated in the media young people consume?",
+                "context": "Notice what is constantly celebrated, excused, or stylized. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Write about one cultural message you want to challenge more clearly. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Review one influence",
+                "action": "Look at one media influence with curiosity rather than panic. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You named culture as a major prevention factor.",
+                "encouragement": "What is normalized in culture often becomes easier to excuse in life. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 4,
           "title": "Risky Environments and Youth Exposure",
-          "estimatedMinutes": 7,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Place shapes possibility", "message": "Some spaces carry more danger than others." } },
-            { "type": "reading", "content": { "title": "Settings that normalize abuse", "body": "The booklet points to subcultures, parties, gang influence, and socially charged settings where substance use may be normalized or encouraged." } },
-            { "type": "mentor_note", "content": { "note": "Environment does not decide everything, but it often shapes what feels normal." } },
-            { "type": "pause_reflect", "content": { "question": "Which settings around you create the greatest concern?", "context": "Think about where risk gathers and how exposure becomes easier." } },
-            { "type": "journal_prompt", "content": { "prompt": "Describe what makes an environment feel protective or risky." } },
-            { "type": "daily_action", "content": { "title": "Set one clear boundary", "action": "Revisit one boundary around risky settings or company." } },
-            { "type": "complete", "content": { "message": "You linked prevention with wise boundaries around place and company.", "encouragement": "Some forms of protection begin with choosing where not to drift." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Place shapes possibility",
+                "message": "Some spaces carry more danger than others. This lesson sits inside Social Influences and Exposure, where the focus is how common substances, peer groups, media, and risky environments create pathways of exposure for young people. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Settings that normalize abuse",
+                "body": "The booklet points to subcultures, parties, gang influence, and socially charged settings where substance use may be normalized or encouraged.\n\nThis course is about prevention, watchfulness, communication, boundaries, and building a safer home environment. The theme of \"Risky Environments and Youth Exposure\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: How common substances, peer groups, media, and risky environments create pathways of exposure for young people. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Environment does not decide everything, but it often shapes what feels normal. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "Which settings around you create the greatest concern?",
+                "context": "Think about where risk gathers and how exposure becomes easier. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Describe what makes an environment feel protective or risky. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Set one clear boundary",
+                "action": "Revisit one boundary around risky settings or company. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You linked prevention with wise boundaries around place and company.",
+                "encouragement": "Some forms of protection begin with choosing where not to drift. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 5,
           "title": "Becoming a More Aware Parent",
-          "estimatedMinutes": 7,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Grounded awareness", "message": "Awareness is not paranoia. It is attentive care." } },
-            { "type": "reading", "content": { "title": "Watchful and informed", "body": "The manuscript repeatedly calls parents and guardians to be watchful, informed, and engaged with the realities surrounding younger generations." } },
-            { "type": "mentor_note", "content": { "note": "Present attention protects more than distant concern." } },
-            { "type": "pause_reflect", "content": { "question": "What kind of awareness do you need more of right now?", "context": "Notice where you are currently guessing instead of understanding." } },
-            { "type": "journal_prompt", "content": { "prompt": "Write three habits of a calm, observant caregiver." } },
-            { "type": "daily_action", "content": { "title": "Build one awareness routine", "action": "Start one regular practice that helps you stay informed without becoming intrusive." } },
-            { "type": "complete", "content": { "message": "You finished the chapter with a steadier picture of watchfulness.", "encouragement": "Grounded awareness creates protection without constant panic." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Grounded awareness",
+                "message": "Awareness is not paranoia. It is attentive care. This lesson sits inside Social Influences and Exposure, where the focus is how common substances, peer groups, media, and risky environments create pathways of exposure for young people. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Watchful and informed",
+                "body": "The manuscript repeatedly calls parents and guardians to be watchful, informed, and engaged with the realities surrounding younger generations.\n\nThis course is about prevention, watchfulness, communication, boundaries, and building a safer home environment. The theme of \"Becoming a More Aware Parent\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: How common substances, peer groups, media, and risky environments create pathways of exposure for young people. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Present attention protects more than distant concern. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "What kind of awareness do you need more of right now?",
+                "context": "Notice where you are currently guessing instead of understanding. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Write three habits of a calm, observant caregiver. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Build one awareness routine",
+                "action": "Start one regular practice that helps you stay informed without becoming intrusive. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You finished the chapter with a steadier picture of watchfulness.",
+                "encouragement": "Grounded awareness creates protection without constant panic. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         }
       ]
@@ -165,71 +565,271 @@
         {
           "lessonNumber": 1,
           "title": "Awareness and Watchfulness",
-          "estimatedMinutes": 7,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Attention at home", "message": "Prevention begins at home with steady attention." } },
-            { "type": "reading", "content": { "title": "Notice before it deepens", "body": "The manuscript describes awareness and watchfulness as foundational. Caregivers are called to notice patterns, shifts, and outcomes before problems deepen." } },
-            { "type": "mentor_note", "content": { "note": "Attentive love notices early." } },
-            { "type": "pause_reflect", "content": { "question": "What changes in behavior would make you pay closer attention?", "context": "Think about the kinds of subtle shifts that often get ignored until later." } },
-            { "type": "journal_prompt", "content": { "prompt": "Write how watchfulness can stay calm instead of controlling." } },
-            { "type": "daily_action", "content": { "title": "Begin a noticing habit", "action": "Start one weekly habit of observing more carefully before assuming." } },
-            { "type": "complete", "content": { "message": "You grounded prevention in steady presence.", "encouragement": "Presence often protects more effectively than panic." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Attention at home",
+                "message": "Prevention begins at home with steady attention. This lesson sits inside Prevention at Home, where the focus is how principles, boundaries, communication, and daily household habits create a stronger protective environment. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Notice before it deepens",
+                "body": "The manuscript describes awareness and watchfulness as foundational. Caregivers are called to notice patterns, shifts, and outcomes before problems deepen.\n\nThis course is about prevention, watchfulness, communication, boundaries, and building a safer home environment. The theme of \"Awareness and Watchfulness\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: How principles, boundaries, communication, and daily household habits create a stronger protective environment. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Attentive love notices early. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "What changes in behavior would make you pay closer attention?",
+                "context": "Think about the kinds of subtle shifts that often get ignored until later. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Write how watchfulness can stay calm instead of controlling. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Begin a noticing habit",
+                "action": "Start one weekly habit of observing more carefully before assuming. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You grounded prevention in steady presence.",
+                "encouragement": "Presence often protects more effectively than panic. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 2,
           "title": "Building Strong Principles at Home",
-          "estimatedMinutes": 7,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Households teach every day", "message": "Strong homes are built on repeated values and visible habits." } },
-            { "type": "reading", "content": { "title": "Principles and practical rules", "body": "The book emphasizes moral principles, practical rules, and a home culture that teaches respect, responsibility, and good judgment." } },
-            { "type": "mentor_note", "content": { "note": "Households teach every day, even when no lesson is announced." } },
-            { "type": "pause_reflect", "content": { "question": "What principles are clear in your home, and which are only assumed?", "context": "Think about the values that need to become more visible and consistent." } },
-            { "type": "journal_prompt", "content": { "prompt": "List five household principles you want to be unmistakable." } },
-            { "type": "daily_action", "content": { "title": "Make one principle visible", "action": "Name one household principle out loud and reinforce it through action." } },
-            { "type": "complete", "content": { "message": "You began shaping a clearer household foundation.", "encouragement": "Clarity in the home often becomes confidence in the child." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Households teach every day",
+                "message": "Strong homes are built on repeated values and visible habits. This lesson sits inside Prevention at Home, where the focus is how principles, boundaries, communication, and daily household habits create a stronger protective environment. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Principles and practical rules",
+                "body": "The book emphasizes moral principles, practical rules, and a home culture that teaches respect, responsibility, and good judgment.\n\nThis course is about prevention, watchfulness, communication, boundaries, and building a safer home environment. The theme of \"Building Strong Principles at Home\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: How principles, boundaries, communication, and daily household habits create a stronger protective environment. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Households teach every day, even when no lesson is announced. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "What principles are clear in your home, and which are only assumed?",
+                "context": "Think about the values that need to become more visible and consistent. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "List five household principles you want to be unmistakable. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Make one principle visible",
+                "action": "Name one household principle out loud and reinforce it through action. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You began shaping a clearer household foundation.",
+                "encouragement": "Clarity in the home often becomes confidence in the child. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 3,
           "title": "Respect, Boundaries, and Discipline",
-          "estimatedMinutes": 7,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Warmth with limits", "message": "Protection needs both care and boundaries." } },
-            { "type": "reading", "content": { "title": "Balanced discipline", "body": "The manuscript warns against homes that are too harsh or too slack. It recommends balanced discipline, mutual respect, and practical limits that fit the child and the family." } },
-            { "type": "mentor_note", "content": { "note": "Boundaries are strongest when they are clear, fair, and consistent." } },
-            { "type": "pause_reflect", "content": { "question": "Where does your household lean too hard or too loose?", "context": "Reflect on where discipline needs more balance and clarity." } },
-            { "type": "journal_prompt", "content": { "prompt": "Describe what balanced discipline looks like in your setting." } },
-            { "type": "daily_action", "content": { "title": "Clarify one boundary", "action": "Revisit one rule or boundary and explain the reason behind it." } },
-            { "type": "complete", "content": { "message": "You connected discipline with safety and stability.", "encouragement": "Healthy limits create safer freedom." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Warmth with limits",
+                "message": "Protection needs both care and boundaries. This lesson sits inside Prevention at Home, where the focus is how principles, boundaries, communication, and daily household habits create a stronger protective environment. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Balanced discipline",
+                "body": "The manuscript warns against homes that are too harsh or too slack. It recommends balanced discipline, mutual respect, and practical limits that fit the child and the family.\n\nThis course is about prevention, watchfulness, communication, boundaries, and building a safer home environment. The theme of \"Respect, Boundaries, and Discipline\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: How principles, boundaries, communication, and daily household habits create a stronger protective environment. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Boundaries are strongest when they are clear, fair, and consistent. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "Where does your household lean too hard or too loose?",
+                "context": "Reflect on where discipline needs more balance and clarity. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Describe what balanced discipline looks like in your setting. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Clarify one boundary",
+                "action": "Revisit one rule or boundary and explain the reason behind it. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You connected discipline with safety and stability.",
+                "encouragement": "Healthy limits create safer freedom. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 4,
           "title": "Communication, Encouragement, and Trust",
-          "estimatedMinutes": 7,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Speak in ways that build", "message": "Young people open more when homes feel safe to speak in." } },
-            { "type": "reading", "content": { "title": "Trust through tone", "body": "The booklet highlights positive encouragement, learning, and respect. It points toward communication that builds trust rather than fear." } },
-            { "type": "mentor_note", "content": { "note": "Correction goes further when it travels through relationship." } },
-            { "type": "pause_reflect", "content": { "question": "What tone usually fills important conversations at home?", "context": "Think about whether your tone invites honesty or defensiveness." } },
-            { "type": "journal_prompt", "content": { "prompt": "Write three ways you can communicate more clearly and encouragingly." } },
-            { "type": "daily_action", "content": { "title": "Aim for understanding", "action": "Have one conversation where your main goal is understanding before correcting." } },
-            { "type": "complete", "content": { "message": "You linked prevention with the everyday tone of the home.", "encouragement": "Trust grows more easily where people feel heard." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Speak in ways that build",
+                "message": "Young people open more when homes feel safe to speak in. This lesson sits inside Prevention at Home, where the focus is how principles, boundaries, communication, and daily household habits create a stronger protective environment. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Trust through tone",
+                "body": "The booklet highlights positive encouragement, learning, and respect. It points toward communication that builds trust rather than fear.\n\nThis course is about prevention, watchfulness, communication, boundaries, and building a safer home environment. The theme of \"Communication, Encouragement, and Trust\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: How principles, boundaries, communication, and daily household habits create a stronger protective environment. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Correction goes further when it travels through relationship. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "What tone usually fills important conversations at home?",
+                "context": "Think about whether your tone invites honesty or defensiveness. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Write three ways you can communicate more clearly and encouragingly. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Aim for understanding",
+                "action": "Have one conversation where your main goal is understanding before correcting. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You linked prevention with the everyday tone of the home.",
+                "encouragement": "Trust grows more easily where people feel heard. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 5,
           "title": "Creating a Healthy Protective Home",
-          "estimatedMinutes": 7,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "The whole picture", "message": "Prevention becomes strongest when it is woven into ordinary daily life." } },
-            { "type": "reading", "content": { "title": "A protective environment", "body": "This final lesson gathers the manuscript's themes: awareness, boundaries, respect, encouragement, learning, and strong principles working together in the home." } },
-            { "type": "mentor_note", "content": { "note": "The healthiest homes are not perfect. They are present, principled, and steady." } },
-            { "type": "pause_reflect", "content": { "question": "What would make your home more protective and more peaceful at the same time?", "context": "Think about the small patterns that shape the whole environment." } },
-            { "type": "journal_prompt", "content": { "prompt": "Write a short household prevention plan using the lessons from this chapter." } },
-            { "type": "daily_action", "content": { "title": "Begin one home practice", "action": "Choose one concrete home practice to begin this week." } },
-            { "type": "complete", "content": { "message": "You completed the course with a practical prevention plan.", "encouragement": "Ordinary, consistent habits often become extraordinary protection over time." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "The whole picture",
+                "message": "Prevention becomes strongest when it is woven into ordinary daily life. This lesson sits inside Prevention at Home, where the focus is how principles, boundaries, communication, and daily household habits create a stronger protective environment. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "A protective environment",
+                "body": "This final lesson gathers the manuscript's themes: awareness, boundaries, respect, encouragement, learning, and strong principles working together in the home.\n\nThis course is about prevention, watchfulness, communication, boundaries, and building a safer home environment. The theme of \"Creating a Healthy Protective Home\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: How principles, boundaries, communication, and daily household habits create a stronger protective environment. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "The healthiest homes are not perfect. They are present, principled, and steady. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "What would make your home more protective and more peaceful at the same time?",
+                "context": "Think about the small patterns that shape the whole environment. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Write a short household prevention plan using the lessons from this chapter. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Begin one home practice",
+                "action": "Choose one concrete home practice to begin this week. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You completed the course with a practical prevention plan.",
+                "encouragement": "Ordinary, consistent habits often become extraordinary protection over time. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         }
       ]

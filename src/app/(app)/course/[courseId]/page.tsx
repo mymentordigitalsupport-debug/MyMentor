@@ -3,6 +3,7 @@ import { redirect, notFound } from "next/navigation";
 import { ChapterCard } from "@/components/course/ChapterCard";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { Badge } from "@/components/ui/Badge";
+import { shouldHideGuidanceLabel } from "@/lib/course-library";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -112,9 +113,11 @@ export default async function CoursePage({ params }: Props) {
 
         {/* Header */}
         <div>
-          <Badge variant={courseVersion.guidance_path === "christian" ? "gold" : "sage"} className="mb-3">
-            {courseVersion.guidance_path === "christian" ? "Christian Guided" : "Religious Guidance"}
-          </Badge>
+          {!shouldHideGuidanceLabel(course.title) ? (
+            <Badge variant={courseVersion.guidance_path === "christian" ? "gold" : "sage"} className="mb-3">
+              {courseVersion.guidance_path === "christian" ? "Christian Guided" : "Religious Guidance"}
+            </Badge>
+          ) : null}
           <h1 className="font-serif text-3xl text-forest font-semibold mb-2 leading-snug">
             {course.title}
           </h1>
@@ -142,4 +145,3 @@ export default async function CoursePage({ params }: Props) {
     </PageTransition>
   );
 }
-

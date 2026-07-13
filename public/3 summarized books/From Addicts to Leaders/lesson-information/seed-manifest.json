@@ -11,99 +11,379 @@
         {
           "lessonNumber": 1,
           "title": "Why Recovery Needs Leadership",
-          "estimatedMinutes": 8,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Recovery and direction", "message": "Recovery is not only about what you stop. It is also about who you become." } },
-            { "type": "reading", "content": { "title": "Beyond survival", "body": "This course begins with the idea that treatment alone is not enough. Lasting change needs direction, responsibility, purpose, and a healthier identity." } },
-            { "type": "mentor_note", "content": { "note": "A person who cannot lead self well will struggle to rebuild life well." } },
-            { "type": "pause_reflect", "content": { "question": "Where have you thought of recovery only as stopping behavior?", "context": "Consider what still needs to be built after destructive habits are left behind." } },
-            { "type": "journal_prompt", "content": { "prompt": "Describe what a healthy, responsible life would look like for you six months from now." } },
-            { "type": "daily_action", "content": { "title": "Begin with intention", "action": "Choose one area of life where you will start acting with more purpose this week." } },
-            { "type": "complete", "content": { "message": "You reframed recovery as a path toward growth and leadership.", "encouragement": "Small honest steps toward responsibility matter." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Recovery and direction",
+                "message": "Recovery is not only about what you stop. It is also about who you become. This lesson sits inside Leadership and Recovery, where the focus is why lasting recovery must grow into leadership, service, maturity, and responsible influence. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Beyond survival",
+                "body": "This course begins with the idea that treatment alone is not enough. Lasting change needs direction, responsibility, purpose, and a healthier identity.\n\nThis course is about moving beyond survival into steady leadership of self, family, and daily responsibility. The theme of \"Why Recovery Needs Leadership\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: Why lasting recovery must grow into leadership, service, maturity, and responsible influence. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "A person who cannot lead self well will struggle to rebuild life well. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "Where have you thought of recovery only as stopping behavior?",
+                "context": "Consider what still needs to be built after destructive habits are left behind. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Describe what a healthy, responsible life would look like for you six months from now. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Begin with intention",
+                "action": "Choose one area of life where you will start acting with more purpose this week. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You reframed recovery as a path toward growth and leadership.",
+                "encouragement": "Small honest steps toward responsibility matter. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 2,
           "title": "Leadership as Character, Not Status",
-          "estimatedMinutes": 8,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Character first", "message": "Leadership is not mainly about title, attention, or position." } },
-            { "type": "reading", "content": { "title": "The kind of person you are", "body": "This manuscript defines leadership through integrity, humility, service, and truthfulness. Leadership begins in character before it is seen in influence." } },
-            { "type": "mentor_note", "content": { "note": "Title can be given quickly. Character is formed slowly." } },
-            { "type": "pause_reflect", "content": { "question": "Which character traits do you trust most in others?", "context": "Think about the traits that make someone safe to follow or listen to." } },
-            { "type": "journal_prompt", "content": { "prompt": "List three traits you want people to experience when they are around you." } },
-            { "type": "daily_action", "content": { "title": "Practice integrity", "action": "Do one quiet, honest thing today that no one needs to praise." } },
-            { "type": "complete", "content": { "message": "You connected leadership with character rather than image.", "encouragement": "The strongest kind of growth is the kind that becomes part of who you are." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Character first",
+                "message": "Leadership is not mainly about title, attention, or position. This lesson sits inside Leadership and Recovery, where the focus is why lasting recovery must grow into leadership, service, maturity, and responsible influence. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "The kind of person you are",
+                "body": "This manuscript defines leadership through integrity, humility, service, and truthfulness. Leadership begins in character before it is seen in influence.\n\nThis course is about moving beyond survival into steady leadership of self, family, and daily responsibility. The theme of \"Leadership as Character, Not Status\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: Why lasting recovery must grow into leadership, service, maturity, and responsible influence. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Title can be given quickly. Character is formed slowly. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "Which character traits do you trust most in others?",
+                "context": "Think about the traits that make someone safe to follow or listen to. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "List three traits you want people to experience when they are around you. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Practice integrity",
+                "action": "Do one quiet, honest thing today that no one needs to praise. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You connected leadership with character rather than image.",
+                "encouragement": "The strongest kind of growth is the kind that becomes part of who you are. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 3,
           "title": "Service, Responsibility, and Influence",
-          "estimatedMinutes": 8,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Dependable influence", "message": "Real influence grows when people become dependable." } },
-            { "type": "reading", "content": { "title": "Responsibility that serves", "body": "Leadership in this course is tied to service, practical care, and responsibility. Healthy influence helps people flourish rather than using them." } },
-            { "type": "mentor_note", "content": { "note": "Influence without responsibility quickly becomes harm." } },
-            { "type": "pause_reflect", "content": { "question": "Who has influenced your life through steady care rather than loud words?", "context": "Notice how consistency often carries more weight than image." } },
-            { "type": "journal_prompt", "content": { "prompt": "Write about one responsibility you have avoided and why it matters." } },
-            { "type": "daily_action", "content": { "title": "Carry one thing well", "action": "Finish one neglected task as an act of responsibility." } },
-            { "type": "complete", "content": { "message": "You linked leadership with trustworthy service.", "encouragement": "Dependability is one of the clearest signs of change." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Dependable influence",
+                "message": "Real influence grows when people become dependable. This lesson sits inside Leadership and Recovery, where the focus is why lasting recovery must grow into leadership, service, maturity, and responsible influence. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Responsibility that serves",
+                "body": "Leadership in this course is tied to service, practical care, and responsibility. Healthy influence helps people flourish rather than using them.\n\nThis course is about moving beyond survival into steady leadership of self, family, and daily responsibility. The theme of \"Service, Responsibility, and Influence\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: Why lasting recovery must grow into leadership, service, maturity, and responsible influence. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Influence without responsibility quickly becomes harm. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "Who has influenced your life through steady care rather than loud words?",
+                "context": "Notice how consistency often carries more weight than image. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Write about one responsibility you have avoided and why it matters. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Carry one thing well",
+                "action": "Finish one neglected task as an act of responsibility. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You linked leadership with trustworthy service.",
+                "encouragement": "Dependability is one of the clearest signs of change. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 4,
           "title": "What a True Leader Is",
-          "estimatedMinutes": 8,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Healthy leadership", "message": "Good leadership has a recognizable shape." } },
-            { "type": "reading", "content": { "title": "Building people", "body": "A true leader pursues fairness, maturity, wisdom, and growth in others. Strong leadership builds people instead of controlling them." } },
-            { "type": "mentor_note", "content": { "note": "Strong people do not need to dominate in order to guide." } },
-            { "type": "pause_reflect", "content": { "question": "What kind of presence makes you feel safe to grow?", "context": "Think about the qualities that make guidance feel trustworthy." } },
-            { "type": "journal_prompt", "content": { "prompt": "Write a short definition of the kind of leader you want to become." } },
-            { "type": "daily_action", "content": { "title": "Encourage growth", "action": "Offer one sincere encouragement to another person today." } },
-            { "type": "complete", "content": { "message": "You began shaping a healthier picture of leadership.", "encouragement": "The kind of leader you become affects the kind of healing you can sustain." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Healthy leadership",
+                "message": "Good leadership has a recognizable shape. This lesson sits inside Leadership and Recovery, where the focus is why lasting recovery must grow into leadership, service, maturity, and responsible influence. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Building people",
+                "body": "A true leader pursues fairness, maturity, wisdom, and growth in others. Strong leadership builds people instead of controlling them.\n\nThis course is about moving beyond survival into steady leadership of self, family, and daily responsibility. The theme of \"What a True Leader Is\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: Why lasting recovery must grow into leadership, service, maturity, and responsible influence. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Strong people do not need to dominate in order to guide. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "What kind of presence makes you feel safe to grow?",
+                "context": "Think about the qualities that make guidance feel trustworthy. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Write a short definition of the kind of leader you want to become. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Encourage growth",
+                "action": "Offer one sincere encouragement to another person today. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You began shaping a healthier picture of leadership.",
+                "encouragement": "The kind of leader you become affects the kind of healing you can sustain. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 5,
           "title": "What a True Leader Is Not",
-          "estimatedMinutes": 8,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "What to reject", "message": "Clarity grows when we identify the patterns that harm people." } },
-            { "type": "reading", "content": { "title": "Pride, control, and manipulation", "body": "The book rejects selfishness, deception, pride, and controlling behavior. These may look strong on the surface, but they damage trust and dignity." } },
-            { "type": "mentor_note", "content": { "note": "Control can imitate strength while hiding insecurity." } },
-            { "type": "pause_reflect", "content": { "question": "Which harmful pattern most easily disguises itself as strength?", "context": "Be honest about the behaviors that can hide behind confidence." } },
-            { "type": "journal_prompt", "content": { "prompt": "Name one manipulative or self-protective habit you want to leave behind." } },
-            { "type": "daily_action", "content": { "title": "Choose honesty", "action": "Correct one small dishonest or controlling behavior if you notice it today." } },
-            { "type": "complete", "content": { "message": "You named the difference between leadership and domination.", "encouragement": "Real strength leaves people more whole, not more diminished." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "What to reject",
+                "message": "Clarity grows when we identify the patterns that harm people. This lesson sits inside Leadership and Recovery, where the focus is why lasting recovery must grow into leadership, service, maturity, and responsible influence. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Pride, control, and manipulation",
+                "body": "The book rejects selfishness, deception, pride, and controlling behavior. These may look strong on the surface, but they damage trust and dignity.\n\nThis course is about moving beyond survival into steady leadership of self, family, and daily responsibility. The theme of \"What a True Leader Is Not\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: Why lasting recovery must grow into leadership, service, maturity, and responsible influence. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Control can imitate strength while hiding insecurity. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "Which harmful pattern most easily disguises itself as strength?",
+                "context": "Be honest about the behaviors that can hide behind confidence. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Name one manipulative or self-protective habit you want to leave behind. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Choose honesty",
+                "action": "Correct one small dishonest or controlling behavior if you notice it today. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You named the difference between leadership and domination.",
+                "encouragement": "Real strength leaves people more whole, not more diminished. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 6,
           "title": "Stewardship and Trust",
-          "estimatedMinutes": 8,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Caring for what is in your hands", "message": "Leadership includes caring well for people, time, and responsibility." } },
-            { "type": "reading", "content": { "title": "Faithful oversight", "body": "Stewardship in this manuscript means protection, encouragement, wise care, and dignified responsibility. It asks how we handle what has been entrusted to us." } },
-            { "type": "mentor_note", "content": { "note": "Stewardship asks what has been placed in your hands and how you will honor it." } },
-            { "type": "pause_reflect", "content": { "question": "What in your life currently needs better stewardship?", "context": "Think about relationships, habits, work, and commitments." } },
-            { "type": "journal_prompt", "content": { "prompt": "Write about one relationship, one habit, and one responsibility you want to manage better." } },
-            { "type": "daily_action", "content": { "title": "Improve follow-through", "action": "Put one practical system in place to help you follow through." } },
-            { "type": "complete", "content": { "message": "You connected leadership with faithful care.", "encouragement": "Trust grows where care becomes consistent." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Caring for what is in your hands",
+                "message": "Leadership includes caring well for people, time, and responsibility. This lesson sits inside Leadership and Recovery, where the focus is why lasting recovery must grow into leadership, service, maturity, and responsible influence. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Faithful oversight",
+                "body": "Stewardship in this manuscript means protection, encouragement, wise care, and dignified responsibility. It asks how we handle what has been entrusted to us.\n\nThis course is about moving beyond survival into steady leadership of self, family, and daily responsibility. The theme of \"Stewardship and Trust\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: Why lasting recovery must grow into leadership, service, maturity, and responsible influence. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Stewardship asks what has been placed in your hands and how you will honor it. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "What in your life currently needs better stewardship?",
+                "context": "Think about relationships, habits, work, and commitments. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Write about one relationship, one habit, and one responsibility you want to manage better. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Improve follow-through",
+                "action": "Put one practical system in place to help you follow through. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You connected leadership with faithful care.",
+                "encouragement": "Trust grows where care becomes consistent. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 7,
           "title": "Growing Into Mature Leadership",
-          "estimatedMinutes": 8,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Growth over time", "message": "Leadership is formed, not rushed." } },
-            { "type": "reading", "content": { "title": "Maturity through hardship", "body": "The manuscript shows that maturity often grows through truth, discipline, hardship, and teachability. Growth is not instant, but it can be deep and durable." } },
-            { "type": "mentor_note", "content": { "note": "Maturity is not the absence of struggle. It is the way you grow through it." } },
-            { "type": "pause_reflect", "content": { "question": "What challenge in your life could shape you for good?", "context": "Consider how difficulty might become part of your growth story." } },
-            { "type": "journal_prompt", "content": { "prompt": "Describe one hardship that could become part of your leadership development." } },
-            { "type": "daily_action", "content": { "title": "Choose teachability", "action": "Identify one mentor, practice, or habit that can help you mature." } },
-            { "type": "complete", "content": { "message": "You ended the chapter seeing growth as a disciplined journey.", "encouragement": "Lasting maturity is built one faithful response at a time." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Growth over time",
+                "message": "Leadership is formed, not rushed. This lesson sits inside Leadership and Recovery, where the focus is why lasting recovery must grow into leadership, service, maturity, and responsible influence. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Maturity through hardship",
+                "body": "The manuscript shows that maturity often grows through truth, discipline, hardship, and teachability. Growth is not instant, but it can be deep and durable.\n\nThis course is about moving beyond survival into steady leadership of self, family, and daily responsibility. The theme of \"Growing Into Mature Leadership\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: Why lasting recovery must grow into leadership, service, maturity, and responsible influence. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Maturity is not the absence of struggle. It is the way you grow through it. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "What challenge in your life could shape you for good?",
+                "context": "Consider how difficulty might become part of your growth story. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Describe one hardship that could become part of your leadership development. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Choose teachability",
+                "action": "Identify one mentor, practice, or habit that can help you mature. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You ended the chapter seeing growth as a disciplined journey.",
+                "encouragement": "Lasting maturity is built one faithful response at a time. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         }
       ]
@@ -116,99 +396,379 @@
         {
           "lessonNumber": 1,
           "title": "Seeing the Whole Person",
-          "estimatedMinutes": 8,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "More than a label", "message": "A person is more than a problem to fix." } },
-            { "type": "reading", "content": { "title": "The whole human story", "body": "This manuscript urges a whole-person view that includes abilities, inner life, relationships, and responsibility. Addiction harms many parts of life, so healing must reach many parts too." } },
-            { "type": "mentor_note", "content": { "note": "Healing deepens when a person is treated as human, not reduced to one label." } },
-            { "type": "pause_reflect", "content": { "question": "Where have you felt reduced to one part of your story?", "context": "Consider how a fuller picture of yourself changes the way you approach recovery." } },
-            { "type": "journal_prompt", "content": { "prompt": "Write down the roles, strengths, and hopes that still belong to you." } },
-            { "type": "daily_action", "content": { "title": "Speak a fuller truth", "action": "Say one truthful sentence about yourself that is larger than your struggle." } },
-            { "type": "complete", "content": { "message": "You widened the lens on who you are.", "encouragement": "A larger, truer story creates room for deeper healing." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "More than a label",
+                "message": "A person is more than a problem to fix. This lesson sits inside The Individual and Inner Change, where the focus is understanding the whole person, purpose, character, addictive behavior, and why freedom needs inner renewal. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "The whole human story",
+                "body": "This manuscript urges a whole-person view that includes abilities, inner life, relationships, and responsibility. Addiction harms many parts of life, so healing must reach many parts too.\n\nThis course is about moving beyond survival into steady leadership of self, family, and daily responsibility. The theme of \"Seeing the Whole Person\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: Understanding the whole person, purpose, character, addictive behavior, and why freedom needs inner renewal. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Healing deepens when a person is treated as human, not reduced to one label. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "Where have you felt reduced to one part of your story?",
+                "context": "Consider how a fuller picture of yourself changes the way you approach recovery. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Write down the roles, strengths, and hopes that still belong to you. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Speak a fuller truth",
+                "action": "Say one truthful sentence about yourself that is larger than your struggle. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You widened the lens on who you are.",
+                "encouragement": "A larger, truer story creates room for deeper healing. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 2,
           "title": "Character Traits for a Better Life",
-          "estimatedMinutes": 8,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Traits that sustain change", "message": "Recovery needs more than relief. It needs character." } },
-            { "type": "reading", "content": { "title": "Inner strength", "body": "Love, compassion, self-control, kindness, wisdom, and humility are presented as traits that support a more stable and humane life." } },
-            { "type": "mentor_note", "content": { "note": "Character is what remains when emotion changes." } },
-            { "type": "pause_reflect", "content": { "question": "Which trait would most change your relationships if it grew stronger?", "context": "Think about the qualities that could reshape daily life if practiced consistently." } },
-            { "type": "journal_prompt", "content": { "prompt": "Choose two character traits you want to practice this week and explain why." } },
-            { "type": "daily_action", "content": { "title": "Practice one trait", "action": "Show one deliberate act of kindness, patience, or restraint today." } },
-            { "type": "complete", "content": { "message": "You identified the kind of inner strength recovery needs.", "encouragement": "Steady character often protects freedom more than emotion does." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Traits that sustain change",
+                "message": "Recovery needs more than relief. It needs character. This lesson sits inside The Individual and Inner Change, where the focus is understanding the whole person, purpose, character, addictive behavior, and why freedom needs inner renewal. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Inner strength",
+                "body": "Love, compassion, self-control, kindness, wisdom, and humility are presented as traits that support a more stable and humane life.\n\nThis course is about moving beyond survival into steady leadership of self, family, and daily responsibility. The theme of \"Character Traits for a Better Life\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: Understanding the whole person, purpose, character, addictive behavior, and why freedom needs inner renewal. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Character is what remains when emotion changes. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "Which trait would most change your relationships if it grew stronger?",
+                "context": "Think about the qualities that could reshape daily life if practiced consistently. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Choose two character traits you want to practice this week and explain why. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Practice one trait",
+                "action": "Show one deliberate act of kindness, patience, or restraint today. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You identified the kind of inner strength recovery needs.",
+                "encouragement": "Steady character often protects freedom more than emotion does. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 3,
           "title": "Discovering Purpose",
-          "estimatedMinutes": 8,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Direction matters", "message": "People endure more when they can see meaning ahead." } },
-            { "type": "reading", "content": { "title": "Purpose and movement", "body": "Purpose is described as direction, contribution, determination, and meaningful function. It becomes clearer through growth, responsibility, and lived experience." } },
-            { "type": "mentor_note", "content": { "note": "A person with purpose is less easily owned by chaos." } },
-            { "type": "pause_reflect", "content": { "question": "What gives your life a sense of direction?", "context": "Notice the activities, values, and hopes that create movement rather than drift." } },
-            { "type": "journal_prompt", "content": { "prompt": "Write a simple purpose statement for the season of life you are in now." } },
-            { "type": "daily_action", "content": { "title": "Take one aligned step", "action": "Do one small thing today that aligns with the future you want." } },
-            { "type": "complete", "content": { "message": "You named direction instead of drifting.", "encouragement": "Purpose does not have to be grand to be powerful." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Direction matters",
+                "message": "People endure more when they can see meaning ahead. This lesson sits inside The Individual and Inner Change, where the focus is understanding the whole person, purpose, character, addictive behavior, and why freedom needs inner renewal. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Purpose and movement",
+                "body": "Purpose is described as direction, contribution, determination, and meaningful function. It becomes clearer through growth, responsibility, and lived experience.\n\nThis course is about moving beyond survival into steady leadership of self, family, and daily responsibility. The theme of \"Discovering Purpose\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: Understanding the whole person, purpose, character, addictive behavior, and why freedom needs inner renewal. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "A person with purpose is less easily owned by chaos. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "What gives your life a sense of direction?",
+                "context": "Notice the activities, values, and hopes that create movement rather than drift. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Write a simple purpose statement for the season of life you are in now. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Take one aligned step",
+                "action": "Do one small thing today that aligns with the future you want. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You named direction instead of drifting.",
+                "encouragement": "Purpose does not have to be grand to be powerful. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 4,
           "title": "Gifts, Growth, and Personal Development",
-          "estimatedMinutes": 8,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Recovering potential", "message": "Recovery should uncover potential, not only repair damage." } },
-            { "type": "reading", "content": { "title": "Cultivating what is in you", "body": "The manuscript points to gifts, abilities, and personal development as part of healing. Growth becomes meaningful when it benefits both the individual and others." } },
-            { "type": "mentor_note", "content": { "note": "What is developed in you can become a gift to others." } },
-            { "type": "pause_reflect", "content": { "question": "What strengths have been buried under struggle?", "context": "Think about capacities that deserve recovery and attention." } },
-            { "type": "journal_prompt", "content": { "prompt": "List three abilities or interests you want to recover or grow." } },
-            { "type": "daily_action", "content": { "title": "Invest in growth", "action": "Spend focused time today on one healthy skill or interest." } },
-            { "type": "complete", "content": { "message": "You linked recovery with cultivation, not just repair.", "encouragement": "Healthy growth helps freedom become fruitful." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Recovering potential",
+                "message": "Recovery should uncover potential, not only repair damage. This lesson sits inside The Individual and Inner Change, where the focus is understanding the whole person, purpose, character, addictive behavior, and why freedom needs inner renewal. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Cultivating what is in you",
+                "body": "The manuscript points to gifts, abilities, and personal development as part of healing. Growth becomes meaningful when it benefits both the individual and others.\n\nThis course is about moving beyond survival into steady leadership of self, family, and daily responsibility. The theme of \"Gifts, Growth, and Personal Development\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: Understanding the whole person, purpose, character, addictive behavior, and why freedom needs inner renewal. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "What is developed in you can become a gift to others. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "What strengths have been buried under struggle?",
+                "context": "Think about capacities that deserve recovery and attention. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "List three abilities or interests you want to recover or grow. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Invest in growth",
+                "action": "Spend focused time today on one healthy skill or interest. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You linked recovery with cultivation, not just repair.",
+                "encouragement": "Healthy growth helps freedom become fruitful. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 5,
           "title": "Understanding Addictive Behavior",
-          "estimatedMinutes": 8,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "More than substance use", "message": "Substance use is only part of addiction's damage." } },
-            { "type": "reading", "content": { "title": "Patterns that remain", "body": "Manipulation, lying, chaos, impulsivity, broken trust, and reckless choices are described as common addictive patterns that can continue even after substance use stops." } },
-            { "type": "mentor_note", "content": { "note": "If behavior stays unchanged, relapse often stays close." } },
-            { "type": "pause_reflect", "content": { "question": "Which behavior pattern has caused the most harm in your life?", "context": "Look beyond the surface habit and name the repeated pattern around it." } },
-            { "type": "journal_prompt", "content": { "prompt": "Describe one repeated behavior that needs change, not excuses." } },
-            { "type": "daily_action", "content": { "title": "Interrupt the cycle", "action": "Stop one unhealthy pattern before it completes its usual cycle." } },
-            { "type": "complete", "content": { "message": "You faced the behavior side of addiction.", "encouragement": "Honest awareness creates the possibility of real change." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "More than substance use",
+                "message": "Substance use is only part of addiction's damage. This lesson sits inside The Individual and Inner Change, where the focus is understanding the whole person, purpose, character, addictive behavior, and why freedom needs inner renewal. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Patterns that remain",
+                "body": "Manipulation, lying, chaos, impulsivity, broken trust, and reckless choices are described as common addictive patterns that can continue even after substance use stops.\n\nThis course is about moving beyond survival into steady leadership of self, family, and daily responsibility. The theme of \"Understanding Addictive Behavior\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: Understanding the whole person, purpose, character, addictive behavior, and why freedom needs inner renewal. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "If behavior stays unchanged, relapse often stays close. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "Which behavior pattern has caused the most harm in your life?",
+                "context": "Look beyond the surface habit and name the repeated pattern around it. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Describe one repeated behavior that needs change, not excuses. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Interrupt the cycle",
+                "action": "Stop one unhealthy pattern before it completes its usual cycle. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You faced the behavior side of addiction.",
+                "encouragement": "Honest awareness creates the possibility of real change. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 6,
           "title": "Why Stopping Use Is Not Enough",
-          "estimatedMinutes": 8,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Freedom needs more", "message": "Freedom needs a new way of living, not only a stopped habit." } },
-            { "type": "reading", "content": { "title": "Beyond abstinence", "body": "The manuscript is clear that stopping use is major, but incomplete by itself. Lifestyle, responsibility, honesty, and trust also need rebuilding." } },
-            { "type": "mentor_note", "content": { "note": "What is removed from your life must be replaced with something better." } },
-            { "type": "pause_reflect", "content": { "question": "What would still need healing even if substance use stopped today?", "context": "Think about thinking patterns, routines, relationships, and responsibility." } },
-            { "type": "journal_prompt", "content": { "prompt": "Write about the kinds of change that must happen beyond abstinence." } },
-            { "type": "daily_action", "content": { "title": "Add one stabilizer", "action": "Start one healthy routine that supports long-term stability." } },
-            { "type": "complete", "content": { "message": "You expanded your picture of what real freedom involves.", "encouragement": "A changed life is stronger than a stopped habit alone." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Freedom needs more",
+                "message": "Freedom needs a new way of living, not only a stopped habit. This lesson sits inside The Individual and Inner Change, where the focus is understanding the whole person, purpose, character, addictive behavior, and why freedom needs inner renewal. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Beyond abstinence",
+                "body": "The manuscript is clear that stopping use is major, but incomplete by itself. Lifestyle, responsibility, honesty, and trust also need rebuilding.\n\nThis course is about moving beyond survival into steady leadership of self, family, and daily responsibility. The theme of \"Why Stopping Use Is Not Enough\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: Understanding the whole person, purpose, character, addictive behavior, and why freedom needs inner renewal. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "What is removed from your life must be replaced with something better. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "What would still need healing even if substance use stopped today?",
+                "context": "Think about thinking patterns, routines, relationships, and responsibility. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Write about the kinds of change that must happen beyond abstinence. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Add one stabilizer",
+                "action": "Start one healthy routine that supports long-term stability. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You expanded your picture of what real freedom involves.",
+                "encouragement": "A changed life is stronger than a stopped habit alone. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 7,
           "title": "Renewing Lifestyle, Habits, and Responsibility",
-          "estimatedMinutes": 8,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Visible change", "message": "Change becomes believable when it becomes visible." } },
-            { "type": "reading", "content": { "title": "Daily renewal", "body": "This lesson turns toward routines, habits, and repeated responsibility. Trust grows where change becomes daily and observable." } },
-            { "type": "mentor_note", "content": { "note": "Stability is built through repetition, not dramatic promises." } },
-            { "type": "pause_reflect", "content": { "question": "What daily habit would most strengthen your recovery?", "context": "Think about rhythms that make clarity and responsibility more likely." } },
-            { "type": "journal_prompt", "content": { "prompt": "Design a simple daily rhythm that supports responsibility and clarity." } },
-            { "type": "daily_action", "content": { "title": "Practice a steady rhythm", "action": "Follow one new healthy routine for the next three days." } },
-            { "type": "complete", "content": { "message": "You ended the chapter with a practical picture of renewal.", "encouragement": "Steady rhythms make healthy identity more believable." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Visible change",
+                "message": "Change becomes believable when it becomes visible. This lesson sits inside The Individual and Inner Change, where the focus is understanding the whole person, purpose, character, addictive behavior, and why freedom needs inner renewal. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Daily renewal",
+                "body": "This lesson turns toward routines, habits, and repeated responsibility. Trust grows where change becomes daily and observable.\n\nThis course is about moving beyond survival into steady leadership of self, family, and daily responsibility. The theme of \"Renewing Lifestyle, Habits, and Responsibility\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: Understanding the whole person, purpose, character, addictive behavior, and why freedom needs inner renewal. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Stability is built through repetition, not dramatic promises. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "What daily habit would most strengthen your recovery?",
+                "context": "Think about rhythms that make clarity and responsibility more likely. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Design a simple daily rhythm that supports responsibility and clarity. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Practice a steady rhythm",
+                "action": "Follow one new healthy routine for the next three days. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You ended the chapter with a practical picture of renewal.",
+                "encouragement": "Steady rhythms make healthy identity more believable. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         }
       ]
@@ -221,99 +781,379 @@
         {
           "lessonNumber": 1,
           "title": "Why Family Matters in Recovery",
-          "estimatedMinutes": 8,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Recovery is relational", "message": "Addiction rarely harms only one person." } },
-            { "type": "reading", "content": { "title": "Family as foundation", "body": "The manuscript treats family as one of society's most important foundations. Because addiction damages trust and belonging, recovery must also address relationships." } },
-            { "type": "mentor_note", "content": { "note": "Healing grows stronger when it reaches the places where pain spread." } },
-            { "type": "pause_reflect", "content": { "question": "How has your struggle affected people close to you?", "context": "Reflect on the relational impact of destructive patterns." } },
-            { "type": "journal_prompt", "content": { "prompt": "Write honestly about one family relationship touched by addiction." } },
-            { "type": "daily_action", "content": { "title": "Take one respectful step", "action": "Do one small thing that supports rebuilding connection." } },
-            { "type": "complete", "content": { "message": "You began seeing recovery in relational terms.", "encouragement": "Repair often starts with humble, steady movement." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Recovery is relational",
+                "message": "Addiction rarely harms only one person. This lesson sits inside Family, Restoration, and Social Renewal, where the focus is how addiction affects family systems, why care and responsibility matter in the home, and how recovery can become social good. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Family as foundation",
+                "body": "The manuscript treats family as one of society's most important foundations. Because addiction damages trust and belonging, recovery must also address relationships.\n\nThis course is about moving beyond survival into steady leadership of self, family, and daily responsibility. The theme of \"Why Family Matters in Recovery\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: How addiction affects family systems, why care and responsibility matter in the home, and how recovery can become social good. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Healing grows stronger when it reaches the places where pain spread. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "How has your struggle affected people close to you?",
+                "context": "Reflect on the relational impact of destructive patterns. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Write honestly about one family relationship touched by addiction. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Take one respectful step",
+                "action": "Do one small thing that supports rebuilding connection. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You began seeing recovery in relational terms.",
+                "encouragement": "Repair often starts with humble, steady movement. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 2,
           "title": "Addiction and Family Breakdown",
-          "estimatedMinutes": 8,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Patterns that weaken the home", "message": "Households weaken when destructive patterns go unchallenged." } },
-            { "type": "reading", "content": { "title": "Dysfunction and instability", "body": "The book names addiction, neglect, conflict, irresponsibility, and instability as forces that damage family life and spread pain across generations." } },
-            { "type": "mentor_note", "content": { "note": "Dysfunction grows in silence and confusion." } },
-            { "type": "pause_reflect", "content": { "question": "Which pattern has most weakened stability in your family story?", "context": "Look honestly at the patterns that keep peace and trust from growing." } },
-            { "type": "journal_prompt", "content": { "prompt": "Describe the difference between blaming and taking responsibility in family life." } },
-            { "type": "daily_action", "content": { "title": "Refuse one repeated pattern", "action": "Name one destructive pattern you no longer want to repeat." } },
-            { "type": "complete", "content": { "message": "You faced the wider impact of dysfunction.", "encouragement": "Naming the pattern is often the first step to breaking it." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Patterns that weaken the home",
+                "message": "Households weaken when destructive patterns go unchallenged. This lesson sits inside Family, Restoration, and Social Renewal, where the focus is how addiction affects family systems, why care and responsibility matter in the home, and how recovery can become social good. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Dysfunction and instability",
+                "body": "The book names addiction, neglect, conflict, irresponsibility, and instability as forces that damage family life and spread pain across generations.\n\nThis course is about moving beyond survival into steady leadership of self, family, and daily responsibility. The theme of \"Addiction and Family Breakdown\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: How addiction affects family systems, why care and responsibility matter in the home, and how recovery can become social good. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Dysfunction grows in silence and confusion. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "Which pattern has most weakened stability in your family story?",
+                "context": "Look honestly at the patterns that keep peace and trust from growing. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Describe the difference between blaming and taking responsibility in family life. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Refuse one repeated pattern",
+                "action": "Name one destructive pattern you no longer want to repeat. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You faced the wider impact of dysfunction.",
+                "encouragement": "Naming the pattern is often the first step to breaking it. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 3,
           "title": "Responsibility in the Home",
-          "estimatedMinutes": 8,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Love in action", "message": "Care becomes real through responsibility." } },
-            { "type": "reading", "content": { "title": "Support, wisdom, and contribution", "body": "Families need protection, support, and wise care. Recovery becomes stronger when people contribute to order, stability, and shared wellbeing." } },
-            { "type": "mentor_note", "content": { "note": "Responsibility is one of love's clearest forms." } },
-            { "type": "pause_reflect", "content": { "question": "What kind of responsibility has been missing most?", "context": "Think about the forms of care that would create more steadiness at home." } },
-            { "type": "journal_prompt", "content": { "prompt": "Write one way you can contribute to more peace or order at home." } },
-            { "type": "daily_action", "content": { "title": "Carry something fully", "action": "Take full responsibility for one household task or commitment this week." } },
-            { "type": "complete", "content": { "message": "You tied love to responsibility.", "encouragement": "Practical care often says more than promises." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Love in action",
+                "message": "Care becomes real through responsibility. This lesson sits inside Family, Restoration, and Social Renewal, where the focus is how addiction affects family systems, why care and responsibility matter in the home, and how recovery can become social good. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Support, wisdom, and contribution",
+                "body": "Families need protection, support, and wise care. Recovery becomes stronger when people contribute to order, stability, and shared wellbeing.\n\nThis course is about moving beyond survival into steady leadership of self, family, and daily responsibility. The theme of \"Responsibility in the Home\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: How addiction affects family systems, why care and responsibility matter in the home, and how recovery can become social good. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Responsibility is one of love's clearest forms. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "What kind of responsibility has been missing most?",
+                "context": "Think about the forms of care that would create more steadiness at home. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Write one way you can contribute to more peace or order at home. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Carry something fully",
+                "action": "Take full responsibility for one household task or commitment this week. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You tied love to responsibility.",
+                "encouragement": "Practical care often says more than promises. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 4,
           "title": "Parent Roles, Care, and Stability",
-          "estimatedMinutes": 8,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Steady guidance matters", "message": "Children and families need dependable care and role modeling." } },
-            { "type": "reading", "content": { "title": "Protection and example", "body": "The manuscript emphasizes parental care, household stability, and the importance of environments where children can grow with structure, dignity, and safety." } },
-            { "type": "mentor_note", "content": { "note": "The next generation learns as much from household patterns as from household words." } },
-            { "type": "pause_reflect", "content": { "question": "What kind of example did you receive, and what kind do you want to give?", "context": "Think about how stability and care are modeled over time." } },
-            { "type": "journal_prompt", "content": { "prompt": "Describe the home atmosphere that best helps people flourish." } },
-            { "type": "daily_action", "content": { "title": "Increase steadiness", "action": "Do one thing this week that makes your close environment feel more stable." } },
-            { "type": "complete", "content": { "message": "You linked recovery with the kind of home life that protects others.", "encouragement": "Stability is often one of the most generous things a person can offer." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Steady guidance matters",
+                "message": "Children and families need dependable care and role modeling. This lesson sits inside Family, Restoration, and Social Renewal, where the focus is how addiction affects family systems, why care and responsibility matter in the home, and how recovery can become social good. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Protection and example",
+                "body": "The manuscript emphasizes parental care, household stability, and the importance of environments where children can grow with structure, dignity, and safety.\n\nThis course is about moving beyond survival into steady leadership of self, family, and daily responsibility. The theme of \"Parent Roles, Care, and Stability\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: How addiction affects family systems, why care and responsibility matter in the home, and how recovery can become social good. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "The next generation learns as much from household patterns as from household words. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "What kind of example did you receive, and what kind do you want to give?",
+                "context": "Think about how stability and care are modeled over time. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Describe the home atmosphere that best helps people flourish. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Increase steadiness",
+                "action": "Do one thing this week that makes your close environment feel more stable. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You linked recovery with the kind of home life that protects others.",
+                "encouragement": "Stability is often one of the most generous things a person can offer. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 5,
           "title": "Rebuilding Trust and Relationships",
-          "estimatedMinutes": 8,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Trust returns slowly", "message": "Trust can return, but it usually returns through consistency." } },
-            { "type": "reading", "content": { "title": "Lived change", "body": "The manuscript calls for patience, dignity, truth, and repeated trustworthy behavior. Trust is restored by lived change more than by promises alone." } },
-            { "type": "mentor_note", "content": { "note": "People often believe patterns before words." } },
-            { "type": "pause_reflect", "content": { "question": "What would trustworthy living look like in your context?", "context": "Think about how someone close to you would recognize real change." } },
-            { "type": "journal_prompt", "content": { "prompt": "Write down three ways someone could recognize real change in you." } },
-            { "type": "daily_action", "content": { "title": "Keep one commitment", "action": "Follow through on one clear commitment today." } },
-            { "type": "complete", "content": { "message": "You grounded restoration in repeated action.", "encouragement": "Slow rebuilding is still real rebuilding." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Trust returns slowly",
+                "message": "Trust can return, but it usually returns through consistency. This lesson sits inside Family, Restoration, and Social Renewal, where the focus is how addiction affects family systems, why care and responsibility matter in the home, and how recovery can become social good. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Lived change",
+                "body": "The manuscript calls for patience, dignity, truth, and repeated trustworthy behavior. Trust is restored by lived change more than by promises alone.\n\nThis course is about moving beyond survival into steady leadership of self, family, and daily responsibility. The theme of \"Rebuilding Trust and Relationships\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: How addiction affects family systems, why care and responsibility matter in the home, and how recovery can become social good. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "People often believe patterns before words. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "What would trustworthy living look like in your context?",
+                "context": "Think about how someone close to you would recognize real change. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Write down three ways someone could recognize real change in you. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Keep one commitment",
+                "action": "Follow through on one clear commitment today. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You grounded restoration in repeated action.",
+                "encouragement": "Slow rebuilding is still real rebuilding. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 6,
           "title": "Leadership for Stronger Communities",
-          "estimatedMinutes": 8,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "Growth beyond self", "message": "Personal growth can become social good." } },
-            { "type": "reading", "content": { "title": "From healed life to helpful life", "body": "The manuscript imagines recovered people, stronger families, and principled leaders helping communities become more stable, wise, and humane." } },
-            { "type": "mentor_note", "content": { "note": "A healed life can become a shelter for others." } },
-            { "type": "pause_reflect", "content": { "question": "How might your growth benefit more than just you?", "context": "Consider the people, spaces, or communities that could be strengthened by your change." } },
-            { "type": "journal_prompt", "content": { "prompt": "Write about one way your recovery could serve family, work, or community." } },
-            { "type": "daily_action", "content": { "title": "Offer one service", "action": "Offer one practical act of service to another person this week." } },
-            { "type": "complete", "content": { "message": "You connected personal change to public good.", "encouragement": "Constructive influence grows when healing becomes service." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "Growth beyond self",
+                "message": "Personal growth can become social good. This lesson sits inside Family, Restoration, and Social Renewal, where the focus is how addiction affects family systems, why care and responsibility matter in the home, and how recovery can become social good. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "From healed life to helpful life",
+                "body": "The manuscript imagines recovered people, stronger families, and principled leaders helping communities become more stable, wise, and humane.\n\nThis course is about moving beyond survival into steady leadership of self, family, and daily responsibility. The theme of \"Leadership for Stronger Communities\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: How addiction affects family systems, why care and responsibility matter in the home, and how recovery can become social good. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "A healed life can become a shelter for others. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "How might your growth benefit more than just you?",
+                "context": "Consider the people, spaces, or communities that could be strengthened by your change. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Write about one way your recovery could serve family, work, or community. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Offer one service",
+                "action": "Offer one practical act of service to another person this week. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You connected personal change to public good.",
+                "encouragement": "Constructive influence grows when healing becomes service. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         },
         {
           "lessonNumber": 7,
           "title": "From Recovery to Social Renewal",
-          "estimatedMinutes": 8,
+          "estimatedMinutes": 12,
           "blocks": [
-            { "type": "welcome", "content": { "heading": "A wider vision", "message": "The course ends where responsibility widens." } },
-            { "type": "reading", "content": { "title": "Healing, dignity, and renewal", "body": "This final lesson invites the learner to imagine recovery as part of a larger story of healing, dignity, trust, and constructive influence in the world." } },
-            { "type": "mentor_note", "content": { "note": "Freedom becomes fuller when it begins to bless others." } },
-            { "type": "pause_reflect", "content": { "question": "What kind of legacy do you want your recovery to leave?", "context": "Think about what you want your healing to make possible for others." } },
-            { "type": "journal_prompt", "content": { "prompt": "Write a closing reflection on the kind of person you are becoming." } },
-            { "type": "daily_action", "content": { "title": "Choose a guiding value", "action": "Choose one long-term value you want to lead by from this point on." } },
-            { "type": "complete", "content": { "message": "You completed the course with a vision that reaches beyond self.", "encouragement": "Your growth can become part of something larger than recovery alone." } }
+            {
+              "type": "welcome",
+              "content": {
+                "heading": "A wider vision",
+                "message": "The course ends where responsibility widens. This lesson sits inside Family, Restoration, and Social Renewal, where the focus is how addiction affects family systems, why care and responsibility matter in the home, and how recovery can become social good. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult."
+              }
+            },
+            {
+              "type": "reading",
+              "content": {
+                "title": "Healing, dignity, and renewal",
+                "body": "This final lesson invites the learner to imagine recovery as part of a larger story of healing, dignity, trust, and constructive influence in the world.\n\nThis course is about moving beyond survival into steady leadership of self, family, and daily responsibility. The theme of \"From Recovery to Social Renewal\" is not meant to remain a slogan. It is meant to become a practical lens for daily life. When this truth is taken seriously, it changes the way a person interprets pressure, choices, relationships, and responsibility.\n\nA shallow response would be to agree with the idea and move on. A deeper response asks, \"Where does this need to become visible in me?\" That question matters because lasting change is usually built in ordinary places: the conversation you handle differently, the boundary you keep, the apology you make, the temptation you interrupt, or the small responsibility you finally carry without excuse.\n\nThe chapter context is important here: How addiction affects family systems, why care and responsibility matter in the home, and how recovery can become social good. This means the lesson is not standing alone. It is part of a larger movement from awareness into practice. You are learning to see patterns clearly, name what is unhealthy, and choose a response that supports a stronger future.\n\nIn practical terms, this lesson asks you to slow down enough to notice what has been shaping your choices. Some patterns are obvious, but many are quiet. They show up in tone, delay, avoidance, defensiveness, secrecy, fear, control, or the need to escape discomfort. Growth begins when those patterns are brought into the light without shame and without denial.\n\nThe goal is not perfection by the end of the lesson. The goal is honest movement. Take one clear idea from this teaching and connect it to one real situation in your life. If you can name where it applies, you can begin practicing it. If you can practice it repeatedly, it can become part of your character and not only part of your knowledge."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Freedom becomes fuller when it begins to bless others. Do not underestimate the importance of one honest adjustment. Most people want change to arrive all at once, but deep change is usually formed through repeated choices that seem small at first. Let this lesson become a mirror, not a weapon. A mirror helps you see clearly so you can respond wisely. It is not there to condemn you; it is there to help you stop living blindly."
+              }
+            },
+            {
+              "type": "pause_reflect",
+              "content": {
+                "question": "What kind of legacy do you want your recovery to leave?",
+                "context": "Think about what you want your healing to make possible for others. Take a few minutes before answering. Think about a real situation from the last week, not only a general idea. Where did this lesson show up in your choices, words, thoughts, or relationships? Try to answer without defending yourself and without attacking yourself. The most useful reflection is specific, honest, and kind enough to lead to action. If you notice discomfort, pay attention to it. It may be pointing to an area where growth is ready to begin."
+              }
+            },
+            {
+              "type": "journal_prompt",
+              "content": {
+                "prompt": "Write a closing reflection on the kind of person you are becoming. Use concrete examples rather than broad statements. Describe what has been happening, how you usually respond, and what a healthier response could look like. Then write one sentence beginning with, \"The next faithful step I can take is...\""
+              }
+            },
+            {
+              "type": "daily_action",
+              "content": {
+                "title": "Choose a guiding value",
+                "action": "Choose one long-term value you want to lead by from this point on. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "complete",
+              "content": {
+                "message": "You completed the course with a vision that reaches beyond self.",
+                "encouragement": "Your growth can become part of something larger than recovery alone. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            }
           ]
         }
       ]
