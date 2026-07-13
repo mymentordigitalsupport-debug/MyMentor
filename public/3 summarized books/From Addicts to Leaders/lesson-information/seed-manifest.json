@@ -11,7 +11,7 @@
         {
           "lessonNumber": 1,
           "title": "Why Recovery Needs Leadership",
-          "estimatedMinutes": 12,
+          "estimatedMinutes": 15,
           "blocks": [
             {
               "type": "welcome",
@@ -34,6 +34,13 @@
               }
             },
             {
+              "type": "video",
+              "content": {
+                "title": "Why Recovery Needs Leadership",
+                "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Beyond survival\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+              }
+            },
+            {
               "type": "pause_reflect",
               "content": {
                 "question": "Where have you thought of recovery only as stopping behavior?",
@@ -47,10 +54,86 @@
               }
             },
             {
+              "type": "mood_checkin",
+              "content": {
+                "question": "How steady and responsible do you feel about practicing why recovery needs leadership today?"
+              }
+            },
+            {
               "type": "daily_action",
               "content": {
                 "title": "Begin with intention",
                 "action": "Choose one area of life where you will start acting with more purpose this week. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Small honest steps toward responsibility matter. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What is the main focus of this lesson?",
+                "options": [
+                  {
+                    "text": "Why Recovery Needs Leadership through Beyond survival",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "Leadership and Recovery",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Avoiding all reflection",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Finishing quickly",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What should this lesson lead toward?",
+                "options": [
+                  {
+                    "text": "responsible change shown through Begin with intention",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "More shame",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Less awareness",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Ignoring responsibility",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "True or False: Recovery is only about stopping destructive behavior.",
+                "options": [
+                  {
+                    "text": "False",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "True",
+                    "is_correct": false
+                  }
+                ]
               }
             },
             {
@@ -65,7 +148,7 @@
         {
           "lessonNumber": 2,
           "title": "Leadership as Character, Not Status",
-          "estimatedMinutes": 12,
+          "estimatedMinutes": 15,
           "blocks": [
             {
               "type": "welcome",
@@ -88,6 +171,13 @@
               }
             },
             {
+              "type": "video",
+              "content": {
+                "title": "Leadership as Character, Not Status",
+                "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"The kind of person you are\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+              }
+            },
+            {
               "type": "pause_reflect",
               "content": {
                 "question": "Which character traits do you trust most in others?",
@@ -101,10 +191,86 @@
               }
             },
             {
+              "type": "mood_checkin",
+              "content": {
+                "question": "How steady and responsible do you feel about practicing leadership as character, not status today?"
+              }
+            },
+            {
               "type": "daily_action",
               "content": {
                 "title": "Practice integrity",
                 "action": "Do one quiet, honest thing today that no one needs to praise. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "The strongest kind of growth is the kind that becomes part of who you are. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What is the main focus of this lesson?",
+                "options": [
+                  {
+                    "text": "Leadership as Character, Not Status through The kind of person you are",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "Leadership and Recovery",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Avoiding all reflection",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Finishing quickly",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What should this lesson lead toward?",
+                "options": [
+                  {
+                    "text": "responsible change shown through Practice integrity",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "More shame",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Less awareness",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Ignoring responsibility",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "True or False: Recovery is only about stopping destructive behavior.",
+                "options": [
+                  {
+                    "text": "False",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "True",
+                    "is_correct": false
+                  }
+                ]
               }
             },
             {
@@ -119,7 +285,7 @@
         {
           "lessonNumber": 3,
           "title": "Service, Responsibility, and Influence",
-          "estimatedMinutes": 12,
+          "estimatedMinutes": 15,
           "blocks": [
             {
               "type": "welcome",
@@ -142,6 +308,13 @@
               }
             },
             {
+              "type": "video",
+              "content": {
+                "title": "Service, Responsibility, and Influence",
+                "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Responsibility that serves\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+              }
+            },
+            {
               "type": "pause_reflect",
               "content": {
                 "question": "Who has influenced your life through steady care rather than loud words?",
@@ -155,10 +328,86 @@
               }
             },
             {
+              "type": "mood_checkin",
+              "content": {
+                "question": "How steady and responsible do you feel about practicing service, responsibility, and influence today?"
+              }
+            },
+            {
               "type": "daily_action",
               "content": {
                 "title": "Carry one thing well",
                 "action": "Finish one neglected task as an act of responsibility. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Dependability is one of the clearest signs of change. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What is the main focus of this lesson?",
+                "options": [
+                  {
+                    "text": "Service, Responsibility, and Influence through Responsibility that serves",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "Leadership and Recovery",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Avoiding all reflection",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Finishing quickly",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What should this lesson lead toward?",
+                "options": [
+                  {
+                    "text": "responsible change shown through Carry one thing well",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "More shame",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Less awareness",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Ignoring responsibility",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "True or False: Recovery is only about stopping destructive behavior.",
+                "options": [
+                  {
+                    "text": "False",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "True",
+                    "is_correct": false
+                  }
+                ]
               }
             },
             {
@@ -173,7 +422,7 @@
         {
           "lessonNumber": 4,
           "title": "What a True Leader Is",
-          "estimatedMinutes": 12,
+          "estimatedMinutes": 15,
           "blocks": [
             {
               "type": "welcome",
@@ -196,6 +445,13 @@
               }
             },
             {
+              "type": "video",
+              "content": {
+                "title": "What a True Leader Is",
+                "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Building people\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+              }
+            },
+            {
               "type": "pause_reflect",
               "content": {
                 "question": "What kind of presence makes you feel safe to grow?",
@@ -209,10 +465,86 @@
               }
             },
             {
+              "type": "mood_checkin",
+              "content": {
+                "question": "How steady and responsible do you feel about practicing what a true leader is today?"
+              }
+            },
+            {
               "type": "daily_action",
               "content": {
                 "title": "Encourage growth",
                 "action": "Offer one sincere encouragement to another person today. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "The kind of leader you become affects the kind of healing you can sustain. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What is the main focus of this lesson?",
+                "options": [
+                  {
+                    "text": "What a True Leader Is through Building people",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "Leadership and Recovery",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Avoiding all reflection",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Finishing quickly",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What should this lesson lead toward?",
+                "options": [
+                  {
+                    "text": "responsible change shown through Encourage growth",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "More shame",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Less awareness",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Ignoring responsibility",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "True or False: Recovery is only about stopping destructive behavior.",
+                "options": [
+                  {
+                    "text": "False",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "True",
+                    "is_correct": false
+                  }
+                ]
               }
             },
             {
@@ -227,7 +559,7 @@
         {
           "lessonNumber": 5,
           "title": "What a True Leader Is Not",
-          "estimatedMinutes": 12,
+          "estimatedMinutes": 15,
           "blocks": [
             {
               "type": "welcome",
@@ -250,6 +582,13 @@
               }
             },
             {
+              "type": "video",
+              "content": {
+                "title": "What a True Leader Is Not",
+                "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Pride, control, and manipulation\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+              }
+            },
+            {
               "type": "pause_reflect",
               "content": {
                 "question": "Which harmful pattern most easily disguises itself as strength?",
@@ -263,10 +602,86 @@
               }
             },
             {
+              "type": "mood_checkin",
+              "content": {
+                "question": "How steady and responsible do you feel about practicing what a true leader is not today?"
+              }
+            },
+            {
               "type": "daily_action",
               "content": {
                 "title": "Choose honesty",
                 "action": "Correct one small dishonest or controlling behavior if you notice it today. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Real strength leaves people more whole, not more diminished. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What is the main focus of this lesson?",
+                "options": [
+                  {
+                    "text": "What a True Leader Is Not through Pride, control, and manipulation",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "Leadership and Recovery",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Avoiding all reflection",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Finishing quickly",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What should this lesson lead toward?",
+                "options": [
+                  {
+                    "text": "responsible change shown through Choose honesty",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "More shame",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Less awareness",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Ignoring responsibility",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "True or False: Recovery is only about stopping destructive behavior.",
+                "options": [
+                  {
+                    "text": "False",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "True",
+                    "is_correct": false
+                  }
+                ]
               }
             },
             {
@@ -281,7 +696,7 @@
         {
           "lessonNumber": 6,
           "title": "Stewardship and Trust",
-          "estimatedMinutes": 12,
+          "estimatedMinutes": 15,
           "blocks": [
             {
               "type": "welcome",
@@ -304,6 +719,13 @@
               }
             },
             {
+              "type": "video",
+              "content": {
+                "title": "Stewardship and Trust",
+                "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Faithful oversight\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+              }
+            },
+            {
               "type": "pause_reflect",
               "content": {
                 "question": "What in your life currently needs better stewardship?",
@@ -317,10 +739,86 @@
               }
             },
             {
+              "type": "mood_checkin",
+              "content": {
+                "question": "How steady and responsible do you feel about practicing stewardship and trust today?"
+              }
+            },
+            {
               "type": "daily_action",
               "content": {
                 "title": "Improve follow-through",
                 "action": "Put one practical system in place to help you follow through. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Trust grows where care becomes consistent. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What is the main focus of this lesson?",
+                "options": [
+                  {
+                    "text": "Stewardship and Trust through Faithful oversight",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "Leadership and Recovery",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Avoiding all reflection",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Finishing quickly",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What should this lesson lead toward?",
+                "options": [
+                  {
+                    "text": "responsible change shown through Improve follow-through",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "More shame",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Less awareness",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Ignoring responsibility",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "True or False: Recovery is only about stopping destructive behavior.",
+                "options": [
+                  {
+                    "text": "False",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "True",
+                    "is_correct": false
+                  }
+                ]
               }
             },
             {
@@ -335,7 +833,7 @@
         {
           "lessonNumber": 7,
           "title": "Growing Into Mature Leadership",
-          "estimatedMinutes": 12,
+          "estimatedMinutes": 15,
           "blocks": [
             {
               "type": "welcome",
@@ -358,6 +856,13 @@
               }
             },
             {
+              "type": "video",
+              "content": {
+                "title": "Growing Into Mature Leadership",
+                "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Maturity through hardship\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+              }
+            },
+            {
               "type": "pause_reflect",
               "content": {
                 "question": "What challenge in your life could shape you for good?",
@@ -371,10 +876,86 @@
               }
             },
             {
+              "type": "mood_checkin",
+              "content": {
+                "question": "How steady and responsible do you feel about practicing growing into mature leadership today?"
+              }
+            },
+            {
               "type": "daily_action",
               "content": {
                 "title": "Choose teachability",
                 "action": "Identify one mentor, practice, or habit that can help you mature. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Lasting maturity is built one faithful response at a time. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What is the main focus of this lesson?",
+                "options": [
+                  {
+                    "text": "Growing Into Mature Leadership through Maturity through hardship",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "Leadership and Recovery",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Avoiding all reflection",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Finishing quickly",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What should this lesson lead toward?",
+                "options": [
+                  {
+                    "text": "responsible change shown through Choose teachability",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "More shame",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Less awareness",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Ignoring responsibility",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "True or False: Recovery is only about stopping destructive behavior.",
+                "options": [
+                  {
+                    "text": "False",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "True",
+                    "is_correct": false
+                  }
+                ]
               }
             },
             {
@@ -396,7 +977,7 @@
         {
           "lessonNumber": 1,
           "title": "Seeing the Whole Person",
-          "estimatedMinutes": 12,
+          "estimatedMinutes": 15,
           "blocks": [
             {
               "type": "welcome",
@@ -419,6 +1000,13 @@
               }
             },
             {
+              "type": "video",
+              "content": {
+                "title": "Seeing the Whole Person",
+                "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"The whole human story\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+              }
+            },
+            {
               "type": "pause_reflect",
               "content": {
                 "question": "Where have you felt reduced to one part of your story?",
@@ -432,10 +1020,86 @@
               }
             },
             {
+              "type": "mood_checkin",
+              "content": {
+                "question": "How steady and responsible do you feel about practicing seeing the whole person today?"
+              }
+            },
+            {
               "type": "daily_action",
               "content": {
                 "title": "Speak a fuller truth",
                 "action": "Say one truthful sentence about yourself that is larger than your struggle. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "A larger, truer story creates room for deeper healing. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What is the main focus of this lesson?",
+                "options": [
+                  {
+                    "text": "Seeing the Whole Person through The whole human story",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "The Individual and Inner Change",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Avoiding all reflection",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Finishing quickly",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What should this lesson lead toward?",
+                "options": [
+                  {
+                    "text": "responsible change shown through Speak a fuller truth",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "More shame",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Less awareness",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Ignoring responsibility",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "True or False: Recovery is only about stopping destructive behavior.",
+                "options": [
+                  {
+                    "text": "False",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "True",
+                    "is_correct": false
+                  }
+                ]
               }
             },
             {
@@ -450,7 +1114,7 @@
         {
           "lessonNumber": 2,
           "title": "Character Traits for a Better Life",
-          "estimatedMinutes": 12,
+          "estimatedMinutes": 15,
           "blocks": [
             {
               "type": "welcome",
@@ -473,6 +1137,13 @@
               }
             },
             {
+              "type": "video",
+              "content": {
+                "title": "Character Traits for a Better Life",
+                "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Inner strength\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+              }
+            },
+            {
               "type": "pause_reflect",
               "content": {
                 "question": "Which trait would most change your relationships if it grew stronger?",
@@ -486,10 +1157,86 @@
               }
             },
             {
+              "type": "mood_checkin",
+              "content": {
+                "question": "How steady and responsible do you feel about practicing character traits for a better life today?"
+              }
+            },
+            {
               "type": "daily_action",
               "content": {
                 "title": "Practice one trait",
                 "action": "Show one deliberate act of kindness, patience, or restraint today. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Steady character often protects freedom more than emotion does. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What is the main focus of this lesson?",
+                "options": [
+                  {
+                    "text": "Character Traits for a Better Life through Inner strength",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "The Individual and Inner Change",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Avoiding all reflection",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Finishing quickly",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What should this lesson lead toward?",
+                "options": [
+                  {
+                    "text": "responsible change shown through Practice one trait",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "More shame",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Less awareness",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Ignoring responsibility",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "True or False: Recovery is only about stopping destructive behavior.",
+                "options": [
+                  {
+                    "text": "False",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "True",
+                    "is_correct": false
+                  }
+                ]
               }
             },
             {
@@ -504,7 +1251,7 @@
         {
           "lessonNumber": 3,
           "title": "Discovering Purpose",
-          "estimatedMinutes": 12,
+          "estimatedMinutes": 15,
           "blocks": [
             {
               "type": "welcome",
@@ -527,6 +1274,13 @@
               }
             },
             {
+              "type": "video",
+              "content": {
+                "title": "Discovering Purpose",
+                "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Purpose and movement\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+              }
+            },
+            {
               "type": "pause_reflect",
               "content": {
                 "question": "What gives your life a sense of direction?",
@@ -540,10 +1294,86 @@
               }
             },
             {
+              "type": "mood_checkin",
+              "content": {
+                "question": "How steady and responsible do you feel about practicing discovering purpose today?"
+              }
+            },
+            {
               "type": "daily_action",
               "content": {
                 "title": "Take one aligned step",
                 "action": "Do one small thing today that aligns with the future you want. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Purpose does not have to be grand to be powerful. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What is the main focus of this lesson?",
+                "options": [
+                  {
+                    "text": "Discovering Purpose through Purpose and movement",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "The Individual and Inner Change",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Avoiding all reflection",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Finishing quickly",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What should this lesson lead toward?",
+                "options": [
+                  {
+                    "text": "responsible change shown through Take one aligned step",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "More shame",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Less awareness",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Ignoring responsibility",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "True or False: Recovery is only about stopping destructive behavior.",
+                "options": [
+                  {
+                    "text": "False",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "True",
+                    "is_correct": false
+                  }
+                ]
               }
             },
             {
@@ -558,7 +1388,7 @@
         {
           "lessonNumber": 4,
           "title": "Gifts, Growth, and Personal Development",
-          "estimatedMinutes": 12,
+          "estimatedMinutes": 15,
           "blocks": [
             {
               "type": "welcome",
@@ -581,6 +1411,13 @@
               }
             },
             {
+              "type": "video",
+              "content": {
+                "title": "Gifts, Growth, and Personal Development",
+                "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Cultivating what is in you\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+              }
+            },
+            {
               "type": "pause_reflect",
               "content": {
                 "question": "What strengths have been buried under struggle?",
@@ -594,10 +1431,86 @@
               }
             },
             {
+              "type": "mood_checkin",
+              "content": {
+                "question": "How steady and responsible do you feel about practicing gifts, growth, and personal development today?"
+              }
+            },
+            {
               "type": "daily_action",
               "content": {
                 "title": "Invest in growth",
                 "action": "Spend focused time today on one healthy skill or interest. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Healthy growth helps freedom become fruitful. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What is the main focus of this lesson?",
+                "options": [
+                  {
+                    "text": "Gifts, Growth, and Personal Development through Cultivating what is in you",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "The Individual and Inner Change",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Avoiding all reflection",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Finishing quickly",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What should this lesson lead toward?",
+                "options": [
+                  {
+                    "text": "responsible change shown through Invest in growth",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "More shame",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Less awareness",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Ignoring responsibility",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "True or False: Recovery is only about stopping destructive behavior.",
+                "options": [
+                  {
+                    "text": "False",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "True",
+                    "is_correct": false
+                  }
+                ]
               }
             },
             {
@@ -612,7 +1525,7 @@
         {
           "lessonNumber": 5,
           "title": "Understanding Addictive Behavior",
-          "estimatedMinutes": 12,
+          "estimatedMinutes": 15,
           "blocks": [
             {
               "type": "welcome",
@@ -635,6 +1548,13 @@
               }
             },
             {
+              "type": "video",
+              "content": {
+                "title": "Understanding Addictive Behavior",
+                "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Patterns that remain\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+              }
+            },
+            {
               "type": "pause_reflect",
               "content": {
                 "question": "Which behavior pattern has caused the most harm in your life?",
@@ -648,10 +1568,86 @@
               }
             },
             {
+              "type": "mood_checkin",
+              "content": {
+                "question": "How steady and responsible do you feel about practicing understanding addictive behavior today?"
+              }
+            },
+            {
               "type": "daily_action",
               "content": {
                 "title": "Interrupt the cycle",
                 "action": "Stop one unhealthy pattern before it completes its usual cycle. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Honest awareness creates the possibility of real change. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What is the main focus of this lesson?",
+                "options": [
+                  {
+                    "text": "Understanding Addictive Behavior through Patterns that remain",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "The Individual and Inner Change",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Avoiding all reflection",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Finishing quickly",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What should this lesson lead toward?",
+                "options": [
+                  {
+                    "text": "responsible change shown through Interrupt the cycle",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "More shame",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Less awareness",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Ignoring responsibility",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "True or False: Recovery is only about stopping destructive behavior.",
+                "options": [
+                  {
+                    "text": "False",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "True",
+                    "is_correct": false
+                  }
+                ]
               }
             },
             {
@@ -666,7 +1662,7 @@
         {
           "lessonNumber": 6,
           "title": "Why Stopping Use Is Not Enough",
-          "estimatedMinutes": 12,
+          "estimatedMinutes": 15,
           "blocks": [
             {
               "type": "welcome",
@@ -689,6 +1685,13 @@
               }
             },
             {
+              "type": "video",
+              "content": {
+                "title": "Why Stopping Use Is Not Enough",
+                "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Beyond abstinence\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+              }
+            },
+            {
               "type": "pause_reflect",
               "content": {
                 "question": "What would still need healing even if substance use stopped today?",
@@ -702,10 +1705,86 @@
               }
             },
             {
+              "type": "mood_checkin",
+              "content": {
+                "question": "How steady and responsible do you feel about practicing why stopping use is not enough today?"
+              }
+            },
+            {
               "type": "daily_action",
               "content": {
                 "title": "Add one stabilizer",
                 "action": "Start one healthy routine that supports long-term stability. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "A changed life is stronger than a stopped habit alone. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What is the main focus of this lesson?",
+                "options": [
+                  {
+                    "text": "Why Stopping Use Is Not Enough through Beyond abstinence",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "The Individual and Inner Change",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Avoiding all reflection",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Finishing quickly",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What should this lesson lead toward?",
+                "options": [
+                  {
+                    "text": "responsible change shown through Add one stabilizer",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "More shame",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Less awareness",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Ignoring responsibility",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "True or False: Recovery is only about stopping destructive behavior.",
+                "options": [
+                  {
+                    "text": "False",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "True",
+                    "is_correct": false
+                  }
+                ]
               }
             },
             {
@@ -720,7 +1799,7 @@
         {
           "lessonNumber": 7,
           "title": "Renewing Lifestyle, Habits, and Responsibility",
-          "estimatedMinutes": 12,
+          "estimatedMinutes": 15,
           "blocks": [
             {
               "type": "welcome",
@@ -743,6 +1822,13 @@
               }
             },
             {
+              "type": "video",
+              "content": {
+                "title": "Renewing Lifestyle, Habits, and Responsibility",
+                "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Daily renewal\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+              }
+            },
+            {
               "type": "pause_reflect",
               "content": {
                 "question": "What daily habit would most strengthen your recovery?",
@@ -756,10 +1842,86 @@
               }
             },
             {
+              "type": "mood_checkin",
+              "content": {
+                "question": "How steady and responsible do you feel about practicing renewing lifestyle, habits, and responsibility today?"
+              }
+            },
+            {
               "type": "daily_action",
               "content": {
                 "title": "Practice a steady rhythm",
                 "action": "Follow one new healthy routine for the next three days. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Steady rhythms make healthy identity more believable. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What is the main focus of this lesson?",
+                "options": [
+                  {
+                    "text": "Renewing Lifestyle, Habits, and Responsibility through Daily renewal",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "The Individual and Inner Change",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Avoiding all reflection",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Finishing quickly",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What should this lesson lead toward?",
+                "options": [
+                  {
+                    "text": "responsible change shown through Practice a steady rhythm",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "More shame",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Less awareness",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Ignoring responsibility",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "True or False: Recovery is only about stopping destructive behavior.",
+                "options": [
+                  {
+                    "text": "False",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "True",
+                    "is_correct": false
+                  }
+                ]
               }
             },
             {
@@ -781,7 +1943,7 @@
         {
           "lessonNumber": 1,
           "title": "Why Family Matters in Recovery",
-          "estimatedMinutes": 12,
+          "estimatedMinutes": 15,
           "blocks": [
             {
               "type": "welcome",
@@ -804,6 +1966,13 @@
               }
             },
             {
+              "type": "video",
+              "content": {
+                "title": "Why Family Matters in Recovery",
+                "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Family as foundation\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+              }
+            },
+            {
               "type": "pause_reflect",
               "content": {
                 "question": "How has your struggle affected people close to you?",
@@ -817,10 +1986,86 @@
               }
             },
             {
+              "type": "mood_checkin",
+              "content": {
+                "question": "How steady and responsible do you feel about practicing why family matters in recovery today?"
+              }
+            },
+            {
               "type": "daily_action",
               "content": {
                 "title": "Take one respectful step",
                 "action": "Do one small thing that supports rebuilding connection. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Repair often starts with humble, steady movement. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What is the main focus of this lesson?",
+                "options": [
+                  {
+                    "text": "Why Family Matters in Recovery through Family as foundation",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "Family, Restoration, and Social Renewal",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Avoiding all reflection",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Finishing quickly",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What should this lesson lead toward?",
+                "options": [
+                  {
+                    "text": "responsible change shown through Take one respectful step",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "More shame",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Less awareness",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Ignoring responsibility",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "True or False: Recovery is only about stopping destructive behavior.",
+                "options": [
+                  {
+                    "text": "False",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "True",
+                    "is_correct": false
+                  }
+                ]
               }
             },
             {
@@ -835,7 +2080,7 @@
         {
           "lessonNumber": 2,
           "title": "Addiction and Family Breakdown",
-          "estimatedMinutes": 12,
+          "estimatedMinutes": 15,
           "blocks": [
             {
               "type": "welcome",
@@ -858,6 +2103,13 @@
               }
             },
             {
+              "type": "video",
+              "content": {
+                "title": "Addiction and Family Breakdown",
+                "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Dysfunction and instability\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+              }
+            },
+            {
               "type": "pause_reflect",
               "content": {
                 "question": "Which pattern has most weakened stability in your family story?",
@@ -871,10 +2123,86 @@
               }
             },
             {
+              "type": "mood_checkin",
+              "content": {
+                "question": "How steady and responsible do you feel about practicing addiction and family breakdown today?"
+              }
+            },
+            {
               "type": "daily_action",
               "content": {
                 "title": "Refuse one repeated pattern",
                 "action": "Name one destructive pattern you no longer want to repeat. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Naming the pattern is often the first step to breaking it. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What is the main focus of this lesson?",
+                "options": [
+                  {
+                    "text": "Addiction and Family Breakdown through Dysfunction and instability",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "Family, Restoration, and Social Renewal",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Avoiding all reflection",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Finishing quickly",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What should this lesson lead toward?",
+                "options": [
+                  {
+                    "text": "responsible change shown through Refuse one repeated pattern",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "More shame",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Less awareness",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Ignoring responsibility",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "True or False: Recovery is only about stopping destructive behavior.",
+                "options": [
+                  {
+                    "text": "False",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "True",
+                    "is_correct": false
+                  }
+                ]
               }
             },
             {
@@ -889,7 +2217,7 @@
         {
           "lessonNumber": 3,
           "title": "Responsibility in the Home",
-          "estimatedMinutes": 12,
+          "estimatedMinutes": 15,
           "blocks": [
             {
               "type": "welcome",
@@ -912,6 +2240,13 @@
               }
             },
             {
+              "type": "video",
+              "content": {
+                "title": "Responsibility in the Home",
+                "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Support, wisdom, and contribution\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+              }
+            },
+            {
               "type": "pause_reflect",
               "content": {
                 "question": "What kind of responsibility has been missing most?",
@@ -925,10 +2260,86 @@
               }
             },
             {
+              "type": "mood_checkin",
+              "content": {
+                "question": "How steady and responsible do you feel about practicing responsibility in the home today?"
+              }
+            },
+            {
               "type": "daily_action",
               "content": {
                 "title": "Carry something fully",
                 "action": "Take full responsibility for one household task or commitment this week. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Practical care often says more than promises. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What is the main focus of this lesson?",
+                "options": [
+                  {
+                    "text": "Responsibility in the Home through Support, wisdom, and contribution",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "Family, Restoration, and Social Renewal",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Avoiding all reflection",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Finishing quickly",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What should this lesson lead toward?",
+                "options": [
+                  {
+                    "text": "responsible change shown through Carry something fully",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "More shame",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Less awareness",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Ignoring responsibility",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "True or False: Recovery is only about stopping destructive behavior.",
+                "options": [
+                  {
+                    "text": "False",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "True",
+                    "is_correct": false
+                  }
+                ]
               }
             },
             {
@@ -943,7 +2354,7 @@
         {
           "lessonNumber": 4,
           "title": "Parent Roles, Care, and Stability",
-          "estimatedMinutes": 12,
+          "estimatedMinutes": 15,
           "blocks": [
             {
               "type": "welcome",
@@ -966,6 +2377,13 @@
               }
             },
             {
+              "type": "video",
+              "content": {
+                "title": "Parent Roles, Care, and Stability",
+                "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Protection and example\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+              }
+            },
+            {
               "type": "pause_reflect",
               "content": {
                 "question": "What kind of example did you receive, and what kind do you want to give?",
@@ -979,10 +2397,86 @@
               }
             },
             {
+              "type": "mood_checkin",
+              "content": {
+                "question": "How steady and responsible do you feel about practicing parent roles, care, and stability today?"
+              }
+            },
+            {
               "type": "daily_action",
               "content": {
                 "title": "Increase steadiness",
                 "action": "Do one thing this week that makes your close environment feel more stable. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Stability is often one of the most generous things a person can offer. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What is the main focus of this lesson?",
+                "options": [
+                  {
+                    "text": "Parent Roles, Care, and Stability through Protection and example",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "Family, Restoration, and Social Renewal",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Avoiding all reflection",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Finishing quickly",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What should this lesson lead toward?",
+                "options": [
+                  {
+                    "text": "responsible change shown through Increase steadiness",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "More shame",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Less awareness",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Ignoring responsibility",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "True or False: Recovery is only about stopping destructive behavior.",
+                "options": [
+                  {
+                    "text": "False",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "True",
+                    "is_correct": false
+                  }
+                ]
               }
             },
             {
@@ -997,7 +2491,7 @@
         {
           "lessonNumber": 5,
           "title": "Rebuilding Trust and Relationships",
-          "estimatedMinutes": 12,
+          "estimatedMinutes": 15,
           "blocks": [
             {
               "type": "welcome",
@@ -1020,6 +2514,13 @@
               }
             },
             {
+              "type": "video",
+              "content": {
+                "title": "Rebuilding Trust and Relationships",
+                "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Lived change\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+              }
+            },
+            {
               "type": "pause_reflect",
               "content": {
                 "question": "What would trustworthy living look like in your context?",
@@ -1033,10 +2534,86 @@
               }
             },
             {
+              "type": "mood_checkin",
+              "content": {
+                "question": "How steady and responsible do you feel about practicing rebuilding trust and relationships today?"
+              }
+            },
+            {
               "type": "daily_action",
               "content": {
                 "title": "Keep one commitment",
                 "action": "Follow through on one clear commitment today. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Slow rebuilding is still real rebuilding. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What is the main focus of this lesson?",
+                "options": [
+                  {
+                    "text": "Rebuilding Trust and Relationships through Lived change",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "Family, Restoration, and Social Renewal",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Avoiding all reflection",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Finishing quickly",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What should this lesson lead toward?",
+                "options": [
+                  {
+                    "text": "responsible change shown through Keep one commitment",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "More shame",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Less awareness",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Ignoring responsibility",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "True or False: Recovery is only about stopping destructive behavior.",
+                "options": [
+                  {
+                    "text": "False",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "True",
+                    "is_correct": false
+                  }
+                ]
               }
             },
             {
@@ -1051,7 +2628,7 @@
         {
           "lessonNumber": 6,
           "title": "Leadership for Stronger Communities",
-          "estimatedMinutes": 12,
+          "estimatedMinutes": 15,
           "blocks": [
             {
               "type": "welcome",
@@ -1074,6 +2651,13 @@
               }
             },
             {
+              "type": "video",
+              "content": {
+                "title": "Leadership for Stronger Communities",
+                "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"From healed life to helpful life\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+              }
+            },
+            {
               "type": "pause_reflect",
               "content": {
                 "question": "How might your growth benefit more than just you?",
@@ -1087,10 +2671,86 @@
               }
             },
             {
+              "type": "mood_checkin",
+              "content": {
+                "question": "How steady and responsible do you feel about practicing leadership for stronger communities today?"
+              }
+            },
+            {
               "type": "daily_action",
               "content": {
                 "title": "Offer one service",
                 "action": "Offer one practical act of service to another person this week. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Constructive influence grows when healing becomes service. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What is the main focus of this lesson?",
+                "options": [
+                  {
+                    "text": "Leadership for Stronger Communities through From healed life to helpful life",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "Family, Restoration, and Social Renewal",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Avoiding all reflection",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Finishing quickly",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What should this lesson lead toward?",
+                "options": [
+                  {
+                    "text": "responsible change shown through Offer one service",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "More shame",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Less awareness",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Ignoring responsibility",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "True or False: Recovery is only about stopping destructive behavior.",
+                "options": [
+                  {
+                    "text": "False",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "True",
+                    "is_correct": false
+                  }
+                ]
               }
             },
             {
@@ -1105,7 +2765,7 @@
         {
           "lessonNumber": 7,
           "title": "From Recovery to Social Renewal",
-          "estimatedMinutes": 12,
+          "estimatedMinutes": 15,
           "blocks": [
             {
               "type": "welcome",
@@ -1128,6 +2788,13 @@
               }
             },
             {
+              "type": "video",
+              "content": {
+                "title": "From Recovery to Social Renewal",
+                "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Healing, dignity, and renewal\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+              }
+            },
+            {
               "type": "pause_reflect",
               "content": {
                 "question": "What kind of legacy do you want your recovery to leave?",
@@ -1141,10 +2808,86 @@
               }
             },
             {
+              "type": "mood_checkin",
+              "content": {
+                "question": "How steady and responsible do you feel about practicing from recovery to social renewal today?"
+              }
+            },
+            {
               "type": "daily_action",
               "content": {
                 "title": "Choose a guiding value",
                 "action": "Choose one long-term value you want to lead by from this point on. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+              }
+            },
+            {
+              "type": "mentor_note",
+              "content": {
+                "note": "Your growth can become part of something larger than recovery alone. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What is the main focus of this lesson?",
+                "options": [
+                  {
+                    "text": "From Recovery to Social Renewal through Healing, dignity, and renewal",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "Family, Restoration, and Social Renewal",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Avoiding all reflection",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Finishing quickly",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "What should this lesson lead toward?",
+                "options": [
+                  {
+                    "text": "responsible change shown through Choose a guiding value",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "More shame",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Less awareness",
+                    "is_correct": false
+                  },
+                  {
+                    "text": "Ignoring responsibility",
+                    "is_correct": false
+                  }
+                ]
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "True or False: Recovery is only about stopping destructive behavior.",
+                "options": [
+                  {
+                    "text": "False",
+                    "is_correct": true
+                  },
+                  {
+                    "text": "True",
+                    "is_correct": false
+                  }
+                ]
               }
             },
             {

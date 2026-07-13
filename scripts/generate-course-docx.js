@@ -47,27 +47,24 @@ function paragraphsFromText(text) {
     .join("\n");
 }
 
-function blockLabel(type) {
-  switch (type) {
-    case "welcome":
-      return "Step 1: Welcome";
-    case "reading":
-      return "Step 2: Teaching";
-    case "mentor_note":
-      return "Step 3: Mentor Note";
-    case "pause_reflect":
-      return "Step 4: Pause & Reflect";
-    case "journal_prompt":
-      return "Step 5: Journal";
-    case "mood_checkin":
-      return "Step 6: Mood Check-In";
-    case "daily_action":
-      return "Step 6: Daily Action";
-    case "complete":
-      return "Step 7: Complete";
-    default:
-      return type;
-  }
+function blockLabel(type, index) {
+  const stepLabels = [
+    "Welcome",
+    "Teaching",
+    "Reflection Quote",
+    "Video",
+    "Pause & Reflect",
+    "Journal",
+    "Mood Check-In",
+    "Action",
+    "Reflection Quote",
+    "Reflection Check",
+    "Reflection Check",
+    "Reflection Check",
+    "Complete",
+  ];
+
+  return `Step ${index + 1}: ${stepLabels[index] ?? type}`;
 }
 
 function blockBody(block) {
@@ -86,6 +83,11 @@ function blockBody(block) {
       `;
     case "mentor_note":
       return paragraphsFromText(content.note || "");
+    case "video":
+      return `
+        <p><strong>Title:</strong> ${escapeHtml(content.title || "Mentor Video")}</p>
+        ${paragraphsFromText(content.description || "Video coming soon.")}
+      `;
     case "pause_reflect":
       return `
         <p><strong>Question:</strong> ${escapeHtml(content.question || "")}</p>
@@ -98,6 +100,20 @@ function blockBody(block) {
     case "mood_checkin":
       return `
         <p><strong>Question:</strong> ${escapeHtml(content.question || "")}</p>
+      `;
+    case "quiz":
+      return `
+        <p><strong>Question:</strong> ${escapeHtml(content.question || "")}</p>
+        ${paragraphsFromText(
+          Array.isArray(content.options)
+            ? content.options
+                .map((option) => {
+                  const suffix = option?.is_correct ? " (correct)" : "";
+                  return `- ${option?.text || ""}${suffix}`;
+                })
+                .join("\n")
+            : ""
+        )}
       `;
     case "daily_action":
       return `
@@ -128,6 +144,12 @@ function stripTags(html) {
     .replace(/<br\s*\/?>/gi, "\n")
     .replace(/<\/p>/gi, "\n\n")
     .replace(/<[^>]+>/g, "")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&apos;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&amp;/g, "&")
     .replace(/\n{3,}/g, "\n\n")
     .trim();
 }
@@ -163,8 +185,8 @@ function lessonDocumentXml(course, chapter, lesson) {
   pushTextParagraph(lines, `Lesson ${lesson.lessonNumber}: ${lesson.title}`, "Heading2");
   pushTextParagraph(lines, `Estimated Minutes: ${lesson.estimatedMinutes}`);
 
-  for (const block of lesson.blocks) {
-    pushBlock(lines, blockLabel(block.type), blockBody(block));
+  for (const [index, block] of lesson.blocks.entries()) {
+    pushBlock(lines, blockLabel(block.type, index), blockBody(block));
   }
 
   return buildDocumentXml(lines.join(""));

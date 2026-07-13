@@ -33,7 +33,7 @@ begin
               "lesson_number": 1,
               "title": "Why Recovery Needs Leadership",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Recovery is not only about what you stop. It is also about who you become. This lesson sits inside Leadership and Recovery, where the focus is why lasting recovery must grow into leadership, service, maturity, and responsible influence. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Small honest steps toward responsibility matter. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -58,6 +58,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Why Recovery Needs Leadership",
+                    "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Beyond survival\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "Where have you thought of recovery only as stopping behavior?",
@@ -71,10 +78,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How steady and responsible do you feel about practicing why recovery needs leadership today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Begin with intention",
                     "action": "Choose one area of life where you will start acting with more purpose this week. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Small honest steps toward responsibility matter. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Why Recovery Needs Leadership through Beyond survival",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Leadership and Recovery",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "responsible change shown through Begin with intention",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Recovery is only about stopping destructive behavior.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -90,7 +173,7 @@ begin
               "lesson_number": 2,
               "title": "Leadership as Character, Not Status",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Leadership is not mainly about title, attention, or position. This lesson sits inside Leadership and Recovery, where the focus is why lasting recovery must grow into leadership, service, maturity, and responsible influence. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "The strongest kind of growth is the kind that becomes part of who you are. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -115,6 +198,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Leadership as Character, Not Status",
+                    "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"The kind of person you are\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "Which character traits do you trust most in others?",
@@ -128,10 +218,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How steady and responsible do you feel about practicing leadership as character, not status today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Practice integrity",
                     "action": "Do one quiet, honest thing today that no one needs to praise. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "The strongest kind of growth is the kind that becomes part of who you are. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Leadership as Character, Not Status through The kind of person you are",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Leadership and Recovery",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "responsible change shown through Practice integrity",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Recovery is only about stopping destructive behavior.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -147,7 +313,7 @@ begin
               "lesson_number": 3,
               "title": "Service, Responsibility, and Influence",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Real influence grows when people become dependable. This lesson sits inside Leadership and Recovery, where the focus is why lasting recovery must grow into leadership, service, maturity, and responsible influence. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Dependability is one of the clearest signs of change. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -172,6 +338,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Service, Responsibility, and Influence",
+                    "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Responsibility that serves\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "Who has influenced your life through steady care rather than loud words?",
@@ -185,10 +358,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How steady and responsible do you feel about practicing service, responsibility, and influence today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Carry one thing well",
                     "action": "Finish one neglected task as an act of responsibility. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Dependability is one of the clearest signs of change. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Service, Responsibility, and Influence through Responsibility that serves",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Leadership and Recovery",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "responsible change shown through Carry one thing well",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Recovery is only about stopping destructive behavior.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -204,7 +453,7 @@ begin
               "lesson_number": 4,
               "title": "What a True Leader Is",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Good leadership has a recognizable shape. This lesson sits inside Leadership and Recovery, where the focus is why lasting recovery must grow into leadership, service, maturity, and responsible influence. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "The kind of leader you become affects the kind of healing you can sustain. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -229,6 +478,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "What a True Leader Is",
+                    "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Building people\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "What kind of presence makes you feel safe to grow?",
@@ -242,10 +498,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How steady and responsible do you feel about practicing what a true leader is today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Encourage growth",
                     "action": "Offer one sincere encouragement to another person today. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "The kind of leader you become affects the kind of healing you can sustain. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "What a True Leader Is through Building people",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Leadership and Recovery",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "responsible change shown through Encourage growth",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Recovery is only about stopping destructive behavior.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -261,7 +593,7 @@ begin
               "lesson_number": 5,
               "title": "What a True Leader Is Not",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Clarity grows when we identify the patterns that harm people. This lesson sits inside Leadership and Recovery, where the focus is why lasting recovery must grow into leadership, service, maturity, and responsible influence. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Real strength leaves people more whole, not more diminished. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -286,6 +618,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "What a True Leader Is Not",
+                    "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Pride, control, and manipulation\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "Which harmful pattern most easily disguises itself as strength?",
@@ -299,10 +638,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How steady and responsible do you feel about practicing what a true leader is not today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Choose honesty",
                     "action": "Correct one small dishonest or controlling behavior if you notice it today. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Real strength leaves people more whole, not more diminished. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "What a True Leader Is Not through Pride, control, and manipulation",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Leadership and Recovery",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "responsible change shown through Choose honesty",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Recovery is only about stopping destructive behavior.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -318,7 +733,7 @@ begin
               "lesson_number": 6,
               "title": "Stewardship and Trust",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Leadership includes caring well for people, time, and responsibility. This lesson sits inside Leadership and Recovery, where the focus is why lasting recovery must grow into leadership, service, maturity, and responsible influence. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Trust grows where care becomes consistent. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -343,6 +758,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Stewardship and Trust",
+                    "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Faithful oversight\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "What in your life currently needs better stewardship?",
@@ -356,10 +778,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How steady and responsible do you feel about practicing stewardship and trust today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Improve follow-through",
                     "action": "Put one practical system in place to help you follow through. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Trust grows where care becomes consistent. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Stewardship and Trust through Faithful oversight",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Leadership and Recovery",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "responsible change shown through Improve follow-through",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Recovery is only about stopping destructive behavior.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -375,7 +873,7 @@ begin
               "lesson_number": 7,
               "title": "Growing Into Mature Leadership",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Leadership is formed, not rushed. This lesson sits inside Leadership and Recovery, where the focus is why lasting recovery must grow into leadership, service, maturity, and responsible influence. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Lasting maturity is built one faithful response at a time. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -400,6 +898,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Growing Into Mature Leadership",
+                    "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Maturity through hardship\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "What challenge in your life could shape you for good?",
@@ -413,10 +918,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How steady and responsible do you feel about practicing growing into mature leadership today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Choose teachability",
                     "action": "Identify one mentor, practice, or habit that can help you mature. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Lasting maturity is built one faithful response at a time. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Growing Into Mature Leadership through Maturity through hardship",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Leadership and Recovery",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "responsible change shown through Choose teachability",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Recovery is only about stopping destructive behavior.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -439,7 +1020,7 @@ begin
               "lesson_number": 1,
               "title": "Seeing the Whole Person",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "A person is more than a problem to fix. This lesson sits inside The Individual and Inner Change, where the focus is understanding the whole person, purpose, character, addictive behavior, and why freedom needs inner renewal. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "A larger, truer story creates room for deeper healing. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -464,6 +1045,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Seeing the Whole Person",
+                    "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"The whole human story\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "Where have you felt reduced to one part of your story?",
@@ -477,10 +1065,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How steady and responsible do you feel about practicing seeing the whole person today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Speak a fuller truth",
                     "action": "Say one truthful sentence about yourself that is larger than your struggle. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "A larger, truer story creates room for deeper healing. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Seeing the Whole Person through The whole human story",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "The Individual and Inner Change",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "responsible change shown through Speak a fuller truth",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Recovery is only about stopping destructive behavior.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -496,7 +1160,7 @@ begin
               "lesson_number": 2,
               "title": "Character Traits for a Better Life",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Recovery needs more than relief. It needs character. This lesson sits inside The Individual and Inner Change, where the focus is understanding the whole person, purpose, character, addictive behavior, and why freedom needs inner renewal. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Steady character often protects freedom more than emotion does. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -521,6 +1185,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Character Traits for a Better Life",
+                    "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Inner strength\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "Which trait would most change your relationships if it grew stronger?",
@@ -534,10 +1205,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How steady and responsible do you feel about practicing character traits for a better life today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Practice one trait",
                     "action": "Show one deliberate act of kindness, patience, or restraint today. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Steady character often protects freedom more than emotion does. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Character Traits for a Better Life through Inner strength",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "The Individual and Inner Change",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "responsible change shown through Practice one trait",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Recovery is only about stopping destructive behavior.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -553,7 +1300,7 @@ begin
               "lesson_number": 3,
               "title": "Discovering Purpose",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "People endure more when they can see meaning ahead. This lesson sits inside The Individual and Inner Change, where the focus is understanding the whole person, purpose, character, addictive behavior, and why freedom needs inner renewal. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Purpose does not have to be grand to be powerful. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -578,6 +1325,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Discovering Purpose",
+                    "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Purpose and movement\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "What gives your life a sense of direction?",
@@ -591,10 +1345,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How steady and responsible do you feel about practicing discovering purpose today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Take one aligned step",
                     "action": "Do one small thing today that aligns with the future you want. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Purpose does not have to be grand to be powerful. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Discovering Purpose through Purpose and movement",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "The Individual and Inner Change",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "responsible change shown through Take one aligned step",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Recovery is only about stopping destructive behavior.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -610,7 +1440,7 @@ begin
               "lesson_number": 4,
               "title": "Gifts, Growth, and Personal Development",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Recovery should uncover potential, not only repair damage. This lesson sits inside The Individual and Inner Change, where the focus is understanding the whole person, purpose, character, addictive behavior, and why freedom needs inner renewal. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Healthy growth helps freedom become fruitful. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -635,6 +1465,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Gifts, Growth, and Personal Development",
+                    "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Cultivating what is in you\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "What strengths have been buried under struggle?",
@@ -648,10 +1485,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How steady and responsible do you feel about practicing gifts, growth, and personal development today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Invest in growth",
                     "action": "Spend focused time today on one healthy skill or interest. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Healthy growth helps freedom become fruitful. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Gifts, Growth, and Personal Development through Cultivating what is in you",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "The Individual and Inner Change",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "responsible change shown through Invest in growth",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Recovery is only about stopping destructive behavior.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -667,7 +1580,7 @@ begin
               "lesson_number": 5,
               "title": "Understanding Addictive Behavior",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Substance use is only part of addiction''s damage. This lesson sits inside The Individual and Inner Change, where the focus is understanding the whole person, purpose, character, addictive behavior, and why freedom needs inner renewal. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Honest awareness creates the possibility of real change. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -692,6 +1605,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Understanding Addictive Behavior",
+                    "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Patterns that remain\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "Which behavior pattern has caused the most harm in your life?",
@@ -705,10 +1625,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How steady and responsible do you feel about practicing understanding addictive behavior today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Interrupt the cycle",
                     "action": "Stop one unhealthy pattern before it completes its usual cycle. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Honest awareness creates the possibility of real change. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Understanding Addictive Behavior through Patterns that remain",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "The Individual and Inner Change",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "responsible change shown through Interrupt the cycle",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Recovery is only about stopping destructive behavior.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -724,7 +1720,7 @@ begin
               "lesson_number": 6,
               "title": "Why Stopping Use Is Not Enough",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Freedom needs a new way of living, not only a stopped habit. This lesson sits inside The Individual and Inner Change, where the focus is understanding the whole person, purpose, character, addictive behavior, and why freedom needs inner renewal. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "A changed life is stronger than a stopped habit alone. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -749,6 +1745,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Why Stopping Use Is Not Enough",
+                    "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Beyond abstinence\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "What would still need healing even if substance use stopped today?",
@@ -762,10 +1765,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How steady and responsible do you feel about practicing why stopping use is not enough today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Add one stabilizer",
                     "action": "Start one healthy routine that supports long-term stability. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "A changed life is stronger than a stopped habit alone. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Why Stopping Use Is Not Enough through Beyond abstinence",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "The Individual and Inner Change",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "responsible change shown through Add one stabilizer",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Recovery is only about stopping destructive behavior.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -781,7 +1860,7 @@ begin
               "lesson_number": 7,
               "title": "Renewing Lifestyle, Habits, and Responsibility",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Change becomes believable when it becomes visible. This lesson sits inside The Individual and Inner Change, where the focus is understanding the whole person, purpose, character, addictive behavior, and why freedom needs inner renewal. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Steady rhythms make healthy identity more believable. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -806,6 +1885,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Renewing Lifestyle, Habits, and Responsibility",
+                    "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Daily renewal\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "What daily habit would most strengthen your recovery?",
@@ -819,10 +1905,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How steady and responsible do you feel about practicing renewing lifestyle, habits, and responsibility today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Practice a steady rhythm",
                     "action": "Follow one new healthy routine for the next three days. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Steady rhythms make healthy identity more believable. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Renewing Lifestyle, Habits, and Responsibility through Daily renewal",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "The Individual and Inner Change",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "responsible change shown through Practice a steady rhythm",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Recovery is only about stopping destructive behavior.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -845,7 +2007,7 @@ begin
               "lesson_number": 1,
               "title": "Why Family Matters in Recovery",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Addiction rarely harms only one person. This lesson sits inside Family, Restoration, and Social Renewal, where the focus is how addiction affects family systems, why care and responsibility matter in the home, and how recovery can become social good. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Repair often starts with humble, steady movement. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -870,6 +2032,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Why Family Matters in Recovery",
+                    "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Family as foundation\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "How has your struggle affected people close to you?",
@@ -883,10 +2052,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How steady and responsible do you feel about practicing why family matters in recovery today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Take one respectful step",
                     "action": "Do one small thing that supports rebuilding connection. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Repair often starts with humble, steady movement. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Why Family Matters in Recovery through Family as foundation",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Family, Restoration, and Social Renewal",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "responsible change shown through Take one respectful step",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Recovery is only about stopping destructive behavior.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -902,7 +2147,7 @@ begin
               "lesson_number": 2,
               "title": "Addiction and Family Breakdown",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Households weaken when destructive patterns go unchallenged. This lesson sits inside Family, Restoration, and Social Renewal, where the focus is how addiction affects family systems, why care and responsibility matter in the home, and how recovery can become social good. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Naming the pattern is often the first step to breaking it. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -927,6 +2172,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Addiction and Family Breakdown",
+                    "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Dysfunction and instability\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "Which pattern has most weakened stability in your family story?",
@@ -940,10 +2192,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How steady and responsible do you feel about practicing addiction and family breakdown today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Refuse one repeated pattern",
                     "action": "Name one destructive pattern you no longer want to repeat. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Naming the pattern is often the first step to breaking it. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Addiction and Family Breakdown through Dysfunction and instability",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Family, Restoration, and Social Renewal",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "responsible change shown through Refuse one repeated pattern",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Recovery is only about stopping destructive behavior.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -959,7 +2287,7 @@ begin
               "lesson_number": 3,
               "title": "Responsibility in the Home",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Care becomes real through responsibility. This lesson sits inside Family, Restoration, and Social Renewal, where the focus is how addiction affects family systems, why care and responsibility matter in the home, and how recovery can become social good. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Practical care often says more than promises. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -984,6 +2312,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Responsibility in the Home",
+                    "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Support, wisdom, and contribution\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "What kind of responsibility has been missing most?",
@@ -997,10 +2332,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How steady and responsible do you feel about practicing responsibility in the home today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Carry something fully",
                     "action": "Take full responsibility for one household task or commitment this week. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Practical care often says more than promises. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Responsibility in the Home through Support, wisdom, and contribution",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Family, Restoration, and Social Renewal",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "responsible change shown through Carry something fully",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Recovery is only about stopping destructive behavior.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -1016,7 +2427,7 @@ begin
               "lesson_number": 4,
               "title": "Parent Roles, Care, and Stability",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Children and families need dependable care and role modeling. This lesson sits inside Family, Restoration, and Social Renewal, where the focus is how addiction affects family systems, why care and responsibility matter in the home, and how recovery can become social good. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Stability is often one of the most generous things a person can offer. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -1041,6 +2452,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Parent Roles, Care, and Stability",
+                    "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Protection and example\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "What kind of example did you receive, and what kind do you want to give?",
@@ -1054,10 +2472,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How steady and responsible do you feel about practicing parent roles, care, and stability today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Increase steadiness",
                     "action": "Do one thing this week that makes your close environment feel more stable. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Stability is often one of the most generous things a person can offer. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Parent Roles, Care, and Stability through Protection and example",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Family, Restoration, and Social Renewal",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "responsible change shown through Increase steadiness",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Recovery is only about stopping destructive behavior.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -1073,7 +2567,7 @@ begin
               "lesson_number": 5,
               "title": "Rebuilding Trust and Relationships",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Trust can return, but it usually returns through consistency. This lesson sits inside Family, Restoration, and Social Renewal, where the focus is how addiction affects family systems, why care and responsibility matter in the home, and how recovery can become social good. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Slow rebuilding is still real rebuilding. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -1098,6 +2592,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Rebuilding Trust and Relationships",
+                    "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Lived change\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "What would trustworthy living look like in your context?",
@@ -1111,10 +2612,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How steady and responsible do you feel about practicing rebuilding trust and relationships today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Keep one commitment",
                     "action": "Follow through on one clear commitment today. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Slow rebuilding is still real rebuilding. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Rebuilding Trust and Relationships through Lived change",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Family, Restoration, and Social Renewal",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "responsible change shown through Keep one commitment",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Recovery is only about stopping destructive behavior.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -1130,7 +2707,7 @@ begin
               "lesson_number": 6,
               "title": "Leadership for Stronger Communities",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Personal growth can become social good. This lesson sits inside Family, Restoration, and Social Renewal, where the focus is how addiction affects family systems, why care and responsibility matter in the home, and how recovery can become social good. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Constructive influence grows when healing becomes service. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -1155,6 +2732,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Leadership for Stronger Communities",
+                    "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"From healed life to helpful life\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "How might your growth benefit more than just you?",
@@ -1168,10 +2752,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How steady and responsible do you feel about practicing leadership for stronger communities today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Offer one service",
                     "action": "Offer one practical act of service to another person this week. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Constructive influence grows when healing becomes service. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Leadership for Stronger Communities through From healed life to helpful life",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Family, Restoration, and Social Renewal",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "responsible change shown through Offer one service",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Recovery is only about stopping destructive behavior.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -1187,7 +2847,7 @@ begin
               "lesson_number": 7,
               "title": "From Recovery to Social Renewal",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "The course ends where responsibility widens. This lesson sits inside Family, Restoration, and Social Renewal, where the focus is how addiction affects family systems, why care and responsibility matter in the home, and how recovery can become social good. For someone rebuilding life after addiction and learning to live with responsibility, trust, and purpose, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Your growth can become part of something larger than recovery alone. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -1212,6 +2872,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "From Recovery to Social Renewal",
+                    "description": "Explain the lesson in a calm mentor voice. Connect the teaching to daily recovery, character, trust, responsibility, and visible change. Use \"Healing, dignity, and renewal\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "What kind of legacy do you want your recovery to leave?",
@@ -1225,10 +2892,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How steady and responsible do you feel about practicing from recovery to social renewal today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Choose a guiding value",
                     "action": "Choose one long-term value you want to lead by from this point on. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Your growth can become part of something larger than recovery alone. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "From Recovery to Social Renewal through Healing, dignity, and renewal",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Family, Restoration, and Social Renewal",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "responsible change shown through Choose a guiding value",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Recovery is only about stopping destructive behavior.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -1264,7 +3007,7 @@ begin
               "lesson_number": 1,
               "title": "Why Prevention Matters",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Prevention is one of the strongest forms of care. This lesson sits inside Understanding the Risk, where the focus is why prevention matters, why the teenage years are vulnerable, and how drug abuse harms body, mind, and future. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Prevention often starts with attention, honesty, and timely care. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -1289,6 +3032,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Why Prevention Matters",
+                    "description": "Explain the lesson in a practical mentor voice. Connect the teaching to awareness, communication, boundaries, relationship, and prevention before crisis. Use \"A proactive task\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "How much of your caregiving is reactive rather than proactive?",
@@ -1302,10 +3052,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How calm and prepared do you feel about practicing why prevention matters today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Start one conversation",
                     "action": "Identify one prevention conversation that needs to happen soon. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Prevention often starts with attention, honesty, and timely care. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Why Prevention Matters through A proactive task",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Understanding the Risk",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "protective care shown through Start one conversation",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Protection works best when adults ignore warning signs until a crisis happens.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -1321,7 +3147,7 @@ begin
               "lesson_number": 2,
               "title": "The Teenage Years and Growing Responsibility",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Teen years are full of growth, curiosity, and pressure. This lesson sits inside Understanding the Risk, where the focus is why prevention matters, why the teenage years are vulnerable, and how drug abuse harms body, mind, and future. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Timely guidance matters most when responsibility grows faster than judgment. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -1346,6 +3172,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "The Teenage Years and Growing Responsibility",
+                    "description": "Explain the lesson in a practical mentor voice. Connect the teaching to awareness, communication, boundaries, relationship, and prevention before crisis. Use \"Exposure and development\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "What pressures do teenagers face now that may be easy to underestimate?",
@@ -1359,10 +3192,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How calm and prepared do you feel about practicing the teenage years and growing responsibility today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Listen before advising",
                     "action": "Use your next meaningful conversation to ask more than you tell. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Timely guidance matters most when responsibility grows faster than judgment. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "The Teenage Years and Growing Responsibility through Exposure and development",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Understanding the Risk",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "protective care shown through Listen before advising",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Protection works best when adults ignore warning signs until a crisis happens.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -1378,7 +3287,7 @@ begin
               "lesson_number": 3,
               "title": "Physical Dangers of Drug Abuse",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Prevention becomes stronger when danger is understood clearly. This lesson sits inside Understanding the Risk, where the focus is why prevention matters, why the teenage years are vulnerable, and how drug abuse harms body, mind, and future. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Clear knowledge helps protection stay grounded rather than vague. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -1403,6 +3312,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Physical Dangers of Drug Abuse",
+                    "description": "Explain the lesson in a practical mentor voice. Connect the teaching to awareness, communication, boundaries, relationship, and prevention before crisis. Use \"Effects on the body\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "Which physical consequences would be most important to explain clearly to a teenager?",
@@ -1416,10 +3332,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How calm and prepared do you feel about practicing physical dangers of drug abuse today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Learn one fact well",
                     "action": "Choose one health fact and learn it well enough to explain it calmly. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Clear knowledge helps protection stay grounded rather than vague. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Physical Dangers of Drug Abuse through Effects on the body",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Understanding the Risk",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "protective care shown through Learn one fact well",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Protection works best when adults ignore warning signs until a crisis happens.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -1435,7 +3427,7 @@ begin
               "lesson_number": 4,
               "title": "Mental and Emotional Effects of Abuse",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "The dangers of drug use are not only visible in the body. This lesson sits inside Understanding the Risk, where the focus is why prevention matters, why the teenage years are vulnerable, and how drug abuse harms body, mind, and future. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Awareness of inner warning signs helps prevention happen earlier. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -1460,6 +3452,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Mental and Emotional Effects of Abuse",
+                    "description": "Explain the lesson in a practical mentor voice. Connect the teaching to awareness, communication, boundaries, relationship, and prevention before crisis. Use \"Effects on thinking and feeling\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "What emotional or psychological signs would concern you most?",
@@ -1473,10 +3472,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How calm and prepared do you feel about practicing mental and emotional effects of abuse today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Observe more carefully",
                     "action": "Pay closer attention to one behavior change you may have dismissed too quickly. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Awareness of inner warning signs helps prevention happen earlier. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Mental and Emotional Effects of Abuse through Effects on thinking and feeling",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Understanding the Risk",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "protective care shown through Observe more carefully",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Protection works best when adults ignore warning signs until a crisis happens.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -1492,7 +3567,7 @@ begin
               "lesson_number": 5,
               "title": "Why Early Awareness Protects the Future",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Awareness is one of prevention''s simplest and strongest tools. This lesson sits inside Understanding the Risk, where the focus is why prevention matters, why the teenage years are vulnerable, and how drug abuse harms body, mind, and future. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Prepared caregivers protect more effectively than surprised ones. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -1517,6 +3592,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Why Early Awareness Protects the Future",
+                    "description": "Explain the lesson in a practical mentor voice. Connect the teaching to awareness, communication, boundaries, relationship, and prevention before crisis. Use \"Intentional attention\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "Where do you most need to become more aware right now?",
@@ -1530,10 +3612,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How calm and prepared do you feel about practicing why early awareness protects the future today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Create one awareness habit",
                     "action": "Start one weekly routine that helps you notice before problems deepen. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Prepared caregivers protect more effectively than surprised ones. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Why Early Awareness Protects the Future through Intentional attention",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Understanding the Risk",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "protective care shown through Create one awareness habit",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Protection works best when adults ignore warning signs until a crisis happens.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -1556,7 +3714,7 @@ begin
               "lesson_number": 1,
               "title": "Common Drugs and Substances",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Awareness begins with naming the substances that young people may encounter. This lesson sits inside Social Influences and Exposure, where the focus is how common substances, peer groups, media, and risky environments create pathways of exposure for young people. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Clear naming helps caregivers respond more wisely. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -1581,6 +3739,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Common Drugs and Substances",
+                    "description": "Explain the lesson in a practical mentor voice. Connect the teaching to awareness, communication, boundaries, relationship, and prevention before crisis. Use \"Common points of exposure\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "Which substances are most likely to appear in your context?",
@@ -1594,10 +3759,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How calm and prepared do you feel about practicing common drugs and substances today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Learn one clearly",
                     "action": "Choose one common substance and learn its basic signs and risks. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Clear naming helps caregivers respond more wisely. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Common Drugs and Substances through Common points of exposure",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Social Influences and Exposure",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "protective care shown through Learn one clearly",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Protection works best when adults ignore warning signs until a crisis happens.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -1613,7 +3854,7 @@ begin
               "lesson_number": 2,
               "title": "Peer Influence and Social Belonging",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Young people often follow people before they follow ideas. This lesson sits inside Social Influences and Exposure, where the focus is how common substances, peer groups, media, and risky environments create pathways of exposure for young people. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Belonging can either protect or expose, depending on where it leads. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -1638,6 +3879,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Peer Influence and Social Belonging",
+                    "description": "Explain the lesson in a practical mentor voice. Connect the teaching to awareness, communication, boundaries, relationship, and prevention before crisis. Use \"The pull of groups\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "How did belonging shape your own choices when you were younger?",
@@ -1651,10 +3899,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How calm and prepared do you feel about practicing peer influence and social belonging today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Ask about friendships",
                     "action": "Ask one open, non-accusing question about current friendships this week. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Belonging can either protect or expose, depending on where it leads. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Peer Influence and Social Belonging through The pull of groups",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Social Influences and Exposure",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "protective care shown through Ask about friendships",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Protection works best when adults ignore warning signs until a crisis happens.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -1670,7 +3994,7 @@ begin
               "lesson_number": 3,
               "title": "Music, Media, and Lifestyle Messaging",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Media and lifestyle signals often shape values long before adults speak. This lesson sits inside Social Influences and Exposure, where the focus is how common substances, peer groups, media, and risky environments create pathways of exposure for young people. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "What is normalized in culture often becomes easier to excuse in life. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -1695,6 +4019,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Music, Media, and Lifestyle Messaging",
+                    "description": "Explain the lesson in a practical mentor voice. Connect the teaching to awareness, communication, boundaries, relationship, and prevention before crisis. Use \"What gets normalized\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "What messages about drugs, sex, or status are being repeated in the media young people consume?",
@@ -1708,10 +4039,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How calm and prepared do you feel about practicing music, media, and lifestyle messaging today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Review one influence",
                     "action": "Look at one media influence with curiosity rather than panic. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "What is normalized in culture often becomes easier to excuse in life. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Music, Media, and Lifestyle Messaging through What gets normalized",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Social Influences and Exposure",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "protective care shown through Review one influence",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Protection works best when adults ignore warning signs until a crisis happens.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -1727,7 +4134,7 @@ begin
               "lesson_number": 4,
               "title": "Risky Environments and Youth Exposure",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Some spaces carry more danger than others. This lesson sits inside Social Influences and Exposure, where the focus is how common substances, peer groups, media, and risky environments create pathways of exposure for young people. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Some forms of protection begin with choosing where not to drift. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -1752,6 +4159,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Risky Environments and Youth Exposure",
+                    "description": "Explain the lesson in a practical mentor voice. Connect the teaching to awareness, communication, boundaries, relationship, and prevention before crisis. Use \"Settings that normalize abuse\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "Which settings around you create the greatest concern?",
@@ -1765,10 +4179,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How calm and prepared do you feel about practicing risky environments and youth exposure today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Set one clear boundary",
                     "action": "Revisit one boundary around risky settings or company. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Some forms of protection begin with choosing where not to drift. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Risky Environments and Youth Exposure through Settings that normalize abuse",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Social Influences and Exposure",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "protective care shown through Set one clear boundary",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Protection works best when adults ignore warning signs until a crisis happens.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -1784,7 +4274,7 @@ begin
               "lesson_number": 5,
               "title": "Becoming a More Aware Parent",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Awareness is not paranoia. It is attentive care. This lesson sits inside Social Influences and Exposure, where the focus is how common substances, peer groups, media, and risky environments create pathways of exposure for young people. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Grounded awareness creates protection without constant panic. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -1809,6 +4299,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Becoming a More Aware Parent",
+                    "description": "Explain the lesson in a practical mentor voice. Connect the teaching to awareness, communication, boundaries, relationship, and prevention before crisis. Use \"Watchful and informed\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "What kind of awareness do you need more of right now?",
@@ -1822,10 +4319,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How calm and prepared do you feel about practicing becoming a more aware parent today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Build one awareness routine",
                     "action": "Start one regular practice that helps you stay informed without becoming intrusive. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Grounded awareness creates protection without constant panic. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Becoming a More Aware Parent through Watchful and informed",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Social Influences and Exposure",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "protective care shown through Build one awareness routine",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Protection works best when adults ignore warning signs until a crisis happens.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -1848,7 +4421,7 @@ begin
               "lesson_number": 1,
               "title": "Awareness and Watchfulness",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Prevention begins at home with steady attention. This lesson sits inside Prevention at Home, where the focus is how principles, boundaries, communication, and daily household habits create a stronger protective environment. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Presence often protects more effectively than panic. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -1873,6 +4446,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Awareness and Watchfulness",
+                    "description": "Explain the lesson in a practical mentor voice. Connect the teaching to awareness, communication, boundaries, relationship, and prevention before crisis. Use \"Notice before it deepens\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "What changes in behavior would make you pay closer attention?",
@@ -1886,10 +4466,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How calm and prepared do you feel about practicing awareness and watchfulness today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Begin a noticing habit",
                     "action": "Start one weekly habit of observing more carefully before assuming. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Presence often protects more effectively than panic. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Awareness and Watchfulness through Notice before it deepens",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Prevention at Home",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "protective care shown through Begin a noticing habit",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Protection works best when adults ignore warning signs until a crisis happens.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -1905,7 +4561,7 @@ begin
               "lesson_number": 2,
               "title": "Building Strong Principles at Home",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Strong homes are built on repeated values and visible habits. This lesson sits inside Prevention at Home, where the focus is how principles, boundaries, communication, and daily household habits create a stronger protective environment. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Clarity in the home often becomes confidence in the child. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -1930,6 +4586,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Building Strong Principles at Home",
+                    "description": "Explain the lesson in a practical mentor voice. Connect the teaching to awareness, communication, boundaries, relationship, and prevention before crisis. Use \"Principles and practical rules\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "What principles are clear in your home, and which are only assumed?",
@@ -1943,10 +4606,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How calm and prepared do you feel about practicing building strong principles at home today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Make one principle visible",
                     "action": "Name one household principle out loud and reinforce it through action. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Clarity in the home often becomes confidence in the child. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Building Strong Principles at Home through Principles and practical rules",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Prevention at Home",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "protective care shown through Make one principle visible",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Protection works best when adults ignore warning signs until a crisis happens.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -1962,7 +4701,7 @@ begin
               "lesson_number": 3,
               "title": "Respect, Boundaries, and Discipline",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Protection needs both care and boundaries. This lesson sits inside Prevention at Home, where the focus is how principles, boundaries, communication, and daily household habits create a stronger protective environment. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Healthy limits create safer freedom. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -1987,6 +4726,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Respect, Boundaries, and Discipline",
+                    "description": "Explain the lesson in a practical mentor voice. Connect the teaching to awareness, communication, boundaries, relationship, and prevention before crisis. Use \"Balanced discipline\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "Where does your household lean too hard or too loose?",
@@ -2000,10 +4746,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How calm and prepared do you feel about practicing respect, boundaries, and discipline today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Clarify one boundary",
                     "action": "Revisit one rule or boundary and explain the reason behind it. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Healthy limits create safer freedom. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Respect, Boundaries, and Discipline through Balanced discipline",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Prevention at Home",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "protective care shown through Clarify one boundary",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Protection works best when adults ignore warning signs until a crisis happens.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -2019,7 +4841,7 @@ begin
               "lesson_number": 4,
               "title": "Communication, Encouragement, and Trust",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Young people open more when homes feel safe to speak in. This lesson sits inside Prevention at Home, where the focus is how principles, boundaries, communication, and daily household habits create a stronger protective environment. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Trust grows more easily where people feel heard. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -2044,6 +4866,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Communication, Encouragement, and Trust",
+                    "description": "Explain the lesson in a practical mentor voice. Connect the teaching to awareness, communication, boundaries, relationship, and prevention before crisis. Use \"Trust through tone\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "What tone usually fills important conversations at home?",
@@ -2057,10 +4886,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How calm and prepared do you feel about practicing communication, encouragement, and trust today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Aim for understanding",
                     "action": "Have one conversation where your main goal is understanding before correcting. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Trust grows more easily where people feel heard. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Communication, Encouragement, and Trust through Trust through tone",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Prevention at Home",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "protective care shown through Aim for understanding",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Protection works best when adults ignore warning signs until a crisis happens.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
@@ -2076,7 +4981,7 @@ begin
               "lesson_number": 5,
               "title": "Creating a Healthy Protective Home",
               "subtitle": null,
-              "estimated_minutes": 12,
+              "estimated_minutes": 15,
               "opening_message": "Prevention becomes strongest when it is woven into ordinary daily life. This lesson sits inside Prevention at Home, where the focus is how principles, boundaries, communication, and daily household habits create a stronger protective environment. For a parent, guardian, caregiver, or adult who wants to protect young people before crisis begins, this matters because growth is not created by information alone. It grows when truth becomes something you can recognize, practice, and return to in ordinary moments. As you begin, do not rush to prove that you already understand the lesson. Let the topic name something honestly. Notice where it touches your story, your habits, your relationships, and the way you respond when life becomes difficult.",
               "encouragement_message": "Ordinary, consistent habits often become extraordinary protection over time. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true.",
               "blocks": [
@@ -2101,6 +5006,13 @@ begin
                   }
                 },
                 {
+                  "type": "video",
+                  "content": {
+                    "title": "Creating a Healthy Protective Home",
+                    "description": "Explain the lesson in a practical mentor voice. Connect the teaching to awareness, communication, boundaries, relationship, and prevention before crisis. Use \"A protective environment\" as the main idea, then give one practical example the learner can recognize in ordinary life."
+                  }
+                },
+                {
                   "type": "pause_reflect",
                   "content": {
                     "question": "What would make your home more protective and more peaceful at the same time?",
@@ -2114,10 +5026,86 @@ begin
                   }
                 },
                 {
+                  "type": "mood_checkin",
+                  "content": {
+                    "question": "How calm and prepared do you feel about practicing creating a healthy protective home today?"
+                  }
+                },
+                {
                   "type": "daily_action",
                   "content": {
                     "title": "Begin one home practice",
                     "action": "Choose one concrete home practice to begin this week. Make the action small enough to complete today and clear enough that you will know whether you did it. Do not choose something vague like \"be better.\" Choose a visible action: make the call, write the apology, set the boundary, ask the question, finish the task, remove the trigger, or create the routine. At the end of the day, notice what happened. What was easy? What resisted you? What did you learn about yourself? That review is part of the action because it turns experience into wisdom."
+                  }
+                },
+                {
+                  "type": "mentor_note",
+                  "content": {
+                    "note": "Ordinary, consistent habits often become extraordinary protection over time. Carry this lesson gently but seriously. You do not need to master everything today, but you do need to keep moving with honesty. One lesson becomes powerful when it is practiced after the screen is closed. Let the next step be simple, visible, and true."
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What is the main focus of this lesson?",
+                    "options": [
+                      {
+                        "text": "Creating a Healthy Protective Home through A protective environment",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "Prevention at Home",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Avoiding all reflection",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Finishing quickly",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "What should this lesson lead toward?",
+                    "options": [
+                      {
+                        "text": "protective care shown through Begin one home practice",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "More shame",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Less awareness",
+                        "is_correct": false
+                      },
+                      {
+                        "text": "Ignoring responsibility",
+                        "is_correct": false
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "quiz",
+                  "content": {
+                    "question": "True or False: Protection works best when adults ignore warning signs until a crisis happens.",
+                    "options": [
+                      {
+                        "text": "False",
+                        "is_correct": true
+                      },
+                      {
+                        "text": "True",
+                        "is_correct": false
+                      }
+                    ]
                   }
                 },
                 {
