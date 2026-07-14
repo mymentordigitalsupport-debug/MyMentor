@@ -10,26 +10,26 @@ export const metadata: Metadata = {
   title: "Create Account",
 };
 
+const registerImageSrc = "/assets/images/s1L.jpg";
+
 export default function RegisterPage() {
   return (
-    <PageLoader imageSrc="/assets/images/register-bg.png">
-      <div className="min-h-screen flex relative">
-        {/* Full Background Image */}
-        <div className="absolute inset-0 z-0">
+    <PageLoader imageSrc={registerImageSrc}>
+      <div className="min-h-screen bg-white lg:grid lg:grid-cols-[3fr_2fr]">
+        <div className="relative hidden min-h-screen overflow-hidden bg-[#f8f1e5] lg:block">
           <Image
-            src="/assets/images/register-bg.png"
-            alt="Background"
+            src={registerImageSrc}
+            alt="We transform together"
             fill
-            className="object-cover"
+            className="object-cover object-center"
             priority
             quality={100}
           />
         </div>
 
-        {/* Content Overlay */}
-        <div className="relative z-10 w-full flex items-center justify-end p-6 lg:p-12">
-          <div className="w-full max-w-md lg:mr-48 xl:mr-56">
-            <div className="mb-6 flex justify-center lg:justify-start">
+        <div className="relative flex min-h-screen w-full items-start justify-center overflow-y-auto bg-white px-6 py-8 lg:px-12">
+          <div className="w-full max-w-md">
+            <div className="mb-6 flex justify-center">
               <Button
                 asChild
                 variant="outline"

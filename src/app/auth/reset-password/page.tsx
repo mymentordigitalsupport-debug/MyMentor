@@ -98,27 +98,27 @@ export default function ResetPasswordPage() {
 
   // Show loading while checking session
   if (validSession === null) {
-    return <PageLoader imageSrc="/assets/images/login-bg.png"><div /></PageLoader>;
+    return <PageLoader imageSrc="/assets/images/s1r.jpg"><div /></PageLoader>;
   }
 
   // Show error if session is invalid
   if (validSession === false) {
     return (
-      <PageLoader imageSrc="/assets/images/login-bg.png">
-        <div className="min-h-screen flex relative">
-          <div className="absolute inset-0 z-0">
+      <PageLoader imageSrc="/assets/images/s1r.jpg">
+        <div className="min-h-screen bg-white lg:grid lg:grid-cols-[3fr_2fr]">
+          <div className="relative hidden min-h-screen overflow-hidden lg:block">
             <Image
-              src="/assets/images/login-bg.png"
-              alt="Background"
+              src="/assets/images/s1r.jpg"
+              alt="My Mentor"
               fill
-              className="object-cover"
+              className="object-cover object-center"
               priority
               quality={100}
             />
           </div>
 
-          <div className="relative z-10 w-full flex items-center justify-center p-6">
-            <div className="w-full max-w-md bg-cream rounded-3xl shadow-lg p-8 lg:p-10">
+          <div className="relative flex min-h-screen w-full items-start justify-center overflow-y-auto bg-white px-6 py-8 lg:px-12">
+            <div className="w-full max-w-md rounded-3xl bg-cream p-8 shadow-lg lg:p-10">
               <div className="text-center space-y-4">
                 <div className="flex items-center justify-center w-16 h-16 mx-auto bg-danger/20 rounded-full">
                   <svg className="w-8 h-8 text-danger" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -145,21 +145,21 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <PageLoader imageSrc="/assets/images/login-bg.png">
-      <div className="min-h-screen flex relative">
-        <div className="absolute inset-0 z-0">
+    <PageLoader imageSrc="/assets/images/s1r.jpg">
+      <div className="min-h-screen bg-white lg:grid lg:grid-cols-[3fr_2fr]">
+        <div className="relative hidden min-h-screen overflow-hidden lg:block">
           <Image
-            src="/assets/images/login-bg.png"
-            alt="Background"
+            src="/assets/images/s1r.jpg"
+            alt="My Mentor"
             fill
-            className="object-cover"
+            className="object-cover object-center"
             priority
             quality={100}
           />
         </div>
 
-        <div className="relative z-10 w-full flex items-center justify-end p-6 lg:p-12">
-          <div className="w-full max-w-md lg:mr-48 xl:mr-56">
+        <div className="relative flex min-h-screen w-full items-start justify-center overflow-y-auto bg-white px-6 py-8 lg:px-12">
+          <div className="w-full max-w-md">
             <div className="lg:hidden text-center mb-8">
               <Image
                 src="/assets/branding/logo.png"

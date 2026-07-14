@@ -258,7 +258,7 @@ export function JourneyDashboard({
 
             <div className="relative min-h-[240px]">
               <Image
-                src="/assets/images/login-bg.png"
+                src="/assets/images/s1r.jpg"
                 alt=""
                 fill
                 priority
@@ -443,7 +443,7 @@ export function JourneyDashboard({
                 </div>
 
                 <div className="relative min-h-[150px] overflow-hidden rounded-[22px]">
-                  <Image src="/assets/images/login-bg.png" alt="" fill className="object-cover object-center" />
+                  <Image src="/assets/images/s1r.jpg" alt="" fill className="object-cover object-center" />
                 </div>
               </div>
 

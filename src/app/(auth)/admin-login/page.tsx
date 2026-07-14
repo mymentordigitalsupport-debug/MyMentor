@@ -44,7 +44,7 @@ export default async function AdminLoginPage() {
   }
 
   return (
-    <PageLoader imageSrc="/assets/images/login-bg.png">
+    <PageLoader imageSrc="/assets/images/s1r.jpg">
       <main className="relative min-h-screen overflow-hidden bg-[linear-gradient(180deg,#fbf9f5_0%,#f6f3ed_55%,#f0ebe1_100%)] text-text">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(199,168,109,0.14),transparent_28%),radial-gradient(circle_at_70%_18%,rgba(122,146,114,0.16),transparent_18%),radial-gradient(circle_at_20%_78%,rgba(255,255,255,0.8),transparent_24%)]" />
         <div
