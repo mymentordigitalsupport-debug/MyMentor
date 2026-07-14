@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ChevronLeft, ChevronRight, MessageSquareQuote, SunMedium } from "lucide-react";
 import { useState } from "react";
 import { type MoodValue } from "@/types";
@@ -20,6 +21,7 @@ interface TodayBannerProps {
     currentLessonSubtitle: string | null;
     currentLessonMinutes: number | null;
     currentLessonHref: string;
+    hasStarted: boolean;
   };
 }
 
@@ -30,6 +32,7 @@ const slideText = [
 
 export function TodayBanner({ greeting, userName, latestMood, course }: TodayBannerProps) {
   const [slideIndex, setSlideIndex] = useState(0);
+  const ctaLabel = course.hasStarted ? "Continue lesson" : "Start your first lesson";
 
   return (
     <section className="space-y-5">
@@ -77,7 +80,7 @@ export function TodayBanner({ greeting, userName, latestMood, course }: TodayBan
                       Today
                     </span>
                     <p className="mb-[7px] text-[11px] font-medium uppercase tracking-[0.22em] text-[#fbf9f5]/58">
-                      Chapter 1 - The Stage of Creation
+                      {course.currentChapter}
                     </p>
                   </div>
                 </div>
@@ -95,19 +98,28 @@ export function TodayBanner({ greeting, userName, latestMood, course }: TodayBan
                 </div>
 
                 <div className="relative top-[8px] rounded-[22px] border border-white/10 bg-white/7 p-4">
-                  <div className="flex items-end justify-between gap-4">
-                    <div>
-                      <p className="text-[10px] uppercase tracking-[0.18em] text-[#fbf9f5]/56">Progress</p>
-                      <p className="mt-1 text-[1.2rem] font-semibold text-[#fbf9f5]">
-                        {course.progressPercent}%
-                      </p>
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-end justify-between gap-4">
+                      <div>
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-[#fbf9f5]/56">Progress</p>
+                        <p className="mt-1 text-[1.2rem] font-semibold text-[#fbf9f5]">
+                          {course.progressPercent}%
+                        </p>
+                      </div>
+                      <div className="h-2 flex-1 rounded-full bg-white/10">
+                        <div
+                          className="h-2 rounded-full bg-[#c7a86d]"
+                          style={{ width: `${Math.max(course.progressPercent, 12)}%` }}
+                        />
+                      </div>
                     </div>
-                    <div className="h-2 flex-1 rounded-full bg-white/10">
-                      <div
-                        className="h-2 rounded-full bg-[#c7a86d]"
-                        style={{ width: `${Math.max(course.progressPercent, 12)}%` }}
-                      />
-                    </div>
+
+                    <Link
+                      href={course.currentLessonHref}
+                      className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#f4deaf]/50 bg-[#c7a86d] px-5 py-3 text-sm font-semibold text-[#1f2a24] shadow-[0_0_0_1px_rgba(251,249,245,0.08),0_12px_30px_-12px_rgba(199,168,109,0.75),0_0_24px_rgba(199,168,109,0.45)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#d3b67f] hover:shadow-[0_0_0_1px_rgba(251,249,245,0.12),0_18px_36px_-12px_rgba(199,168,109,0.8),0_0_30px_rgba(199,168,109,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f4deaf] focus-visible:ring-offset-2 focus-visible:ring-offset-[#31453b]"
+                    >
+                      {ctaLabel}
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -153,4 +165,3 @@ export function TodayBanner({ greeting, userName, latestMood, course }: TodayBan
     </section>
   );
 }
-

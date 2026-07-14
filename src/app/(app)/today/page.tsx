@@ -328,6 +328,16 @@ export default async function TodayPage() {
 
   const completedLessons = completedLessonIds.size;
   const totalLessons = lessonList.length;
+  const hasStartedCourse =
+    completedLessons > 0 ||
+    progressList.some(
+      (progress) =>
+        progress.status === "in_progress" ||
+        progress.status === "completed" ||
+        Boolean(progress.started_at) ||
+        Boolean(progress.completed_at) ||
+        Boolean(progress.last_opened_at)
+    );
   const completedChapters = ChapterData.filter(
     (Chapter) => Chapter.lessonsTotal > 0 && Chapter.lessonsCompleted === Chapter.lessonsTotal
   ).length;
@@ -420,6 +430,7 @@ export default async function TodayPage() {
             currentLessonSubtitle: currentLesson?.subtitle ?? courseDescription,
             currentLessonMinutes: currentLesson?.estimated_minutes ?? null,
             currentLessonHref: currentLesson ? `/course/${courseId}/${currentChapter?.id}/${currentLesson.id}` : "/course",
+            hasStarted: hasStartedCourse,
           }}
         />
 
