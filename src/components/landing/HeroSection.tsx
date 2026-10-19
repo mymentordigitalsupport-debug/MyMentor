@@ -1,16 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { LogIn, ShieldCheck, UserRoundPlus } from "lucide-react";
 import { useEffect, useRef } from "react";
-import { NavBar } from "@/components/landing/NavBar";
-
-const navItems = [
-  { name: "Sign up", url: "/register", icon: UserRoundPlus },
-  { name: "Member login", url: "/login", icon: LogIn },
-  { name: "Our Community", url: "/admin-login", icon: ShieldCheck },
-] as const;
 
 export function HeroSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -61,24 +51,6 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
 
         <div className="relative z-10 flex min-h-[calc(100vh-2rem)] flex-col px-6 py-5 sm:px-8 lg:px-10">
-          <header className="flex items-start justify-between gap-4">
-            <Link href="/" className="inline-flex items-center gap-3">
-              <Image
-                src="/assets/images/favicon.png"
-                alt="My Mentor favicon"
-                width={42}
-                height={42}
-                className="h-10 w-10 object-contain"
-                priority
-              />
-              <span className="text-[0.82rem] font-medium uppercase tracking-[0.52em] text-cream/94 sm:text-sm">
-                My Mentor
-              </span>
-            </Link>
-          </header>
-
-          <NavBar items={navItems} />
-
           <div className="flex flex-1 items-center" aria-hidden="true" />
 
           <div className="absolute left-6 top-1/2 z-10 -translate-y-1/2 sm:left-8 lg:left-10">

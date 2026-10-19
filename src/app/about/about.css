@@ -1,0 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap");
+@theme { --breakpoint-xs: 380px; }
+.about-page { --font-sans: "Plus Jakarta Sans", "Outfit", sans-serif; --font-serif: "Cormorant Garamond", Georgia, serif; }
+.about-page .font-serif-heading { font-family: "Playfair Display", "Cormorant Garamond", Georgia, serif; }
+.about-page .font-cormorant { font-family: "Cormorant Garamond", Georgia, serif; }
+.about-page .font-display { font-family: "Outfit", "Plus Jakarta Sans", sans-serif; }
+.about-page .font-script { font-family: "Alex Brush", cursive; }
+.about-page .bg-starfield { background-image: radial-gradient(1.5px 1.5px at 20px 30px, #fff 100%, transparent), radial-gradient(1.5px 1.5px at 40px 70px, #E7C77E 100%, transparent), radial-gradient(1px 1px at 90px 40px, #fff 100%, transparent), radial-gradient(1.2px 1.2px at 160px 120px, #FFD782 100%, transparent), radial-gradient(1.5px 1.5px at 230px 210px, #fff 100%, transparent), radial-gradient(1px 1px at 290px 160px, #E2C374 100%, transparent); background-size: 320px 320px; }

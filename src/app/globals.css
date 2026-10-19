@@ -137,3 +137,16 @@ a {
 .sidebar-scrollbar::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, rgba(50, 69, 59, 0.95), rgba(122, 146, 114, 0.95));
 }
+
+@keyframes public-nav-in {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes public-nav-out {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-100%); opacity: 0; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .public-nav-enter { animation: public-nav-in 240ms ease-out both; }
+  .public-nav-exit { animation: public-nav-out 200ms ease-in both; }
+}

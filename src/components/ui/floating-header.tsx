@@ -21,7 +21,7 @@ export function FloatingHeader() {
     },
     {
       label: "About",
-      href: "#about",
+      href: "/about",
     },
   ];
 
