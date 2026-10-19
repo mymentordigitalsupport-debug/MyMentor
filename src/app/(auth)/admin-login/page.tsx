@@ -22,12 +22,11 @@ export default async function AdminLoginPage() {
     redirect("/admin");
   }
 
-  const supabase = await createSupabaseServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const supabaseConfigured = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+  const supabase = supabaseConfigured ? await createSupabaseServerClient() : null;
+  const user = supabase ? (await supabase.auth.getUser()).data.user : null;
 
-  if (user?.id) {
+  if (user?.id && supabase) {
     const { data: profile } = await supabase
       .from("profiles")
       .select("role")
@@ -108,6 +107,11 @@ export default async function AdminLoginPage() {
             </div>
 
             <div className="mt-6 rounded-[24px] border border-[#eadfcf] bg-[#fcfbf7] p-4 sm:p-5">
+              {!supabaseConfigured && (
+                <p role="alert" className="mb-4 rounded-xl bg-danger/10 px-4 py-3 text-sm text-danger">
+                  Supabase is not configured. Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY to .env.local, then restart the server.
+                </p>
+              )}
               <LoginForm mode="admin" />
             </div>
 

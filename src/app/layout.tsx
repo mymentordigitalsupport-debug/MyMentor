@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { PwaProvider } from "@/components/pwa-provider";
 import { ToastProvider } from "@/components/ui/ToastProvider";
+import { SmoothScroll } from "@/components/ui/SmoothScroll";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -49,6 +50,7 @@ export default function RootLayout({
     <html lang="en">
       <body suppressHydrationWarning>
         <ToastProvider>
+          <SmoothScroll />
           <PwaProvider />
           {children}
         </ToastProvider>

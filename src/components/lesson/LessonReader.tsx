@@ -118,7 +118,7 @@ export function LessonReader({
   }, [chapterId, chapterTitle, courseId, courseVersionId, lessonAttemptId, lessonId, orderedBlocks, stepIndex, userId]);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "auto" });
   }, [stepIndex]);
 
   const currentBlock = orderedBlocks[stepIndex] ?? null;

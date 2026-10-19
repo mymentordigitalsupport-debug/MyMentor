@@ -30,7 +30,7 @@ export const ScrollExperience: React.FC<ScrollExperienceProps> = ({
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: 'auto',
     });
   };
 
@@ -40,7 +40,7 @@ export const ScrollExperience: React.FC<ScrollExperienceProps> = ({
       onExploreBooks();
     } else {
       const el = document.getElementById('books');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      if (el) el.scrollIntoView({ behavior: 'auto' });
     }
   };
 

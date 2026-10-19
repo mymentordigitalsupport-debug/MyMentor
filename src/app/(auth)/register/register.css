@@ -1,0 +1,69 @@
+﻿.register-page {
+  background: #eeefed;
+}
+
+html:has(.register-page),
+body:has(.register-page) {
+  overflow: hidden;
+}
+
+.register-card {
+  background: linear-gradient(145deg, #eeefed 5%, #f5eacb 100%);
+}
+
+.register-form > div > label,
+.register-form > div > div > label {
+  color: #62665e;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding-left: 0.75rem;
+}
+
+.register-form input:not([type="checkbox"]) {
+  border-color: transparent;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.register-form input:not([type="checkbox"]):focus {
+  border-color: #7a9272;
+}
+
+.register-divider { background: #f1ebd8; }
+
+@media (min-width: 1024px) {
+  .register-image::after {
+    content: "";
+    position: absolute;
+    right: -1px;
+    top: -1px;
+    width: 62px;
+    height: 62px;
+    background: #F1EDDE;
+    border-bottom-left-radius: 34px;
+    box-shadow: 12px -12px 0 12px #F1EDDE;
+  }
+
+  .register-image::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    right: 61px;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    border-top-right-radius: 24px;
+    box-shadow: 8px -8px 0 8px #F1EDDE;
+  }
+
+  .register-notch-corner {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    top: 61px;
+    width: 24px;
+    height: 24px;
+    border-top-right-radius: 24px;
+    box-shadow: 8px -8px 0 8px #F1EDDE;
+  }
+}

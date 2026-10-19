@@ -72,7 +72,7 @@ export const GiftSection: React.FC<GiftSectionProps> = ({ onSignUp }) => {
   return (
     <section
       id="books"
-      className="relative w-full select-none -mt-10 xs:-mt-12 sm:-mt-18 md:-mt-24 pt-16 xs:pt-20 sm:pt-28 md:pt-36 pb-14 xs:pb-16 sm:pb-24 md:pb-32 min-h-[75vh] sm:min-h-screen flex flex-col justify-center items-center bg-[#7A9272] rounded-b-[25px] shadow-[0_16px_40px_rgba(0,0,0,0.08)] z-10 overflow-hidden text-white"
+      className="relative w-full select-none -mt-10 xs:-mt-12 sm:-mt-18 md:-mt-24 pt-16 xs:pt-20 sm:pt-28 md:pt-36 pb-14 xs:pb-16 sm:pb-24 md:pb-32 min-h-[75vh] sm:min-h-screen flex flex-col justify-center items-center bg-[#FAF0E3] rounded-b-[25px] shadow-[0_16px_40px_rgba(0,0,0,0.08)] z-10 overflow-hidden text-[#1F1710]"
     >
       <div className="w-full max-w-[1360px] mx-auto px-4 xs:px-6 sm:px-10 md:px-16 relative z-10">
         {/* Section Header: What You'll Learn */}
@@ -82,7 +82,7 @@ export const GiftSection: React.FC<GiftSectionProps> = ({ onSignUp }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="font-serif-heading italic font-normal text-3xl xs:text-4xl sm:text-5xl md:text-[52px] text-white tracking-tight"
+            className="font-serif-heading italic font-normal text-3xl xs:text-4xl sm:text-5xl md:text-[52px] text-[#1F1710] tracking-tight"
           >
             What You’ll Learn
           </motion.h2>
@@ -98,7 +98,7 @@ export const GiftSection: React.FC<GiftSectionProps> = ({ onSignUp }) => {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-5 flex flex-col items-center justify-center relative"
           >
-            <div aria-hidden="true" className="pointer-events-none absolute left-[calc(50%+180px)] right-[-77px] top-1/2 hidden h-[2px] -translate-y-1/2 bg-white/70 lg:block" />
+            <div aria-hidden="true" className="pointer-events-none absolute left-[calc(50%+180px)] right-[-77px] top-1/2 hidden h-[2px] -translate-y-1/2 bg-[#7A9272]/70 lg:block" />
             <div
               className="relative cursor-pointer py-4 sm:py-6"
               onClick={() => setShowExcerptModal(true)}
@@ -117,7 +117,7 @@ export const GiftSection: React.FC<GiftSectionProps> = ({ onSignUp }) => {
           >
             {/* Incoming line and center junction. */}
             <div className="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden="true">
-              <div className="absolute left-[13px] top-1/2 z-20 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow-md" />
+              <div className="absolute left-[13px] top-1/2 z-20 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7A9272] shadow-md" />
             </div>
 
             {bulletPoints.map((point, index) => (
@@ -131,13 +131,13 @@ export const GiftSection: React.FC<GiftSectionProps> = ({ onSignUp }) => {
               >
                 {/* The trunk curves into the first and last cards. */}
                 {index === 0 ? (
-                  <div aria-hidden="true" className="absolute -left-2 top-1/2 -bottom-2 hidden w-2 rounded-tl-[8px] border-l-2 border-t-2 border-white/70 lg:block" />
+                  <div aria-hidden="true" className="absolute -left-2 top-1/2 -bottom-2 hidden w-2 rounded-tl-[8px] border-l-2 border-t-2 border-[#7A9272]/70 lg:block" />
                 ) : index === bulletPoints.length - 1 ? (
-                  <div aria-hidden="true" className="absolute -left-2 -top-2 bottom-1/2 hidden w-2 rounded-bl-[8px] border-b-2 border-l-2 border-white/70 lg:block" />
+                  <div aria-hidden="true" className="absolute -left-2 -top-2 bottom-1/2 hidden w-2 rounded-bl-[8px] border-b-2 border-l-2 border-[#7A9272]/70 lg:block" />
                 ) : (
                   <>
-                    <div aria-hidden="true" className="absolute -left-2 -top-2 -bottom-2 hidden w-[2px] bg-white/70 lg:block" />
-                    <div aria-hidden="true" className="absolute -left-2 hidden h-[2px] w-2 bg-white/70 lg:block" />
+                    <div aria-hidden="true" className="absolute -left-2 -top-2 -bottom-2 hidden w-[2px] bg-[#7A9272]/70 lg:block" />
+                    <div aria-hidden="true" className="absolute -left-2 hidden h-[2px] w-2 bg-[#7A9272]/70 lg:block" />
                   </>
                 )}
 

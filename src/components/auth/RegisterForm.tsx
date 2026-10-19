@@ -8,7 +8,6 @@ import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { Input } from "@/components/ui/Input";
 import { PasswordInput } from "@/components/ui/PasswordInput";
 import { useToast } from "@/components/ui/ToastProvider";
-import { FancyButton } from "@/components/ui/FancyButton";
 import { ANONYMOUS_NAMES } from "@/types";
 import { randomAnonymousName } from "@/lib/utils";
 import { COURSE_LIBRARY, normalizeCourseKey } from "@/lib/course-library";
@@ -33,7 +32,7 @@ export function RegisterForm() {
   const [books, setBooks] = useState<BookOption[]>([]);
   const [selectedBookTitle, setSelectedBookTitle] = useState<string | null>(null);
   const [loadingBooks, setLoadingBooks] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -101,34 +100,34 @@ export function RegisterForm() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setError(null);
+
 
     if (!email) {
-      setError("Please enter your email address.");
+
       toast.error("Missing Email", "Please enter your email address.");
       return;
     }
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match.");
+
       toast.error("Password Mismatch", "The passwords you entered do not match.");
       return;
     }
 
     if (password.length < 8) {
-      setError("Password must be at least 8 characters.");
+
       toast.error("Weak Password", "Password must be at least 8 characters long.");
       return;
     }
 
     if (!privacyAccepted) {
-      setError("Please acknowledge the POPIA notice before continuing.");
+
       toast.error("POPIA Notice", "Please acknowledge the privacy notice before creating your account.");
       return;
     }
 
     if (!selectedBook) {
-      setError("Please choose a book to study.");
+
       toast.error("Choose a Book", "Please select the book you want to study before continuing.");
       return;
     }
@@ -153,7 +152,7 @@ export function RegisterForm() {
     }
 
     if (!resolvedCourseId) {
-      setError("That book is not available yet.");
+
       toast.error(
         "Book Unavailable",
         "The selected book does not have an active study path yet. Please choose the available book."
@@ -173,7 +172,7 @@ export function RegisterForm() {
       const checkData = await checkResponse.json();
 
       if (checkData.exists) {
-        setError("This email is already registered.");
+
         toast.error("Account Exists", "An account with this email already exists. Please sign in instead.");
         setLoading(false);
         return;
@@ -213,19 +212,18 @@ export function RegisterForm() {
         authError.message.toLowerCase().includes("already exists") ||
         authError.message.toLowerCase().includes("user already registered")
       ) {
-        setError("This email is already registered.");
+
         toast.error("Account Exists", "An account with this email already exists. Please sign in instead.");
         return;
       }
 
-      setError(authError.message);
       toast.error("Registration Failed", authError.message);
       return;
     }
 
     // Check if user was actually created
     if (!data.user) {
-      setError("Failed to create account. Please try again.");
+
       toast.error("Registration Failed", "Failed to create account. Please try again.");
       setLoading(false);
       return;
@@ -253,7 +251,7 @@ export function RegisterForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
+    <form onSubmit={handleSubmit} className="register-form flex flex-col gap-4" noValidate>
       {isAnonymousMode && (
         <div className="rounded-2xl border border-sage/30 bg-sage/10 px-4 py-3">
           <p className="text-sm text-forest">
@@ -272,6 +270,7 @@ export function RegisterForm() {
         autoComplete="email"
         required
       />
+      <div className="grid grid-cols-2 gap-3">
       <PasswordInput
         label="Password"
         value={password}
@@ -289,6 +288,7 @@ export function RegisterForm() {
         autoComplete="new-password"
         required
       />
+      </div>
 
       <div className="rounded-2xl border border-sage/20 bg-white/80 p-3 shadow-sm">
         <div className="flex items-center justify-between gap-2">
@@ -367,7 +367,6 @@ export function RegisterForm() {
         ) : null}
       </div>
 
-      {error && <p className="rounded-xl bg-danger/10 px-4 py-3 text-sm text-danger">{error}</p>}
 
       <div className="rounded-2xl border border-sage/20 bg-white/70 px-4 py-3 text-left shadow-sm">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-forest">
@@ -400,33 +399,21 @@ export function RegisterForm() {
         </label>
       </div>
 
-      <div className="mt-1 flex justify-center">
-        <FancyButton
+      <div className="mt-1 grid grid-cols-2 gap-3">
+        <button
           type="submit"
-          loading={loading}
-          disabled={!privacyAccepted}
-          topText="Welcome to My Mentor"
-          bottomText="We Transform Together"
+          disabled={!privacyAccepted || loading}
+          className="w-full rounded-full bg-[#e8c573] px-6 py-3.5 text-sm font-semibold text-[#1f1710] transition hover:bg-[#dcb45d] disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {isAnonymousMode ? "Continue Anonymously" : "Create Account"}
-        </FancyButton>
-      </div>
-
-      <div className="relative my-6">
-        <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t-2 border-sage/20"></div>
-        </div>
-        <div className="relative flex justify-center">
-          <span className="bg-white px-6 text-sm font-medium tracking-wider text-muted">OR</span>
-        </div>
-      </div>
-
-      <Link
+          {loading ? "Creating account…" : isAnonymousMode ? "Continue Anonymously" : "Create Account"}
+        </button>
+        <Link
         href={isAnonymousMode ? "/register" : "/register?mode=anonymous"}
-        className="inline-flex w-full items-center justify-center rounded-full border-2 border-sage/30 bg-sage/5 px-6 py-2.5 font-medium text-forest transition-all duration-300 hover:bg-sage/10"
+        className="inline-flex w-full items-center justify-center rounded-full border-2 border-sage/30 bg-sage/5 px-3 py-2.5 text-center text-sm font-medium text-forest transition-all duration-300 hover:bg-sage/10"
       >
         {isAnonymousMode ? "Continue with Name" : "Continue Anonymously"}
       </Link>
+      </div>
     </form>
   );
 }

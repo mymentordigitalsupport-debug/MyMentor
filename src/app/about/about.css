@@ -6,3 +6,36 @@
 .about-page .font-display { font-family: "Outfit", "Plus Jakarta Sans", sans-serif; }
 .about-page .font-script { font-family: "Alex Brush", cursive; }
 .about-page .bg-starfield { background-image: radial-gradient(1.5px 1.5px at 20px 30px, #fff 100%, transparent), radial-gradient(1.5px 1.5px at 40px 70px, #E7C77E 100%, transparent), radial-gradient(1px 1px at 90px 40px, #fff 100%, transparent), radial-gradient(1.2px 1.2px at 160px 120px, #FFD782 100%, transparent), radial-gradient(1.5px 1.5px at 230px 210px, #fff 100%, transparent), radial-gradient(1px 1px at 290px 160px, #E2C374 100%, transparent); background-size: 320px 320px; }
+
+.about-page .public-nav-toggle { background: #1f1710; color: #fff; }
+@media (prefers-reduced-motion: no-preference) {
+  .about-page .public-nav-toggle,
+  .about-page .public-nav-panel,
+  .about-page .public-nav-desktop > svg,
+  .about-page .public-nav-panel nav,
+  .about-page .public-nav-panel a,
+  .about-page .public-nav-panel button,
+  .about-page .public-nav-panel span,
+  .about-page #mobile-navigation,
+  .about-page #mobile-navigation a,
+  .about-page #mobile-navigation button,
+  .about-page #mobile-navigation span { transition: background-color 350ms ease, color 350ms ease, border-color 350ms ease; }
+}
+.about-page .about-nav-light .public-nav-toggle,
+.about-page .about-nav-light .public-nav-panel,
+.about-page .about-nav-light #mobile-navigation { background: #faf0e3; color: #1f1710; }
+.about-page .about-nav-light .public-nav-desktop > svg { color: #faf0e3; }
+.about-page .about-nav-light .public-nav-panel nav,
+.about-page .about-nav-light .public-nav-panel a,
+.about-page .about-nav-light .public-nav-panel button,
+.about-page .about-nav-light #mobile-navigation a,
+.about-page .about-nav-light #mobile-navigation button { color: #1f1710; }
+.about-page .about-nav-light .public-nav-panel a:hover,
+.about-page .about-nav-light .public-nav-panel button:hover,
+.about-page .about-nav-light #mobile-navigation a:hover,
+.about-page .about-nav-light #mobile-navigation button:hover { background-color: rgba(31, 23, 16, 0.08); }
+.about-page .about-nav-light .public-nav-panel span,
+.about-page .about-nav-light #mobile-navigation span { color: #51483e; }
+.about-page .about-nav-light .public-nav-panel #explore-panel,
+.about-page .about-nav-light .public-nav-panel #explore-panel a,
+.about-page .about-nav-light #mobile-explore-panel { border-color: rgba(31, 23, 16, 0.16); }

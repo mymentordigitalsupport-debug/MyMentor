@@ -34,7 +34,7 @@ export const CTAButton: React.FC<CTAButtonProps> = ({
       const targetElement = document.querySelector(href);
       if (targetElement) {
         e.preventDefault();
-        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        targetElement.scrollIntoView({ behavior: 'auto', block: 'start' });
       }
     }
   };

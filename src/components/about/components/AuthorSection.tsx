@@ -17,7 +17,7 @@ export const AuthorSection: React.FC<AuthorSectionProps> = () => {
       className="relative w-full select-none z-30 flex flex-col bg-[#FAF0E3] rounded-b-[25px]"
     >
       {/* Full-width Cream Author Container (#FAF0E3) with rounded bottom corners */}
-      <div className="relative w-full flex-1 bg-[#FAF0E3] rounded-b-[25px] pt-6 xs:pt-8 sm:pt-10 md:pt-12 pb-12 xs:pb-16 sm:pb-20 md:pb-24 shadow-[0_16px_40px_rgba(0,0,0,0.08)] overflow-visible flex flex-col justify-center items-center">
+      <div className="relative w-full flex-1 bg-[#FAF0E3] rounded-b-[25px] pt-6 xs:pt-8 sm:pt-10 md:pt-12 pb-12 xs:pb-16 sm:pb-20 md:pb-24 overflow-visible flex flex-col justify-center items-center">
         <div className="w-full max-w-[1360px] mx-auto px-4 xs:px-6 sm:px-10 md:px-16 text-center">
           {/* Founder Silhouette Portrait with Floating Pills and Craig Tag */}
           <motion.div

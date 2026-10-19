@@ -134,7 +134,7 @@ export function LoginForm({ mode = "user" }: LoginFormProps) {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-6" noValidate>
+      <form onSubmit={handleSubmit} className={cn("flex flex-col gap-6", !isAdmin && "register-form")} noValidate>
         <Input
           label="Email address"
           type="email"
@@ -178,7 +178,7 @@ export function LoginForm({ mode = "user" }: LoginFormProps) {
           </div>
         </div>
 
-        {error && (
+        {isAdmin && error && (
           <p
             className={cn(
               "rounded-xl px-4 py-3 text-sm",
@@ -189,38 +189,26 @@ export function LoginForm({ mode = "user" }: LoginFormProps) {
           </p>
         )}
 
-        <div className="mt-2 flex justify-center">
+        <div className={cn("mt-2", isAdmin ? "flex justify-center" : "grid grid-cols-2 gap-3")}>
           <Button
             type="submit"
             loading={loading}
             variant="primary"
             size="lg"
             fullWidth
-            className={isAdmin ? "shadow-[0_18px_36px_-24px_rgba(50,69,59,0.45)]" : undefined}
+            className={isAdmin ? "shadow-[0_18px_36px_-24px_rgba(50,69,59,0.45)]" : "rounded-full bg-[#e8c573] px-3 py-3.5 text-sm font-semibold text-[#1f1710] shadow-none hover:bg-[#dcb45d]"}
           >
             {loading ? "Checking access..." : isAdmin ? "Enter Admin" : "Log in"}
           </Button>
-        </div>
-
-        {mode === "user" && (
-          <>
-            <div className="relative my-8">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t-2 border-sage/20"></div>
-              </div>
-              <div className="relative flex justify-center">
-                <span className="bg-white px-6 text-sm font-medium tracking-wider text-muted">OR</span>
-              </div>
-            </div>
-
+          {mode === "user" && (
             <a
               href="/register?mode=anonymous"
-              className="inline-flex w-full items-center justify-center rounded-full border-2 border-sage/30 bg-sage/5 px-6 py-3 font-medium text-forest transition-all duration-300 hover:bg-sage/10"
+              className="inline-flex w-full items-center justify-center rounded-full border-2 border-sage/30 bg-sage/5 px-3 py-2.5 text-center text-sm font-medium text-forest transition-all duration-300 hover:bg-sage/10"
             >
               Continue Anonymously
             </a>
-          </>
-        )}
+          )}
+        </div>
 
         {isAdmin && (
           <p className="rounded-2xl border border-[#e3d7c4] bg-[#fffdf8] px-4 py-3 text-sm leading-6 text-muted">

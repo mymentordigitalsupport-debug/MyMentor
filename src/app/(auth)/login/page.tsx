@@ -1,91 +1,46 @@
-import { LoginForm } from "@/components/auth/LoginForm";
+﻿import { LoginForm } from "@/components/auth/LoginForm";
 import Link from "next/link";
 import Image from "next/image";
+import { X } from "lucide-react";
 import { PageLoader } from "@/components/ui/PageLoader";
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";
-import { Button } from "@/components/ui/Button";
+import "../register/register.css";
 
-export const metadata: Metadata = {
-  title: "Sign In",
-};
+export const metadata: Metadata = { title: "Sign In" };
 
-interface LoginPageProps {
-  searchParams: Promise<{ next?: string }>;
-}
-
-function isAdminDestination(next: string | undefined) {
-  if (!next) return false;
-  return next === "/admin" || next.startsWith("/admin/");
-}
+interface LoginPageProps { searchParams: Promise<{ next?: string }> }
 
 export default async function LoginPage({ searchParams }: LoginPageProps) {
   const { next } = await searchParams;
-
-  if (isAdminDestination(next)) {
-    const target = next ? `/admin/login?next=${encodeURIComponent(next)}` : "/admin/login";
-    redirect(target);
+  if (next === "/admin" || next?.startsWith("/admin/")) {
+    redirect(`/admin/login?next=${encodeURIComponent(next)}`);
   }
 
   return (
     <PageLoader imageSrc="/assets/images/s1r.jpg">
-      <div className="min-h-screen bg-white lg:grid lg:grid-cols-[3fr_2fr]">
-        <div className="relative hidden min-h-screen overflow-hidden lg:block">
-          <Image
-            src="/assets/images/s1r.jpg"
-            alt="My Mentor"
-            fill
-            className="object-cover object-center"
-            priority
-            quality={100}
-          />
-        </div>
-
-        <div className="relative flex min-h-screen w-full items-start justify-center overflow-y-auto bg-white px-6 py-8 lg:px-12">
-          <div className="w-full max-w-md">
-            <div className="mb-6 flex justify-center">
-              <Button
-                asChild
-                variant="outline"
-                size="sm"
-                className="rounded-full border-[#c7d6c1] bg-[#fffdf8] text-forest shadow-none hover:border-forest hover:bg-white hover:text-forest"
-              >
-                <Link href="/">Home</Link>
-              </Button>
-            </div>
-
-            {/* Mobile Logo */}
-            <div className="lg:hidden text-center mb-8">
-              <Image
-                src="/assets/branding/logo.png"
-                alt="My Mentor Logo"
-                width={80}
-                height={80}
-                className="w-20 h-20 object-contain mx-auto mb-4"
-                priority
-              />
-              <h1 className="text-2xl font-bold text-forest">My Mentor</h1>
-            </div>
-
-            {/* Card - No Background */}
-            <div className="rounded-3xl p-8 lg:p-10">
-              <div className="text-center mb-8">
-                <p className="text-sm text-muted mb-2">Welcome to My Mentor</p>
-                <h2 className="text-3xl font-bold text-text">Log in</h2>
+      <main className="register-page min-h-screen">
+        <div className="register-card relative grid min-h-screen w-full overflow-hidden lg:grid-cols-2">
+          <div className="relative flex flex-col px-6 pb-8 pt-7 sm:px-12 sm:pt-10 lg:px-14 xl:px-20">
+            <Link href="/" className="register-brand w-fit rounded-full border border-[#777f79]/50 px-5 py-2 text-sm text-[#27342c]">Back Home</Link>
+            <div className="mx-auto w-full max-w-[440px] flex-1 pb-10 pt-12 sm:pt-20">
+              <div className="mb-8 text-center">
+                <h1 className="text-3xl font-medium tracking-tight text-[#1f1710] sm:text-4xl">Welcome back</h1>
+                <p className="mt-2 text-sm text-[#595c54]">Sign in to continue your journey.</p>
               </div>
-
               <LoginForm mode="user" />
-
-              <div className="mt-6 text-center text-sm text-muted">
-                New here?{" "}
-                <Link href="/register" className="text-forest hover:underline font-semibold">
-                  Sign up
-                </Link>
-              </div>
+              <p className="mt-6 text-center text-sm text-[#62665e]">New here? <Link href="/register" className="font-medium text-[#1f1710] underline underline-offset-2">Sign up</Link></p>
             </div>
           </div>
+          <div className="register-image-wrap relative hidden min-h-[720px] p-4 lg:block">
+            <div className="register-image sticky top-4 h-[calc(100vh-2rem)] min-h-[650px] overflow-hidden rounded-[30px]">
+              <Image src="/assets/images/s1r.jpg" alt="My Mentor" fill className="object-cover object-center" sizes="50vw" priority quality={100} />
+              <span aria-hidden="true" className="register-notch-corner" />
+            </div>
+          </div>
+          <Link href="/" aria-label="Close and return home" className="register-close absolute right-5 top-5 z-10 grid h-11 w-11 place-items-center rounded-full bg-[#fffaf0] text-[#1f1710] transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#32453b]"><X size={19} strokeWidth={1.5} /></Link>
         </div>
-      </div>
+      </main>
     </PageLoader>
   );
 }

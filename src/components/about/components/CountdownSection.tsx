@@ -38,13 +38,13 @@ export const CountdownSection: React.FC<CountdownSectionProps> = ({
   const scrollToSection = (id: string, e: React.MouseEvent) => {
     e.preventDefault();
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (el) el.scrollIntoView({ behavior: 'auto' });
   };
 
   return (
     <section
       id="invitation"
-      className="relative w-full select-none -mt-10 xs:-mt-12 sm:-mt-18 md:-mt-24 pt-16 xs:pt-20 sm:pt-28 md:pt-36 pb-12 xs:pb-16 sm:pb-20 md:pb-24 min-h-[85vh] sm:min-h-screen flex flex-col justify-between items-center bg-[#161616] rounded-b-[25px] shadow-[0_16px_40px_rgba(0,0,0,0.35)] text-center overflow-hidden z-[5]"
+      className="relative w-full select-none -mt-10 xs:-mt-12 sm:-mt-18 md:-mt-24 pt-16 xs:pt-20 sm:pt-28 md:pt-36 pb-12 xs:pb-16 sm:pb-20 md:pb-24 min-h-[85vh] sm:min-h-screen flex flex-col justify-between items-center bg-[#070707] rounded-b-[25px] shadow-[0_16px_40px_rgba(0,0,0,0.35)] text-center overflow-hidden z-[5]"
     >
       {/* Subtle starfield texture */}
       <div className="absolute inset-0 bg-starfield opacity-35 pointer-events-none" />

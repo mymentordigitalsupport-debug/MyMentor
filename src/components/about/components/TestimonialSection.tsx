@@ -16,7 +16,7 @@ export const TestimonialSection: React.FC<TestimonialSectionProps> = ({ onSignUp
       onExploreBooks();
     } else {
       const el = document.getElementById('books');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      if (el) el.scrollIntoView({ behavior: 'auto' });
     }
   };
 
