@@ -1,14 +1,20 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
+  BookOpen,
+  Compass,
   HeartHandshake,
   ShieldCheck,
   Sparkles,
+  User,
   Users2,
 } from "lucide-react";
 import { SectionReveal } from "@/components/landing/SectionReveal";
 import { CoursePreviewShowcase } from "@/components/landing/CoursePreviewShowcase";
+import { CountdownSection } from "@/components/about/components/CountdownSection";
 
 const pillars = [
   {
@@ -34,11 +40,12 @@ const buttonStyles = {
 
 export function LandingSections() {
   return (
-    <div className="relative space-y-8 bg-cream px-4 pb-16 pt-0 sm:px-6 lg:px-8 lg:pb-28">
+    <>
+    <div className="relative space-y-0 bg-cream pb-16 pt-0 lg:pb-28">
       <SectionReveal>
         <section
           id="mission"
-          className="texture-noise mx-auto -mt-14 max-w-7xl overflow-hidden rounded-[2.5rem] border border-[#cbc1b2] bg-[#f4efe6] shadow-[0_24px_90px_-55px_rgba(31,42,36,0.55)]"
+          className="texture-noise w-full overflow-hidden border-y border-[#cbc1b2] bg-[#f4efe6] shadow-[0_24px_90px_-55px_rgba(31,42,36,0.55)]"
         >
           <div className="grid lg:grid-cols-2">
             <div className="relative p-6 sm:p-8 lg:p-10">
@@ -106,7 +113,7 @@ export function LandingSections() {
       <SectionReveal delayMs={100}>
         <section
           id="books"
-          className="texture-noise mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border border-[#cbc1b2] bg-[linear-gradient(180deg,#f4efe6_0%,#fbf8f1_100%)] text-text shadow-[0_24px_90px_-55px_rgba(31,42,36,0.3)]"
+          className="texture-noise w-full overflow-hidden border-y border-[#cbc1b2] bg-[linear-gradient(180deg,#f4efe6_0%,#fbf8f1_100%)] text-text shadow-[0_24px_90px_-55px_rgba(31,42,36,0.3)]"
         >
           <div className="p-6 sm:p-8 lg:p-10">
             <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
@@ -130,7 +137,7 @@ export function LandingSections() {
       <SectionReveal delayMs={180}>
         <section
           id="owner"
-          className="texture-noise mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border border-[#cbc1b2] bg-[linear-gradient(180deg,#f4efe6_0%,#fbf8f1_100%)] text-text shadow-[0_24px_90px_-55px_rgba(31,42,36,0.3)]"
+          className="texture-noise w-full overflow-hidden border-y border-[#cbc1b2] bg-[linear-gradient(180deg,#f4efe6_0%,#fbf8f1_100%)] text-text shadow-[0_24px_90px_-55px_rgba(31,42,36,0.3)]"
         >
           <div className="grid lg:grid-cols-[1fr_0.98fr]">
             <div className="relative p-6 sm:p-8 lg:p-10">
@@ -203,7 +210,7 @@ export function LandingSections() {
       <SectionReveal delayMs={220}>
         <section
           id="start"
-          className="texture-noise mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border border-[#cbc1b2] bg-[linear-gradient(180deg,#f4efe6_0%,#fbf8f1_100%)] text-text shadow-[0_24px_90px_-55px_rgba(31,42,36,0.3)]"
+          className="texture-noise w-full overflow-hidden border-y border-[#cbc1b2] bg-[linear-gradient(180deg,#f4efe6_0%,#fbf8f1_100%)] text-text shadow-[0_24px_90px_-55px_rgba(31,42,36,0.3)]"
         >
           <div className="grid lg:grid-cols-[1.02fr_0.98fr]">
             <div className="p-6 sm:p-8 lg:p-10">
@@ -254,57 +261,8 @@ export function LandingSections() {
         </section>
       </SectionReveal>
 
-      <footer className="mx-auto mt-2 max-w-7xl overflow-hidden rounded-[2rem] border border-[#d8cfbf] bg-[#f5efe5] px-6 py-8 text-text shadow-[0_18px_60px_-40px_rgba(31,42,36,0.35)] sm:px-8 lg:px-10 lg:py-10">
-        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr_0.7fr]">
-          <div className="space-y-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sage">My Mentor</p>
-            <p className="font-serif max-w-md text-3xl font-semibold tracking-[-0.04em] text-forest">
-              Guidance, structure, and daily action that keep people moving forward.
-            </p>
-            <p className="max-w-lg text-sm leading-7 text-muted">
-              Built to feel calm, grounded, and useful. The goal is simple: one clear path, one honest step at a time.
-            </p>
-          </div>
-
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">Explore</p>
-            <div className="mt-4 flex flex-col gap-3 text-sm font-medium">
-              <a href="#mission" className="text-text transition hover:text-forest">
-                Mission
-              </a>
-              <a href="#books" className="text-text transition hover:text-forest">
-                Books
-              </a>
-              <a href="#owner" className="text-text transition hover:text-forest">
-                Creator
-              </a>
-              <a href="#start" className="text-text transition hover:text-forest">
-                Start
-              </a>
-            </div>
-          </div>
-
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">Get started</p>
-            <div className="mt-4 flex flex-col gap-3 text-sm font-medium">
-              <a href="/register" className="text-text transition hover:text-forest">
-                Sign up
-              </a>
-              <a href="/login" className="text-text transition hover:text-forest">
-                Sign in
-              </a>
-              <a href="/admin-login" className="text-text transition hover:text-forest">
-                Admin login
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-8 flex flex-col gap-3 border-t border-[#d8cfbf] pt-5 text-xs uppercase tracking-[0.22em] text-muted sm:flex-row sm:items-center sm:justify-between">
-          <span>My Mentor</span>
-          <span>Walk with purpose. Build with clarity.</span>
-        </div>
-      </footer>
     </div>
+    <CountdownSection />
+    </>
   );
 }

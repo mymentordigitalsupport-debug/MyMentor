@@ -33,12 +33,14 @@ export function SmoothScroll() {
       if (!frame) { last = window.scrollY; frame = requestAnimationFrame(tick); }
     };
     window.addEventListener("wheel", wheel, { passive: false });
+    window.addEventListener("pointerdown", stop, { passive: true });
     window.addEventListener("touchstart", stop, { passive: true });
     window.addEventListener("keydown", stop);
     motion.addEventListener("change", stop);
     return () => {
       stop();
       window.removeEventListener("wheel", wheel);
+      window.removeEventListener("pointerdown", stop);
       window.removeEventListener("touchstart", stop);
       window.removeEventListener("keydown", stop);
       motion.removeEventListener("change", stop);
