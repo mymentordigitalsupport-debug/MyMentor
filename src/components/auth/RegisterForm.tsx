@@ -29,6 +29,7 @@ export function RegisterForm() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
+  const [showPopiaDetails, setShowPopiaDetails] = useState(false);
   const [books, setBooks] = useState<BookOption[]>([]);
   const [selectedBookTitle, setSelectedBookTitle] = useState<string | null>(null);
   const [loadingBooks, setLoadingBooks] = useState(true);
@@ -345,26 +346,6 @@ export function RegisterForm() {
           </div>
         )}
 
-        {selectedBook ? (
-          <div className="mt-3 rounded-2xl border border-sage/20 bg-sage/10 px-4 py-3">
-            <div className="flex items-start justify-between gap-3">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-forest">
-                  Selected course
-                </p>
-                <p className="mt-1 text-sm font-medium text-forest">
-                  {selectedBook.title}
-                </p>
-              </div>
-              <Link
-                href="/#books"
-                className="inline-flex min-h-9 shrink-0 items-center justify-center rounded-full border border-sage/25 bg-white/70 px-3 text-xs font-semibold text-forest transition hover:border-sage/40 hover:bg-white"
-              >
-                View course details
-              </Link>
-            </div>
-          </div>
-        ) : null}
       </div>
 
 
@@ -372,7 +353,10 @@ export function RegisterForm() {
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-forest">
           POPIA notice
         </p>
-        <div className="mt-2.5 space-y-1.5 text-xs leading-relaxed text-muted">
+        <p className="mt-2.5 text-xs leading-relaxed text-muted">
+          We process your account and learning data to provide My Mentor.
+        </p>
+        {showPopiaDetails && <div className="mt-2.5 space-y-1.5 text-xs leading-relaxed text-muted">
           <p>
             By creating an account, you acknowledge that My Mentor will store and process your
             account information and profile settings, and any content you choose to add while
@@ -386,7 +370,10 @@ export function RegisterForm() {
             Our database is hosted in Singapore. We use reasonable safeguards to protect your
             personal information.
           </p>
-        </div>
+        </div>}
+        <button type="button" onClick={() => setShowPopiaDetails(!showPopiaDetails)} className="mt-2 text-xs font-semibold text-forest underline underline-offset-2 hover:text-[#24392f]">
+          {showPopiaDetails ? "Read less" : "Read more"}
+        </button>
 
         <label className="mt-3 flex items-start gap-3 text-xs leading-relaxed text-text">
           <input
