@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
-import { getAdminUserDetail } from "@/lib/admin/users";
+import { getAdminUserDetail, type AdminUserDetail } from "@/lib/admin/users";
 import { formatShortDate } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
@@ -16,6 +16,80 @@ function formatDuration(durationMs: number) {
   const seconds = totalSeconds % 60;
   if (minutes === 0) return `${seconds}s`;
   return `${minutes}m ${seconds}s`;
+}
+
+function AuthorDetailView({ user }: { user: AdminUserDetail }) {
+  const application = user.author_application;
+  const pendingArticles = user.authored_articles.filter((article) => article.status === "pending_review").length;
+  const publishedArticles = user.authored_articles.filter((article) => article.status === "published").length;
+  const applicationStatus = application?.status ?? user.role.replace("author_", "");
+
+  return (
+    <div className="space-y-6">
+      <Button asChild variant="secondary" size="sm">
+        <Link href="/admin/users"><ArrowLeft className="h-4 w-4" />Back to Users</Link>
+      </Button>
+
+      <Card variant="default" padding="lg">
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-wrap items-center gap-3">
+            <h1 className="text-2xl font-semibold text-text">{application?.public_name ?? user.display_name ?? "Unnamed author"}</h1>
+            <Badge variant="forest">Author</Badge>
+            <Badge variant={applicationStatus === "approved" ? "sage" : "gold"}>Application {applicationStatus}</Badge>
+          </div>
+          <p className="text-sm text-muted">Author account — editorial information is shown instead of member course and wellbeing data.</p>
+
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+            <Card variant="mist" padding="sm"><p className="text-xs uppercase tracking-[0.14em] text-muted">Application status</p><p className="mt-2 text-2xl font-semibold capitalize text-text">{applicationStatus}</p></Card>
+            <Card variant="mist" padding="sm"><p className="text-xs uppercase tracking-[0.14em] text-muted">Articles</p><p className="mt-2 text-2xl font-semibold text-text">{user.authored_articles.length}</p></Card>
+            <Card variant="mist" padding="sm"><p className="text-xs uppercase tracking-[0.14em] text-muted">Awaiting review</p><p className="mt-2 text-2xl font-semibold text-text">{pendingArticles}</p></Card>
+            <Card variant="mist" padding="sm"><p className="text-xs uppercase tracking-[0.14em] text-muted">Published</p><p className="mt-2 text-2xl font-semibold text-text">{publishedArticles}</p></Card>
+          </div>
+
+          <Card variant="mist" padding="sm"><p className="text-xs uppercase tracking-[0.14em] text-muted">Email</p><p className="mt-2 text-sm font-semibold text-text">{user.email ?? "None"}</p></Card>
+        </div>
+      </Card>
+
+      <Card variant="default" padding="lg">
+        <p className="text-xs uppercase tracking-[0.14em] text-muted">Author application</p>
+        <h2 className="mt-1 text-lg font-semibold text-text">Writing profile and review</h2>
+        {application ? (
+          <div className="mt-5 space-y-5">
+            <div className="grid gap-3 md:grid-cols-2">
+              <Card variant="mist" padding="sm"><p className="text-xs uppercase tracking-[0.14em] text-muted">Legal name</p><p className="mt-2 text-sm font-semibold text-text">{application.full_name}</p></Card>
+              <Card variant="mist" padding="sm"><p className="text-xs uppercase tracking-[0.14em] text-muted">Public author name</p><p className="mt-2 text-sm font-semibold text-text">{application.public_name}</p></Card>
+              <Card variant="mist" padding="sm"><p className="text-xs uppercase tracking-[0.14em] text-muted">Applied</p><p className="mt-2 text-sm font-semibold text-text">{formatShortDate(application.created_at)}</p></Card>
+              <Card variant="mist" padding="sm"><p className="text-xs uppercase tracking-[0.14em] text-muted">Reviewed</p><p className="mt-2 text-sm font-semibold text-text">{application.reviewed_at ? formatShortDate(application.reviewed_at) : "Not yet reviewed"}</p></Card>
+            </div>
+            <div className="grid gap-3 lg:grid-cols-2">
+              <Card variant="mist" padding="sm"><p className="text-xs uppercase tracking-[0.14em] text-muted">Biography</p><p className="mt-2 whitespace-pre-wrap text-sm leading-6 text-text">{application.bio}</p></Card>
+              <Card variant="mist" padding="sm"><p className="text-xs uppercase tracking-[0.14em] text-muted">Relevant experience or expertise</p><p className="mt-2 whitespace-pre-wrap text-sm leading-6 text-text">{application.expertise_summary}</p></Card>
+              <Card variant="mist" padding="sm"><p className="text-xs uppercase tracking-[0.14em] text-muted">Why they want to contribute</p><p className="mt-2 whitespace-pre-wrap text-sm leading-6 text-text">{application.motivation}</p></Card>
+              <Card variant="mist" padding="sm"><p className="text-xs uppercase tracking-[0.14em] text-muted">Review feedback</p><p className="mt-2 whitespace-pre-wrap text-sm leading-6 text-text">{application.review_feedback ?? "No feedback recorded."}</p></Card>
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-[0.14em] text-muted">Proposed topics</p>
+              <div className="mt-2 flex flex-wrap gap-2">{application.intended_topics.length ? application.intended_topics.map((topic) => <Badge key={topic} variant="sage">{topic}</Badge>) : <span className="text-sm text-muted">None supplied.</span>}</div>
+            </div>
+            {(application.website_url || application.portfolio_url) ? <div className="flex flex-wrap gap-4 text-sm"><>{application.website_url ? <a className="font-medium text-forest underline" href={application.website_url} target="_blank" rel="noreferrer">Website</a> : null}</><>{application.portfolio_url ? <a className="font-medium text-forest underline" href={application.portfolio_url} target="_blank" rel="noreferrer">Portfolio or writing sample</a> : null}</></div> : null}
+          </div>
+        ) : <p className="mt-5 text-sm text-muted">No author application record was found for this account.</p>}
+      </Card>
+
+      <Card variant="default" padding="lg">
+        <p className="text-xs uppercase tracking-[0.14em] text-muted">Editorial activity</p>
+        <h2 className="mt-1 text-lg font-semibold text-text">Authored articles</h2>
+        <div className="mt-5 space-y-3">
+          {user.authored_articles.length ? user.authored_articles.map((article) => (
+            <div key={article.id} className="flex flex-col gap-2 rounded-3xl border border-mist/70 bg-cream p-4 sm:flex-row sm:items-center sm:justify-between">
+              <div><p className="font-semibold text-text">{article.title}</p><p className="mt-1 text-xs text-muted">Updated {formatShortDate(article.updated_at)}{article.submitted_at ? ` · Submitted ${formatShortDate(article.submitted_at)}` : ""}{article.published_at ? ` · Published ${formatShortDate(article.published_at)}` : ""}</p></div>
+              <Badge variant={article.status === "published" ? "sage" : article.status === "pending_review" ? "gold" : "forest"}>{article.status.replaceAll("_", " ")}</Badge>
+            </div>
+          )) : <p className="text-sm text-muted">No articles have been drafted or submitted yet.</p>}
+        </div>
+      </Card>
+    </div>
+  );
 }
 
 export async function generateMetadata({
@@ -42,6 +116,10 @@ export default async function AdminUserDetailPage({
 
   if (!user) {
     notFound();
+  }
+
+  if (["author_pending", "author", "author_rejected"].includes(user.role)) {
+    return <AuthorDetailView user={user} />;
   }
 
   return (

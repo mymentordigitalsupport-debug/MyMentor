@@ -3,7 +3,7 @@
 // ============================================================
 
 export type GuidancePath = "christian" | "religious";
-export type UserRole = "user" | "admin";
+export type UserRole = "user" | "author_pending" | "author" | "author_rejected" | "admin";
 export type AccountStatus = "active" | "suspended" | "disabled" | "anonymized";
 export type MoodValue = "low" | "heavy" | "uncertain" | "hopeful" | "steady" | "strong";
 

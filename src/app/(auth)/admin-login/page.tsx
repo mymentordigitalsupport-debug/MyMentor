@@ -6,8 +6,6 @@ import { LoginForm } from "@/components/auth/LoginForm";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { Badge } from "@/components/ui/Badge";
 import { ShieldCheck, ArrowRight } from "lucide-react";
-import { cookies } from "next/headers";
-import { ADMIN_OVERRIDE_COOKIE } from "@/lib/admin/auth";
 import { Button } from "@/components/ui/Button";
 
 export const dynamic = "force-dynamic";
@@ -17,11 +15,6 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminLoginPage() {
-  const cookieStore = await cookies();
-  if (cookieStore.get(ADMIN_OVERRIDE_COOKIE)?.value === "1") {
-    redirect("/admin");
-  }
-
   const supabaseConfigured = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
   const supabase = supabaseConfigured ? await createSupabaseServerClient() : null;
   const user = supabase ? (await supabase.auth.getUser()).data.user : null;
@@ -30,7 +23,7 @@ export default async function AdminLoginPage() {
     const { data: profile } = await supabase
       .from("profiles")
       .select("role")
-      .eq("id", user.id)
+      .eq("user_id", user.id)
       .maybeSingle();
 
     const role = (user.app_metadata?.role as string | undefined) ?? profile?.role ?? null;

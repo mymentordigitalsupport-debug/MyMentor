@@ -58,6 +58,15 @@ export type AdminUserRow = {
   journal_count: number;
   mood_count: number;
   saved_insight_count: number;
+  author_application: {
+    id: string;
+    public_name: string;
+    bio: string;
+    expertise_summary: string;
+    intended_topics: string[];
+    status: "pending" | "approved" | "rejected";
+    created_at: string;
+  } | null;
 };
 
 type EnrollmentRow = {
@@ -172,6 +181,28 @@ export type AdminUserDetail = AdminUserRow & {
   lesson_content_blocks: AdminLessonContentBlock[];
   quiz_answers: AdminQuizAnswer[];
   step_durations: AdminStepDuration[];
+  author_application: {
+    full_name: string;
+    public_name: string;
+    bio: string;
+    expertise_summary: string;
+    intended_topics: string[];
+    motivation: string;
+    website_url: string | null;
+    portfolio_url: string | null;
+    status: "pending" | "approved" | "rejected";
+    review_feedback: string | null;
+    reviewed_at: string | null;
+    created_at: string;
+  } | null;
+  authored_articles: Array<{
+    id: string;
+    title: string;
+    status: string;
+    submitted_at: string | null;
+    published_at: string | null;
+    updated_at: string;
+  }>;
   chapters_completed_count: number;
   active_courses_count: number;
 };
@@ -242,7 +273,7 @@ export async function getAdminUsersDirectory() {
     throw new Error("Supabase service role client is not configured");
   }
 
-  const [profilesResult, courseVersionsResult, courseProgressResult, enrollmentResult, lessonProgressResult, lessonsResult, journalResult, moodResult, savedResult, authUsers] =
+  const [profilesResult, courseVersionsResult, courseProgressResult, enrollmentResult, lessonProgressResult, lessonsResult, journalResult, moodResult, savedResult, authorApplicationsResult, authUsers] =
     await Promise.all([
       admin
         .from("profiles")
@@ -266,6 +297,7 @@ export async function getAdminUsersDirectory() {
       admin.from("journal_entries").select("user_id, id"),
       admin.from("mood_checkins").select("user_id, id"),
       admin.from("saved_insights").select("user_id, id"),
+      admin.from("article_author_applications").select("id, user_id, public_name, bio, expertise_summary, intended_topics, status, created_at"),
       listAllAuthUsers(admin),
     ]);
 
@@ -278,8 +310,20 @@ export async function getAdminUsersDirectory() {
   if (journalResult.error) throw journalResult.error;
   if (moodResult.error) throw moodResult.error;
   if (savedResult.error) throw savedResult.error;
+  if (authorApplicationsResult.error) throw authorApplicationsResult.error;
 
   const authMap = new Map(authUsers.map((user) => [user.id, user]));
+  const authorApplicationByUser = new Map(
+    (authorApplicationsResult.data ?? []).map((application) => [application.user_id, {
+      id: application.id,
+      public_name: application.public_name,
+      bio: application.bio,
+      expertise_summary: application.expertise_summary,
+      intended_topics: application.intended_topics ?? [],
+      status: application.status as "pending" | "approved" | "rejected",
+      created_at: application.created_at,
+    }])
+  );
   const versionMap = new Map(
     (courseVersionsResult.data ?? []).map((version) => [
       version.id,
@@ -433,6 +477,7 @@ export async function getAdminUsersDirectory() {
       journal_count: journalCountByUser.get(profile.user_id) ?? 0,
       mood_count: moodCountByUser.get(profile.user_id) ?? 0,
       saved_insight_count: insightCountByUser.get(profile.user_id) ?? 0,
+      author_application: authorApplicationByUser.get(profile.user_id) ?? null,
     };
   });
 
@@ -462,6 +507,7 @@ export async function getAdminUserDetail(userId: string) {
   if (!user) {
     return null;
   }
+  const isAuthor = ["author_pending", "author", "author_rejected"].includes(user.role);
 
   const [
     courseProgressResult,
@@ -529,6 +575,25 @@ export async function getAdminUserDetail(userId: string) {
   if (savedInsightsResult.error) throw savedInsightsResult.error;
   if (quizAnswersResult.error) throw quizAnswersResult.error;
   if (stepEventsResult.error) throw stepEventsResult.error;
+
+  const [authorApplicationResult, authoredArticlesResult] = isAuthor
+    ? await Promise.all([
+        admin
+          .from("article_author_applications")
+          .select("id, full_name, public_name, bio, expertise_summary, intended_topics, motivation, website_url, portfolio_url, status, review_feedback, reviewed_at, created_at")
+          .eq("user_id", userId)
+          .maybeSingle(),
+        admin
+          .from("article_articles")
+          .select("id, title, status, submitted_at, published_at, updated_at")
+          .eq("author_id", userId)
+          .is("deleted_at", null)
+          .order("updated_at", { ascending: false }),
+      ])
+    : [{ data: null, error: null }, { data: [], error: null }];
+
+  if (authorApplicationResult.error) throw authorApplicationResult.error;
+  if (authoredArticlesResult.error) throw authoredArticlesResult.error;
 
   const courseProgress = courseProgressResult.data ?? [];
   const enrollments = (enrollmentResult.data ?? []) as Array<{
@@ -769,6 +834,13 @@ export async function getAdminUserDetail(userId: string) {
       }
       return (left.lesson_title ?? "").localeCompare(right.lesson_title ?? "");
     }),
+    author_application: authorApplicationResult.data
+      ? {
+          ...authorApplicationResult.data,
+          intended_topics: authorApplicationResult.data.intended_topics ?? [],
+        }
+      : null,
+    authored_articles: authoredArticlesResult.data ?? [],
     chapters_completed_count: chaptersCompletedCount,
     active_courses_count: activeCourseVersionIds.length,
   } satisfies AdminUserDetail;

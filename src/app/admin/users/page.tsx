@@ -4,6 +4,7 @@ import { ArrowRight, Plus, Search, Users } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { AuthorApplicationActions } from "@/components/admin/AuthorApplicationActions";
 import { formatShortDate } from "@/lib/utils";
 import { getAdminUsersDirectory } from "@/lib/admin/users";
 
@@ -140,79 +141,50 @@ export default async function AdminUsersPage({
 
       <section className="space-y-4">
         {users.length > 0 ? (
-          users.map((user) => (
-            <Card key={user.user_id} variant="default" padding="lg">
+          users.map((user) => {
+            const isAuthor = ["author_pending", "author", "author_rejected"].includes(user.role);
+            const application = user.author_application;
+
+            return <Card key={user.user_id} variant="default" padding="lg">
               <div className="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
                 <div className="space-y-3">
                   <div className="flex flex-wrap items-center gap-3">
                     <h2 className="text-xl font-semibold text-text">
-                      {user.display_name ?? user.anonymous_name ?? "Unnamed user"}
+                      {application?.public_name ?? user.display_name ?? user.anonymous_name ?? (isAuthor ? "Unnamed author" : "Unnamed user")}
                     </h2>
                     <Badge variant={statusTone(user.account_status)}>{user.account_status}</Badge>
-                    <Badge variant="forest">{user.role}</Badge>
+                    <Badge variant="forest">{isAuthor ? "Author application" : user.role}</Badge>
+                    {isAuthor ? <Badge variant={application?.status === "approved" ? "sage" : "gold"}>{application?.status ?? "Application details missing"}</Badge> : null}
                   </div>
 
                   <div className="flex flex-wrap gap-2 text-sm text-muted">
                     <span>{user.email ?? "No email visible"}</span>
-                    <span>-</span>
-                    <span>{user.guidance_path}</span>
-                    <span>-</span>
-                    <span>{user.active_journey_title ?? "No active course"}</span>
+                    {isAuthor ? <><span>-</span><span>{application ? `Applied ${formatShortDate(application.created_at)}` : "No application record"}</span></> : <><span>-</span><span>{user.guidance_path}</span><span>-</span><span>{user.active_journey_title ?? "No active course"}</span></>}
                   </div>
 
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="sage">Joined {formatShortDate(user.auth_created_at ?? user.profile_created_at)}</Badge>
-                    <Badge variant="gold">
-                      Last active {user.active_last_active_at ? formatShortDate(user.active_last_active_at) : "N/A"}
-                    </Badge>
-                    <Badge variant="muted">Lessons {user.lesson_completed_count}/{user.lesson_started_count}</Badge>
-                  </div>
+                  {isAuthor ? <div className="flex flex-wrap gap-2"><Badge variant="sage">Joined {formatShortDate(user.auth_created_at ?? user.profile_created_at)}</Badge>{application?.intended_topics.map((topic) => <Badge key={topic} variant="muted">{topic}</Badge>)}</div> : <div className="flex flex-wrap gap-2"><Badge variant="sage">Joined {formatShortDate(user.auth_created_at ?? user.profile_created_at)}</Badge><Badge variant="gold">Last active {user.active_last_active_at ? formatShortDate(user.active_last_active_at) : "N/A"}</Badge><Badge variant="muted">Lessons {user.lesson_completed_count}/{user.lesson_started_count}</Badge></div>}
                 </div>
 
                 <div className="grid gap-3 sm:grid-cols-2 xl:w-[420px]">
-                  <Card variant="mist" padding="sm">
-                    <p className="text-xs uppercase tracking-[0.14em] text-muted">Journal entries</p>
-                    <p className="mt-2 text-2xl font-semibold text-text">{user.journal_count}</p>
-                  </Card>
-                  <Card variant="mist" padding="sm">
-                    <p className="text-xs uppercase tracking-[0.14em] text-muted">Mood check-ins</p>
-                    <p className="mt-2 text-2xl font-semibold text-text">{user.mood_count}</p>
-                  </Card>
-                  <Card variant="mist" padding="sm">
-                    <p className="text-xs uppercase tracking-[0.14em] text-muted">Saved insights</p>
-                    <p className="mt-2 text-2xl font-semibold text-text">{user.saved_insight_count}</p>
-                  </Card>
-                  <Card variant="mist" padding="sm">
-                    <p className="text-xs uppercase tracking-[0.14em] text-muted">Onboarding</p>
-                    <p className="mt-2 text-sm font-semibold text-text">
-                      {user.onboarding_done ? "Complete" : "Incomplete"}
-                    </p>
-                  </Card>
+                  {isAuthor ? <><Card variant="mist" padding="sm"><p className="text-xs uppercase tracking-[0.14em] text-muted">Author status</p><p className="mt-2 text-sm font-semibold capitalize text-text">{application?.status ?? "Missing application"}</p></Card><Card variant="mist" padding="sm"><p className="text-xs uppercase tracking-[0.14em] text-muted">Writing topics</p><p className="mt-2 text-sm font-semibold text-text">{application?.intended_topics.length ?? 0}</p></Card><Card variant="mist" padding="sm" className="sm:col-span-2"><p className="text-xs uppercase tracking-[0.14em] text-muted">Experience or expertise</p><p className="mt-2 line-clamp-2 text-sm text-text">{application?.expertise_summary ?? "No application details have been recorded."}</p></Card></> : <><Card variant="mist" padding="sm"><p className="text-xs uppercase tracking-[0.14em] text-muted">Journal entries</p><p className="mt-2 text-2xl font-semibold text-text">{user.journal_count}</p></Card><Card variant="mist" padding="sm"><p className="text-xs uppercase tracking-[0.14em] text-muted">Mood check-ins</p><p className="mt-2 text-2xl font-semibold text-text">{user.mood_count}</p></Card><Card variant="mist" padding="sm"><p className="text-xs uppercase tracking-[0.14em] text-muted">Saved insights</p><p className="mt-2 text-2xl font-semibold text-text">{user.saved_insight_count}</p></Card><Card variant="mist" padding="sm"><p className="text-xs uppercase tracking-[0.14em] text-muted">Onboarding</p><p className="mt-2 text-sm font-semibold text-text">{user.onboarding_done ? "Complete" : "Incomplete"}</p></Card></>}
                 </div>
               </div>
 
               <div className="mt-5 flex flex-wrap gap-2">
                 <Button asChild variant="secondary" size="sm">
                   <Link href={`/admin/users/${user.user_id}`}>
-                    View User
+                    {isAuthor ? "View application" : "View User"}
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
-                <Button asChild variant="secondary" size="sm">
-                  <Link href={`/admin/users/${user.user_id}`}>Edit Profile</Link>
-                </Button>
-                <Button asChild variant="secondary" size="sm">
-                  <Link href="/admin/courses">View Course</Link>
-                </Button>
+                {isAuthor ? application?.status === "pending" ? <AuthorApplicationActions applicationId={application.id} /> : null : <><Button asChild variant="secondary" size="sm"><Link href={`/admin/users/${user.user_id}`}>Edit Profile</Link></Button><Button asChild variant="secondary" size="sm"><Link href="/admin/courses">View Course</Link></Button></>}
               </div>
 
               <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-muted">
-                <span>Profile updated {formatShortDate(user.profile_updated_at)}</span>
-                <span>Account status {formatShortDate(user.account_status_updated_at)}</span>
-                <span>Role locked</span>
+                {isAuthor ? <><span>Application {application ? `received ${formatShortDate(application.created_at)}` : "record missing"}</span><span>{application?.status === "pending" ? "Awaiting an editorial decision" : "Editorial decision recorded"}</span></> : <><span>Profile updated {formatShortDate(user.profile_updated_at)}</span><span>Account status {formatShortDate(user.account_status_updated_at)}</span><span>Role locked</span></>}
               </div>
             </Card>
-          ))
+          })
         ) : (
           <Card variant="default" padding="lg">
             <p className="text-sm text-muted">No users matched the current filters.</p>

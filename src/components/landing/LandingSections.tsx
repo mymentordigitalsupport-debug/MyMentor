@@ -15,6 +15,7 @@ import {
 import { SectionReveal } from "@/components/landing/SectionReveal";
 import { CoursePreviewShowcase } from "@/components/landing/CoursePreviewShowcase";
 import { CountdownSection } from "@/components/about/components/CountdownSection";
+import { ArticlePreviewSection } from "@/components/articles/ArticlePreviewSection";
 
 const pillars = [
   {
@@ -118,14 +119,14 @@ export function LandingSections() {
           <div className="p-6 sm:p-8 lg:p-10">
             <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-2xl">
-                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">The books</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">Available now</p>
                 <h2 className="font-serif mt-3 text-4xl font-semibold tracking-[-0.05em] text-text sm:text-5xl">
-                  Three books. Three pathways. One platform.
+                  One book. One journey toward freedom.
                 </h2>
               </div>
               <p className="max-w-xl text-sm leading-7 text-muted">
-                Each book becomes a course with its own arc, its own lessons, and its own way of helping people move
-                forward with clarity.
+                Uprooting Drug Abuse is our complete guided recovery course, available with either Religious Guidance
+                or Christian Guided support.
               </p>
             </div>
 
@@ -135,6 +136,10 @@ export function LandingSections() {
       </SectionReveal>
 
       <SectionReveal delayMs={180}>
+        <ArticlePreviewSection />
+      </SectionReveal>
+
+      <SectionReveal delayMs={200}>
         <section
           id="owner"
           className="texture-noise w-full overflow-hidden border-y border-[#cbc1b2] bg-[linear-gradient(180deg,#f4efe6_0%,#fbf8f1_100%)] text-text shadow-[0_24px_90px_-55px_rgba(31,42,36,0.3)]"

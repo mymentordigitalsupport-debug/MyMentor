@@ -7,6 +7,13 @@ body:has(.register-page) {
   overflow: hidden;
 }
 
+/* Author applications have a longer form, so the document must be scrollable. */
+html:has(.authors-register-page),
+body:has(.authors-register-page) {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 .register-card {
   background: linear-gradient(145deg, #eeefed 5%, #f5eacb 100%);
 }
