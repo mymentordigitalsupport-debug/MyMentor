@@ -35,13 +35,13 @@ export function HeroSection() {
             <div>
               <h1 className="font-serif text-5xl font-light leading-[0.9] tracking-[-0.055em] text-stone-100 sm:text-6xl lg:text-[5rem]">We transform<span className="block italic text-[#95a681]">together.</span></h1>
               <p className="mt-6 max-w-lg text-sm font-light leading-7 text-stone-200/90 sm:text-base sm:leading-8">Guided recovery, healing, family restoration, and purposeful growth through structured courses, lessons, and daily action.</p>
-              <Link href="#books" className="group mt-8 inline-flex items-center gap-3 text-xs font-semibold tracking-[0.22em] text-stone-100 underline decoration-stone-500/80 underline-offset-8 transition hover:text-[#f1d28d] hover:decoration-[#f1d28d]"><span className="h-2.5 w-2.5 rounded-full bg-[#b8d088] shadow-[0_0_14px_#b8d088]" />START YOUR JOURNEY<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></Link>
+              <Link href="#books" className="landing-user-profile landing-user-profile--hero group mt-8 tracking-[0.12em]"><span className="landing-user-profile-inner"><span className="h-2.5 w-2.5 rounded-full bg-[#b8d088] shadow-[0_0_14px_#b8d088]" /><span>START YOUR JOURNEY</span><ArrowRight className="transition-transform group-hover:translate-x-1" /></span></Link>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="absolute inset-x-6 bottom-[calc(6rem+1.75rem)] z-20 sm:inset-x-10 lg:inset-x-16"><div className="relative grid h-24 w-24 place-items-center"><svg viewBox="0 0 160 160" className="absolute inset-0 animate-[spin_24s_linear_infinite] fill-stone-300/80"><defs><path id="hero-circle" d="M80 80m-62 0a62 62 0 1 1 124 0a62 62 0 1 1-124 0" /></defs><text className="text-[10px] tracking-[.24em]"><textPath href="#hero-circle">A BRIGHTER TOMORROW STARTS HERE · A BRIGHTER TOMORROW STARTS HERE ·</textPath></text></svg><button onClick={() => setPlaying(!playing)} className="z-10 grid h-14 w-14 place-items-center rounded-full border border-[#f1d28d]/40 bg-[#1b221f]/90 text-stone-100">{playing ? <Pause className="h-4 w-4" /> : <Play className="ml-0.5 h-4 w-4" />}</button></div></div>
+      <div className="absolute inset-x-6 bottom-[calc(6rem+1.75rem)] z-20 sm:inset-x-10 lg:inset-x-16"><div className="relative grid h-24 w-24 place-items-center"><svg viewBox="0 0 160 160" className="absolute inset-0 animate-[spin_24s_linear_infinite] fill-stone-300/80"><defs><path id="hero-circle" d="M80 80m-62 0a62 62 0 1 1 124 0a62 62 0 1 1-124 0" /></defs><text className="text-[10px] tracking-[.24em]"><textPath href="#hero-circle">A BRIGHTER TOMORROW STARTS HERE · A BRIGHTER TOMORROW STARTS HERE ·</textPath></text></svg><button onClick={() => setPlaying(!playing)} aria-label={playing ? "Pause hero video" : "Play hero video"} className="landing-user-profile landing-user-profile--video z-10"><span className="landing-user-profile-inner">{playing ? <Pause /> : <Play className="ml-0.5" />}</span></button></div></div>
 
       <div className="pointer-events-none absolute inset-0 z-20 hidden lg:block">
         {pathways.map((pathway) => (

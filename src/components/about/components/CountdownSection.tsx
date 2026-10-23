@@ -168,7 +168,8 @@ export const CountdownSection: React.FC<CountdownSectionProps> = ({
             variant="gold-rect"
             icon="sparkles"
             onClick={onSignUp}
-            className="px-7 py-3 text-xs sm:text-sm font-bold"
+            profileStyle
+            className="landing-user-profile"
           >
             Sign up
           </CTAButton>
@@ -178,7 +179,8 @@ export const CountdownSection: React.FC<CountdownSectionProps> = ({
             icon="book"
             onClick={onExploreBooks || ((e) => scrollToSection('books', e))}
             href="#books"
-            className="px-7 py-3 text-xs sm:text-sm"
+            profileStyle
+            className="landing-user-profile"
           >
             Explore the books
           </CTAButton>
@@ -266,28 +268,25 @@ export const CountdownSection: React.FC<CountdownSectionProps> = ({
               <li>
                 <button
                   onClick={onSignUp}
-                  className="hover:text-white transition-colors cursor-pointer text-left flex items-center gap-1.5"
+                  className="landing-user-profile landing-user-profile--footer"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#E5C175]" />
-                  <span>Sign up</span>
+                  <span className="landing-user-profile-inner"><span className="w-1.5 h-1.5 rounded-full bg-[#E5C175]" /><span>Sign up</span></span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => onSignIn && onSignIn('user')}
-                  className="hover:text-white transition-colors cursor-pointer text-left flex items-center gap-1.5"
+                  className="landing-user-profile landing-user-profile--footer"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
-                  <span>Sign in</span>
+                  <span className="landing-user-profile-inner"><span className="w-1.5 h-1.5 rounded-full bg-white/40" /><span>Sign in</span></span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => onSignIn && onSignIn('admin')}
-                  className="hover:text-white transition-colors cursor-pointer text-left flex items-center gap-1.5 text-[#9A9388] hover:text-[#D4CDBC]"
+                  className="landing-user-profile landing-user-profile--footer"
                 >
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#9A9388]" />
-                  <span>Admin login</span>
+                  <span className="landing-user-profile-inner"><ShieldCheck /><span>Admin login</span></span>
                 </button>
               </li>
             </ul>

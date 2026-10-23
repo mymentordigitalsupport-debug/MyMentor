@@ -103,7 +103,7 @@ export function PublicNavigation({ overDark = false, adaptToAboutSections = fals
         >
           <Link href="/" onClick={close} tabIndex={stickyPhase === "normal" ? undefined : -1} className="flex items-center gap-2 font-semibold tracking-tight" aria-label="My Mentor home">
             <Image src="/assets/images/favicon.png" alt="" width={38} height={38} className="size-9 object-contain" />
-            <span className="text-sm sm:text-base">My Mentor</span>
+            <span className="public-nav-brand-label text-sm sm:text-base">My Mentor</span>
           </Link>
         </motion.div>
 
@@ -113,9 +113,8 @@ export function PublicNavigation({ overDark = false, adaptToAboutSections = fals
             <nav aria-label="Main navigation" className={`flex h-[52px] items-center justify-center gap-7 text-sm font-medium text-white/70 ${overDark ? "gap-8 text-xs tracking-[0.2em]" : ""}`}>
               <Link href="/" onClick={close} className="transition hover:text-white">Home</Link>
               <Link href="/about" onClick={close} className="transition hover:text-white">About us</Link>
-              <Link href="/articles" onClick={close} className="transition hover:text-white">Articles</Link>
-              <button type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="explore-panel" className={`flex items-center gap-1 rounded-md px-3 py-2 transition hover:text-white ${open ? "bg-white/10 text-white" : ""}`}>
-                Explore <ChevronDown className={`size-4 transition-transform ${open ? "rotate-180" : ""}`} />
+              <button type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="explore-panel" className="landing-user-profile landing-user-profile--menu">
+                <span className="landing-user-profile-inner"><span>Explore</span><ChevronDown className={`transition-transform ${open ? "rotate-180" : ""}`} /></span>
               </button>
             </nav>
             <AnimatePresence initial={false}>
@@ -130,9 +129,9 @@ export function PublicNavigation({ overDark = false, adaptToAboutSections = fals
         </div>
 
         <div className="flex items-center gap-2">
-          <Link href="/login" onClick={close} className="flex items-center rounded-lg border border-[#32453b] bg-[#faf0e3] px-3.5 py-2 text-xs font-semibold !text-[#32453b] transition hover:bg-white">Login</Link>
-          <Link href="/register" onClick={close} className="group flex items-center gap-1 rounded-lg bg-[#32453b] px-3.5 py-2 text-xs font-semibold !text-white transition hover:bg-[#24392f]">Sign up <ArrowRight className="size-3 transition-transform group-hover:translate-x-0.5" /></Link>
-          <button type="button" onClick={() => setMobileOpen(!mobileOpen)} aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"} aria-expanded={mobileOpen} aria-controls="mobile-navigation" className="public-nav-toggle grid size-10 place-items-center rounded-lg border border-current/30 lg:hidden">{mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}</button>
+          <Link href="/login" onClick={close} className="landing-user-profile landing-user-profile--nav"><span className="landing-user-profile-inner"><span>Login</span></span></Link>
+          <Link href="/register" onClick={close} className="landing-user-profile landing-user-profile--nav group"><span className="landing-user-profile-inner"><span>Sign up</span><ArrowRight className="transition-transform group-hover:translate-x-0.5" /></span></Link>
+          <button type="button" onClick={() => setMobileOpen(!mobileOpen)} aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"} aria-expanded={mobileOpen} aria-controls="mobile-navigation" className="landing-user-profile landing-user-profile--icon public-nav-toggle lg:hidden"><span className="landing-user-profile-inner">{mobileOpen ? <X /> : <Menu />}</span></button>
         </div>
       </div>
       <AnimatePresence initial={false}>
@@ -140,8 +139,7 @@ export function PublicNavigation({ overDark = false, adaptToAboutSections = fals
           <div className="grid gap-1 p-4 text-sm">
             <Link href="/" onClick={close} className="rounded-lg px-3 py-3 hover:bg-white/10">Home</Link>
             <Link href="/about" onClick={close} className="rounded-lg px-3 py-3 hover:bg-white/10">About us</Link>
-            <Link href="/articles" onClick={close} className="rounded-lg px-3 py-3 hover:bg-white/10">Articles</Link>
-            <button type="button" aria-expanded={mobileExplore} aria-controls="mobile-explore-panel" onClick={() => setMobileExplore(!mobileExplore)} className="flex w-full items-center justify-between rounded-lg px-3 py-3 text-left hover:bg-white/10">Explore <ChevronDown className={`size-4 transition-transform ${mobileExplore ? "rotate-180" : ""}`} /></button>
+            <button type="button" aria-expanded={mobileExplore} aria-controls="mobile-explore-panel" onClick={() => setMobileExplore(!mobileExplore)} className="landing-user-profile landing-user-profile--menu-mobile"><span className="landing-user-profile-inner"><span>Explore</span><ChevronDown className={`transition-transform ${mobileExplore ? "rotate-180" : ""}`} /></span></button>
             {mobileExplore && <div id="mobile-explore-panel" className="ml-3 grid gap-1 border-l border-white/15 pl-3">{exploreLinks.map((item) => <Link key={item.title} href={item.href} onClick={close} className="rounded-lg px-3 py-2 hover:bg-white/10"><span className="block">{item.title}</span><span className="mt-1 block text-xs text-white/55">{item.description}</span></Link>)}</div>}
           </div>
         </motion.nav>}

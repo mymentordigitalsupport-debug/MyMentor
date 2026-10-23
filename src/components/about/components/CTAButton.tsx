@@ -11,6 +11,7 @@ interface CTAButtonProps {
   className?: string;
   id?: string;
   href?: string;
+  profileStyle?: boolean;
 }
 
 export const CTAButton: React.FC<CTAButtonProps> = ({
@@ -21,6 +22,7 @@ export const CTAButton: React.FC<CTAButtonProps> = ({
   className = '',
   id,
   href = '#offer',
+  profileStyle = false,
 }) => {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (onClick) {
@@ -84,8 +86,11 @@ export const CTAButton: React.FC<CTAButtonProps> = ({
       onClick={handleClick}
       className={`${baseStyles} ${variantStyles} ${className}`}
     >
-      {iconNode}
-      <span>{children}</span>
+      {profileStyle ? (
+        <span className="landing-user-profile-inner">{iconNode}<span>{children}</span></span>
+      ) : (
+        <>{iconNode}<span>{children}</span></>
+      )}
     </a>
   );
 };

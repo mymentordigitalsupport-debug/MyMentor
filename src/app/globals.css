@@ -159,3 +159,169 @@ a {
   .public-nav-enter { animation: public-nav-in 240ms ease-out both; }
   .public-nav-exit { animation: public-nav-out 200ms ease-in both; }
 }
+
+/* Uiverse profile-style buttons, limited to the landing page. */
+.landing-page .landing-user-profile {
+  --profile-min-width: 131px;
+  --profile-height: 51px;
+  --profile-padding-x: 16px;
+  --profile-gap: 10px;
+  --profile-font-size: 14px;
+  --profile-icon-size: 18px;
+  width: max-content;
+  max-width: 100%;
+  min-width: var(--profile-min-width);
+  min-height: var(--profile-height);
+  padding: 2px;
+  border: 0;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  background: linear-gradient(to bottom right, #2e8eff 0%, rgba(46, 142, 255, 0) 30%);
+  background-color: rgba(46, 142, 255, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff !important;
+  text-decoration: none;
+  white-space: normal;
+  box-shadow: none;
+  transform: none;
+}
+
+.landing-page .landing-user-profile:hover,
+.landing-page .landing-user-profile:focus-visible {
+  background-color: rgba(46, 142, 255, 0.7);
+  box-shadow: 0 0 10px rgba(46, 142, 255, 0.5);
+  outline: none;
+}
+
+.landing-page .landing-user-profile-inner {
+  min-width: 0;
+  width: 100%;
+  min-height: calc(var(--profile-height) - 4px);
+  padding: 8px var(--profile-padding-x);
+  border-radius: 13px;
+  background-color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--profile-gap);
+  color: #fff;
+  font-weight: 600;
+  font-size: var(--profile-font-size);
+  line-height: 1.25;
+  text-align: center;
+}
+
+.landing-page .landing-user-profile-inner svg {
+  width: var(--profile-icon-size);
+  height: var(--profile-icon-size);
+  fill: #fff;
+  flex-shrink: 0;
+}
+
+.landing-page .landing-user-profile-inner svg:not(.fill-current) {
+  fill: none;
+  stroke: #fff;
+}
+
+.landing-page .landing-user-profile--hero {
+  --profile-min-width: 0px;
+  --profile-height: 52px;
+  --profile-font-size: 12px;
+}
+
+.landing-page .landing-user-profile--menu,
+.landing-page .landing-user-profile--nav {
+  --profile-min-width: 0px;
+  --profile-height: 38px;
+  --profile-padding-x: 11px;
+  --profile-gap: 6px;
+  --profile-font-size: 13px;
+  --profile-icon-size: 16px;
+}
+
+.landing-page .landing-user-profile--menu-mobile {
+  --profile-min-width: 0px;
+  --profile-height: 44px;
+  --profile-padding-x: 12px;
+  --profile-gap: 8px;
+  --profile-font-size: 14px;
+  --profile-icon-size: 17px;
+  width: 100%;
+}
+
+.landing-page .landing-user-profile--menu-mobile .landing-user-profile-inner {
+  justify-content: space-between;
+}
+
+.landing-page .landing-user-profile--footer {
+  --profile-min-width: 0px;
+  --profile-height: 36px;
+  --profile-padding-x: 10px;
+  --profile-gap: 7px;
+  --profile-font-size: 12px;
+  --profile-icon-size: 15px;
+}
+
+.landing-page .landing-user-profile--icon {
+  --profile-min-width: 40px;
+  --profile-height: 40px;
+  --profile-padding-x: 0px;
+  --profile-icon-size: 20px;
+  width: 40px;
+}
+
+.landing-page .landing-user-profile--icon .landing-user-profile-inner {
+  width: 36px;
+  min-height: 36px;
+}
+
+.landing-page .landing-user-profile--video {
+  --profile-min-width: 56px;
+  --profile-height: 56px;
+  --profile-padding-x: 0px;
+  --profile-icon-size: 23px;
+  width: 56px;
+  border-radius: 50%;
+}
+
+.landing-page .landing-user-profile--video .landing-user-profile-inner {
+  width: 52px;
+  min-height: 52px;
+  border-radius: 50%;
+}
+
+@media (max-width: 639px) {
+  .landing-page .public-nav-brand-label {
+    display: none;
+  }
+
+  .landing-page .landing-user-profile--nav {
+    --profile-height: 40px;
+    --profile-padding-x: 8px;
+    --profile-font-size: 12px;
+  }
+
+  .landing-page .landing-user-profile--hero {
+    --profile-padding-x: 12px;
+    --profile-gap: 7px;
+    --profile-font-size: 11px;
+    --profile-icon-size: 16px;
+  }
+
+  .landing-page .landing-user-profile--hero .landing-user-profile-inner {
+    letter-spacing: 0.08em;
+  }
+
+  .landing-page .landing-user-profile--footer {
+    --profile-height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-page .landing-user-profile {
+    transition: none;
+  }
+}
