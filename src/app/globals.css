@@ -161,7 +161,7 @@ a {
 }
 
 /* Uiverse profile-style buttons, limited to the landing page. */
-.landing-page .landing-user-profile {
+.landing-user-profile {
   --profile-min-width: 131px;
   --profile-height: 51px;
   --profile-padding-x: 16px;
@@ -189,14 +189,14 @@ a {
   transform: none;
 }
 
-.landing-page .landing-user-profile:hover,
-.landing-page .landing-user-profile:focus-visible {
+.landing-user-profile:hover,
+.landing-user-profile:focus-visible {
   background-color: rgba(46, 142, 255, 0.7);
   box-shadow: 0 0 10px rgba(46, 142, 255, 0.5);
   outline: none;
 }
 
-.landing-page .landing-user-profile-inner {
+.landing-user-profile-inner {
   min-width: 0;
   width: 100%;
   min-height: calc(var(--profile-height) - 4px);
@@ -214,26 +214,26 @@ a {
   text-align: center;
 }
 
-.landing-page .landing-user-profile-inner svg {
+.landing-user-profile-inner svg {
   width: var(--profile-icon-size);
   height: var(--profile-icon-size);
   fill: #fff;
   flex-shrink: 0;
 }
 
-.landing-page .landing-user-profile-inner svg:not(.fill-current) {
+.landing-user-profile-inner svg:not(.fill-current) {
   fill: none;
   stroke: #fff;
 }
 
-.landing-page .landing-user-profile--hero {
+.landing-user-profile--hero {
   --profile-min-width: 0px;
   --profile-height: 52px;
   --profile-font-size: 12px;
 }
 
-.landing-page .landing-user-profile--menu,
-.landing-page .landing-user-profile--nav {
+.landing-user-profile--menu,
+.landing-user-profile--nav {
   --profile-min-width: 0px;
   --profile-height: 38px;
   --profile-padding-x: 11px;
@@ -242,7 +242,7 @@ a {
   --profile-icon-size: 16px;
 }
 
-.landing-page .landing-user-profile--menu-mobile {
+.landing-user-profile--menu-mobile {
   --profile-min-width: 0px;
   --profile-height: 44px;
   --profile-padding-x: 12px;
@@ -252,11 +252,11 @@ a {
   width: 100%;
 }
 
-.landing-page .landing-user-profile--menu-mobile .landing-user-profile-inner {
+.landing-user-profile--menu-mobile .landing-user-profile-inner {
   justify-content: space-between;
 }
 
-.landing-page .landing-user-profile--footer {
+.landing-user-profile--footer {
   --profile-min-width: 0px;
   --profile-height: 36px;
   --profile-padding-x: 10px;
@@ -265,7 +265,7 @@ a {
   --profile-icon-size: 15px;
 }
 
-.landing-page .landing-user-profile--icon {
+.landing-user-profile--icon {
   --profile-min-width: 40px;
   --profile-height: 40px;
   --profile-padding-x: 0px;
@@ -273,12 +273,12 @@ a {
   width: 40px;
 }
 
-.landing-page .landing-user-profile--icon .landing-user-profile-inner {
+.landing-user-profile--icon .landing-user-profile-inner {
   width: 36px;
   min-height: 36px;
 }
 
-.landing-page .landing-user-profile--video {
+.landing-user-profile--video {
   --profile-min-width: 56px;
   --profile-height: 56px;
   --profile-padding-x: 0px;
@@ -287,41 +287,98 @@ a {
   border-radius: 50%;
 }
 
-.landing-page .landing-user-profile--video .landing-user-profile-inner {
+.landing-user-profile--video .landing-user-profile-inner {
   width: 52px;
   min-height: 52px;
   border-radius: 50%;
 }
 
 @media (max-width: 639px) {
-  .landing-page .public-nav-brand-label {
+  .public-nav-brand-label {
     display: none;
   }
 
-  .landing-page .landing-user-profile--nav {
+  .landing-user-profile--nav {
     --profile-height: 40px;
     --profile-padding-x: 8px;
     --profile-font-size: 12px;
   }
 
-  .landing-page .landing-user-profile--hero {
+  .landing-user-profile--hero {
     --profile-padding-x: 12px;
     --profile-gap: 7px;
     --profile-font-size: 11px;
     --profile-icon-size: 16px;
   }
 
-  .landing-page .landing-user-profile--hero .landing-user-profile-inner {
+  .landing-user-profile--hero .landing-user-profile-inner {
     letter-spacing: 0.08em;
   }
 
-  .landing-page .landing-user-profile--footer {
+  .landing-user-profile--footer {
     --profile-height: 44px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .landing-page .landing-user-profile {
+  .landing-user-profile {
+    transition: none;
+  }
+}
+
+/* Site-wide action treatment. Keep choice cards, tabs and inline controls intact. */
+:is(
+  .site-profile-button,
+  button[class*="rounded"]:not([data-profile-exempt]):not([aria-pressed]):not([role="tab"]):not([class*="text-left"]):not(.landing-user-profile):not(.pel-trigger):not(.btn),
+  a[class*="inline-flex"][class*="rounded"]:not(.landing-user-profile),
+  a[class*="rounded-full"][class*="px-"]:not(.landing-user-profile)
+) {
+  border: 2px solid transparent !important;
+  background:
+    linear-gradient(#1a1a1a, #1a1a1a) padding-box,
+    linear-gradient(to bottom right, #2e8eff 0%, rgba(46, 142, 255, 0.2) 30%) border-box !important;
+  color: #fff !important;
+  border-radius: 15px !important;
+  box-shadow: none;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+:is(
+  .site-profile-button,
+  button[class*="rounded"]:not([data-profile-exempt]):not([aria-pressed]):not([role="tab"]):not([class*="text-left"]):not(.landing-user-profile):not(.pel-trigger):not(.btn),
+  a[class*="inline-flex"][class*="rounded"]:not(.landing-user-profile),
+  a[class*="rounded-full"][class*="px-"]:not(.landing-user-profile)
+):is(:hover, :focus-visible):not(:disabled) {
+  background:
+    linear-gradient(#1a1a1a, #1a1a1a) padding-box,
+    linear-gradient(to bottom right, #2e8eff 0%, rgba(46, 142, 255, 0.7) 100%) border-box !important;
+  box-shadow: 0 0 10px rgba(46, 142, 255, 0.5);
+}
+
+:is(
+  .site-profile-button,
+  button[class*="rounded"]:not([data-profile-exempt]):not([aria-pressed]):not([role="tab"]):not([class*="text-left"]):not(.landing-user-profile):not(.pel-trigger):not(.btn),
+  a[class*="inline-flex"][class*="rounded"]:not(.landing-user-profile),
+  a[class*="rounded-full"][class*="px-"]:not(.landing-user-profile)
+):focus-visible {
+  outline: 2px solid #2e8eff;
+  outline-offset: 2px;
+}
+
+:is(.site-profile-button, button[class*="rounded"]:not([data-profile-exempt]):not([class*="text-left"])):disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+:is(.site-profile-button, button[class*="rounded"]:not([data-profile-exempt]):not([class*="text-left"])):is([data-profile-danger], [class*="danger"], [class*="destructive"], [class*="red"]) {
+  color: #ffb8b8 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(.site-profile-button, button[class*="rounded"], a[class*="rounded"]) {
     transition: none;
   }
 }

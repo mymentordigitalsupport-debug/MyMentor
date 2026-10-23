@@ -105,10 +105,10 @@ export function ArticleEditor({ article, categories, mode }: Props) {
                   <p className="text-sm font-medium text-text">Cover image</p>
                   <p className="mt-1 text-xs leading-5 text-muted">Upload a JPG, PNG, WebP, or AVIF image up to 5 MB. It is stored in Supabase&apos;s <code>articles_media</code> bucket.</p>
                 </div>
-                {form.coverImageUrl ? <button type="button" onClick={() => update("coverImageUrl", "")} className="shrink-0 text-xs font-semibold text-forest underline">Remove</button> : null}
+                {form.coverImageUrl ? <button type="button" onClick={() => update("coverImageUrl", "")} className="site-profile-button shrink-0 rounded-xl px-3 py-2 text-xs font-semibold">Remove</button> : null}
               </div>
               {form.coverImageUrl ? <img src={form.coverImageUrl} alt="Current article cover" className="mt-4 aspect-[16/9] w-full rounded-xl border border-mist object-cover" /> : null}
-              <label className="mt-4 flex cursor-pointer items-center justify-center rounded-xl border border-dashed border-sage/50 bg-sage/5 px-3 py-3 text-sm font-semibold text-forest transition hover:bg-sage/10">
+              <label className="site-profile-button mt-4 flex cursor-pointer items-center justify-center rounded-xl border border-dashed border-sage/50 bg-sage/5 px-3 py-3 text-sm font-semibold text-forest transition hover:bg-sage/10">
                 <input type="file" accept="image/jpeg,image/png,image/webp,image/avif" className="sr-only" disabled={uploadingCover} onChange={(event) => { void uploadCoverImage(event.target.files?.[0] ?? null); event.currentTarget.value = ""; }} />
                 {uploadingCover ? "Uploading image..." : form.coverImageUrl ? "Replace cover image" : "Upload cover image"}
               </label>

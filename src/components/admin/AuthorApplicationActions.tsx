@@ -36,7 +36,7 @@ export function AuthorApplicationActions({ applicationId }: { applicationId: str
   return (
     <div className="flex flex-wrap items-center gap-2">
       <Button size="sm" loading={working === "approved"} disabled={working !== null} onClick={() => decide("approved")}>Approve author</Button>
-      <Button size="sm" variant="secondary" loading={working === "rejected"} disabled={working !== null} onClick={() => decide("rejected")}>Reject</Button>
+      <Button size="sm" variant="danger" loading={working === "rejected"} disabled={working !== null} onClick={() => decide("rejected")}>Reject</Button>
       {error ? <p className="w-full text-xs text-red-700">{error}</p> : null}
     </div>
   );

@@ -282,6 +282,7 @@ export function SettingsPanel({
           </button>
           <button
             type="button"
+            data-profile-danger
             onClick={handleDeleteAccount}
             className="inline-flex items-center justify-center rounded-full border border-[#e2b6b6] bg-[#fff5f5] px-5 py-3 text-sm font-semibold text-[#8e4f4f] transition hover:bg-[#fdecec]"
           >

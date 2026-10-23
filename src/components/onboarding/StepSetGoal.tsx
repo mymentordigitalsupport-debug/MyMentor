@@ -69,6 +69,7 @@ export function StepSetGoal({ value, onChange }: StepSetGoalProps) {
           <button
             key={s}
             type="button"
+            data-profile-exempt
             onClick={() => setGoal(s)}
             className={`text-sm px-3 py-1.5 rounded-full border transition-all duration-150 ${
               goal === s

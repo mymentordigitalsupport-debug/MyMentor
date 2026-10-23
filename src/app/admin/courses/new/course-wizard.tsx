@@ -456,6 +456,7 @@ export function CourseWizard() {
                   <button
                     key={index}
                     type="button"
+                    data-profile-exempt
                     onClick={() => setSelectedChapterIndex(index)}
                     className={[
                       "rounded-full border px-4 py-2 text-sm transition-colors",

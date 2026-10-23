@@ -127,6 +127,7 @@ function TabPill({
   return (
     <button
       type="button"
+      data-profile-exempt
       onClick={onClick}
       className={cn(
         "rounded-full border px-4 py-2 text-sm transition",

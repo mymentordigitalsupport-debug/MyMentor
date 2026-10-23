@@ -13,6 +13,7 @@ export function MoodPill({ option, selected = false, onClick }: MoodPillProps) {
   return (
     <button
       type="button"
+      data-profile-exempt
       onClick={onClick}
       className={cn(
         "flex flex-col items-center gap-1 px-4 py-3 rounded-2xl border",

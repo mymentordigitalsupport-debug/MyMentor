@@ -82,7 +82,7 @@ export function AdminArticleManager({ articles, applications }: { articles: Arti
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sage">Editorial desk</p>
           <h1 className="mt-2 text-3xl font-semibold text-forest">Articles and author approvals</h1>
         </div>
-        <Link href="/admin/articles/new" className="rounded-full bg-forest px-5 py-3 text-sm font-semibold text-cream">Create article</Link>
+        <Link href="/admin/articles/new" className="inline-flex min-h-11 items-center rounded-full bg-[#233b2d] px-5 py-3 text-sm font-semibold text-[#fffdf8] hover:bg-[#365640]">Create article</Link>
       </section>
 
       <section>
@@ -100,7 +100,7 @@ export function AdminArticleManager({ articles, applications }: { articles: Arti
                 </div>
                 <div className="flex gap-2">
                   <Button size="sm" loading={working === application.id} onClick={() => reviewApplication(application, "approved")}>Approve author</Button>
-                  <Button size="sm" variant="secondary" disabled={working === application.id} onClick={() => reviewApplication(application, "rejected")}>Reject</Button>
+                  <Button size="sm" variant="danger" disabled={working === application.id} onClick={() => reviewApplication(application, "rejected")}>Reject</Button>
                 </div>
               </div>
               <p className="mt-4 text-sm leading-6 text-muted">{application.bio}</p>
@@ -135,11 +135,11 @@ export function AdminArticleManager({ articles, applications }: { articles: Arti
                   {article.status === "pending_review" && (
                     <>
                       <Button size="sm" variant="secondary" disabled={working === article.id} onClick={() => reviewArticle(article, "changes_requested")}>Request changes</Button>
-                      <Button size="sm" variant="secondary" disabled={working === article.id} onClick={() => reviewArticle(article, "reject")}>Reject</Button>
+                      <Button size="sm" variant="danger" disabled={working === article.id} onClick={() => reviewArticle(article, "reject")}>Reject</Button>
                     </>
                   )}
                   {article.status === "published" && <Button size="sm" variant="secondary" disabled={working === article.id} onClick={() => reviewArticle(article, "archive")}>Archive</Button>}
-                  <Button size="sm" variant="secondary" disabled={working === article.id} onClick={() => remove(article)}>Delete</Button>
+                  <Button size="sm" variant="danger" disabled={working === article.id} onClick={() => remove(article)}>Delete</Button>
                 </div>
               </div>
             </article>
