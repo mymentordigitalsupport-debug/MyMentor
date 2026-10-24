@@ -10,13 +10,14 @@ import { PasswordInput } from "@/components/ui/PasswordInput";
 import { useToast } from "@/components/ui/ToastProvider";
 import { ANONYMOUS_NAMES } from "@/types";
 import { randomAnonymousName } from "@/lib/utils";
-import { COURSE_LIBRARY, normalizeCourseKey } from "@/lib/course-library";
+import { COURSE_LIBRARY, DEFAULT_COURSE_TITLE, normalizeCourseKey } from "@/lib/course-library";
 
 type BookOption = {
   title: string;
   description: string;
   image: string;
   courseId: string | null;
+  isAvailable: boolean;
 };
 
 export function RegisterForm() {
@@ -31,7 +32,7 @@ export function RegisterForm() {
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [showPopiaDetails, setShowPopiaDetails] = useState(false);
   const [books, setBooks] = useState<BookOption[]>([]);
-  const [selectedBookTitle, setSelectedBookTitle] = useState<string | null>(null);
+  const [selectedBookTitle, setSelectedBookTitle] = useState<string | null>(DEFAULT_COURSE_TITLE);
   const [loadingBooks, setLoadingBooks] = useState(true);
 
   const [loading, setLoading] = useState(false);
@@ -74,9 +75,11 @@ export function RegisterForm() {
                 description: course?.description || book.description,
                 image: book.image,
                 courseId: course?.id ?? null,
+                isAvailable: book.isAvailable,
               };
             })
           );
+          setSelectedBookTitle(DEFAULT_COURSE_TITLE);
         }
       } finally {
         if (isMounted) {
@@ -127,7 +130,7 @@ export function RegisterForm() {
       return;
     }
 
-    if (!selectedBook) {
+    if (!selectedBook || !selectedBook.isAvailable) {
 
       toast.error("Choose a Book", "Please select the book you want to study before continuing.");
       return;
@@ -295,7 +298,7 @@ export function RegisterForm() {
         <div className="flex items-center justify-between gap-2">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-forest">Choose your course</p>
-            <p className="mt-1 text-sm text-muted">Pick one course to study first.</p>
+            <p className="mt-1 text-sm text-muted">Uprooting Drug Abuse is currently available. The other journeys are coming soon.</p>
           </div>
           {selectedBook ? (
             <span className="rounded-full border border-sage/20 bg-sage/10 px-3 py-1 text-xs font-semibold text-forest">
@@ -312,17 +315,21 @@ export function RegisterForm() {
           <div className="mt-3 grid gap-2.5 md:grid-cols-3">
             {books.map((book) => {
               const selected = book.title === selectedBookTitle;
+              const available = book.isAvailable;
 
                 return (
                   <button
                     key={book.title}
                     type="button"
-                    onClick={() => setSelectedBookTitle(book.title)}
+                    onClick={() => available && setSelectedBookTitle(book.title)}
+                    disabled={!available}
                     aria-pressed={selected}
-                    className={`group relative overflow-hidden rounded-2xl border text-left outline-none transform-gpu will-change-transform transition-[transform,box-shadow,border-color,background-color,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:ring-2 focus-visible:ring-sage/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white ${
+                    className={`group relative overflow-hidden rounded-2xl border text-left outline-none transform-gpu will-change-transform transition-[transform,box-shadow,border-color,background-color,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:ring-2 focus-visible:ring-sage/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed ${
                       selected
                         ? "border-sage/70 bg-sage/10 shadow-[0_16px_30px_-26px_rgba(84,112,73,0.45)] scale-[1.01]"
-                        : "border-mist bg-cream hover:border-sage/35 hover:shadow-[0_12px_24px_-24px_rgba(31,42,36,0.2)] hover:-translate-y-0.5"
+                        : available
+                          ? "border-mist bg-cream hover:border-sage/35 hover:shadow-[0_12px_24px_-24px_rgba(31,42,36,0.2)] hover:-translate-y-0.5"
+                          : "border-mist/70 bg-cream/60 opacity-60"
                     }`}
                   >
                     <div className="relative flex h-[136px] items-center justify-center p-3">
@@ -339,6 +346,11 @@ export function RegisterForm() {
                         }`}
                         aria-hidden="true"
                       />
+                      {!available ? (
+                        <span className="absolute right-3 top-3 rounded-full border border-mist bg-cream px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-muted">
+                          Coming soon
+                        </span>
+                      ) : null}
                     </div>
                   </button>
                 );

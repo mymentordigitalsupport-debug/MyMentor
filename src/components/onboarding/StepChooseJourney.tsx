@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { type GuidancePath } from "@/types";
 import { Button } from "@/components/ui/Button";
-import { COURSE_LIBRARY, normalizeCourseKey } from "@/lib/course-library";
+import { COURSE_LIBRARY, DEFAULT_COURSE_TITLE, normalizeCourseKey } from "@/lib/course-library";
 
 interface JourneyOption {
   courseId: string;
@@ -87,7 +87,7 @@ export function StepChooseJourney({ guidancePath, courseId, onSelect }: StepChoo
           description: preferredVersion?.description ?? course?.description ?? entry.description,
           guidancePath: preferredVersion?.guidancePath ?? guidancePath,
           image: entry.image,
-          available: Boolean(course),
+          available: Boolean(course) && entry.isAvailable,
           matchesGuidancePath: Boolean(
             preferredVersion && preferredVersion.guidancePath === guidancePath
           ),
@@ -96,12 +96,13 @@ export function StepChooseJourney({ guidancePath, courseId, onSelect }: StepChoo
 
       setOptions(mappedOptions);
 
-      if (courseId) {
-        setSelected(courseId);
-      } else {
-        const firstAvailable = mappedOptions.find((option) => option.available);
-        setSelected(firstAvailable?.courseId ?? null);
-      }
+      const requestedCourse = mappedOptions.find(
+        (option) => option.courseId === courseId && option.available
+      );
+      const defaultCourse = mappedOptions.find(
+        (option) => option.title === DEFAULT_COURSE_TITLE && option.available
+      );
+      setSelected(requestedCourse?.courseId ?? defaultCourse?.courseId ?? null);
       setLoading(false);
     }
     void load();
@@ -184,7 +185,7 @@ export function StepChooseJourney({ guidancePath, courseId, onSelect }: StepChoo
               </div>
               {!opt.available ? (
                 <p className="mt-2 text-xs text-muted">
-                  Not available yet
+                  Coming soon
                 </p>
               ) : !opt.courseVersionId ? (
                 <p className="mt-2 text-xs text-muted">

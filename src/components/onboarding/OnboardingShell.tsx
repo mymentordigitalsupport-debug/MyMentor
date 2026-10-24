@@ -151,6 +151,14 @@ export function OnboardingShell() {
         ? randomAnonymousName(ANONYMOUS_NAMES)
         : data.displayName || resolvedEmail?.split("@")[0] || "Friend";
 
+    const { data: selectedCourseVersion } = data.courseVersionId
+      ? await supabase
+          .from("course_versions")
+          .select("course_id")
+          .eq("id", data.courseVersionId)
+          .maybeSingle()
+      : { data: null };
+
     // Update profile
     await supabase
       .from("profiles")
@@ -163,6 +171,9 @@ export function OnboardingShell() {
         preferred_guidance_path: data.guidancePath,
         personal_goal: data.goal || null,
         onboarding_completed: true,
+        ...(selectedCourseVersion?.course_id
+          ? { selected_course_id: selectedCourseVersion.course_id }
+          : {}),
       })
       .eq("user_id", resolvedUserId);
 
