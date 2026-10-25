@@ -85,7 +85,7 @@ export const AuthorPortrait: React.FC = () => {
           </motion.div>
         </motion.div>
 
-        {/* Founder Portrait (Fixed image, cannot be changed, full view without top/bottom cutoff) */}
+        {/* Founder portrait */}
         <motion.div
           initial={{ opacity: 0, scale: 0.94 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -94,9 +94,9 @@ export const AuthorPortrait: React.FC = () => {
           className="relative z-10 flex flex-col items-center justify-end"
         >
           <img
-            src="/about/craig.png"
+            src="/about/Professional Portrait Cutout.png"
             alt="Craig Petersen — Founder and Builder of My Mentor"
-            className="-translate-y-[36px] w-auto h-[360px] xs:h-[420px] sm:h-[500px] md:h-[560px] max-w-[280px] xs:max-w-[340px] sm:max-w-[420px] md:max-w-[460px] object-contain object-bottom pointer-events-none select-none drop-shadow-xl"
+            className="-translate-y-[36px] h-[360px] w-auto max-w-[280px] object-contain object-bottom pointer-events-none select-none drop-shadow-xl [mask-image:linear-gradient(to_bottom,#000_70%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_70%,transparent_100%)] xs:h-[420px] xs:max-w-[340px] sm:h-[500px] sm:max-w-[420px] md:h-[560px] md:max-w-[460px]"
             loading="eager"
             draggable={false}
           />
