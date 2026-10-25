@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { getArticleActor, isArticleAdmin } from "@/lib/article-access";
 import { getAdminArticles, getAuthorApplications, slugifyArticle } from "@/lib/articles";
+import { queueUserEmail } from "@/lib/transactional-email";
 
 export async function GET() {
   const actor = await getArticleActor();
@@ -43,13 +44,27 @@ export async function PATCH(request: Request) {
     const status = body.status === "approved" || body.status === "rejected" ? body.status : null;
     const feedback = typeof body.feedback === "string" ? body.feedback.trim().slice(0, 2000) : "";
     if (!id || !status || (status === "rejected" && !feedback)) return NextResponse.json({ error: "A decision and rejection feedback are required." }, { status: 400 });
-    const { data: application, error: findError } = await admin.from("article_author_applications").select("user_id").eq("id", id).maybeSingle();
+    const { data: application, error: findError } = await admin.from("article_author_applications").select("user_id,status").eq("id", id).maybeSingle();
     if (findError || !application) return NextResponse.json({ error: "Application not found." }, { status: 404 });
     const reviewedAt = new Date().toISOString();
     const { error: applicationError } = await admin.from("article_author_applications").update({ status, reviewed_by: actor.user.id, reviewed_at: reviewedAt, review_feedback: feedback || null, updated_at: reviewedAt }).eq("id", id);
     if (applicationError) return NextResponse.json({ error: applicationError.message }, { status: 400 });
     const { error: profileError } = await admin.from("profiles").update({ role: status === "approved" ? "author" : "author_rejected", updated_at: reviewedAt }).eq("user_id", application.user_id);
-    return profileError ? NextResponse.json({ error: profileError.message }, { status: 400 }) : NextResponse.json({ success: true });
+    if (profileError) return NextResponse.json({ error: profileError.message }, { status: 400 });
+    if (application.status !== status) {
+      try {
+        await queueUserEmail(admin, {
+          userId: application.user_id,
+          eventKey: `author-application-${status}:${id}`,
+          eventType: `author_application_${status}`,
+          template: status === "approved" ? "authorApproved" : "authorDeclined",
+          reviewFeedback: feedback,
+        });
+      } catch {
+        console.error("[transactional-email] author decision email queue failed", { applicationId: id, status });
+      }
+    }
+    return NextResponse.json({ success: true });
   }
 
   const articleId = typeof body.articleId === "string" ? body.articleId : "";
@@ -74,11 +89,28 @@ export async function PATCH(request: Request) {
   }
   const now = new Date().toISOString();
   const status = action === "publish" ? "published" : action === "reject" ? "rejected" : action;
+  const { data: article, error: articleError } = await admin.from("article_articles").select("id,author_id,title,slug,status").eq("id", articleId).maybeSingle();
+  if (articleError || !article) return NextResponse.json({ error: "Article not found." }, { status: 404 });
   const update: Record<string, unknown> = { status, updated_at: now };
   if (action === "publish") Object.assign(update, { published_at: now, published_by: actor.user.id });
   const { error } = await admin.from("article_articles").update(update).eq("id", articleId);
   if (error) return NextResponse.json({ error: error.message }, { status: 400 });
   await admin.from("article_reviews").insert({ article_id: articleId, reviewer_id: actor.user.id, action: action === "publish" ? "published" : action === "reject" ? "rejected" : action, feedback: feedback || null });
+  if ((action === "publish" || action === "reject") && article.status !== status) {
+    try {
+      await queueUserEmail(admin, {
+        userId: article.author_id,
+        eventKey: `article-${status}:${articleId}`,
+        eventType: `article_${status}`,
+        template: action === "publish" ? "articlePublished" : "articleDeclined",
+        articleTitle: article.title,
+        articleSlug: article.slug,
+        reviewFeedback: feedback,
+      });
+    } catch {
+      console.error("[transactional-email] article decision email queue failed", { articleId, status });
+    }
+  }
   return NextResponse.json({ success: true });
 }
 

@@ -6,10 +6,10 @@ import { ArrowRight, Pause, Play } from "lucide-react";
 import { useState } from "react";
 
 const pathways = [
-  { title: "Recovery", href: "#books", image: "/assets/images/hero-pathway-recovery.jpg", position: "left-[8%] top-[18%]" },
-  { title: "Healing", href: "#mission", image: "/assets/images/hero-pathway-healing.jpg", position: "right-[8%] top-[17%]" },
-  { title: "Family", href: "#owner", image: "/assets/images/hero-pathway-family.jpg", position: "bottom-[17%] right-[29%]" },
-  { title: "Growth", href: "#start", image: "/assets/images/hero-pathway-growth.jpg", position: "bottom-[17%] right-[8%]" },
+  { title: "Recovery", href: "/about#books", image: "/assets/images/hero-pathway-recovery.jpg", position: "left-[8%] top-[18%]" },
+  { title: "Healing", href: "/about#mission", image: "/assets/images/hero-pathway-healing.jpg", position: "right-[8%] top-[17%]" },
+  { title: "Family", href: "/about#creator", image: "/assets/images/hero-pathway-family.jpg", position: "bottom-[17%] right-[29%]" },
+  { title: "Growth", href: "/about#invitation", image: "/assets/images/hero-pathway-growth.jpg", position: "bottom-[17%] right-[8%]" },
 ] as const;
 
 export function HeroSection() {
@@ -35,7 +35,7 @@ export function HeroSection() {
             <div>
               <h1 className="font-serif text-5xl font-light leading-[0.9] tracking-[-0.055em] text-stone-100 sm:text-6xl lg:text-[5rem]">We transform<span className="block italic text-[#95a681]">together.</span></h1>
               <p className="mt-6 max-w-lg text-sm font-light leading-7 text-stone-200/90 sm:text-base sm:leading-8">Guided recovery, healing, family restoration, and purposeful growth through structured courses, lessons, and daily action.</p>
-              <Link href="#books" className="landing-user-profile landing-user-profile--hero group mt-8 tracking-[0.12em]"><span className="landing-user-profile-inner"><span className="h-2.5 w-2.5 rounded-full bg-[#b8d088] shadow-[0_0_14px_#b8d088]" /><span>START YOUR JOURNEY</span><ArrowRight className="transition-transform group-hover:translate-x-1" /></span></Link>
+              <Link href="/about#books" className="landing-user-profile landing-user-profile--hero group mt-8 tracking-[0.12em]"><span className="landing-user-profile-inner"><span className="h-2.5 w-2.5 rounded-full bg-[#b8d088] shadow-[0_0_14px_#b8d088]" /><span>START YOUR JOURNEY</span><ArrowRight className="transition-transform group-hover:translate-x-1" /></span></Link>
             </div>
           </div>
         </div>

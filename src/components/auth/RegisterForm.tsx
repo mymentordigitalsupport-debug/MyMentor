@@ -246,6 +246,9 @@ export function RegisterForm() {
       })
       .eq("user_id", data.user.id);
 
+    // The endpoint is authenticated by the new session and failures never affect registration.
+    await fetch("/api/auth/member-welcome", { method: "POST" }).catch(() => undefined);
+
     // Success!
     toast.success("Account Created!", "Your account has been created successfully. Welcome!");
 

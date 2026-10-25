@@ -3,6 +3,7 @@ import "./globals.css";
 import { PwaProvider } from "@/components/pwa-provider";
 import { ToastProvider } from "@/components/ui/ToastProvider";
 import { SmoothScroll } from "@/components/ui/SmoothScroll";
+import { MentorChatPreview } from "@/components/chat/MentorChatPreview";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -53,6 +54,7 @@ export default function RootLayout({
           <SmoothScroll />
           <PwaProvider />
           {children}
+          <MentorChatPreview />
         </ToastProvider>
       </body>
     </html>

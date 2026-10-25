@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { getArticleActor, isApprovedAuthor } from "@/lib/article-access";
 import { slugifyArticle } from "@/lib/articles";
+import { queueUserEmail } from "@/lib/transactional-email";
 
 type Context = { params: Promise<{ articleId: string }> };
 
@@ -12,14 +13,26 @@ export async function PATCH(request: Request, { params }: Context) {
   if (!admin) return NextResponse.json({ error: "Article service is unavailable." }, { status: 503 });
   const { articleId } = await params;
   const body = await request.json() as Record<string, unknown>;
-  const { data: current, error: currentError } = await admin.from("article_articles").select("id,status,author_id").eq("id", articleId).maybeSingle();
+  const { data: current, error: currentError } = await admin.from("article_articles").select("id,status,author_id,title").eq("id", articleId).maybeSingle();
   if (currentError || !current || current.author_id !== actor.user.id) return NextResponse.json({ error: "Article not found." }, { status: 404 });
 
   if (body.action === "submit") {
     if (!['draft', 'changes_requested', 'rejected'].includes(current.status)) return NextResponse.json({ error: "This article cannot be submitted from its current status." }, { status: 409 });
-    const { error } = await admin.from("article_articles").update({ status: "pending_review", submitted_at: new Date().toISOString(), updated_at: new Date().toISOString() }).eq("id", articleId);
+    const submittedAt = new Date().toISOString();
+    const { error } = await admin.from("article_articles").update({ status: "pending_review", submitted_at: submittedAt, updated_at: submittedAt }).eq("id", articleId);
     if (error) return NextResponse.json({ error: error.message }, { status: 400 });
     await admin.from("article_reviews").insert({ article_id: articleId, reviewer_id: actor.user.id, action: "submitted" });
+    try {
+      await queueUserEmail(admin, {
+        userId: actor.user.id,
+        eventKey: `article-received:${articleId}:${submittedAt}`,
+        eventType: "article_received",
+        template: "articleReceived",
+        articleTitle: current.title,
+      });
+    } catch {
+      console.error("[transactional-email] article received email queue failed", { articleId });
+    }
     return NextResponse.json({ success: true });
   }
 

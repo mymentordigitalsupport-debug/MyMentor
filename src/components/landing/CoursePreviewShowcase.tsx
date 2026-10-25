@@ -86,9 +86,9 @@ export function CoursePreviewShowcase() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
-            <a href="#start" className="inline-flex min-h-10 items-center justify-center rounded-full border border-sage/30 bg-[#fffdf8] px-4 text-sm font-semibold text-forest transition hover:border-sage/50">
+            <Link href="/about#mission" className="inline-flex min-h-10 items-center justify-center rounded-full border border-sage/30 bg-[#fffdf8] px-4 text-sm font-semibold text-forest transition hover:border-sage/50">
               Learn how it works
-            </a>
+            </Link>
           </div>
 
           <div className="mt-8 border-t border-[#d7cebf] pt-6">

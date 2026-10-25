@@ -7,7 +7,8 @@
     "dev:clean": "node scripts/dev.js",
     "build": "next build",
     "start": "next start --hostname 127.0.0.1 --port 3000",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:email-templates": "node scripts/test-transactional-email-templates.cjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
