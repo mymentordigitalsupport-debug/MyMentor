@@ -19,24 +19,33 @@ export function JournalEditor({ userId }: JournalEditorProps) {
   const [body, setBody] = useState("");
   const [mood, setMood] = useState<MoodValue | null>(null);
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function handleSave() {
     if (!body.trim()) return;
     setSaving(true);
+    setError(null);
 
     const supabase = createSupabaseBrowserClient();
-    const { data } = await supabase
+    const { data, error: saveError } = await supabase
       .from("journal_entries")
       .insert({
         user_id: userId,
         title: title.trim() || null,
         body: body.trim(),
+        entry_text: body.trim(),
         mood: mood ?? null,
+        mood_label: mood ?? null,
+        is_private: true,
       })
       .select("id")
       .single();
 
     setSaving(false);
+    if (saveError) {
+      setError(saveError.message);
+      return;
+    }
     if (data) {
       router.push(`/journal/${data.id}`);
       router.refresh();
@@ -73,6 +82,8 @@ export function JournalEditor({ userId }: JournalEditorProps) {
           ))}
         </div>
       </div>
+
+      {error ? <p className="rounded-2xl border border-danger/20 bg-danger/10 px-3 py-2 text-sm text-danger">{error}</p> : null}
 
       <Button
         onClick={handleSave}

@@ -114,7 +114,7 @@ export function CalendlyCarousel({ items, autoPlayInterval = 6000, pauseOnHover 
   }[tier];
 
   return (
-    <div ref={containerRef} role="region" aria-roledescription="carousel" aria-label="Customer stories" tabIndex={0} onKeyDown={handleKeyDown} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} className={cn("relative w-full max-w-[1240px] mx-auto flex flex-col items-center select-none outline-none py-4 overflow-hidden", className)} {...props}>
+    <div ref={containerRef} role="region" aria-roledescription="carousel" aria-label="Customer stories" tabIndex={0} onKeyDown={handleKeyDown} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} className={cn("relative w-full max-w-[1000px] mx-auto flex flex-col items-center select-none outline-none py-4 overflow-hidden", className)} {...props}>
       <div id="carousel-view-panel" role="tabpanel" aria-live="polite" className="relative w-full flex items-center justify-center" style={{ height: activeDimensions.height }}>
         {VISIBLE_OFFSETS.map((offset) => {
           const virtualIndex = page + offset;
@@ -136,15 +136,16 @@ export function CalendlyCarousel({ items, autoPlayInterval = 6000, pauseOnHover 
               if (offset === 1) return { x: activeW / 2 + gap, y: -sideH / 2, width: sideW, height: sideH, opacity: 1, zIndex: 100, pointerEvents: "auto" as const };
               return { x: offset < 0 ? -activeW / 2 - 240 : activeW / 2 + 240, y: -sideH / 2, width: 74, height: 205, opacity: 0, zIndex: 0, pointerEvents: "none" as const };
             }
+            const activeW = activeDimensions.width, activeH = activeDimensions.height, gap = 20, sideW = 105, sideH = 344, smallW = 74, smallH = 205;
             switch (offset) {
-              case 0: return { x: -381, y: -256.5, width: 762, height: 513, opacity: 1, zIndex: 0, pointerEvents: "auto" as const };
-              case -1: return { x: -506, y: -172, width: 105, height: 344, opacity: 1, zIndex: 100, pointerEvents: "auto" as const };
-              case 1: return { x: 401, y: -172, width: 105, height: 344, opacity: 1, zIndex: 100, pointerEvents: "auto" as const };
-              case -2: return { x: -596, y: -102.5, width: 74, height: 205, opacity: 1, zIndex: 100, pointerEvents: "auto" as const };
-              case 2: return { x: 522, y: -102.5, width: 74, height: 205, opacity: 1, zIndex: 100, pointerEvents: "auto" as const };
-              case -3: return { x: -720, y: -102.5, width: 74, height: 205, opacity: 0, zIndex: 0, pointerEvents: "none" as const };
-              case 3: return { x: 646, y: -102.5, width: 74, height: 205, opacity: 0, zIndex: 0, pointerEvents: "none" as const };
-              default: return { x: offset < 0 ? -860 : 860, y: -102.5, width: 74, height: 205, opacity: 0, zIndex: 0, pointerEvents: "none" as const };
+              case 0: return { x: -activeW / 2, y: -activeH / 2, width: activeW, height: activeH, opacity: 1, zIndex: 0, pointerEvents: "auto" as const };
+              case -1: return { x: -activeW / 2 - gap - sideW, y: -sideH / 2, width: sideW, height: sideH, opacity: 1, zIndex: 100, pointerEvents: "auto" as const };
+              case 1: return { x: activeW / 2 + gap, y: -sideH / 2, width: sideW, height: sideH, opacity: 1, zIndex: 100, pointerEvents: "auto" as const };
+              case -2: return { x: -activeW / 2 - gap * 2 - sideW - smallW, y: -smallH / 2, width: smallW, height: smallH, opacity: 1, zIndex: 100, pointerEvents: "auto" as const };
+              case 2: return { x: activeW / 2 + gap * 2 + sideW, y: -smallH / 2, width: smallW, height: smallH, opacity: 1, zIndex: 100, pointerEvents: "auto" as const };
+              case -3: return { x: -activeW / 2 - 400, y: -smallH / 2, width: smallW, height: smallH, opacity: 0, zIndex: 0, pointerEvents: "none" as const };
+              case 3: return { x: activeW / 2 + 400, y: -smallH / 2, width: smallW, height: smallH, opacity: 0, zIndex: 0, pointerEvents: "none" as const };
+              default: return { x: offset < 0 ? -activeW / 2 - 500 : activeW / 2 + 500, y: -smallH / 2, width: smallW, height: smallH, opacity: 0, zIndex: 0, pointerEvents: "none" as const };
             }
           };
           const connector = (side: "left" | "right", small = false) => <div aria-hidden="true" className="absolute top-0 bottom-0 flex items-center text-card pointer-events-none z-[100]" style={{ width: small ? 18 : 22, height: small ? 28 : 42, margin: "auto 0", [side]: "calc(100% - 1px)" }}><svg viewBox={small ? "0 0 16 28" : "0 0 20 37.3338"} preserveAspectRatio="none" className="size-full fill-current overflow-visible block"><path d={small ? "M0 0C0 0 0.993759 10.1818 8 10.1818C15.0062 10.1818 16 0 16 0V28C16 28 15.0062 17.8182 8 17.8182C0.993759 17.8182 0 28 0 28V0Z" : "M0 0C0 0 1.2422 13.5759 10 13.5759C18.7578 13.5759 20 0 20 0V37.3338C20 37.3338 18.7578 23.7578 10 23.7578C1.2422 23.7578 0 37.3338 0 37.3338V0Z"} /></svg></div>;
@@ -156,7 +157,7 @@ export function CalendlyCarousel({ items, autoPlayInterval = 6000, pauseOnHover 
                 <div className="absolute" style={{ left: "50%", top: "50%", width: activeDimensions.width, height: activeDimensions.height, transform: "translate(-50%, -50%)" }}>
                   <motion.div initial={false} animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : offset < 0 ? -822 : 822 }} transition={TRANSITION_SPRING} className={cn("size-full flex flex-col md:flex-row p-4 sm:p-5 md:p-6 lg:p-7 gap-3 sm:gap-4 md:gap-6", !isActive && "pointer-events-none")}>
                     <div className="flex-1 min-w-0 flex flex-col items-center md:items-start text-center md:text-left justify-between py-1 gap-2 sm:gap-3"><h3 title={item.stat} className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-foreground leading-tight w-full">{item.stat}</h3><div className="relative w-full min-w-0 my-auto py-1"><span aria-hidden="true" className="font-serif text-2xl sm:text-3xl lg:text-4xl text-foreground/40 absolute right-full top-0 pr-1 select-none pointer-events-none hidden md:inline">“</span><p className="font-serif text-xs sm:text-base md:text-lg text-foreground/85 leading-snug">“{item.quote}”</p></div><div className="flex min-w-0 w-full max-w-full overflow-hidden items-center md:items-start justify-center md:justify-start"><div className="flex flex-col items-center md:items-start min-w-0 max-w-full"><span className="w-fit inline-flex items-center justify-center rounded-[4px] font-medium py-1 px-2.5 text-[11px] sm:text-xs bg-secondary text-secondary-foreground shrink-0 select-none"><span className="whitespace-nowrap font-semibold">{item.author}</span></span><div className="shrink-0 flex items-center justify-center md:justify-start px-3 h-[6px] -my-[1px] text-secondary relative z-10"><svg className="block shrink-0 fill-current overflow-visible" preserveAspectRatio="none" viewBox="0 -2 14 12" width="14" height="10"><path d="M0 -2 V0 C0 0 5.09091 0.49688 5.09091 4 C5.09091 7.50312 0 8 0 8 V10 H14 V8 C14 8 8.90909 7.50312 8.90909 4 C8.90909 0.49688 14 0 14 0 V-2 Z" /></svg></div><span className="w-fit inline-flex items-center justify-center rounded-[4px] font-medium py-1 px-2.5 text-[10px] sm:text-xs bg-secondary text-muted-foreground max-w-full select-none"><span title={item.role} className="truncate">{item.role}</span></span></div></div></div>
-                    <div className="relative shrink-0 overflow-hidden rounded-[18px] sm:rounded-[22px] bg-muted w-full md:w-[clamp(180px,44%,330px)] flex-1 md:flex-initial md:h-full max-h-[220px] md:max-h-none"><Image alt={item.alt || item.author} src={item.selectedImage} fill unoptimized draggable={false} style={{ objectFit: "cover" }} className="size-full object-cover" /></div>
+                    <div className="relative shrink-0 overflow-hidden rounded-[18px] sm:rounded-[22px] bg-muted w-full md:w-[clamp(260px,44%,520px)] flex-1 md:flex-initial md:h-full max-h-[220px] md:max-h-none"><Image alt={item.alt || item.author} src={item.selectedImage} fill unoptimized draggable={false} style={{ objectFit: "cover" }} className="size-full object-cover" /></div>
                   </motion.div>
                 </div>
               </div>

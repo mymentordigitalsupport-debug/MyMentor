@@ -177,8 +177,8 @@ a {
   border-radius: 15px;
   cursor: pointer;
   transition: 0.3s ease;
-  background: linear-gradient(to bottom right, #2e8eff 0%, rgba(46, 142, 255, 0) 30%);
-  background-color: rgba(46, 142, 255, 0.2);
+  background: linear-gradient(to bottom right, var(--sage) 0%, rgba(122, 146, 114, 0) 30%);
+  background-color: rgba(122, 146, 114, 0.2);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -191,8 +191,8 @@ a {
 
 .landing-user-profile:hover,
 .landing-user-profile:focus-visible {
-  background-color: rgba(46, 142, 255, 0.7);
-  box-shadow: 0 0 10px rgba(46, 142, 255, 0.5);
+  background-color: rgba(122, 146, 114, 0.7);
+  box-shadow: 0 0 10px rgba(122, 146, 114, 0.5);
   outline: none;
 }
 
@@ -336,7 +336,7 @@ a {
   border: 2px solid transparent !important;
   background:
     linear-gradient(#1a1a1a, #1a1a1a) padding-box,
-    linear-gradient(to bottom right, #2e8eff 0%, rgba(46, 142, 255, 0.2) 30%) border-box !important;
+    linear-gradient(to bottom right, var(--sage) 0%, rgba(122, 146, 114, 0.2) 30%) border-box !important;
   color: #fff !important;
   border-radius: 15px !important;
   box-shadow: none;
@@ -353,8 +353,8 @@ a {
 ):is(:hover, :focus-visible):not(:disabled) {
   background:
     linear-gradient(#1a1a1a, #1a1a1a) padding-box,
-    linear-gradient(to bottom right, #2e8eff 0%, rgba(46, 142, 255, 0.7) 100%) border-box !important;
-  box-shadow: 0 0 10px rgba(46, 142, 255, 0.5);
+    linear-gradient(to bottom right, var(--sage) 0%, rgba(122, 146, 114, 0.7) 100%) border-box !important;
+  box-shadow: 0 0 10px rgba(122, 146, 114, 0.5);
 }
 
 :is(
@@ -363,7 +363,7 @@ a {
   a[class*="inline-flex"][class*="rounded"]:not(.landing-user-profile),
   a[class*="rounded-full"][class*="px-"]:not(.landing-user-profile)
 ):focus-visible {
-  outline: 2px solid #2e8eff;
+  outline: 2px solid var(--sage);
   outline-offset: 2px;
 }
 

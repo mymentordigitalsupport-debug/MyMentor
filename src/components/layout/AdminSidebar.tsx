@@ -33,8 +33,9 @@ const ADMIN_NAV = [
   { href: "/", label: "Back to home page", icon: LogOut, isExit: true },
 ];
 
-export function AdminSidebar() {
+export function AdminSidebar({ pendingArticles = 0, pendingAuthors = 0 }: { pendingArticles?: number; pendingAuthors?: number }) {
   const pathname = usePathname();
+  const pendingTotal = pendingArticles + pendingAuthors;
 
   return (
     <aside className="hidden min-h-screen w-60 shrink-0 border-r border-mist/80 bg-cream shadow-[8px_0_30px_rgba(31,42,36,0.04)] lg:flex lg:flex-col">
@@ -43,10 +44,11 @@ export function AdminSidebar() {
           <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-forest text-cream shadow-sm">
             <ShieldCheck className="h-5 w-5" />
           </div>
-          <div>
+          <div className="min-w-0">
             <p className="text-lg font-semibold tracking-tight text-slate-900">My Mentor</p>
             <p className="text-xs uppercase tracking-[0.18em] text-muted">Admin console</p>
           </div>
+          <span className="ml-auto inline-flex h-7 min-w-7 items-center justify-center rounded-full bg-forest px-2 text-xs font-bold text-cream" aria-label={`${pendingTotal} unread admin notification${pendingTotal === 1 ? "" : "s"}`}>{pendingTotal}</span>
         </div>
       </div>
 
@@ -63,6 +65,8 @@ export function AdminSidebar() {
         {ADMIN_NAV.map((item) => {
           const Icon = item.icon;
           const active = item.href === "/admin" ? pathname === "/admin" : pathname.startsWith(item.href);
+          const badge = item.href === "/admin/articles" ? pendingArticles : item.href === "/admin/users" ? pendingAuthors : 0;
+          const hasReviewBadge = item.href === "/admin/articles" || item.href === "/admin/users";
 
           return (
             <Link
@@ -78,8 +82,9 @@ export function AdminSidebar() {
               )}
               aria-current={active ? "page" : undefined}
             >
-              <Icon className={cn("h-4 w-4", active ? "text-forest" : "text-muted")} />
-              {item.label}
+              <Icon className={cn("h-4 w-4 shrink-0", active ? "text-forest" : "text-muted")} />
+              <span>{item.label}</span>
+              {hasReviewBadge ? <span className={cn("ml-auto inline-flex min-w-5 items-center justify-center rounded-full px-1.5 py-0.5 text-[11px] font-bold leading-none", badge > 0 ? "bg-forest text-cream" : "bg-mist text-muted")} aria-label={`${badge} pending review${badge === 1 ? "" : "s"}`}>{badge}</span> : null}
             </Link>
           );
         })}

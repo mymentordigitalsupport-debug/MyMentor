@@ -1,4 +1,5 @@
 import { AdminSidebar } from "@/components/layout/AdminSidebar";
+import { getAdminReviewCounts } from "@/lib/admin/overview";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -30,9 +31,11 @@ export default async function AdminLayout({
     redirect("/today");
   }
 
+  const reviewCounts = await getAdminReviewCounts();
+
   return (
     <div className="flex min-h-screen bg-[linear-gradient(180deg,#fbf9f5_0%,#f6f3ed_100%)]">
-      <AdminSidebar />
+      <AdminSidebar {...reviewCounts} />
       <main className="flex-1 overflow-auto">
         <div className="mx-auto w-full max-w-[1480px] px-5 py-6 md:px-8 md:py-8">{children}</div>
       </main>

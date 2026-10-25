@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 
 const exploreLinks = [
   { title: "Our mission", description: "Why we walk together.", href: "/about#mission" },
@@ -131,7 +131,6 @@ export function PublicNavigation({ overDark = false, adaptToAboutSections = fals
         <div className="flex items-center gap-2">
           <Link href="/login" onClick={close} className="landing-user-profile landing-user-profile--nav"><span className="landing-user-profile-inner"><span>Login</span></span></Link>
           <Link href="/register" onClick={close} className="landing-user-profile landing-user-profile--nav group"><span className="landing-user-profile-inner"><span>Sign up</span><ArrowRight className="transition-transform group-hover:translate-x-0.5" /></span></Link>
-          <button type="button" onClick={() => setMobileOpen(!mobileOpen)} aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"} aria-expanded={mobileOpen} aria-controls="mobile-navigation" className="landing-user-profile landing-user-profile--icon public-nav-toggle lg:hidden"><span className="landing-user-profile-inner">{mobileOpen ? <X /> : <Menu />}</span></button>
         </div>
       </div>
       <AnimatePresence initial={false}>

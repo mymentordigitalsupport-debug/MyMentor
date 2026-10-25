@@ -14,7 +14,7 @@ try {
   console.error("Failed to clean .next before starting dev server:", error);
 }
 
-const child = spawn(process.execPath, [nextBin, "dev", "--hostname", hostname, "--port", port], {
+const child = spawn(process.execPath, ["--use-system-ca", nextBin, "dev", "--hostname", hostname, "--port", port], {
   cwd: projectRoot,
   stdio: "inherit",
   env: process.env,

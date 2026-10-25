@@ -20,7 +20,9 @@ export function LandingSections() {
         </SectionReveal>
 
         <SectionReveal delayMs={200}>
-          <PigmentExperienceLedger />
+          <PigmentExperienceLedger
+            colors={["var(--forest)", "var(--sage)", "var(--gold)"]}
+          />
         </SectionReveal>
 
         <SectionReveal delayMs={220}>

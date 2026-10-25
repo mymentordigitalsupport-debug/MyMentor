@@ -10,6 +10,24 @@ export type OverviewData = {
   moodTotal: number;
 };
 
+export type AdminReviewCounts = {
+  pendingArticles: number;
+  pendingAuthors: number;
+};
+
+export async function getAdminReviewCounts(): Promise<AdminReviewCounts> {
+  const admin = createSupabaseAdminClient();
+  if (!admin) return { pendingArticles: 0, pendingAuthors: 0 };
+
+  const [articles, authors] = await Promise.all([
+    admin.from("article_articles").select("id", { count: "exact", head: true }).eq("status", "pending_review").is("deleted_at", null),
+    admin.from("article_author_applications").select("id", { count: "exact", head: true }).eq("status", "pending"),
+  ]);
+
+  if (articles.error || authors.error) return { pendingArticles: 0, pendingAuthors: 0 };
+  return { pendingArticles: articles.count ?? 0, pendingAuthors: authors.count ?? 0 };
+}
+
 export async function getAdminOverview(): Promise<OverviewData> {
   const admin = createSupabaseAdminClient();
   if (!admin) throw new Error("The admin data service is not configured.");
