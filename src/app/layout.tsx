@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Suspense } from "react";
 import "./globals.css";
 import { PwaProvider } from "@/components/pwa-provider";
 import { ToastProvider } from "@/components/ui/ToastProvider";
@@ -55,7 +56,9 @@ export default function RootLayout({
         <ToastProvider>
           <SmoothScroll />
           <PwaProvider />
-          <NavigationLoader />
+          <Suspense fallback={null}>
+            <NavigationLoader />
+          </Suspense>
           {children}
           <MentorChatPreview />
           <Analytics />
