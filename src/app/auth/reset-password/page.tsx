@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
@@ -12,7 +12,7 @@ function getErrorMessage(error: unknown) {
   return error instanceof Error ? error.message : "Failed to update password. Please try again.";
 }
 
-export default function ResetPasswordPage() {
+function ResetPasswordContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [newPassword, setNewPassword] = useState("");
@@ -247,5 +247,13 @@ export default function ResetPasswordPage() {
         </div>
       </div>
     </PageLoader>
+  );
+}
+
+export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={<PageLoader imageSrc="/assets/images/s1r.jpg"><div /></PageLoader>}>
+      <ResetPasswordContent />
+    </Suspense>
   );
 }
