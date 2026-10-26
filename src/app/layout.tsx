@@ -5,10 +5,11 @@ import { ToastProvider } from "@/components/ui/ToastProvider";
 import { SmoothScroll } from "@/components/ui/SmoothScroll";
 import { MentorChatPreview } from "@/components/chat/MentorChatPreview";
 import { NavigationLoader } from "@/components/ui/NavigationLoader";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://mymentor.digital"
   ),
   title: {
     default: "My Mentor",
@@ -57,6 +58,7 @@ export default function RootLayout({
           <NavigationLoader />
           {children}
           <MentorChatPreview />
+          <Analytics />
         </ToastProvider>
       </body>
     </html>
