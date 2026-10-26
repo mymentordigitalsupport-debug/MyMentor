@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { resend } from "@/lib/resend";
+import type { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 export const EMAIL_TEMPLATES = {
   memberWelcome: { file: "mymentor-member-registration-welcome.html", subject: "Welcome to My Mentor" },
@@ -23,6 +24,8 @@ type EmailEvent = {
   payload: TemplateData;
   attempts: number;
 };
+
+type SupabaseAdmin = NonNullable<ReturnType<typeof createSupabaseAdminClient>>;
 
 const templateCache = new Map<string, string>();
 
@@ -92,7 +95,7 @@ export function emailPayload(input: {
 }
 
 export async function queueTransactionalEmail(
-  admin: any,
+  admin: SupabaseAdmin,
   input: { eventKey: string; eventType: string; template: TransactionalTemplate; recipientEmail: string; payload: TemplateData }
 ) {
   if (!/^\S+@\S+\.\S+$/.test(input.recipientEmail)) throw new Error("Recipient email is invalid.");
@@ -108,7 +111,7 @@ export async function queueTransactionalEmail(
 }
 
 export async function queueUserEmail(
-  admin: any,
+  admin: SupabaseAdmin,
   input: { userId: string; eventKey: string; eventType: string; template: TransactionalTemplate; articleTitle?: string | null; reviewFeedback?: string | null; articleSlug?: string | null; firstName?: string | null }
 ) {
   const [{ data: profile }, { data: authResult, error: authError }] = await Promise.all([
@@ -126,7 +129,7 @@ export async function queueUserEmail(
 }
 
 export async function queueAdminNotification(
-  admin: any,
+  admin: SupabaseAdmin,
   input: { eventKey: string; eventType: string; title: string; details: string; pathname?: string }
 ) {
   const recipientEmail = process.env.ADMIN_NOTIFICATION_EMAIL?.trim() ?? "";
@@ -144,7 +147,7 @@ export async function queueAdminNotification(
   });
 }
 
-export async function deliverTransactionalEmail(admin: any, eventKey: string) {
+export async function deliverTransactionalEmail(admin: SupabaseAdmin, eventKey: string) {
   const { data, error } = await admin.rpc("claim_transactional_email_event", { p_event_key: eventKey });
   if (error) throw error;
   const event = (data?.[0] ?? null) as EmailEvent | null;
