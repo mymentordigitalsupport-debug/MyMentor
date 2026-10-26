@@ -10,6 +10,7 @@ export const EMAIL_TEMPLATES = {
   articleReceived: { file: "mymentor-article-received-pending-review.html", subject: "Your article is pending review" },
   articlePublished: { file: "mymentor-article-published.html", subject: "Your article is now published" },
   articleDeclined: { file: "mymentor-article-declined.html", subject: "An update on your article submission" },
+  adminNotification: { file: null, subject: "New My Mentor admin notification" },
 } as const;
 
 export type TransactionalTemplate = keyof typeof EMAIL_TEMPLATES;
@@ -47,6 +48,7 @@ function sender() {
 
 async function loadTemplate(template: TransactionalTemplate) {
   const name = EMAIL_TEMPLATES[template].file;
+  if (!name) throw new Error("This email uses an inline notification template.");
   const cached = templateCache.get(name);
   if (cached) return cached;
   const html = await readFile(path.join(process.cwd(), "public", "assets", "emails", name), "utf8");
@@ -54,7 +56,17 @@ async function loadTemplate(template: TransactionalTemplate) {
   return html;
 }
 
+function renderAdminNotification(values: TemplateData) {
+  const title = escapeHtml(values.notification_title || "New My Mentor notification");
+  const details = escapeHtml(values.notification_details || "A new item needs your attention.").replace(/\n/g, "<br>");
+  const actionUrl = values.notification_url || appUrl("/admin");
+  const url = new URL(actionUrl);
+  if (!/^https?:$/.test(url.protocol)) throw new Error("Admin notification URL must use HTTP or HTTPS.");
+  return `<!doctype html><html lang="en"><body style="margin:0;background:#f7f4ed;color:#203528;font-family:Arial,sans-serif"><main style="max-width:600px;margin:32px auto;background:#fffdf9;border:1px solid #d9e1d4;border-radius:18px;padding:32px"><p style="margin:0 0 12px;color:#647b5d;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase">My Mentor admin</p><h1 style="margin:0 0 18px;font-family:Georgia,serif;font-size:28px">${title}</h1><p style="margin:0 0 28px;font-size:16px;line-height:1.6">${details}</p><a href="${escapeHtml(url.toString())}" style="display:inline-block;border-radius:999px;background:#203b2c;color:#fff;text-decoration:none;padding:12px 20px;font-weight:700">Open admin dashboard</a></main></body></html>`;
+}
+
 export async function renderTransactionalEmail(template: TransactionalTemplate, values: TemplateData) {
+  if (template === "adminNotification") return renderAdminNotification(values);
   const html = await loadTemplate(template);
   const unknown = [...html.matchAll(/\{\{([a-z_]+)\}\}/g)].map((match) => match[1]).filter((key) => !(key in values));
   if (unknown.length) throw new Error(`Unsupported placeholders in ${EMAIL_TEMPLATES[template].file}.`);
@@ -110,6 +122,25 @@ export async function queueUserEmail(
     template: input.template,
     recipientEmail: authResult.user.email,
     payload: emailPayload({ firstName: input.firstName ?? profile?.display_name, articleTitle: input.articleTitle, reviewFeedback: input.reviewFeedback, articleSlug: input.articleSlug }),
+  });
+}
+
+export async function queueAdminNotification(
+  admin: any,
+  input: { eventKey: string; eventType: string; title: string; details: string; pathname?: string }
+) {
+  const recipientEmail = process.env.ADMIN_NOTIFICATION_EMAIL?.trim() ?? "";
+  if (!/^\S+@\S+\.\S+$/.test(recipientEmail)) throw new Error("ADMIN_NOTIFICATION_EMAIL is not configured.");
+  await queueTransactionalEmail(admin, {
+    eventKey: input.eventKey,
+    eventType: input.eventType,
+    template: "adminNotification",
+    recipientEmail,
+    payload: {
+      notification_title: input.title.slice(0, 180),
+      notification_details: input.details.slice(0, 2_000),
+      notification_url: appUrl(input.pathname ?? "/admin"),
+    },
   });
 }
 

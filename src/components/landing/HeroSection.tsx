@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Pause, Play } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 
 const pathways = [
   { title: "Recovery", href: "/about#books", image: "/assets/images/hero-pathway-recovery.jpg", position: "left-[8%] top-[18%]" },
@@ -13,7 +12,6 @@ const pathways = [
 ] as const;
 
 export function HeroSection() {
-  const [playing, setPlaying] = useState(false);
   return (
     <section id="hero" className="relative h-[calc(100vh+6rem)] min-h-screen overflow-hidden rounded-b-[11px] bg-[#090c0a] text-stone-100" aria-label="My Mentor landing hero">
       <video className="absolute inset-0 h-full w-full object-cover object-center" autoPlay muted loop playsInline preload="metadata" aria-label="My Mentor transformation video">
@@ -40,8 +38,6 @@ export function HeroSection() {
           </div>
         </div>
       </div>
-
-      <div className="absolute inset-x-6 bottom-[calc(6rem+1.75rem)] z-20 sm:inset-x-10 lg:inset-x-16"><div className="relative grid h-24 w-24 place-items-center"><svg viewBox="0 0 160 160" className="absolute inset-0 animate-[spin_24s_linear_infinite] fill-stone-300/80"><defs><path id="hero-circle" d="M80 80m-62 0a62 62 0 1 1 124 0a62 62 0 1 1-124 0" /></defs><text className="text-[10px] tracking-[.24em]"><textPath href="#hero-circle">A BRIGHTER TOMORROW STARTS HERE · A BRIGHTER TOMORROW STARTS HERE ·</textPath></text></svg><button onClick={() => setPlaying(!playing)} aria-label={playing ? "Pause hero video" : "Play hero video"} className="landing-user-profile landing-user-profile--video z-10"><span className="landing-user-profile-inner">{playing ? <Pause /> : <Play className="ml-0.5" />}</span></button></div></div>
 
       <div className="pointer-events-none absolute inset-0 z-20 hidden lg:block">
         {pathways.map((pathway) => (

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
-import { queueUserEmail } from "@/lib/transactional-email";
+import { queueAdminNotification, queueUserEmail } from "@/lib/transactional-email";
 
 type Payload = {
   fullName?: string;
@@ -123,6 +123,17 @@ export async function POST(request: Request) {
       });
     } catch {
       console.error("[transactional-email] author application email queue failed", { userId });
+    }
+    try {
+      await queueAdminNotification(admin, {
+        eventKey: `admin-author-application:${userId}`,
+        eventType: "admin_author_application_received",
+        title: "New author application",
+        details: `${fullName} (${email}) submitted an author application as ${publicName}.`,
+        pathname: "/admin/articles",
+      });
+    } catch {
+      console.error("[transactional-email] admin author application notification queue failed", { userId });
     }
 
     return NextResponse.json({ success: true }, { status: 201 });

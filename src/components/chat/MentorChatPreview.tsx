@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { ChatbotHeader } from "./ChatbotHeader";
 import { ChatbotLauncher } from "./ChatbotLauncher";
 import { ChatMessage } from "./ChatMessage";
@@ -8,8 +9,11 @@ import { ChatMessageInput } from "./ChatMessageInput";
 import { ChatQuickActions } from "./ChatQuickActions";
 import { ChatTypingIndicator } from "./ChatTypingIndicator";
 import type { ChatMessageData, QuickAction } from "./types";
+import type { MentorNavigation } from "@/lib/mentor-navigation";
+import { startNavigationLoader } from "@/components/ui/NavigationLoader";
 
 type Audience = "browser" | "author";
+type StoredChatMessage = { id: string; message_role: "user" | "assistant"; content: string; created_at: string };
 
 const now = () => new Intl.DateTimeFormat("en", { hour: "numeric", minute: "2-digit" }).format(new Date());
 const actionReplies: Record<QuickAction["id"], Omit<ChatMessageData, "id" | "time">> = {
@@ -17,11 +21,12 @@ const actionReplies: Record<QuickAction["id"], Omit<ChatMessageData, "id" | "tim
   author: { role: "guide", text: "You can apply to share your experience and encouragement with the community.", card: { eyebrow: "Contribute", title: "Become an Author", description: "Submit an author application for editorial review.", actionLabel: "Become an author", href: "/authors-register" } },
   account: { role: "guide", text: "Sign in securely to view your account information and preferences.", card: { eyebrow: "Account", title: "Sign in to My Account", description: "Use the protected My Mentor sign-in page to access your account.", actionLabel: "Sign in", href: "/login" } },
   status: { role: "guide", text: "Here is where approved authors can view article submissions and their review status.", card: { eyebrow: "Author workspace", title: "Track Article Status", description: "View drafts, submitted articles and editorial feedback.", actionLabel: "View my articles", href: "/author" } },
-  question: { role: "guide", text: "Ask what is on your mind. This preview will show how the guide will respond once conversational support is connected.", card: { eyebrow: "Coming next", title: "Ask a Question", description: "Questions stay in this browser during the UI preview. Nothing is sent or stored.", actionLabel: "Question preview" } },
+  question: { role: "guide", text: "Ask me anything about My Mentor, your account, courses, articles, or where you want to go." },
   submissions: { role: "guide", text: "Your author workspace keeps your drafts and submitted articles together.", card: { eyebrow: "Author workspace", title: "My Submissions", description: "View all of your drafts and article submissions.", actionLabel: "View submissions", href: "/author" } },
 };
 
 export function MentorChatPreview() {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<ChatMessageData[]>([]);
@@ -30,8 +35,24 @@ export function MentorChatPreview() {
   const [audience, setAudience] = useState<Audience>("browser");
   const transcriptRef = useRef<HTMLDivElement>(null);
   const replyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pendingMessages = useRef<ChatMessageData[]>([]);
+  const processingQueue = useRef(false);
 
   useEffect(() => () => { if (replyTimer.current) clearTimeout(replyTimer.current); }, []);
+  useEffect(() => {
+    let active = true;
+    fetch("/api/mentor-chat").then((response) => response.ok ? response.json() : { messages: [] }).then((data: { messages?: StoredChatMessage[] }) => {
+      if (!active || !Array.isArray(data.messages) || data.messages.length === 0) return;
+      const history = data.messages.map((message) => ({
+        id: message.id,
+        role: message.message_role === "user" ? "member" as const : "guide" as const,
+        text: message.content,
+        time: new Intl.DateTimeFormat("en", { hour: "numeric", minute: "2-digit" }).format(new Date(message.created_at)),
+      }));
+      setMessages((current) => [...history, ...current]);
+    }).catch(() => undefined);
+    return () => { active = false; };
+  }, []);
   useEffect(() => { if (open) transcriptRef.current?.scrollTo({ top: transcriptRef.current.scrollHeight, behavior: "smooth" }); }, [messages, typing, open]);
   useEffect(() => {
     function keydown(event: KeyboardEvent) { if (event.key === "Escape" && open) setOpen(false); }
@@ -49,7 +70,7 @@ export function MentorChatPreview() {
     const message = { id: crypto.randomUUID(), role: "member" as const, text: action.label, time: now() };
     setMessages((current) => [...current, message]);
     if (action.id === "account") {
-      void requestMentor([...messages, { ...message, text: "Help me review my My Mentor account details." }]);
+      enqueueMentor({ ...message, text: "Help me review my My Mentor account details." });
       return;
     }
     addGuideReply(actionReplies[action.id]);
@@ -60,23 +81,60 @@ export function MentorChatPreview() {
     setRolePromptOpen(false);
   }
 
-  async function requestMentor(conversation: ChatMessageData[]) {
-    setTyping(true);
+  function closeChat() {
+    setMessages((current) => current.map((message) => message.animate ? { ...message, animate: false } : message));
+    setOpen(false);
+  }
+
+  async function requestMentor(message: ChatMessageData) {
     try {
       const response = await fetch("/api/mentor-chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: conversation.slice(-8).map((message) => ({ role: message.role === "guide" ? "assistant" : "user", content: message.text })) }),
+        body: JSON.stringify({ messages: [{ role: message.role === "guide" ? "assistant" : "user", content: message.text }] }),
       });
-      const data = await response.json().catch(() => null) as { reply?: string; error?: string } | null;
+      const data = await response.json().catch(() => null) as { reply?: string; error?: string; navigation?: MentorNavigation | null } | null;
       const reply = data?.reply;
       if (!response.ok || !reply) throw new Error(data?.error ?? "Unable to reach My Mentor Guide.");
-      setMessages((current) => [...current, { id: crypto.randomUUID(), role: "guide", text: reply, time: now(), animate: true }]);
+      const navigation = data.navigation;
+      setMessages((current) => [...current, {
+        id: crypto.randomUUID(),
+        role: "guide",
+        text: reply,
+        time: now(),
+        animate: true,
+        card: navigation && !navigation.auto ? {
+          eyebrow: "My Mentor page",
+          title: navigation.label,
+          description: navigation.description,
+          actionLabel: `Open ${navigation.label}`,
+          href: navigation.href,
+        } : undefined,
+      }]);
+      if (navigation?.auto) {
+        startNavigationLoader();
+        router.push(navigation.href);
+      }
     } catch (error) {
       setMessages((current) => [...current, { id: crypto.randomUUID(), role: "guide", text: error instanceof Error ? error.message : "My Mentor Guide is temporarily unavailable.", time: now(), animate: true }]);
-    } finally {
-      setTyping(false);
     }
+  }
+
+  function enqueueMentor(message: ChatMessageData) {
+    pendingMessages.current.push(message);
+    if (processingQueue.current) return;
+    void processMentorQueue();
+  }
+
+  async function processMentorQueue() {
+    processingQueue.current = true;
+    setTyping(true);
+    while (pendingMessages.current.length) {
+      const nextMessage = pendingMessages.current.shift();
+      if (nextMessage) await requestMentor(nextMessage);
+    }
+    processingQueue.current = false;
+    setTyping(false);
   }
 
   function sendMessage() {
@@ -85,19 +143,19 @@ export function MentorChatPreview() {
     setInput("");
     const message = { id: crypto.randomUUID(), role: "member" as const, text, time: now() };
     setMessages((current) => [...current, message]);
-    void requestMentor([...messages, message]);
+    enqueueMentor(message);
   }
 
   return <div className="fixed bottom-6 right-6 z-[100] sm:bottom-7 sm:right-7">
-    {open ? <section className="fixed inset-6 flex h-[calc(100dvh-3rem)] w-[calc(100vw-3rem)] flex-col overflow-hidden rounded-[28px] border border-[#d5dfcf] bg-[#fffdf9] shadow-[0_28px_80px_-24px_rgba(16,35,23,.48)] motion-safe:animate-[chat-enter_.25s_ease-out] sm:inset-auto sm:bottom-10 sm:right-10 sm:h-[min(650px,calc(100dvh-5rem))] sm:w-[440px]" role="dialog" aria-modal="true" aria-label="My Mentor Guide"><ChatbotHeader onMinimize={() => setOpen(false)} onClose={() => setOpen(false)} /><div ref={transcriptRef} className="min-h-0 flex-1 overflow-y-auto overscroll-contain bg-[radial-gradient(circle_at_15%_0%,rgba(228,237,220,.72),transparent_33%),#f8f6f1] px-4 py-5 sm:px-5"><div className="space-y-4">{messages.length === 0 ? <Welcome audience={audience} onSelect={selectAction} /> : messages.map((message) => <ChatMessage key={message.id} message={message} />)}{typing ? <ChatTypingIndicator /> : null}</div></div><ChatMessageInput value={input} onChange={setInput} onSubmit={sendMessage} /></section> : <ChatbotLauncher onClick={() => setOpen(true)} />}
+    {open ? <section className="fixed inset-6 flex h-[calc(100dvh-3rem)] w-[calc(100vw-3rem)] flex-col overflow-hidden rounded-[28px] border border-[#d5dfcf] bg-[#fffdf9] shadow-[0_28px_80px_-24px_rgba(16,35,23,.48)] motion-safe:animate-[chat-enter_.25s_ease-out] sm:inset-auto sm:bottom-10 sm:right-10 sm:h-[min(650px,calc(100dvh-5rem))] sm:w-[440px]" role="dialog" aria-modal="true" aria-label="My Mentor Guide"><ChatbotHeader onClose={closeChat} /><div ref={transcriptRef} className="min-h-0 flex-1 overflow-y-auto overscroll-contain bg-[radial-gradient(circle_at_15%_0%,rgba(228,237,220,.72),transparent_33%),#f8f6f1] px-4 py-5 sm:px-5"><div className="space-y-4">{messages.length === 0 ? <Welcome audience={audience} onSelect={selectAction} /> : messages.map((message) => <ChatMessage key={message.id} message={message} />)}{typing ? <ChatTypingIndicator /> : null}</div></div><ChatMessageInput value={input} onChange={setInput} onSubmit={sendMessage} disabled={typing} /></section> : <ChatbotLauncher onClick={() => setOpen(true)} />}
     {open && rolePromptOpen ? <RolePrompt onSelect={chooseAudience} /> : null}
   </div>;
 }
 
 function Welcome({ audience, onSelect }: { audience: Audience; onSelect: (action: QuickAction) => void }) {
-  return <div className="pt-2"><div className="mx-auto h-14 w-14 overflow-hidden rounded-full bg-[#25412f] shadow-[0_14px_28px_-16px_rgba(20,48,30,.65)]"><img src="/assets/ai-avatar.png" alt="My Mentor Guide" className="h-full w-full object-contain" /></div><p className="mt-5 text-center text-[10px] font-semibold uppercase tracking-[.2em] text-[#7d9277]">My Mentor Guide</p><h2 className="mt-2 text-center font-serif text-[28px] leading-8 text-[#23392b]">Hello, welcome to My Mentor.</h2><p className="mx-auto mt-3 max-w-[310px] text-center text-sm leading-6 text-[#637167]">I am here to help you find your way forward. What would you like help with today?</p><div className="mt-6"><ChatQuickActions audience={audience} onSelect={onSelect} /></div><p className="mt-6 border-t border-[#e1e5dc] pt-4 text-center text-[11px] leading-5 text-[#8a9188]">Preview interface only. No messages are sent or stored.</p></div>;
+  return <div className="pt-2"><div className="mx-auto h-14 w-14 overflow-hidden rounded-full bg-[#25412f] shadow-[0_14px_28px_-16px_rgba(20,48,30,.65)]"><img src="/assets/ai-avatar.png" alt="My Mentor Guide" className="h-full w-full object-contain" /></div><p className="mt-5 text-center text-[10px] font-semibold uppercase tracking-[.2em] text-[#7d9277]">My Mentor Guide</p><h2 className="mt-2 text-center font-serif text-[28px] leading-8 text-[#23392b]">Hello, welcome to My Mentor.</h2><p className="mx-auto mt-3 max-w-[310px] text-center text-sm leading-6 text-[#637167]">I am here to help you find your way forward. What would you like help with today?</p><div className="mt-6"><ChatQuickActions audience={audience} onSelect={onSelect} /></div><p className="mt-6 border-t border-[#e1e5dc] pt-4 text-center text-[11px] leading-5 text-[#8a9188]">Sign in to save your chat history.</p></div>;
 }
 
 function RolePrompt({ onSelect }: { onSelect: (audience: Audience) => void }) {
-  return <section className="fixed inset-x-6 bottom-6 top-[calc(1.5rem+73px)] z-[101] flex flex-col justify-center rounded-b-[28px] border-x border-b border-[#d5dfcf] bg-[#fffdf9]/95 p-6 shadow-[0_24px_60px_-20px_rgba(16,35,23,.55)] backdrop-blur-sm sm:inset-x-auto sm:bottom-10 sm:right-10 sm:top-auto sm:h-[calc(min(650px,calc(100dvh-5rem))-73px)] sm:w-[440px]" role="dialog" aria-modal="true" aria-labelledby="chat-role-title"><div className="mx-auto mb-4 h-11 w-11 overflow-hidden rounded-full bg-[#25412f]"><img src="/assets/ai-avatar.png" alt="" className="h-full w-full object-contain" /></div><p className="text-center text-[10px] font-semibold uppercase tracking-[.18em] text-[#779070]">Welcome to My Mentor</p><h2 id="chat-role-title" className="mt-2 text-center font-serif text-2xl text-[#23392b]">How will you use My Mentor?</h2><p className="mx-auto mt-2 max-w-[280px] text-center text-sm leading-6 text-[#68766b]">Choose your path to tailor the guide.</p><div className="mt-6 grid gap-3"><button type="button" onClick={() => onSelect("browser")} className="rounded-2xl border border-[#cfdcca] bg-white px-4 py-4 text-left transition hover:border-[#729269] hover:bg-[#f5f9f1] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8fac83]"><span className="block text-sm font-semibold text-[#284331]">I am a Browser</span><span className="mt-1 block text-xs leading-5 text-[#68766b]">Read articles and explore support.</span></button><button type="button" onClick={() => onSelect("author")} className="rounded-2xl border border-[#cfdcca] bg-white px-4 py-4 text-left transition hover:border-[#729269] hover:bg-[#f5f9f1] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8fac83]"><span className="block text-sm font-semibold text-[#284331]">I am an Author</span><span className="mt-1 block text-xs leading-5 text-[#68766b]">Write, submit and track articles.</span></button></div></section>;
+  return <section className="fixed inset-x-6 bottom-6 top-[calc(1.5rem+73px)] z-[101] flex flex-col justify-center rounded-b-[28px] border-x border-b border-[#d5dfcf] bg-[#fffdf9]/95 p-6 shadow-[0_24px_60px_-20px_rgba(16,35,23,.55)] backdrop-blur-sm sm:inset-x-auto sm:bottom-10 sm:right-10 sm:top-auto sm:h-[calc(min(650px,calc(100dvh-5rem))-73px)] sm:w-[440px]" role="dialog" aria-modal="true" aria-labelledby="chat-role-title"><div className="mx-auto mb-4 h-11 w-11 overflow-hidden rounded-full bg-[#25412f]"><img src="/assets/ai-avatar.png" alt="" className="h-full w-full object-contain" /></div><p className="text-center text-[10px] font-semibold uppercase tracking-[.18em] text-[#779070]">Welcome to My Mentor</p><h2 id="chat-role-title" className="mt-2 text-center font-serif text-2xl text-[#23392b]">How will you use My Mentor?</h2><p className="mx-auto mt-2 max-w-[280px] text-center text-sm leading-6 text-[#68766b]">Choose your path to tailor the guide.</p><div className="mt-6 grid gap-3"><button type="button" onClick={() => onSelect("browser")} className="rounded-2xl border border-[#cfdcca] bg-white px-4 py-4 text-left transition hover:border-[#729269] hover:bg-[#f5f9f1] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8fac83]"><span className="block text-sm font-semibold text-[#284331]">I&apos;m just browsing</span><span className="mt-1 block text-xs leading-5 text-[#68766b]">Read articles and explore support.</span></button><button type="button" onClick={() => onSelect("author")} className="rounded-2xl border border-[#cfdcca] bg-white px-4 py-4 text-left transition hover:border-[#729269] hover:bg-[#f5f9f1] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8fac83]"><span className="block text-sm font-semibold text-[#284331]">I am an Author</span><span className="mt-1 block text-xs leading-5 text-[#68766b]">Write, submit and track articles.</span></button></div></section>;
 }

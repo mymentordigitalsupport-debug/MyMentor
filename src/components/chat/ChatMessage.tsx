@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { ArrowUpRight, Compass, Search, UserRound } from "lucide-react";
+import { RichChatText } from "./RichChatText";
 import type { ChatMessageData } from "./types";
 
 type PublishedArticle = {
@@ -21,18 +22,22 @@ export function ChatMessage({ message }: { message: ChatMessageData }) {
 
 function AnimatedGuideMessage({ message }: { message: ChatMessageData }) {
   const [displayed, setDisplayed] = useState("");
+  const [complete, setComplete] = useState(false);
 
   useEffect(() => {
     let shown = 0;
     const timer = window.setInterval(() => {
       shown = Math.min(message.text.length, shown + Math.max(1, Math.ceil(message.text.length / 90)));
       setDisplayed(message.text.slice(0, shown));
-      if (shown === message.text.length) window.clearInterval(timer);
+      if (shown === message.text.length) {
+        window.clearInterval(timer);
+        setComplete(true);
+      }
     }, 18);
     return () => window.clearInterval(timer);
   }, [message.text]);
 
-  return <div className="flex gap-2.5"><span className="mt-1 h-7 w-7 shrink-0 overflow-hidden rounded-full bg-[#25412f]"><img src="/assets/ai-avatar.png" alt="My Mentor Guide" className="h-full w-full object-contain" /></span><div className="max-w-[82%]"><div className="rounded-2xl rounded-tl-md border border-[#dde4d8] bg-white px-3.5 py-3 text-sm leading-6 text-[#2b3d31] shadow-[0_8px_18px_-16px_rgba(24,42,30,.4)]"><p>{displayed}{displayed.length < message.text.length ? <span className="ml-0.5 inline-block h-4 w-px animate-pulse bg-current align-[-2px]" aria-hidden="true" /> : null}</p></div><p className="mt-1 px-1 text-[10px] text-[#879087]">{message.time}</p></div></div>;
+  return <div className="flex gap-2.5"><span className="mt-1 h-7 w-7 shrink-0 overflow-hidden rounded-full bg-[#25412f]"><img src="/assets/ai-avatar.png" alt="My Mentor Guide" className="h-full w-full object-contain" /></span><div className="max-w-[82%]"><div className="rounded-2xl rounded-tl-md border border-[#dde4d8] bg-white px-3.5 py-3 text-sm leading-6 text-[#2b3d31] shadow-[0_8px_18px_-16px_rgba(24,42,30,.4)]"><RichChatText value={displayed} />{displayed.length < message.text.length ? <span className="ml-0.5 inline-block h-4 w-px animate-pulse bg-current align-[-2px]" aria-hidden="true" /> : null}</div>{complete && message.card ? <NavigationCard card={message.card} /> : null}<p className="mt-1 px-1 text-[10px] text-[#879087]">{message.time}</p></div></div>;
 }
 
 function ArticleFinder() {

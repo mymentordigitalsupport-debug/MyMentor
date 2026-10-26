@@ -4,6 +4,7 @@ import { PwaProvider } from "@/components/pwa-provider";
 import { ToastProvider } from "@/components/ui/ToastProvider";
 import { SmoothScroll } from "@/components/ui/SmoothScroll";
 import { MentorChatPreview } from "@/components/chat/MentorChatPreview";
+import { NavigationLoader } from "@/components/ui/NavigationLoader";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -53,6 +54,7 @@ export default function RootLayout({
         <ToastProvider>
           <SmoothScroll />
           <PwaProvider />
+          <NavigationLoader />
           {children}
           <MentorChatPreview />
         </ToastProvider>

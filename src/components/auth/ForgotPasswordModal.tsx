@@ -43,7 +43,7 @@ export function ForgotPasswordModal({ isOpen, onClose }: ForgotPasswordModalProp
       const supabase = createSupabaseBrowserClient();
       
       const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/auth/reset-password`,
+        redirectTo: `${window.location.origin}/api/auth/callback?next=/auth/reset-password`,
       });
 
       if (resetError) {

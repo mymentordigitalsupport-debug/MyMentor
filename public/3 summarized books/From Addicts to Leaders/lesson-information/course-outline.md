@@ -1,19 +1,19 @@
 # From Addicts to Leaders
 
-## Course Summary
+## Guidance Book Summary
 
-`From Addicts to Leaders` is a shorter, medium-depth recovery course built from the manuscript by Craig Petersen. It carries the same guided course shape as `Uprooting Drug Abuse`, but its emphasis is different: this course moves from addiction recovery into leadership, character, purpose, family restoration, and constructive social contribution.
+`From Addicts to Leaders` is a guidance book built from the manuscript by Craig Petersen. It is not a full My Mentor course. Its focus is addiction recovery, leadership, character, purpose, family restoration, and constructive social contribution.
 
-The course should feel like a progression from:
+The guidance book should follow a progression from:
 
 `brokenness -> inner change -> responsibility -> leadership -> restoration`
 
-## Recommended Course Shape
+## Suggested Reading Structure
 
 - `3 chapters`
 - `21 lessons total`
 - `6-12 minutes` per lesson depending on block depth
-- Same block rhythm as the first course:
+- Suggested reading rhythm:
   `welcome -> reading -> mentor note/quote -> pause & reflect -> journal -> mood check-in -> action -> reflection check -> complete`
 
 ## Chapter 1: Leadership and Recovery
@@ -67,7 +67,7 @@ This chapter widens the lens from the individual to the family and society. It c
 ## Implementation Notes
 
 - Keep the tone practical, steady, and dignifying rather than academic.
-- Avoid making this feel like a duplicate of `Uprooting Drug Abuse`; it is a follow-on course about identity, leadership, and restoration.
+- Avoid making this feel like a duplicate of `Uprooting Drug Abuse`; it is a follow-on guidance book about identity, leadership, and restoration.
 - Use examples around responsibility, service, family repair, and trustworthy living.
 - The strongest recurring action theme is:
   `becoming someone who can lead self well, serve others well, and rebuild trust over time`

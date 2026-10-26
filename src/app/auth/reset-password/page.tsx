@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { PasswordInput } from "@/components/ui/PasswordInput";
@@ -14,6 +14,7 @@ function getErrorMessage(error: unknown) {
 
 export default function ResetPasswordPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -22,20 +23,22 @@ export default function ResetPasswordPage() {
   const [validSession, setValidSession] = useState<boolean | null>(null);
 
   useEffect(() => {
-    // Check if user has a valid session from the reset link
     const checkSession = async () => {
       const supabase = createSupabaseBrowserClient();
-      const { data: { session } } = await supabase.auth.getSession();
-      
-      if (!session) {
-        setValidSession(false);
-      } else {
-        setValidSession(true);
+      const code = searchParams.get("code");
+      if (code) {
+        const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
+        if (exchangeError) {
+          setValidSession(false);
+          return;
+        }
       }
+      const { data: { session } } = await supabase.auth.getSession();
+      setValidSession(Boolean(session));
     };
 
-    checkSession();
-  }, []);
+    void checkSession();
+  }, [searchParams]);
 
   const validatePassword = (password: string): string | null => {
     if (password.length < 8) {

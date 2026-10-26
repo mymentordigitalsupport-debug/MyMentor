@@ -63,7 +63,7 @@ export const ScrollExperience: React.FC<ScrollExperienceProps> = ({
             : { opacity: 0, y: 30, scale: 0.95 }
         }
         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed bottom-5 right-4 xs:right-6 sm:right-8 z-50 pointer-events-auto flex items-center gap-2 ${
+        className={`fixed bottom-5 left-4 xs:left-6 sm:left-8 z-50 pointer-events-auto flex items-center gap-2 ${
           !showFloatingBar ? 'pointer-events-none' : ''
         }`}
       >

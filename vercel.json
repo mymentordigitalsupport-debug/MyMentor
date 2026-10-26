@@ -4,5 +4,10 @@
       "path": "/api/internal/email-retry",
       "schedule": "*/10 * * * *"
     }
-  ]
+  ],
+  "functions": {
+    "src/app/api/mentor-chat/route.ts": {
+      "includeFiles": "knowledge/**"
+    }
+  }
 }

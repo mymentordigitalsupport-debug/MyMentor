@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { getArticleActor, isApprovedAuthor } from "@/lib/article-access";
 import { slugifyArticle } from "@/lib/articles";
-import { queueUserEmail } from "@/lib/transactional-email";
+import { queueAdminNotification, queueUserEmail } from "@/lib/transactional-email";
 
 type Context = { params: Promise<{ articleId: string }> };
 
@@ -32,6 +32,17 @@ export async function PATCH(request: Request, { params }: Context) {
       });
     } catch {
       console.error("[transactional-email] article received email queue failed", { articleId });
+    }
+    try {
+      await queueAdminNotification(admin, {
+        eventKey: `admin-article-submitted:${articleId}:${submittedAt}`,
+        eventType: "admin_article_submitted",
+        title: "New article awaiting review",
+        details: `${actor.user.email ?? "An author"} submitted “${current.title}” for review.`,
+        pathname: "/admin/articles",
+      });
+    } catch {
+      console.error("[transactional-email] admin article notification queue failed", { articleId });
     }
     return NextResponse.json({ success: true });
   }

@@ -1,26 +1,26 @@
 # Protecting the Next Generation
 
-## Course Summary
+## Guidance Book Summary
 
-`Protecting the Next Generation` is a shorter prevention-focused course for parents, caregivers, and guardians. It is based on the manuscript already added to the project and works best as a practical guidance course on awareness, risk, social influence, healthy home structure, and everyday prevention habits.
+`Protecting the Next Generation` is a prevention-focused guidance book for parents, caregivers, and guardians. It is not a full My Mentor course. It covers awareness, risk, social influence, healthy home structure, and everyday prevention habits.
 
-The course should feel like:
+The guidance book should follow this progression:
 
 `awareness -> understanding risk -> spotting influence -> building protection at home`
 
-## Recommended Course Shape
+## Suggested Reading Structure
 
 - `3 chapters`
 - `15 lessons total`
 - `5-10 minutes` per lesson depending on reading depth
-- Same block rhythm as the first course:
+- Suggested reading rhythm:
   `welcome -> reading -> mentor note/quote -> pause & reflect -> journal -> mood check-in or family check-in -> action -> reflection check -> complete`
 
 ## Chapter 1: Understanding the Risk
 
 ### Chapter Overview
 
-This chapter introduces the parent-facing purpose of the course. It explains why the teenage years are especially vulnerable, why prevention matters, and how substance abuse can affect a young person's body, mind, and future.
+This chapter introduces the parent-facing purpose of the guidance book. It explains why the teenage years are especially vulnerable, why prevention matters, and how substance abuse can affect a young person's body, mind, and future.
 
 ### Lessons
 
@@ -60,7 +60,7 @@ This chapter turns toward practical prevention. It focuses on awareness, watchfu
 
 ## Implementation Notes
 
-- This course should stay direct, supportive, and non-alarmist.
+- This guidance book should stay direct, supportive, and non-alarmist.
 - Replace some learner-centered prompts with parent or caregiver reflection where useful.
 - A few lessons may use `family check-in` prompts in place of personal recovery prompts.
 - The strongest recurring action theme is:
