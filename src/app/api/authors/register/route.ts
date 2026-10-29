@@ -78,7 +78,7 @@ export async function POST(request: Request) {
       password,
       options: { data: { full_name: fullName, display_name: publicName } },
     });
-    let userId = created.user?.id ?? null;
+    const userId = created.user?.id ?? null;
 
     if (createError || !userId) {
       return NextResponse.json({ success: true, pendingConfirmation: true }, { status: 202 });

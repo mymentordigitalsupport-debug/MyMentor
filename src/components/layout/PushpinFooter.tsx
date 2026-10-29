@@ -960,7 +960,7 @@ export default function PushpinTearFooter({
               onChange={(e) => setAddress(e.target.value)}
             />
             <span className="tpf-sent" aria-live="polite">
-              {sent ? <><Icon name="check" /> you're on the list</> : null}
+              {sent ? <><Icon name="check" /> you&apos;re on the list</> : null}
             </span>
             <button type="submit" className="tpf-knob" aria-label="Subscribe" disabled={sent}>
               <Icon name={sent ? "check" : "arrow"} />
