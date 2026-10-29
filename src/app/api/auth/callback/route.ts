@@ -3,10 +3,15 @@ import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { queueAdminNotification, queueUserEmail } from "@/lib/transactional-email";
 import { NextResponse } from "next/server";
 
+function safeNext(value: string | null) {
+  if (!value || !value.startsWith("/") || value.startsWith("//")) return "/today";
+  return value;
+}
+
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get("code");
-  const next = searchParams.get("next") ?? "/today";
+  const next = safeNext(searchParams.get("next"));
 
   if (code) {
     const supabase = await createSupabaseServerClient();
@@ -35,7 +40,7 @@ export async function GET(request: Request) {
           }
         }
       }
-      return NextResponse.redirect(`${origin}${next}`);
+      return NextResponse.redirect(new URL(next, origin));
     }
   }
 

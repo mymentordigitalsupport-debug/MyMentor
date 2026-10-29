@@ -15,6 +15,7 @@ import {
   Settings2,
   LogOut,
   MoreHorizontal,
+  MessagesSquare,
 } from "lucide-react";
 import type { ComponentType } from "react";
 import { IdentityAvatar } from "@/components/ui/IdentityAvatar";
@@ -35,6 +36,7 @@ type ProfilePreview = {
 };
 
 const PRIMARY_NAV: NavItem[] = [
+  { label: "Threads", href: "/threads", icon: MessagesSquare, description: "Share and support each other" },
   { label: "Today", href: "/today", icon: Clock3, badge: "16", description: "Daily focus and check-ins" },
   { label: "Course", href: "/course", icon: Compass, description: "Courses and guided paths" },
   { label: "Journal", href: "/journal", icon: NotebookPen, description: "Entries and reflections" },

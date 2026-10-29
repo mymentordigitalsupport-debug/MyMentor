@@ -7,6 +7,7 @@ import { SmoothScroll } from "@/components/ui/SmoothScroll";
 import { MentorChatPreview } from "@/components/chat/MentorChatPreview";
 import { NavigationLoader } from "@/components/ui/NavigationLoader";
 import { Analytics } from "@vercel/analytics/next";
+import PushpinTearFooter from "@/components/layout/PushpinFooter";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -60,6 +61,20 @@ export default function RootLayout({
             <NavigationLoader />
           </Suspense>
           {children}
+          <PushpinTearFooter
+            brand="MyMentor"
+            name="MyMentor community"
+            email="hello@mymentor.digital"
+            sheet="#1F3527"
+            paper="#f6f3ed"
+            sheetInk="#ffffff"
+            paperInk="#1F3527"
+            timeZone="Asia/Singapore"
+            timeLabel="SGT"
+            copyright={`© ${new Date().getFullYear()} MyMentor`}
+            credit="Walk with purpose. Build with clarity."
+            chat={{ label: "say hi", href: "mailto:hello@mymentor.digital" }}
+          />
           <MentorChatPreview />
           <Analytics />
         </ToastProvider>

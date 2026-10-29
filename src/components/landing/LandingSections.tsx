@@ -1,6 +1,5 @@
 "use client";
 
-import { CountdownSection } from "@/components/about/components/CountdownSection";
 import { ArticlePreviewSection } from "@/components/articles/ArticlePreviewSection";
 import { MyMentorInvitationWall } from "@/components/landing/MyMentorInvitationWall";
 import { SectionReveal } from "@/components/landing/SectionReveal";
@@ -29,7 +28,6 @@ export function LandingSections() {
           <MyMentorInvitationWall />
         </SectionReveal>
       </div>
-      <CountdownSection />
     </>
   );
 }

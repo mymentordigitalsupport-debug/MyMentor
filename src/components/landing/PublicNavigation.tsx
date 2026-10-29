@@ -13,7 +13,7 @@ const exploreLinks = [
 ];
 
 // Adapted from SolaceUI's Navbar Section 2 on 21st.dev.
-export function PublicNavigation({ overDark = false, adaptToAboutSections = false }: { overDark?: boolean; adaptToAboutSections?: boolean }) {
+export function PublicNavigation({ overDark = false, adaptToAboutSections = false, brandLabel = "My Mentor" }: { overDark?: boolean; adaptToAboutSections?: boolean; brandLabel?: string }) {
   const [stickyPhase, setStickyPhase] = useState<"normal" | "enter" | "exit">("normal");
   const [open, setOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -103,13 +103,13 @@ export function PublicNavigation({ overDark = false, adaptToAboutSections = fals
         >
           <Link href="/" onClick={close} tabIndex={stickyPhase === "normal" ? undefined : -1} className="flex items-center gap-2 font-semibold tracking-tight" aria-label="My Mentor home">
             <Image src="/assets/images/favicon.png" alt="" width={38} height={38} className="size-9 object-contain" />
-            <span className="public-nav-brand-label text-sm sm:text-base">My Mentor</span>
+            <span className="public-nav-brand-label text-sm sm:text-base">{brandLabel}</span>
           </Link>
         </motion.div>
 
         <div className={`public-nav-desktop absolute left-1/2 top-0 hidden -translate-x-1/2 lg:block ${overDark ? "w-auto" : "w-[540px]"}`} style={{ filter: overDark ? undefined : "drop-shadow(0 12px 20px rgba(0,0,0,.16))" }}>
-          {!overDark && <><svg width="20" height="20" viewBox="0 0 20 20" className="pointer-events-none absolute -left-[18px] top-0 text-[#1F1710]" aria-hidden="true"><path d="M20 20V0H0C11.046 0 20 11.046 20 20Z" fill="currentColor" /></svg><svg width="20" height="20" viewBox="0 0 20 20" className="pointer-events-none absolute -right-[18px] top-0 text-[#1F1710]" aria-hidden="true"><path d="M0 0H20C8.954 0 0 8.954 0 20Z" fill="currentColor" /></svg></>}
-          <motion.div animate={{ height: open ? 224 : 52 }} transition={reducedMotion ? { duration: 0 } : { type: "spring", stiffness: 300, damping: 28 }} className={`public-nav-panel overflow-hidden text-white ${overDark ? "rounded-b-xl bg-transparent" : "rounded-b-2xl bg-[#1F1710]"}`}>
+          {!overDark && <><svg width="20" height="20" viewBox="0 0 20 20" className="pointer-events-none absolute -left-[18px] top-0 text-[#1F3527]" aria-hidden="true"><path d="M20 20V0H0C11.046 0 20 11.046 20 20Z" fill="currentColor" /></svg><svg width="20" height="20" viewBox="0 0 20 20" className="pointer-events-none absolute -right-[18px] top-0 text-[#1F3527]" aria-hidden="true"><path d="M0 0H20C8.954 0 0 8.954 0 20Z" fill="currentColor" /></svg></>}
+          <motion.div animate={{ height: open ? 224 : 52 }} transition={reducedMotion ? { duration: 0 } : { type: "spring", stiffness: 300, damping: 28 }} className={`public-nav-panel overflow-hidden bg-[#1F3527] text-white ${overDark ? "rounded-b-xl" : "rounded-b-2xl"}`}>
             <nav aria-label="Main navigation" className={`flex h-[52px] items-center justify-center gap-7 text-sm font-medium text-white/70 ${overDark ? "gap-8 text-xs tracking-[0.2em]" : ""}`}>
               <Link href="/" onClick={close} className="transition hover:text-white">Home</Link>
               <Link href="/about" onClick={close} className="transition hover:text-white">About us</Link>
@@ -134,7 +134,7 @@ export function PublicNavigation({ overDark = false, adaptToAboutSections = fals
         </div>
       </div>
       <AnimatePresence initial={false}>
-        {mobileOpen && <motion.nav id="mobile-navigation" aria-label="Mobile navigation" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} transition={{ duration: reducedMotion ? 0 : 0.2 }} className="absolute left-4 right-4 top-16 overflow-hidden rounded-xl bg-[#1F1710] text-white shadow-xl sm:left-6 sm:right-6 lg:hidden">
+        {mobileOpen && <motion.nav id="mobile-navigation" aria-label="Mobile navigation" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} transition={{ duration: reducedMotion ? 0 : 0.2 }} className="absolute left-4 right-4 top-16 overflow-hidden rounded-xl bg-[#1F3527] text-white shadow-xl sm:left-6 sm:right-6 lg:hidden">
           <div className="grid gap-1 p-4 text-sm">
             <Link href="/" onClick={close} className="rounded-lg px-3 py-3 hover:bg-white/10">Home</Link>
             <Link href="/about" onClick={close} className="rounded-lg px-3 py-3 hover:bg-white/10">About us</Link>

@@ -165,27 +165,6 @@ export function RegisterForm() {
       return;
     }
 
-    // First, check if email already exists
-    try {
-      const checkResponse = await fetch("/api/auth/check-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-
-      const checkData = await checkResponse.json();
-
-      if (checkData.exists) {
-
-        toast.error("Account Exists", "An account with this email already exists. Please sign in instead.");
-        setLoading(false);
-        return;
-      }
-    } catch (err) {
-      console.error("Email check failed:", err);
-      // Continue with signup anyway
-    }
-
     // Generate a display name for anonymous mode
     const baseUsername = email.split("@")[0]?.trim() || "Friend";
     const displayName = isAnonymousMode

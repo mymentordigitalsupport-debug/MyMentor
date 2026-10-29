@@ -109,6 +109,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+
 .bg-starfield {
   background-image: radial-gradient(1.5px 1.5px at 20px 30px, #fff 100%, transparent), radial-gradient(1.5px 1.5px at 40px 70px, #E7C77E 100%, transparent), radial-gradient(1px 1px at 90px 40px, #fff 100%, transparent), radial-gradient(1.2px 1.2px at 160px 120px, #FFD782 100%, transparent), radial-gradient(1.5px 1.5px at 230px 210px, #fff 100%, transparent), radial-gradient(1px 1px at 290px 160px, #E2C374 100%, transparent);
   background-size: 320px 320px;
@@ -202,7 +203,7 @@ a {
   min-height: calc(var(--profile-height) - 4px);
   padding: 8px var(--profile-padding-x);
   border-radius: 13px;
-  background-color: #1a1a1a;
+  background-color: #1F3527;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -136,7 +136,10 @@ export function SettingsPanel({
     if (!confirmed) return;
 
     try {
-      const response = await fetch("/api/auth/delete-account", { method: "POST" });
+      const response = await fetch("/api/auth/delete-account", {
+        method: "POST",
+        headers: { "x-mym-acknowledge": "DELETE_MY_ACCOUNT" },
+      });
       if (!response.ok) throw new Error("Delete failed");
       router.push("/");
       router.refresh();

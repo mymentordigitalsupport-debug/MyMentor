@@ -6,7 +6,6 @@ import { HeroSection } from "./components/HeroSection";
 import { TestimonialSection } from "./components/TestimonialSection";
 import { AuthorSection } from "./components/AuthorSection";
 import { GiftSection } from "./components/GiftSection";
-import { CountdownSection } from "./components/CountdownSection";
 import { ScrollExperience } from "./components/ScrollExperience";
 
 export function AboutPage() {
@@ -20,7 +19,6 @@ export function AboutPage() {
       <TestimonialSection onSignUp={signUp} onExploreBooks={explore} />
       <AuthorSection onSignUp={signUp} onExploreBooks={explore} />
       <GiftSection onSignUp={signUp} />
-      <CountdownSection onSignUp={signUp} onExploreBooks={explore} onSignIn={(role) => router.push(role === "admin" ? "/admin-login" : "/login")} />
       <ScrollExperience onSignUp={signUp} onExploreBooks={explore} />
     </main>
   );

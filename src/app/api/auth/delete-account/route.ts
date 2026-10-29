@@ -1,8 +1,13 @@
 import { createClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { hasTrustedOrigin, takeRateLimit } from "@/lib/security";
 
-export async function POST() {
+export async function POST(request: Request) {
+  if (!hasTrustedOrigin(request) || request.headers.get("x-mym-acknowledge") !== "DELETE_MY_ACCOUNT") {
+    return NextResponse.json({ error: "Account deletion was not confirmed." }, { status: 403 });
+  }
+
   const supabase = await createSupabaseServerClient();
   const {
     data: { user },
@@ -10,6 +15,9 @@ export async function POST() {
 
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  if (!await takeRateLimit(`delete-account:${user.id}`, 3600, 3)) {
+    return NextResponse.json({ error: "Please wait before trying again." }, { status: 429 });
   }
 
   const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;

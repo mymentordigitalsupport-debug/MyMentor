@@ -1,4 +1,5 @@
 import { DesktopSidebar } from "@/components/layout/DesktopSidebar";
+import { DashboardLoader } from "@/components/layout/DashboardLoader";
 
 export default function AppLayout({
   children,
@@ -6,7 +7,7 @@ export default function AppLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-sand lg:flex">
+    <DashboardLoader><div className="min-h-screen bg-sand lg:flex">
       <DesktopSidebar />
 
       <div className="flex min-w-0 flex-1 flex-col bg-[linear-gradient(180deg,rgba(251,249,245,0.98)_0%,rgba(246,243,237,0.98)_100%)]">
@@ -14,6 +15,6 @@ export default function AppLayout({
           {children}
         </main>
       </div>
-    </div>
+    </div></DashboardLoader>
   );
 }

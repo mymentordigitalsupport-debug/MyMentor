@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
-import { checkMentorRateLimit, generateMentorReply, MentorInferenceError, type MentorChatInput } from "@/lib/mentor-ai";
+import { generateMentorReply, MentorInferenceError, type MentorChatInput } from "@/lib/mentor-ai";
 import { safetyReply } from "@/lib/mentor-safety";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { getMentorKnowledge } from "@/lib/mentor-knowledge";
 import { mentorRouteInstructions, resolveMentorNavigation } from "@/lib/mentor-navigation";
+import { hasTrustedOrigin, requestClientKey, takeRateLimit } from "@/lib/security";
 
 export const runtime = "nodejs";
 export const maxDuration = 30;
@@ -124,15 +125,17 @@ function isCourseCountRequest(message: string) {
 }
 
 export async function POST(request: Request) {
+  if (!hasTrustedOrigin(request)) return NextResponse.json({ error: "Invalid request origin." }, { status: 403 });
   let body: { messages?: unknown };
   try { body = await request.json(); } catch { return NextResponse.json({ error: "Invalid request." }, { status: 400 }); }
   if (!validMessages(body.messages)) return NextResponse.json({ error: "Invalid chat messages." }, { status: 400 });
 
-  const forwarded = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "anonymous";
   const supabase = await createSupabaseServerClient();
   const { data: { user } } = await supabase.auth.getUser();
-  const rateKey = user?.id ?? `ip:${forwarded}`;
-  if (!checkMentorRateLimit(rateKey)) return NextResponse.json({ error: "Please wait a moment before sending another message." }, { status: 429 });
+  const rateKey = user?.id ?? `ip:${requestClientKey(request)}`;
+  if (!await takeRateLimit(`mentor-chat:${rateKey}`, 600, 20)) {
+    return NextResponse.json({ error: "Please wait a moment before sending another message." }, { status: 429 });
+  }
   const latestMessage = body.messages[body.messages.length - 1].content;
   if (user) await saveConversationMessage(supabase, user.id, "user", latestMessage);
 

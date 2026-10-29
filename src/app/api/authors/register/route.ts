@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { queueAdminNotification, queueUserEmail } from "@/lib/transactional-email";
+import { hasTrustedOrigin, requestClientKey, takeRateLimit } from "@/lib/security";
 
 type Payload = {
   fullName?: string;
@@ -31,6 +32,7 @@ function validUrl(value: string) {
 }
 
 export async function POST(request: Request) {
+  if (!hasTrustedOrigin(request)) return NextResponse.json({ error: "Invalid request origin." }, { status: 403 });
   const admin = createSupabaseAdminClient();
   if (!admin) return NextResponse.json({ error: "Registration is not configured." }, { status: 503 });
 
@@ -49,6 +51,10 @@ export async function POST(request: Request) {
     const websiteUrl = text(raw.websiteUrl, 500);
     const portfolioUrl = text(raw.portfolioUrl, 500);
 
+    if (!await takeRateLimit(`author-registration:ip:${requestClientKey(request)}`, 3600, 5)) {
+      return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
+    }
+
     if (!fullName || !publicName || !email || password.length < 8 || !bio || !expertiseSummary || !motivation || !intendedTopics.length) {
       return NextResponse.json({ error: "Please complete all required application fields. Passwords must be at least 8 characters." }, { status: 400 });
     }
@@ -56,29 +62,34 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Enter a valid email address and valid website links where supplied." }, { status: 400 });
     }
 
-    const { data: created, error: createError } = await admin.auth.admin.createUser({
+    if (!await takeRateLimit(`author-registration:email:${email}`, 86400, 3)) {
+      return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
+    }
+
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
+    const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
+    if (!url || !anonKey) return NextResponse.json({ error: "Registration is not configured." }, { status: 503 });
+
+    // Use the normal sign-up flow so Supabase owns password handling and email
+    // confirmation. This route never creates an already-confirmed account.
+    const authClient = createClient(url, anonKey, { auth: { persistSession: false, autoRefreshToken: false } });
+    const { data: created, error: createError } = await authClient.auth.signUp({
       email,
       password,
-      email_confirm: true,
-      user_metadata: { full_name: fullName, display_name: publicName },
+      options: { data: { full_name: fullName, display_name: publicName } },
     });
     let userId = created.user?.id ?? null;
 
     if (createError || !userId) {
-      // A previous incomplete application, or an existing member applying to write,
-      // can safely continue only after proving ownership of the account password.
-      const url = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
-      const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
-      const authClient = createClient(url, anonKey, { auth: { persistSession: false, autoRefreshToken: false } });
-      const { data: signedIn, error: signInError } = await authClient.auth.signInWithPassword({ email, password });
-      if (signInError || !signedIn.user) {
-        return NextResponse.json({ error: "An account already uses this email. Sign in with its correct password or use a different email address." }, { status: 409 });
-      }
-      userId = signedIn.user.id;
-      await authClient.auth.signOut();
-    } else {
-      createdUserId = userId;
+      return NextResponse.json({ success: true, pendingConfirmation: true }, { status: 202 });
     }
+
+    // Supabase deliberately returns an obfuscated user for an existing address
+    // when email confirmation is enabled. Do not attach an application to it.
+    if ((created.user?.identities?.length ?? 0) === 0) {
+      return NextResponse.json({ success: true, pendingConfirmation: true }, { status: 202 });
+    }
+    createdUserId = userId;
 
     const { data: existingApplication, error: existingApplicationError } = await admin
       .from("article_author_applications")
@@ -87,11 +98,7 @@ export async function POST(request: Request) {
       .maybeSingle();
     if (existingApplicationError) throw existingApplicationError;
     if (existingApplication) {
-      return NextResponse.json({
-        success: true,
-        alreadySubmitted: true,
-        status: existingApplication.status,
-      });
+      return NextResponse.json({ success: true, alreadySubmitted: true, status: existingApplication.status });
     }
 
     const { error: profileError } = await admin
@@ -143,7 +150,7 @@ export async function POST(request: Request) {
     if (typeof error === "object" && error && "code" in error && error.code === "23514") {
       return NextResponse.json({ error: "Author registration is not ready yet. The author-role database update still needs to be applied." }, { status: 503 });
     }
-    const message = error instanceof Error ? error.message : "Unable to submit your author application.";
-    return NextResponse.json({ error: message }, { status: 500 });
+    console.error("[authors/register] application failed", error);
+    return NextResponse.json({ error: "Unable to submit your author application." }, { status: 500 });
   }
 }
