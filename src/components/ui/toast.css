@@ -1,0 +1,164 @@
+:root {
+  --tr: all 0.5s ease 0s;
+}
+
+.toast-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: var(--tr);
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+  pointer-events: none;
+  gap: 1rem;
+}
+
+.toast-item {
+  max-height: 25rem;
+  transition: var(--tr);
+  position: relative;
+  pointer-events: auto;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.toast-item.show {
+  animation: show-toast 0.4s ease forwards;
+}
+
+.toast-item.hide {
+  animation: hide-toast 0.4s ease forwards;
+}
+
+@keyframes show-toast {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hide-toast {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.toast {
+  background: #ffffff;
+  color: #f5f5f5;
+  padding: 1.5rem 2rem 1.5rem 3rem;
+  text-align: left;
+  border-radius: 1rem;
+  position: relative;
+  font-weight: 300;
+  margin: 0;
+  width: 24rem;
+  max-width: 90vw;
+  transition: var(--tr);
+  opacity: 1;
+  border: 0.15rem solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 1.5rem 0 rgba(26, 31, 67, 0.38);
+  font-family: "Aptos", "Segoe UI", "Helvetica Neue", sans-serif;
+}
+
+.toast::before {
+  content: "";
+  position: absolute;
+  width: 0.5rem;
+  height: calc(100% - 1.5rem);
+  top: 0.75rem;
+  left: 0.5rem;
+  z-index: 0;
+  border-radius: 1rem;
+  background: var(--clr);
+}
+
+.toast h3 {
+  font-size: 1.2rem;
+  margin: 0;
+  line-height: 1.35rem;
+  font-weight: 600;
+  position: relative;
+  color: var(--clr);
+}
+
+.toast p {
+  position: relative;
+  font-size: 0.95rem;
+  z-index: 1;
+  margin: 0.25rem 0 0;
+  color: #595959;
+  line-height: 1.3rem;
+}
+
+.close {
+  position: absolute;
+  width: 1.35rem;
+  height: 1.35rem;
+  text-align: center;
+  right: 1rem;
+  top: 1rem;
+  cursor: pointer;
+  border-radius: 100%;
+  border: none;
+  background: transparent;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--tr);
+}
+
+.close::after {
+  position: absolute;
+  font-family: "Aptos", "Segoe UI", "Helvetica Neue", sans-serif;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  font-size: 1.8rem;
+  content: "+";
+  transform: rotate(-45deg);
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #595959;
+  text-indent: 1px;
+}
+
+.close:hover::after {
+  background: var(--clr);
+  color: #fff;
+}
+
+.toast.success {
+  --clr: #03a65a;
+  --brd: #03a65a40;
+}
+
+.toast.error {
+  --clr: #db3056;
+  --brd: #db305640;
+}
+
+.toast.warning {
+  --clr: #fc8621;
+  --brd: #fc862140;
+}
+
+.toast.info {
+  --clr: #0070e0;
+  --brd: #0070e040;
+}

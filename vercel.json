@@ -1,0 +1,13 @@
+{
+  "crons": [
+    {
+      "path": "/api/internal/email-retry",
+      "schedule": "0 0 * * *"
+    }
+  ],
+  "functions": {
+    "src/app/api/mentor-chat/route.ts": {
+      "includeFiles": "knowledge/**"
+    }
+  }
+}

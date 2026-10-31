@@ -1,0 +1,3 @@
+export function ChatTypingIndicator() {
+  return <div className="flex gap-2.5" role="status" aria-label="My Mentor Guide is thinking" aria-live="polite"><span className="mt-1 h-7 w-7 shrink-0 overflow-hidden rounded-full bg-[#25412f]"><img src="/assets/ai-avatar.png" alt="" className="h-full w-full object-contain" /></span><div className="flex h-11 items-center gap-1.5 rounded-2xl rounded-tl-md border border-[#dde4d8] bg-white px-4" aria-hidden="true"><i className="h-2 w-2 animate-bounce rounded-full bg-[#789071] [animation-delay:-.2s]" /><i className="h-2 w-2 animate-bounce rounded-full bg-[#789071] [animation-delay:-.1s]" /><i className="h-2 w-2 animate-bounce rounded-full bg-[#789071]" /></div></div>;
+}
