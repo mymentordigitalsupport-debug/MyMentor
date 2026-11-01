@@ -1,5 +1,6 @@
 .next/
 .next-stale-*/
+.npm-cache/
 codex-skills/
 node_modules/
 out/

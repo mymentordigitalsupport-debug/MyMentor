@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { useToast } from "@/components/ui/ToastProvider";
 import { cn } from "@/lib/utils";
@@ -14,7 +14,11 @@ import {
   NotebookPen,
   Settings2,
   LogOut,
-  MoreHorizontal,
+  ArrowUpRight,
+  Menu,
+  X,
+  Sparkles,
+  Heart,
   MessagesSquare,
 } from "lucide-react";
 import type { ComponentType } from "react";
@@ -36,11 +40,11 @@ type ProfilePreview = {
 };
 
 const PRIMARY_NAV: NavItem[] = [
-  { label: "Threads", href: "/threads", icon: MessagesSquare, description: "Share and support each other" },
-  { label: "Today", href: "/today", icon: Clock3, badge: "16", description: "Daily focus and check-ins" },
+  { label: "Today", href: "/today", icon: Clock3, description: "Daily focus and check-ins" },
   { label: "Course", href: "/course", icon: Compass, description: "Courses and guided paths" },
   { label: "Journal", href: "/journal", icon: NotebookPen, description: "Entries and reflections" },
   { label: "Progress", href: "/progress", icon: ChartColumn, description: "Momentum and completion" },
+  { label: "Threads", href: "/threads", icon: MessagesSquare, description: "Share and support each other" },
   { label: "Resources", href: "/resources", icon: BookMarked, description: "Tools and support" },
   { label: "Settings", href: "/settings", icon: Settings2, description: "Profile and preferences" },
 ];
@@ -51,6 +55,9 @@ export function DesktopSidebar() {
   const toast = useToast();
   const isLessonRoute = /^\/(?:course|journey)\/[^/]+\/[^/]+\/[^/]+$/.test(pathname);
 
+  const [menuOpen, setMenuOpen] = useState(false);
+  const sidebarRef = useRef<HTMLElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const [profile, setProfile] = useState<ProfilePreview | null>(null);
   const [authName, setAuthName] = useState<string | null>(null);
   const [loadingProfile, setLoadingProfile] = useState(true);
@@ -109,6 +116,36 @@ export function DesktopSidebar() {
     };
   }, []);
 
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const sidebar = sidebarRef.current;
+    const menuButton = menuButtonRef.current;
+    const desktopViewport = window.matchMedia("(min-width: 1024px)");
+    const closeOnDesktop = () => { if (desktopViewport.matches) setMenuOpen(false); };
+    desktopViewport.addEventListener("change", closeOnDesktop);
+    const focusable = () => Array.from(sidebar?.querySelectorAll<HTMLElement>("a[href], button:not(:disabled)") ?? []);
+    focusable()[0]?.focus();
+    function handleKey(event: KeyboardEvent) {
+      if (event.key === "Escape") setMenuOpen(false);
+      if (event.key !== "Tab") return;
+      const items = focusable();
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+    }
+    document.addEventListener("keydown", handleKey);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKey);
+      desktopViewport.removeEventListener("change", closeOnDesktop);
+      menuButton?.focus();
+    };
+  }, [menuOpen]);
+
   const displayName = useMemo(() => {
     const fallback = authName ?? "Your name";
     if (!profile) return fallback;
@@ -131,125 +168,51 @@ export function DesktopSidebar() {
   };
 
   return (
-    <aside className={cn("relative hidden shrink-0 lg:block transition-[width] duration-300 ease-out", isLessonRoute ? "w-[92px]" : "w-[305px]")}>
-      <main className={cn("sticky top-0 flex h-screen flex-col overflow-y-auto border-r border-white/6 bg-[linear-gradient(180deg,#133225_0%,#102b1f_45%,#0f271c_100%)] shadow-[0_20px_44px_-28px_rgba(7,16,11,0.55)] transition-[width] duration-300 ease-out", isLessonRoute ? "w-[92px]" : "w-[305px]")}>
-        <header className={cn("text-[#fbf9f5]", isLessonRoute ? "px-3 pt-4 pb-4" : "px-4 pt-4 pb-3")}>
-          <div className={cn("flex items-start", isLessonRoute ? "justify-center" : "gap-3")}>
-            <div className={cn("flex min-w-0 items-start", isLessonRoute ? "justify-center" : "gap-3")}>
-              <IdentityAvatar
-                name={displayName}
-                isAnonymous={profile?.is_anonymous ?? false}
-                className="mt-0.5 h-10 w-10 bg-[#7a8b5c] text-[#fbf9f5] shadow-[0_0_0_1px_rgba(255,255,255,0.08)]"
-              />
-              <div className={cn("min-w-0 pt-0.5", isLessonRoute && "hidden")}>
-                <div className="flex items-center gap-2">
-                  <span className="truncate text-[0.95rem] font-semibold tracking-[-0.02em] text-[#fbf9f5]">
-                    {loadingProfile ? "Loading..." : displayName}
-                  </span>
-                  <span className="rounded-md border border-white/10 bg-white/6 px-1.5 py-0.5 text-[0.65rem] font-semibold text-[#fbf9f5]/80">
-                    Pro
-                  </span>
-                </div>
-                <p className="mt-0.5 text-[0.76rem] text-white/72">{subtitle}</p>
-              </div>
-            </div>
-
+    <>
+      <div className="member-mobile-header">
+        <Link href="/today" className="member-brand"><span className="member-brand-mark"><Sparkles size={19} /></span><span>MyMentor<span className="member-brand-period">.</span></span></Link>
+        <button ref={menuButtonRef} type="button" className="member-icon-button" onClick={() => setMenuOpen(true)} aria-label="Open navigation" aria-expanded={menuOpen} aria-controls="member-navigation"><Menu size={22} /></button>
+      </div>
+      {menuOpen && <button className="member-menu-backdrop" type="button" onClick={() => setMenuOpen(false)} aria-label="Close navigation" tabIndex={-1} />}
+      <aside ref={sidebarRef} id="member-navigation" role={menuOpen ? "dialog" : undefined} aria-modal={menuOpen || undefined} aria-label="Member navigation" className={cn("member-sidebar", isLessonRoute && "member-sidebar-compact", menuOpen && "member-sidebar-open")}>
+        <div className="member-sidebar-inner">
+          <div className="member-sidebar-brand-row">
+            <Link href="/today" className="member-brand" onClick={() => setMenuOpen(false)} title="MyMentor home">
+              <span className="member-brand-mark"><Sparkles size={21} /></span><span className="member-sidebar-label">MyMentor<span className="member-brand-period">.</span></span>
+            </Link>
+            <button className="member-menu-close" type="button" onClick={() => setMenuOpen(false)} aria-label="Close navigation"><X size={20} /></button>
           </div>
-        </header>
-
-        <section className={cn(isLessonRoute ? "px-2 pb-3 pt-1.5" : "px-4 pb-3 pt-1.5")}>
-          <div className="space-y-2.5">
-            {PRIMARY_NAV.map((item) => {
+          <div className="member-sidebar-profile">
+            <IdentityAvatar name={displayName} isAnonymous={profile?.is_anonymous ?? false} className="member-avatar" />
+            <div className="member-sidebar-label"><p>{loadingProfile ? "Your space" : displayName}</p><span><i /> {profile?.is_anonymous ? "Private mode" : "Member workspace"}</span></div>
+          </div>
+          <p className="member-nav-eyebrow member-sidebar-label">YOUR EVERYDAY</p>
+          <nav className="member-nav" aria-label="Main navigation">
+            {PRIMARY_NAV.filter((item) => item.href !== "/settings").map((item) => {
               const Icon = item.icon;
               const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
-
               return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "group flex min-h-[56px] items-center rounded-[18px] py-2 transition",
-                    isLessonRoute ? "justify-center px-2" : "gap-3 px-3",
-                    isActive
-                      ? "border-l-[3px] border-l-[#7a9272] bg-white/8 shadow-none"
-                      : "hover:bg-white/[0.035]"
-                  )}
-                >
-                  <span
-                    className={cn(
-                      "flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition",
-                      isActive ? "bg-white/8 text-[#fbf9f5]" : "bg-white/[0.06] text-white/78"
-                    )}
-                  >
-                    <Icon className="h-[16px] w-[16px]" />
-                  </span>
-
-                  <span className={cn("min-w-0 flex-1", isLessonRoute && "hidden")}>
-                    <span className="flex items-center gap-2">
-                      <span
-                        className={cn(
-                          "truncate text-[0.95rem] font-semibold tracking-[-0.01em]",
-                          isActive ? "text-[#fbf9f5]" : "text-white/76"
-                        )}
-                      >
-                        {item.label}
-                      </span>
-                      {item.badge ? (
-                        <span className="rounded-md border border-white/10 bg-white/[0.04] px-1.5 py-0.5 text-[0.64rem] font-semibold text-[#fbf9f5]/76">
-                          {item.badge}
-                        </span>
-                      ) : null}
-                    </span>
-                    <span className={cn("block truncate text-[0.78rem] leading-[1.25]", isActive ? "text-[#fbf9f5]/72" : "text-white/56")}>
-                      {item.description}
-                    </span>
-                  </span>
+                <Link key={item.href} href={item.href} onClick={() => setMenuOpen(false)} className={cn("member-nav-link", isActive && "member-nav-active")} aria-current={isActive ? "page" : undefined} title={item.label}>
+                  <Icon className="member-nav-icon" /><span className="member-sidebar-label">{item.label}</span>{isActive && <span className="member-nav-dot member-sidebar-label" />}
                 </Link>
               );
             })}
+          </nav>
+          <div className="member-sidebar-encouragement member-sidebar-label">
+            <span className="member-encouragement-icon"><Heart size={18} /></span>
+            <p>Good things take<br /><em>one small step.</em></p>
+            <span>A little intention goes a long way.</span>
+            <Link href="/journal/new" onClick={() => setMenuOpen(false)}>Make time for yourself <ArrowUpRight size={15} /></Link>
           </div>
-        </section>
-
-        <footer className={cn("mt-auto pt-1.5", isLessonRoute ? "px-2 pb-3" : "px-4 pb-3")}>
-          <div className={cn("rounded-[22px] border border-white/10 bg-white/4 text-[#fbf9f5]", isLessonRoute ? "p-2.5" : "p-3.5")}>
-            <div className="flex items-center justify-between gap-3">
-              <div className="flex min-w-0 items-center gap-3">
-                <IdentityAvatar
-                  name={displayName}
-                  isAnonymous={profile?.is_anonymous ?? false}
-                  className="h-10 w-10 bg-[#5d6f50] text-[#fbf9f5]"
-                />
-                <div className={cn("min-w-0", isLessonRoute && "hidden")}>
-                  <p className="truncate text-[0.9rem] font-semibold">{displayName}</p>
-                  <p className="truncate text-[0.76rem] text-white/66">
-                    {profile?.is_anonymous ? "Anonymous identity" : "Personal account"}
-                  </p>
-                </div>
-              </div>
-
-              <button
-                type="button"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-white/10 bg-white/6 text-white/70 transition hover:bg-white/10 hover:text-white"
-                aria-label={isLessonRoute ? "Account options" : "More options"}
-              >
-                <MoreHorizontal className="h-[15px] w-[15px]" />
-              </button>
-            </div>
-
-            <div className="mt-3.5 border-t border-white/8 pt-3">
-              <button
-                type="button"
-                onClick={handleLogout}
-                className={cn("inline-flex w-full items-center justify-center gap-2 rounded-full bg-white/10 text-[0.9rem] font-semibold text-[#fbf9f5] transition hover:bg-white/12", isLessonRoute ? "px-3 py-2" : "px-4 py-2.5")}
-              >
-                <LogOut className="h-[15px] w-[15px]" />
-                {isLessonRoute ? <span className="sr-only">Logout</span> : "Logout"}
-              </button>
-            </div>
+          <div className="member-sidebar-footer">
+            <Link href="/settings" onClick={() => setMenuOpen(false)} className={cn("member-nav-link", pathname === "/settings" && "member-nav-active")} aria-current={pathname === "/settings" ? "page" : undefined} title="Settings"><Settings2 className="member-nav-icon" /><span className="member-sidebar-label">Settings</span></Link>
+            <button type="button" onClick={handleLogout} className="member-nav-link member-logout" title="Sign out"><LogOut className="member-nav-icon" /><span className="member-sidebar-label">Sign out</span></button>
+            <div className="member-sidebar-signature member-sidebar-label"><span /> {subtitle}</div>
           </div>
-        </footer>
-      </main>
-    </aside>
+        </div>
+      </aside>
+    </>
   );
 }
+
 

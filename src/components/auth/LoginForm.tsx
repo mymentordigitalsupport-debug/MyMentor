@@ -15,9 +15,14 @@ type LoginMode = "user" | "admin" | "author";
 
 interface LoginFormProps {
   mode?: LoginMode;
+  nextPath?: string;
 }
 
-export function LoginForm({ mode = "user" }: LoginFormProps) {
+function safeNextPath(value?: string) {
+  return value && value.startsWith("/") && !value.startsWith("//") ? value : null;
+}
+
+export function LoginForm({ mode = "user", nextPath }: LoginFormProps) {
   const router = useRouter();
   const toast = useToast();
   const [email, setEmail] = useState("");
@@ -65,18 +70,20 @@ export function LoginForm({ mode = "user" }: LoginFormProps) {
         throw new Error("This account is not approved as an author.");
       }
 
+      const destination = safeNextPath(nextPath);
+
       if (role === "admin") {
         toast.success("Admin access granted", "You've successfully signed in.");
-        router.push("/admin");
+        router.replace(destination?.startsWith("/admin") ? destination : "/admin");
       } else if (role === "author") {
         toast.success("Welcome back", "Your author workspace is ready.");
-        router.push("/author");
+        router.replace(destination?.startsWith("/author") ? destination : "/author");
       } else if (!onboardingCompleted) {
         toast.success("Welcome Back!", "You've successfully signed in.");
         router.push("/onboarding");
       } else {
         toast.success("Welcome Back!", "You've successfully signed in.");
-        router.push("/today");
+        router.replace(destination ?? "/today");
       }
 
       router.refresh();

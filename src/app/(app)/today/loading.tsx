@@ -1,17 +1,11 @@
-import { Card } from "@/components/ui/Card";
-
 export default function TodayLoading() {
   return (
-    <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-6 pb-6">
-      <Card variant="default" padding="lg" className="h-[258px] animate-pulse" />
-      <div className="grid gap-5 lg:grid-cols-[1.08fr_0.92fr]">
-        <Card variant="default" padding="lg" className="min-h-[280px] animate-pulse" />
-        <Card variant="default" padding="lg" className="min-h-[280px] animate-pulse" />
-      </div>
-      <div className="grid gap-5 lg:grid-cols-[1.08fr_0.92fr]">
-        <Card variant="default" padding="lg" className="min-h-[320px] animate-pulse" />
-        <Card variant="default" padding="lg" className="min-h-[320px] animate-pulse" />
-      </div>
+    <div className="member-dashboard member-skeleton" role="status" aria-label="Loading your dashboard" aria-busy="true">
+      <div className="member-skeleton-title" />
+      <div className="member-skeleton-hero" />
+      <div className="member-stats">{[0, 1, 2, 3].map((item) => <div className="member-skeleton-stat" key={item} />)}</div>
+      <div className="member-dashboard-grid">{[0, 1].map((item) => <div className="member-skeleton-panel" key={item} />)}</div>
+      <span className="member-sr-only">Loading your personal space.</span>
     </div>
   );
 }

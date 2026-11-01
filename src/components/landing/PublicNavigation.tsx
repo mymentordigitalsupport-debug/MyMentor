@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
+import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
 const exploreLinks = [
   { title: "Our mission", description: "Why we walk together.", href: "/about#mission" },
@@ -21,6 +22,30 @@ export function PublicNavigation({ overDark = false, adaptToAboutSections = fals
   const headerRef = useRef<HTMLElement>(null);
   const reducedMotion = useReducedMotion();
   const [lightMenu, setLightMenu] = useState(false);
+  const [isSignedIn, setIsSignedIn] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    let unsubscribe: (() => void) | undefined;
+
+    try {
+      const supabase = createSupabaseBrowserClient();
+      void supabase.auth.getUser().then(({ data }) => {
+        if (active) setIsSignedIn(Boolean(data.user));
+      });
+      const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+        if (active) setIsSignedIn(Boolean(session?.user));
+      });
+      unsubscribe = () => listener.subscription.unsubscribe();
+    } catch {
+      if (active) setIsSignedIn(false);
+    }
+
+    return () => {
+      active = false;
+      unsubscribe?.();
+    };
+  }, []);
 
   useEffect(() => {
     if (!adaptToAboutSections) return;
@@ -129,8 +154,16 @@ export function PublicNavigation({ overDark = false, adaptToAboutSections = fals
         </div>
 
         <div className="flex items-center gap-2">
-          <Link href="/login" onClick={close} className="landing-user-profile landing-user-profile--nav"><span className="landing-user-profile-inner"><span>Login</span></span></Link>
-          <Link href="/register" onClick={close} className="landing-user-profile landing-user-profile--nav group"><span className="landing-user-profile-inner"><span>Sign up</span><ArrowRight className="transition-transform group-hover:translate-x-0.5" /></span></Link>
+          {isSignedIn === null ? (
+            <span aria-hidden="true" className="h-9 w-24" />
+          ) : isSignedIn ? (
+            <Link href="/today" onClick={close} className="landing-user-profile landing-user-profile--nav group"><span className="landing-user-profile-inner"><span>My space</span><ArrowRight className="transition-transform group-hover:translate-x-0.5" /></span></Link>
+          ) : (
+            <>
+              <Link href="/login" onClick={close} className="landing-user-profile landing-user-profile--nav"><span className="landing-user-profile-inner"><span>Login</span></span></Link>
+              <Link href="/register" onClick={close} className="landing-user-profile landing-user-profile--nav group"><span className="landing-user-profile-inner"><span>Sign up</span><ArrowRight className="transition-transform group-hover:translate-x-0.5" /></span></Link>
+            </>
+          )}
         </div>
       </div>
       <AnimatePresence initial={false}>

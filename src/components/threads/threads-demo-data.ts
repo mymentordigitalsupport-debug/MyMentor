@@ -7,7 +7,7 @@ export const THREAD_TOPICS = [
 ] as const;
 
 export type ThreadTopic = typeof THREAD_TOPICS[number]["name"];
-export type DemoComment = { id: string; author: string; body: string; parentId: string | null };
+export type DemoComment = { id: string; author: string; body: string; parentId: string | null; age?: string; likes?: number; liked?: boolean; canDelete?: boolean };
 export type CommunityPost = {
   id: string;
   topic: ThreadTopic;
@@ -22,6 +22,7 @@ export type CommunityPost = {
   liked: boolean;
   disliked: boolean;
   saved: boolean;
+  canDelete?: boolean;
   comments: DemoComment[];
   attachment?: { url: string; type: "image" | "video"; name: string };
 };

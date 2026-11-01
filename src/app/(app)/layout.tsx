@@ -1,5 +1,6 @@
 import { DesktopSidebar } from "@/components/layout/DesktopSidebar";
-import { DashboardLoader } from "@/components/layout/DashboardLoader";
+import "@/components/today/member-dashboard.css";
+import "@/components/course/course-dashboard.css";
 
 export default function AppLayout({
   children,
@@ -7,14 +8,15 @@ export default function AppLayout({
   children: React.ReactNode;
 }) {
   return (
-    <DashboardLoader><div className="min-h-screen bg-sand lg:flex">
+    <div className="member-shell">
+      <a className="member-skip-link" href="#member-content">Skip to content</a>
       <DesktopSidebar />
 
-      <div className="flex min-w-0 flex-1 flex-col bg-[linear-gradient(180deg,rgba(251,249,245,0.98)_0%,rgba(246,243,237,0.98)_100%)]">
-        <main className="flex-1 px-4 py-6 sm:px-6 lg:px-8">
+      <div className="member-workspace">
+        <main id="member-content" className="member-main" tabIndex={-1}>
           {children}
         </main>
       </div>
-    </div></DashboardLoader>
+    </div>
   );
 }

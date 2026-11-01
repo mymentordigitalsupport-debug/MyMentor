@@ -640,15 +640,6 @@ export function JourneyDashboard({
 
         {activeTab === "insights" && (
           <div className="grid gap-5 lg:grid-cols-3">
-            <Card variant="sage" padding="md" className="lg:col-span-3">
-              <div className="flex flex-wrap items-center gap-3">
-                <Sparkles className="h-5 w-5 text-forest" />
-                <p className="text-sm font-medium text-forest">
-                  Insights are derived from `saved_insights`, `journal_entries`, and `mood_checkins`.
-                </p>
-              </div>
-            </Card>
-
             <Card variant="default" padding="md">
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">Saved Insights</p>
               <div className="mt-4 space-y-3">

@@ -1,9 +1,9 @@
-"use client";
-
 import Link from "next/link";
-import { ChevronLeft, ChevronRight, MessageSquareQuote, SunMedium } from "lucide-react";
-import { useState } from "react";
-import { type MoodValue } from "@/types";
+import { ArrowDownRight, ArrowRight, ArrowUpRight, BookOpen, Check, Clock3, Feather, Layers3, SunMedium } from "lucide-react";
+import { BotanicalSprig, PaperPin, PaperSurface, PaperTape } from "@/components/threads/ThreadPaper";
+import { AnimatedMetric } from "./MemberBoardMotion";
+import { truncate } from "@/lib/utils";
+import type { MoodValue } from "@/types";
 
 interface TodayBannerProps {
   greeting: string;
@@ -25,142 +25,42 @@ interface TodayBannerProps {
   };
 }
 
-const slideText = [
-  "One honest step is enough for today.",
-  "Your progress is real, even when it feels slow.",
-] as const;
 
 export function TodayBanner({ greeting, userName, latestMood, course }: TodayBannerProps) {
-  const [slideIndex, setSlideIndex] = useState(0);
-  const ctaLabel = course.hasStarted ? "Continue lesson" : "Start your first lesson";
+  const progress = Math.min(100, Math.max(0, course.progressPercent));
 
   return (
-    <section className="space-y-5">
-      <div className="overflow-hidden rounded-[32px] border border-[#d7ccbc] bg-[#20362d] shadow-[0_24px_60px_-36px_rgba(20,28,24,0.42)]">
-        <div className="relative grid min-h-[300px] lg:grid-cols-[1.15fr_0.85fr]">
-          <div className="relative px-6 py-8 sm:px-10 sm:py-10 lg:px-12 lg:py-12">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,rgba(199,168,109,0.18),transparent_34%)]" />
-            <div className="absolute -left-10 top-10 h-36 w-36 rounded-full bg-[#7a9272]/18 blur-3xl" />
-            <div className="absolute right-0 top-0 h-52 w-52 rounded-full bg-[#c7a86d]/10 blur-3xl" />
-            <div className="relative z-10 max-w-2xl">
-              <div className="flex items-center gap-3 text-[#fbf9f5]/92">
-                <SunMedium className="h-6 w-6" />
-                <p className="text-[1rem] font-medium tracking-[-0.02em]">
-                  {greeting}, {userName}
-                </p>
-              </div>
-
-              <h1
-                className="mt-5 max-w-2xl text-[clamp(2.5rem,4.6vw,4.5rem)] leading-[0.94] tracking-[-0.07em] text-[#fbf9f5]"
-                style={{ fontFamily: "var(--font-serif)" }}
-              >
-                Your next step is ready when you are.
-              </h1>
-
-              <p className="mt-5 max-w-xl text-[19px] leading-8 text-[#fbf9f5]/84 sm:text-[21px]">
-                {course.courseTitle}.
-              </p>
-
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/8 px-4 py-2.5 text-[13px] text-[#fbf9f5]/86">
-                  <MessageSquareQuote className="h-4 w-4" />
-                  {slideText[slideIndex]}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="relative flex items-end justify-end p-6 sm:p-8">
-            <div className="relative w-full max-w-[350px] overflow-hidden rounded-[28px] border border-white/10 bg-[#fbf9f5]/8 p-5 backdrop-blur-sm">
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.10)_0%,rgba(255,255,255,0.04)_100%)]" />
-              <div className="relative z-10 flex h-full min-h-[220px] flex-col justify-between">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="space-y-1">
-                    <span className="relative -top-[10px] rounded-full border border-white/10 bg-white/8 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#fbf9f5]">
-                      Today
-                    </span>
-                    <p className="mb-[7px] text-[11px] font-medium uppercase tracking-[0.22em] text-[#fbf9f5]/58">
-                      {course.currentChapter}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  <h2
-                    className="text-[1.35rem] leading-[1.08] tracking-[-0.04em] text-[#fbf9f5]"
-                    style={{ fontFamily: "var(--font-serif)" }}
-                  >
-                    {course.currentLessonTitle}
-                  </h2>
-                  <p className="text-sm leading-[19px] text-[#fbf9f5]/80">
-                    {course.currentLessonSubtitle ?? "Continue from where you left off."}
-                  </p>
-                </div>
-
-                <div className="relative top-[8px] rounded-[22px] border border-white/10 bg-white/7 p-4">
-                  <div className="flex flex-col gap-4">
-                    <div className="flex items-end justify-between gap-4">
-                      <div>
-                        <p className="text-[10px] uppercase tracking-[0.18em] text-[#fbf9f5]/56">Progress</p>
-                        <p className="mt-1 text-[1.2rem] font-semibold text-[#fbf9f5]">
-                          {course.progressPercent}%
-                        </p>
-                      </div>
-                      <div className="h-2 flex-1 rounded-full bg-white/10">
-                        <div
-                          className="h-2 rounded-full bg-[#c7a86d]"
-                          style={{ width: `${Math.max(course.progressPercent, 12)}%` }}
-                        />
-                      </div>
-                    </div>
-
-                    <Link
-                      href={course.currentLessonHref}
-                      className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#f4deaf]/50 bg-[#c7a86d] px-5 py-3 text-sm font-semibold text-[#1f2a24] shadow-[0_0_0_1px_rgba(251,249,245,0.08),0_12px_30px_-12px_rgba(199,168,109,0.75),0_0_24px_rgba(199,168,109,0.45)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#d3b67f] hover:shadow-[0_0_0_1px_rgba(251,249,245,0.12),0_18px_36px_-12px_rgba(199,168,109,0.8),0_0_30px_rgba(199,168,109,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f4deaf] focus-visible:ring-offset-2 focus-visible:ring-offset-[#31453b]"
-                    >
-                      {ctaLabel}
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <section className="member-introduction" aria-label="Your daily overview">
+      <div className="member-hero">
+        <div className="member-hero-copy">
+          <p className="member-hero-greeting"><span /><SunMedium size={17} aria-hidden="true" /> {greeting}, {userName}</p>
+          <h2>A little intention.<br />A lot of <span className="member-underlined">becoming.<svg viewBox="0 0 300 17" preserveAspectRatio="none" aria-hidden="true"><path d="M4 11Q139-5 294 7M18 16Q154 3 280 12" /></svg></span></h2>
+          <p className="member-hero-description">Your story is still unfolding. Make a little room for growth, a moment of reflection, and whatever comes next.</p>
+          <div className="member-hero-links"><a href="#daily-check-in"><SunMedium size={16} /> Check in with yourself <ArrowDownRight size={15} /></a><Link href="/journal/new"><Feather size={16} /> Put it into words <ArrowUpRight size={15} /></Link></div>
+          <span className="member-hero-handwriting" aria-hidden="true">a little more you, every day<svg viewBox="0 0 90 34"><path d="M3 4q35 36 78 12m-10-5 13 4-8 12" /></svg></span>
         </div>
+        <div className="member-hero-note-wrap">
+          <article className="member-hero-note">
+            <PaperSurface seed={31} warm />
+            <PaperPin className="member-hero-pin" />
+            <div className="member-note-meta"><span><BookOpen size={14} /> YOUR NEXT CHAPTER</span><span>{course.currentLessonMinutes ? `${course.currentLessonMinutes} min` : "At your pace"}</span></div>
+            <p className="member-note-course">{course.courseTitle}</p>
+            <h3>{course.currentLessonTitle}</h3>
+            <p className="member-note-description">{truncate(course.currentLessonSubtitle ?? "A little learning. A fresh perspective. A step closer to the person you’re becoming.", 135)}</p>
+            <div className="member-note-progress"><span>Your journey so far</span><strong>{progress}%</strong><div><span style={{ width: `${progress}%` }} /></div></div>
+            <Link href={course.currentLessonHref} className="member-action member-action-forest">{course.hasStarted ? "Pick up where I left off" : "Take my first step"}<ArrowRight size={17} /></Link>
+          </article>
+          <BotanicalSprig className="member-hero-sprig" />
+          <span className="member-note-annotation" aria-hidden="true">good things start here.</span>
+        </div>
+        <svg className="member-hero-loose-thread" viewBox="0 0 200 100" aria-hidden="true"><path d="M2 62c50-83 65 67 110 10S181 8 198 32" /></svg>
+        <div className="member-hero-tear" aria-hidden="true"><svg viewBox="0 0 1200 70" preserveAspectRatio="none"><path d="m0 35 34-4 39 8 27-7 43-8 38 5 28-8 45-1 31-8 44 7 46 9 24-5 53 10 35-8 49 4 33-5 51 10 43-6 26 6 42-14 41-5 31 8 27-3 47 12 39-6 36 9 48-9 35 7 48-15 47 5 49-7 36 7 30-6 60 10v48H0Z" fill="#fffdf5" /><path d="m0 45 48-4 33 10 48-9 30 4 38-10 50 1 42-8 35 8 39 6 33-3 45 10 38-7 46 3 39-4 51 9 44-4 30 7 38-13 37-6 38 10 24-5 48 11 38-4 39 7 43-6 40 4 45-13 46 5 48-7 34 7 32-6 63 10v35H0Z" fill="#f6f3ed" /></svg></div>
       </div>
-
-      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        <div className="relative overflow-hidden rounded-[26px] border border-[#e5ddd0] bg-[#fbf9f5] p-5 shadow-[0_14px_30px_-24px_rgba(31,42,36,0.18)]">
-          <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-sage/10 blur-2xl" />
-          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">Lessons complete</p>
-          <p className="mt-4 text-[2.1rem] leading-none font-semibold text-text">
-            {course.lessonsCompleted}
-          </p>
-          <p className="mt-2 text-sm text-muted">of {course.totalLessons}</p>
-        </div>
-        <div className="relative overflow-hidden rounded-[26px] border border-[#e5ddd0] bg-[#fbf9f5] p-5 shadow-[0_14px_30px_-24px_rgba(31,42,36,0.18)]">
-          <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-gold/12 blur-2xl" />
-          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">Chapters complete</p>
-          <p className="mt-4 text-[2.1rem] leading-none font-semibold text-text">
-            {course.chaptersCompleted}
-          </p>
-          <p className="mt-2 text-sm text-muted">of {course.totalChapters}</p>
-        </div>
-        <div className="relative overflow-hidden rounded-[26px] border border-[#e5ddd0] bg-[#fbf9f5] p-5 shadow-[0_14px_30px_-24px_rgba(31,42,36,0.18)]">
-          <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-forest/10 blur-2xl" />
-          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">Current lesson</p>
-          <p className="mt-4 text-[1.4rem] leading-tight font-semibold text-text">
-            {course.currentLessonMinutes ?? 8} min
-          </p>
-          <p className="mt-2 text-sm text-muted">{course.currentChapter}</p>
-        </div>
-        <div className="relative overflow-hidden rounded-[26px] border border-[#e5ddd0] bg-[#fbf9f5] p-5 shadow-[0_14px_30px_-24px_rgba(31,42,36,0.18)]">
-          <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-sage/10 blur-2xl" />
-          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">Mood</p>
-          <p className="mt-4 text-[1.4rem] leading-tight font-semibold text-text capitalize">
-            {latestMood ?? "not logged"}
-          </p>
-          <p className="mt-2 text-sm text-muted">Last check-in</p>
-        </div>
+      <div className="member-stats">
+        <Link href="/progress" className="member-stat"><PaperSurface seed={10} /><PaperPin className="member-stat-pin" /><div className="member-stat-top"><span className="member-stat-icon"><BookOpen size={19} /></span><ArrowUpRight size={16} /></div><div className="member-stat-number"><AnimatedMetric value={course.lessonsCompleted} /><span>/ {course.totalLessons}</span></div><p>Lessons completed</p><div className="member-mini-progress" aria-hidden="true"><span style={{ width: `${progress}%` }} /></div></Link>
+        <Link href="/course" className="member-stat"><PaperSurface seed={13} /><div className="member-stat-top"><span className="member-stat-icon member-icon-gold"><Layers3 size={19} /></span><ArrowUpRight size={16} /></div><div className="member-stat-number"><AnimatedMetric value={course.chaptersCompleted} /><span>/ {course.totalChapters}</span></div><p>Chapters explored</p><div className="member-stat-detail"><Check size={12} /> One chapter at a time</div></Link>
+        <Link href={course.currentLessonHref} className="member-stat"><PaperSurface seed={16} /><PaperTape className="member-stat-tape" /><div className="member-stat-top"><span className="member-stat-icon member-icon-clay"><Clock3 size={19} /></span><ArrowUpRight size={16} /></div><div className="member-stat-number">{course.currentLessonMinutes ?? "—"}<span>min</span></div><p>A little time for growth</p><div className="member-stat-detail member-clamp-one">{course.currentLessonTitle}</div></Link>
+        <a href="#daily-check-in" className="member-stat"><PaperSurface seed={19} warm /><div className="member-stat-top"><span className="member-stat-icon member-icon-lilac"><SunMedium size={19} /></span><ArrowDownRight size={16} /></div><div className="member-stat-number member-stat-mood">{latestMood ?? "Check in"}</div><p>{latestMood ? "Today’s state of mind" : "How’s your heart today?"}</p><div className="member-stat-detail">{latestMood ? "All feelings welcome here" : "There’s space for all of it"}</div></a>
       </div>
     </section>
   );

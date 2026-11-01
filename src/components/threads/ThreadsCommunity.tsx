@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useId, useMemo, useRef, useState, type CSSProperties, type FormEvent } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState, type CSSProperties, type FormEvent } from "react";
 import { ArrowDown, ArrowRight, BookOpen, Bookmark, Brain, BriefcaseBusiness, Check, ChevronDown, ChevronRight, FolderClosed, Heart, ImagePlus, Leaf, Link2, MessageCircle, MoreHorizontal, PencilLine, Send, ShieldCheck, Sparkles, ThumbsDown, Users, X } from "lucide-react";
 import { BotanicalSprig, CommunityFooterTear, CommunityTexture, DemoAvatar, PaperPin, PaperSurface, PaperTape } from "./ThreadPaper";
-import { COMMUNITY_GUIDELINES, DEMO_THREADS, THREAD_TOPICS, type CommunityPost, type ThreadTopic } from "./threads-demo-data";
+import { COMMUNITY_GUIDELINES, THREAD_TOPICS, type CommunityPost, type ThreadTopic } from "./threads-demo-data";
 import styles from "./ThreadsCommunity.module.css";
 
 const TOPIC_ICONS = { Mindset: Brain, Career: BriefcaseBusiness, Learning: BookOpen, Life: Leaf, Community: Users };
@@ -21,7 +21,7 @@ type ThreadsCommunityProps = {
 
 export function ThreadsCommunity({ query, onQueryChange, draft, onDraftChange, onWrite }: ThreadsCommunityProps) {
   const textureId = `community-${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
-  const [posts, setPosts] = useState<CommunityPost[]>(DEMO_THREADS);
+  const [posts, setPosts] = useState<CommunityPost[]>([]);
   const [topic, setTopic] = useState<ThreadTopic | null>(null);
   const [sort, setSort] = useState<Sort>("latest");
   const [attachment, setAttachment] = useState<Attachment | null>(null);
@@ -30,6 +30,19 @@ export function ThreadsCommunity({ query, onQueryChange, draft, onDraftChange, o
   const fileInput = useRef<HTMLInputElement>(null);
   const guidelines = useRef<HTMLDialogElement>(null);
   const objectUrls = useRef(new Set<string>());
+
+  const loadPosts = useCallback(async () => {
+    try {
+      const response = await fetch("/api/threads", { cache: "no-store" });
+      const data = await response.json() as { posts?: CommunityPost[]; error?: string };
+      if (!response.ok) throw new Error(data.error ?? "Unable to load Threads.");
+      setPosts(data.posts ?? []);
+    } catch (caughtError) {
+      setError(caughtError instanceof Error ? caughtError.message : "Unable to load Threads.");
+    }
+  }, []);
+
+  useEffect(() => { void loadPosts(); }, [loadPosts]);
 
   useEffect(() => {
     const urls = objectUrls.current;
@@ -62,30 +75,20 @@ export function ThreadsCommunity({ query, onQueryChange, draft, onDraftChange, o
     setAttachment({ file, url });
   }
 
-  function postThread(event: FormEvent) {
+  async function postThread(event: FormEvent) {
     event.preventDefault();
-    const text = draft.trim();
-    if (!text && !attachment) return;
-    const [firstLine, ...remainingLines] = text.split("\n");
-    const title = firstLine.length > 100 ? `${firstLine.slice(0, 97).trimEnd()}…` : firstLine || "A moment worth sharing";
-    const body = firstLine.length > 100 ? text : remainingLines.join("\n").trim();
-    let media: CommunityPost["attachment"];
-    if (attachment) {
-      const url = URL.createObjectURL(attachment.file);
-      objectUrls.current.add(url);
-      media = { url, name: attachment.file.name, type: attachment.file.type.startsWith("video/") ? "video" : "image" };
-    }
-    const post: CommunityPost = {
-      id: crypto.randomUUID(), topic: topic ?? "Community", title, body, author: "You", avatar: "you", age: "Just now",
-      order: Math.max(...posts.map((item) => item.order), 0) + 1, likes: 0, liked: false, disliked: false,
-      saved: false, commentCount: 0, comments: [], attachment: media,
-    };
-    setPosts((current) => [post, ...current]);
-    onDraftChange("");
-    onQueryChange("");
-    setSort("latest");
-    removeAttachment();
-    setNotice("Posted to this demo. Your conversation stays in this session.");
+    const body = draft.trim();
+    if (!body && !attachment) return;
+    const payload = new FormData();
+    payload.set("action", "post");
+    payload.set("body", body);
+    if (attachment) payload.set("attachment", attachment.file);
+    const response = await fetch("/api/threads", { method: "POST", body: payload });
+    const data = await response.json().catch(() => ({})) as { error?: string };
+    if (response.status === 401) { window.location.assign("/login?next=/threads"); return; }
+    if (!response.ok) { setError(data.error ?? "Unable to publish your thread."); return; }
+    onDraftChange(""); onQueryChange(""); setSort("latest"); removeAttachment(); setNotice("Your thread has been shared with the community.");
+    void loadPosts();
   }
 
   function updatePost(id: string, update: (post: CommunityPost) => CommunityPost) {
@@ -98,10 +101,38 @@ export function ThreadsCommunity({ query, onQueryChange, draft, onDraftChange, o
     setSort("latest");
   }
 
-  function addComment(id: string, text: string, parentId: string | null) {
-    updatePost(id, (post) => ({ ...post, commentCount: post.commentCount + 1,
-      comments: [...post.comments, { id: crypto.randomUUID(), author: "You", body: text, parentId }],
-    }));
+  async function addComment(id: string, text: string, parentId: string | null) {
+    const response = await fetch("/api/threads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "reply", body: text, postId: id, parentId: parentId ?? id }) });
+    const data = await response.json().catch(() => ({})) as { error?: string };
+    if (response.status === 401) { window.location.assign("/login?next=/threads"); return; }
+    if (!response.ok) { setError(data.error ?? "Unable to publish your reply."); return; }
+    setNotice("Your reply has been shared.");
+    void loadPosts();
+  }
+
+  async function reactToPost(id: string, value: 1 | -1 | null) {
+    const response = await fetch("/api/threads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "vote", entryId: id, value }) });
+    if (response.status === 401) { window.location.assign("/login?next=/threads"); return; }
+    if (!response.ok) { setError("Unable to save your reaction."); return; }
+    void loadPosts();
+  }
+
+  async function deletePost(id: string, isComment = false) {
+    if (!window.confirm(`Delete this ${isComment ? "comment" : "thread"}? This cannot be undone.`)) return;
+    const response = await fetch("/api/threads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "delete", entryId: id }) });
+    const data = await response.json().catch(() => ({})) as { error?: string };
+    if (response.status === 401) { window.location.assign("/login?next=/threads"); return; }
+    if (!response.ok) { setError(data.error ?? "Unable to delete this thread."); return; }
+    setNotice("Your thread has been deleted.");
+    void loadPosts();
+  }
+
+  async function reportComment(entryId: string) {
+    const response = await fetch("/api/threads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "report", entryId }) });
+    const data = await response.json().catch(() => ({})) as { error?: string };
+    if (response.status === 401) { window.location.assign("/login?next=/threads"); return; }
+    if (!response.ok) { setError(data.error ?? "Unable to send the report."); return; }
+    setNotice("Thanks — this comment has been reported to the MyMentor admin team.");
   }
 
   function resetFilters() { setTopic(null); setSort("latest"); onQueryChange(""); }
@@ -170,10 +201,14 @@ export function ThreadsCommunity({ query, onQueryChange, draft, onDraftChange, o
 
         <div className={styles.feed} aria-live="polite" aria-relevant="additions removals">
           {visiblePosts.map((post, index) => <ConversationCard key={post.id} post={post} index={index}
-            onLike={() => updatePost(post.id, (current) => ({ ...current, liked: !current.liked, disliked: false, likes: current.likes + (current.liked ? -1 : 1) }))}
-            onDislike={() => updatePost(post.id, (current) => ({ ...current, disliked: !current.disliked, liked: false, likes: current.likes - (current.liked ? 1 : 0) }))}
+            onLike={() => void reactToPost(post.id, post.liked ? null : 1)}
+            onDislike={() => void reactToPost(post.id, post.disliked ? null : -1)}
             onSave={() => updatePost(post.id, (current) => ({ ...current, saved: !current.saved }))}
-            onComment={(text, parentId) => addComment(post.id, text, parentId)}
+            onComment={(text, parentId) => void addComment(post.id, text, parentId)}
+            onDelete={post.canDelete ? () => void deletePost(post.id) : undefined}
+            onDeleteComment={(entryId) => void deletePost(entryId, true)}
+            onReactComment={(entryId, liked) => void reactToPost(entryId, liked ? null : 1)}
+            onReportComment={(entryId) => void reportComment(entryId)}
             onHide={() => { setPosts((current) => current.filter((item) => item.id !== post.id)); setNotice("Conversation hidden in this demo session."); }}
             onCopy={async () => {
               try { await navigator.clipboard.writeText(`${window.location.origin}/threads#conversation-${post.id}`); setNotice("Conversation link copied."); }
@@ -195,19 +230,25 @@ export function ThreadsCommunity({ query, onQueryChange, draft, onDraftChange, o
 
 type ConversationCardProps = {
   post: CommunityPost; index: number;
-  onLike: () => void; onDislike: () => void; onSave: () => void; onHide: () => void; onCopy: () => Promise<void>;
+  onLike: () => void; onDislike: () => void; onSave: () => void; onHide: () => void; onCopy: () => Promise<void>; onDelete?: () => void; onDeleteComment: (entryId: string) => void; onReactComment: (entryId: string, liked: boolean) => void; onReportComment: (entryId: string) => void;
   onComment: (body: string, parentId: string | null) => void;
 };
 
-function ConversationCard({ post, index, onLike, onDislike, onSave, onHide, onCopy, onComment }: ConversationCardProps) {
+function ConversationCard({ post, index, onLike, onDislike, onSave, onHide, onCopy, onComment, onDelete, onDeleteComment, onReactComment, onReportComment }: ConversationCardProps) {
   const [expanded, setExpanded] = useState(false);
   const [comment, setComment] = useState("");
   const [replyTo, setReplyTo] = useState<{ id: string; author: string } | null>(null);
   const menu = useRef<HTMLDetailsElement>(null);
   const replyInput = useRef<HTMLTextAreaElement>(null);
+  const [hiddenComments, setHiddenComments] = useState<Set<string>>(() => new Set());
 
   useEffect(() => {
-    function closeMenu(event: PointerEvent) { if (event.target instanceof Node && !menu.current?.contains(event.target)) menu.current?.removeAttribute("open"); }
+    function closeMenu(event: PointerEvent) {
+      if (!(event.target instanceof Node)) return;
+      document.querySelectorAll<HTMLDetailsElement>(`.${styles.postMenu}, .${styles.commentMenu}`).forEach((item) => {
+        if (!item.contains(event.target as Node)) item.removeAttribute("open");
+      });
+    }
     document.addEventListener("pointerdown", closeMenu);
     return () => document.removeEventListener("pointerdown", closeMenu);
   }, []);
@@ -227,7 +268,7 @@ function ConversationCard({ post, index, onLike, onDislike, onSave, onHide, onCo
     {index % 4 === 3 && <BotanicalSprig className={styles.conversationLeavesRight} />}
     <div className={styles.conversationContent}>
       <div className={styles.conversationMeta}><span className={styles.topicBadge} data-topic={post.topic}>{post.topic}</span><span className={styles.postAge}>{post.age}</span>
-        <details ref={menu} className={styles.postMenu} onKeyDown={(event) => { if (event.key === "Escape") menu.current?.removeAttribute("open"); }}><summary aria-label={`Options for ${post.title}`}><MoreHorizontal size={22} /></summary><div><button type="button" onClick={() => { void onCopy(); menu.current?.removeAttribute("open"); }}><Link2 size={15} />Copy link</button><button type="button" onClick={onHide}><X size={15} />Hide conversation</button></div></details>
+        <details ref={menu} className={styles.postMenu} onKeyDown={(event) => { if (event.key === "Escape") menu.current?.removeAttribute("open"); }}><summary aria-label={`Options for ${post.title}`}><MoreHorizontal size={22} /></summary><div><button type="button" onClick={() => { void onCopy(); menu.current?.removeAttribute("open"); }}><Link2 size={15} />Copy link</button>{onDelete ? <button type="button" onClick={() => { onDelete(); menu.current?.removeAttribute("open"); }}><X size={15} />Delete thread</button> : <button type="button" onClick={onHide}><X size={15} />Hide conversation</button>}</div></details>
       </div>
       <h3><button type="button" onClick={() => setExpanded(!expanded)} aria-expanded={expanded} aria-controls={`comments-${post.id}`}>{post.title}</button></h3>
       {post.body && <p className={styles.conversationBody}>{post.body}</p>}
@@ -241,7 +282,7 @@ function ConversationCard({ post, index, onLike, onDislike, onSave, onHide, onCo
 
       {expanded && <div id={`comments-${post.id}`} className={styles.comments}>
         <div className={styles.commentsHeading}><h4>Join the conversation</h4><button type="button" onClick={onDislike} aria-pressed={post.disliked}><ThumbsDown size={16} />{post.disliked ? "Feedback noted" : "Not for me"}</button></div>
-        {post.comments.map((item) => <div key={item.id} className={`${styles.comment} ${item.parentId ? styles.nestedComment : ""}`}><span className={styles.commentAvatar}>{item.author.split(" ").map((name) => name[0]).slice(0, 2).join("")}</span><div><strong>{item.author}</strong><p>{item.body}</p><button type="button" onClick={() => { setReplyTo({ id: item.id, author: item.author }); replyInput.current?.focus(); }}>Reply<ArrowRight size={12} /></button></div></div>)}
+        {post.comments.filter((item) => !hiddenComments.has(item.id)).map((item) => <div key={item.id} className={`${styles.comment} ${item.parentId ? styles.nestedComment : ""}`}><span className={styles.commentAvatar}>{item.author.split(" ").map((name) => name[0]).slice(0, 2).join("")}</span><div><strong>{item.author}</strong><p>{item.body}</p><div className={styles.commentActions}><span>{item.age ?? "Just now"}</span><button type="button" aria-pressed={item.liked} onClick={() => onReactComment(item.id, Boolean(item.liked))}>Like{item.likes ? ` ${item.likes}` : ""}</button><button type="button" onClick={() => { setReplyTo({ id: item.id, author: item.author }); replyInput.current?.focus(); }}>Reply</button><details className={styles.commentMenu}><summary aria-label={`More options for ${item.author}'s comment`}><MoreHorizontal size={17} /></summary><div><button type="button" onClick={() => setHiddenComments((current) => new Set(current).add(item.id))}>Hide comment</button><button type="button" onClick={() => onReportComment(item.id)}>Report comment to admin</button>{item.canDelete && <button type="button" onClick={() => onDeleteComment(item.id)}>Delete comment</button>}</div></details></div></div></div>)}
         {!post.comments.length && <p className={styles.firstComment}>A little encouragement can start something good. Leave the first reply.</p>}
         <form onSubmit={submitComment} className={styles.commentForm}><label htmlFor={`reply-${post.id}`}>{replyTo ? `Reply to ${replyTo.author}` : "Your perspective matters"}</label>{replyTo && <button type="button" className={styles.cancelReply} onClick={() => setReplyTo(null)}>Cancel reply<X size={13} /></button>}<textarea ref={replyInput} id={`reply-${post.id}`} value={comment} onChange={(event) => setComment(event.target.value)} placeholder="Share a thought or a little encouragement..." rows={2} maxLength={3000} required /><button type="submit" className={styles.greenButton}>Post reply<Send size={15} /></button></form>
       </div>}

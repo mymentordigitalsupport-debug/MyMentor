@@ -1,19 +1,20 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useEffect, useId, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { getDisplayCourseVersionTitle } from "@/lib/course-library";
 import { cn, formatDate, formatShortDate, truncate } from "@/lib/utils";
+import { BotanicalSprig, CommunityTexture, PaperPin, PaperSurface, PaperTape } from "@/components/threads/ThreadPaper";
 import {
   Award,
+  ArrowRight,
+  ArrowUp,
   BarChart3,
   BookMarked,
   CheckCircle2,
-  ChevronDown,
   Circle,
   Clock3,
   FileText,
@@ -130,7 +131,7 @@ function TabPill({
       data-profile-exempt
       onClick={onClick}
       className={cn(
-        "rounded-full border px-4 py-2 text-sm transition",
+        "member-course-tab rounded-full border px-4 py-2 text-sm transition",
         active
           ? "border-[#e5ddd0] bg-[#fbf9f5] font-medium text-text shadow-[0_10px_18px_-16px_rgba(31,42,36,0.22)]"
           : "border-transparent bg-transparent text-muted hover:bg-[#fbf9f5] hover:text-text"
@@ -158,7 +159,6 @@ export function CourseDashboard({
   courseTitle,
   courseDescription,
   courseVersionTitle,
-  guidancePath,
   progressPercent,
   completedLessons,
   totalLessons,
@@ -175,6 +175,37 @@ export function CourseDashboard({
   savedInsights,
 }: CourseDashboardProps) {
   const [activeTab, setActiveTab] = useState<CourseTab>("overview");
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const isBackToTopVisible = showBackToTop && activeTab === "Chapters";
+  const chapterSummaryRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const summary = chapterSummaryRef.current;
+    if (!summary) return;
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let observer: IntersectionObserver | null = null;
+    const reveal = () => {
+      summary.dataset.summaryVisible = "true";
+      observer?.disconnect();
+      observer = null;
+    };
+    const watch = () => {
+      if (motionPreference.matches || !("IntersectionObserver" in window)) { reveal(); return; }
+      observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) reveal(); }, { threshold: .15, rootMargin: "0px 0px -5% 0px" });
+      observer.observe(summary);
+    };
+    const onMotionChange = () => { if (motionPreference.matches) reveal(); };
+    watch();
+    motionPreference.addEventListener("change", onMotionChange);
+    return () => { observer?.disconnect(); motionPreference.removeEventListener("change", onMotionChange); };
+  }, []);
+
+  useEffect(() => {
+    const updateVisibility = () => setShowBackToTop(window.scrollY > 420);
+    updateVisibility();
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+    return () => window.removeEventListener("scroll", updateVisibility);
+  }, []);
 
   const activeChapterLessons = activeChapter?.lessons ?? [];
   const activeChapterLessonsPreview = activeChapterLessons.slice(0, 4).map((lesson) => {
@@ -229,46 +260,32 @@ export function CourseDashboard({
   const recentInsights = savedInsights.slice(0, 4);
   const recentMoodCheckins = moodCheckins.slice(0, 5);
   const displayCourseVersionTitle = getDisplayCourseVersionTitle(courseTitle, courseVersionTitle);
+  const textureId = `course-${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
 
   return (
+    <>
     <PageTransition>
-      <div className="flex flex-col gap-5 py-5">
-        <div className="overflow-hidden rounded-[30px] border border-[#e5ddd0] bg-[#fbf9f5] shadow-[0_18px_42px_-28px_rgba(31,42,36,0.18)]">
-          <div className="grid min-h-[280px] lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="relative z-10 px-6 py-6 sm:px-8 lg:px-10 lg:py-8">
-              <p className="text-[0.95rem] text-muted">
-                Course <span className="inline-block -translate-y-px">{'>'}</span>
-              </p>
-              <h1
-                className="mt-7 text-[clamp(2.6rem,4vw,4.6rem)] leading-[0.96] tracking-[-0.05em] text-forest"
-                style={{ fontFamily: "var(--font-serif)" }}
-              >
-                We Transform Together
-              </h1>
-              <p className="mt-6 max-w-2xl text-[1rem] leading-7 text-muted">
-                Your transformation happens one lesson at a time.
-                <br />
-                Stay consistent, stay honest, keep moving forward.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-2">
-                <Badge variant="muted">{displayCourseVersionTitle}</Badge>
-              </div>
-            </div>
+      <div className="member-course-page" style={{ "--community-grain": `url(#${textureId}-grain)`, "--community-fibres": `url(#${textureId}-fibres)` } as CSSProperties}>
+        <CommunityTexture id={textureId} />
+        <div className="member-course-shell">
+          <header className="member-course-heading"><div><p className="member-eyebrow">YOUR GUIDED PATH</p><h1>Your course<span>.</span></h1></div><span className="member-course-handwriting">one lesson at a time</span></header>
+          <section className="member-course-hero">
+            <div className="member-course-hero-copy"><p className="member-course-kicker"><span /> YOUR JOURNEY, YOUR PACE</p><h2>We transform<br /><em>together.</em></h2><p>{courseDescription || "Your transformation happens one lesson at a time. Stay consistent, stay honest, and keep moving forward."}</p><span className="member-course-version">{displayCourseVersionTitle}</span></div>
+            <div className="member-course-next-wrap"><PaperSurface seed={46} warm /><PaperPin className="member-course-hero-pin" /><span className="member-course-note-label">PICK UP WHERE YOU LEFT OFF</span><span className="member-course-progress-label">{progressPercent}% complete</span><div className="member-course-progress-track"><span style={{ width: `${progressPercent}%` }} /></div><strong>{activeChapter?.title ?? courseTitle}</strong>{activeChapter?.description && <span className="member-course-chapter-preview">{activeChapter.description}</span>}<span className="member-course-next-lesson">Next: {activeChapterLessonsPreview.find((lesson) => lesson.id === activeLessonId)?.title ?? "Your next lesson is ready."}</span><Link className="member-course-continue" href={activeLessonHref}>{completedLessons ? "Continue learning" : "Start your first lesson"}<ArrowRight className="h-4 w-4" /></Link><BotanicalSprig className="member-course-sprig" /></div>
+            <svg className="member-course-loose-thread" viewBox="0 0 160 100" aria-hidden="true"><path d="M2 62c50-83 65 67 110 10S141 8 158 32" /></svg>
+            <div className="member-course-tear" aria-hidden="true"><svg viewBox="0 0 1200 70" preserveAspectRatio="none"><path d="m0 35 34-4 39 8 27-7 43-8 38 5 28-8 45-1 31-8 44 7 46 9 24-5 53 10 35-8 49 4 33-5 51 10 43-6 26 6 42-14 41-5 31 8 27-3 47 12 39-6 36 9 48-9 35 7 48-15 47 5 49-7 36 7 30-6 60 10v48H0Z" fill="#fffdf5" /><path d="m0 45 48-4 33 10 48-9 30 4 38-10 50 1 42-8 35 8 39 6 33-3 45 10 38-7 46 3 39-4 51 9 44-4 30 7 38-13 37-6 38 10 24-5 48 11 38-4 39 7 43-6 40 4 45-13 46 5 48-7 34 7 32-6 63 10v35H0Z" fill="#f6f3ed" /></svg></div>
+          </section>
 
-            <div className="relative min-h-[240px]">
-              <Image
-                src="/assets/images/s1r.jpg"
-                alt=""
-                fill
-                priority
-                className="object-cover object-center"
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(251,249,245,0.98)_0%,rgba(251,249,245,0.7)_26%,rgba(251,249,245,0.22)_62%,rgba(251,249,245,0)_100%)]" />
-            </div>
+          <div className="member-course-stats">
+            <div className="member-course-stat"><PaperSurface seed={10} /><PaperPin className="member-course-stat-pin" /><span>YOUR PROGRESS</span><strong>{progressPercent}<small>%</small></strong><i className="member-course-stat-line"><span style={{ width: `${progressPercent}%` }} /></i></div>
+            <div className="member-course-stat"><PaperSurface seed={13} warm /><PaperTape className="member-course-stat-tape" /><span>LESSONS COMPLETE</span><strong>{completedLessons}<small> / {totalLessons}</small></strong><i>{completedLessons === 1 ? "A first brave step." : "Every step matters."}</i></div>
+            <div className="member-course-stat"><PaperSurface seed={16} /><PaperPin className="member-course-stat-pin" /><span>CHAPTERS COMPLETE</span><strong>{completedChapters}<small> / {totalChapters}</small></strong><i>Keep your momentum.</i></div>
+            <div className="member-course-stat"><PaperSurface seed={21} warm /><PaperTape className="member-course-stat-tape" /><span>COURSE</span><strong className="member-course-stat-title">{courseTitle}</strong><i>Made for your becoming.</i></div>
           </div>
-        </div>
 
-        <div className="rounded-[26px] border border-[#e5ddd0] bg-[#fbf9f5] p-5 shadow-[0_16px_34px_-26px_rgba(31,42,36,0.16)]">
+          <section className="member-course-quote"><span>“</span><p>Small steps today create a different future.</p><i>— My Mentor</i></section>
+
+        <div className="rounded-[26px] border border-[#e5ddd0] bg-[#fbf9f5] p-5 shadow-[0_16px_34px_-26px_rgba(31,42,36,0.16)] member-course-progress-card">
           <div className="grid gap-5 xl:grid-cols-[1.25fr_0.58fr_0.58fr_0.78fr_1fr]">
             <div className="space-y-4">
               <div className="flex items-start justify-between gap-4">
@@ -288,7 +305,7 @@ export function CourseDashboard({
               ) : null}
 
               <div className="h-2 rounded-full bg-[#ebe5db]">
-                <div className="h-2 rounded-full bg-[#7a9272]" style={{ width: `${Math.max(progressPercent, 12)}%` }} />
+                <div className="h-2 rounded-full bg-[#7a9272]" style={{ width: `${progressPercent}%` }} />
               </div>
 
               <div className="flex items-center gap-3 text-sm text-muted">
@@ -339,7 +356,7 @@ export function CourseDashboard({
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="member-course-tabs flex flex-wrap items-center gap-3">
           {tabs.map((tab) => (
             <TabPill key={tab.id} active={activeTab === tab.id} onClick={() => setActiveTab(tab.id)}>
               {tab.label}
@@ -347,85 +364,11 @@ export function CourseDashboard({
           ))}
         </div>
 
+        <div className="member-course-content">
         {activeTab === "overview" && (
-          <div className="grid gap-5 xl:grid-cols-[0.95fr_1.05fr]">
+          <div className="grid grid-cols-1 gap-5">
             <div className="rounded-[26px] border border-[#e5ddd0] bg-[#fbf9f5] p-5 shadow-[0_16px_34px_-26px_rgba(31,42,36,0.16)]">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">Chapters</p>
-              <div className="mt-4 space-y-3">
-                {ChapterData.slice(0, 5).map((Chapter, index) => {
-                  const complete = Chapter.lessonsTotal > 0 && Chapter.lessonsCompleted === Chapter.lessonsTotal;
-                  const active = activeChapter?.id === Chapter.id;
-                  const locked = !active && !complete && index > 0;
-
-                  return (
-                    <Link
-                      key={Chapter.id}
-                      href={`/course/${courseId}/${Chapter.id}`}
-                      className={cn(
-                        "flex items-center justify-between gap-4 rounded-2xl border px-4 py-3.5 transition",
-                        active
-                          ? "border-[#b9caa8] bg-[#eef4e7]"
-                          : "border-[#e5ddd0] bg-[#fffdf9] hover:bg-[#f8f5ef]"
-                      )}
-                    >
-                      <div className="flex min-w-0 items-center gap-3">
-                        <span
-                          className={cn(
-                            "flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[0.95rem] font-medium",
-                            active
-                              ? "bg-[#4f6757] text-[#fbf9f5]"
-                              : complete
-                                ? "bg-[#163127] text-[#fbf9f5]"
-                                : "bg-[#f3eee7] text-muted"
-                          )}
-                        >
-                          {Chapter.sort_order}
-                        </span>
-                        <div className="min-w-0">
-                          <p className="truncate text-[0.98rem] font-medium text-text">{Chapter.title}</p>
-                          <p className="mt-0.5 text-[0.82rem] text-muted">
-                            {Chapter.lessonsCompleted} / {Chapter.lessonsTotal} Lessons Completed
-                          </p>
-                        </div>
-                      </div>
-
-                      <span
-                        className={cn(
-                          "flex h-8 w-8 shrink-0 items-center justify-center rounded-full border",
-                          complete
-                            ? "border-[#8ea281] text-[#8ea281]"
-                            : active
-                              ? "border-[#8ea281] text-[#8ea281]"
-                              : locked
-                                ? "border-[#d8d2c6] text-[#d8d2c6]"
-                                : "border-[#8ea281] text-[#8ea281]"
-                        )}
-                      >
-                        {complete ? (
-                          <CheckCircle2 className="h-[17px] w-[17px]" />
-                        ) : locked ? (
-                          <Lock className="h-[15px] w-[15px]" />
-                        ) : (
-                          <Circle className="h-[15px] w-[15px]" />
-                        )}
-                      </span>
-                    </Link>
-                  );
-                })}
-              </div>
-
-              <button
-                type="button"
-                onClick={() => setActiveTab("Chapters")}
-                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#e5ddd0] bg-[#fbf9f5] px-5 py-3 text-[0.95rem] font-medium text-text transition hover:bg-[#f7f3eb]"
-              >
-                View all {totalChapters} Chapters
-                <ChevronDown className="h-4 w-4" />
-              </button>
-            </div>
-
-            <div className="rounded-[26px] border border-[#e5ddd0] bg-[#fbf9f5] p-5 shadow-[0_16px_34px_-26px_rgba(31,42,36,0.16)]">
-              <div className="grid gap-5 xl:grid-cols-[1fr_300px]">
+              <div className="grid gap-5 xl:grid-cols-[1fr_300px] member-course-active-chapter-grid">
                 <div>
                   <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">
                     {activeChapter ? `Chapter ${activeChapter.sort_order}` : "Chapter"}
@@ -436,14 +379,15 @@ export function CourseDashboard({
                   >
                     {activeChapter?.title ?? "The Stage of Creation"}
                   </h2>
-                  <p className="mt-4 max-w-xl text-[0.98rem] leading-7 text-muted">
+                  <p className="member-course-chapter-description mt-4 max-w-xl text-[0.98rem] leading-7 text-muted">
                     {activeChapter?.description ??
                       "Understand who you were created to be and how identity, purpose, and choices shape your life."}
                   </p>
                 </div>
 
-                <div className="relative min-h-[150px] overflow-hidden rounded-[22px]">
-                  <Image src="/assets/images/s1r.jpg" alt="" fill className="object-cover object-center" />
+                <div className="member-course-chapter-note">
+                  <PaperSurface seed={39} warm /><PaperTape />
+                  <span>CHAPTER {activeChapter?.sort_order ?? "—"} PROGRESS</span><strong>{activeChapter?.lessonsCompleted ?? 0} / {activeChapter?.lessonsTotal ?? 0} lessons</strong><div className="member-course-chapter-track"><i style={{ width: `${activeChapter?.lessonsTotal ? Math.round((activeChapter.lessonsCompleted / activeChapter.lessonsTotal) * 100) : 0}%` }} /></div><p>Keep showing up for the next step.</p>
                 </div>
               </div>
 
@@ -539,8 +483,8 @@ export function CourseDashboard({
         )}
 
         {activeTab === "Chapters" && (
-          <div className="grid gap-5 lg:grid-cols-[1fr_0.8fr]">
-            <Card variant="default" padding="md">
+          <div className="grid gap-5 lg:grid-cols-[1fr_0.8fr] member-course-chapters-layout">
+            <Card variant="default" padding="md" className="member-course-chapters-list">
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">Chapter Catalog</p>
@@ -558,7 +502,7 @@ export function CourseDashboard({
                         <div className="flex items-start justify-between gap-4">
                           <div className="min-w-0">
                             <p className="text-sm font-medium text-text">{Chapter.title}</p>
-                            {Chapter.description ? <p className="mt-1 text-xs leading-5 text-muted">{Chapter.description}</p> : null}
+                            {Chapter.description ? <p className="member-course-chapter-catalog-description mt-1 text-xs leading-5 text-muted">{Chapter.description}</p> : null}
                             <div className="mt-3 flex flex-wrap items-center gap-2">
                               <span className="rounded-full bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted">
                                 {formatLessonCount(Chapter.lessonsTotal)}
@@ -584,15 +528,19 @@ export function CourseDashboard({
               </div>
             </Card>
 
-            <Card variant="mist" padding="md">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">Chapter Summary</p>
-              <h3 className="mt-2 text-lg font-semibold text-text">{activeChapter?.title ?? "No active Chapter"}</h3>
+            <div ref={chapterSummaryRef} className="member-course-sticky-summary-shell" data-summary-visible="false">
+            <Card variant="mist" padding="md" className="member-course-sticky-summary-card">
+              <PaperSurface seed={82} warm /><PaperPin className="member-course-summary-pin" />
+              <div className="member-course-summary-content">
+              <p className="member-course-summary-eyebrow"><Sparkles size={13} /> CHAPTER SUMMARY</p>
+              <h3 className="member-course-summary-title">{activeChapter?.title ?? "No active Chapter"}</h3>
               {activeChapter?.description ? (
-                <p className="mt-2 text-sm leading-6 text-muted">{activeChapter.description}</p>
+                <p className="member-course-summary-description">{activeChapter.description}</p>
               ) : (
-                <p className="mt-2 text-sm leading-6 text-muted">This view shows the active chapter and its lesson progress.</p>
+                <p className="member-course-summary-description">This view shows the active chapter and its lesson progress.</p>
               )}
-              <div className="mt-4 space-y-2 text-sm text-text">
+              <div className="member-course-summary-progress"><span>COURSE JOURNEY</span><strong>{progressPercent}%</strong><i><span style={{ width: `${progressPercent}%` }} /></i></div>
+              <div className="mt-4 space-y-2 text-sm text-text member-course-summary-items">
                 <div className="flex items-center justify-between rounded-2xl bg-white px-4 py-3">
                   <span>Published Chapters</span>
                   <span className="font-medium">{totalChapters}</span>
@@ -610,7 +558,10 @@ export function CourseDashboard({
                   <span className="font-medium">{activeChapter?.lessonsTotal ?? 0}</span>
                 </div>
               </div>
+              </div>
+              <BotanicalSprig className="member-course-summary-sprig" />
             </Card>
+            </div>
           </div>
         )}
 
@@ -663,15 +614,6 @@ export function CourseDashboard({
 
         {activeTab === "insights" && (
           <div className="grid gap-5 lg:grid-cols-3">
-            <Card variant="sage" padding="md" className="lg:col-span-3">
-              <div className="flex flex-wrap items-center gap-3">
-                <Sparkles className="h-5 w-5 text-forest" />
-                <p className="text-sm font-medium text-forest">
-                  Insights are derived from `saved_insights`, `journal_entries`, and `mood_checkins`.
-                </p>
-              </div>
-            </Card>
-
             <Card variant="default" padding="md">
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">Saved Insights</p>
               <div className="mt-4 space-y-3">
@@ -794,7 +736,20 @@ export function CourseDashboard({
             </Card>
           </div>
         )}
+        </div>
+        </div>
       </div>
     </PageTransition>
+    <button
+      type="button"
+      className="member-course-back-to-top"
+      data-visible={isBackToTopVisible}
+      aria-hidden={!isBackToTopVisible}
+      tabIndex={isBackToTopVisible ? 0 : -1}
+      onClick={() => window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" })}
+    >
+      <ArrowUp size={17} aria-hidden="true" /><span>Back to top</span>
+    </button>
+    </>
   );
 }

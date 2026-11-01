@@ -3,12 +3,9 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { PageTransition } from "@/components/ui/PageTransition";
-import { TodayBanner } from "@/components/today/TodayBanner";
-import { MoodCheckIn } from "@/components/today/MoodCheckIn";
-import { Card } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
+import { MemberDashboard } from "@/components/today/MemberDashboard";
 import { getDisplayCourseTitle } from "@/lib/course-library";
-import { formatShortDate, percent, truncate } from "@/lib/utils";
+import { percent } from "@/lib/utils";
 import type { MoodValue } from "@/types";
 
 export const dynamic = "force-dynamic";
@@ -115,13 +112,13 @@ export default async function TodayPage() {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("display_name, username, is_anonymous, onboarding_completed, preferred_guidance_path, selected_course_id")
+    .select("display_name, username, anonymous_name, is_anonymous, onboarding_completed, preferred_guidance_path, selected_course_id")
     .eq("id", user.id)
     .single();
 
   if (!profile?.onboarding_completed) redirect("/onboarding");
 
-  const resolvedName = profile.display_name ?? profile.username ?? "Friend";
+  const resolvedName = profile.is_anonymous ? profile.anonymous_name ?? "Friend" : profile.display_name ?? profile.username ?? "Friend";
   const hour = new Intl.DateTimeFormat("en-GB", {
     timeZone: "Africa/Johannesburg",
     hour: "2-digit",
@@ -206,10 +203,13 @@ export default async function TodayPage() {
   if (!activeCourseVersion) {
     return (
       <PageTransition>
-        <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-6 pb-6">
-          <Card variant="mist" padding="lg" className="text-center">
-            <p className="text-sm text-muted">No course is available yet.</p>
-          </Card>
+        <div className="member-dashboard">
+          <section className="member-panel member-empty-course">
+            <p className="member-eyebrow">YOUR PERSONAL SPACE</p>
+            <h1>Your next chapter is on its way.</h1>
+            <p>There are no published courses available yet. In the meantime, make a little room for reflection.</p>
+            <Link href="/journal/new" className="member-action member-action-forest">Open your journal</Link>
+          </section>
         </div>
       </PageTransition>
     );
@@ -249,15 +249,14 @@ export default async function TodayPage() {
     .select("lesson_id, status, started_at, completed_at, last_opened_at")
     .eq("user_id", user.id);
 
-  const weekAgoIso = new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toISOString();
+  const weekAgoIso = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
 
   const journalPromise = supabase
     .from("journal_entries")
     .select("id, title, body, created_at")
     .eq("user_id", user.id)
     .gte("created_at", weekAgoIso)
-    .order("created_at", { ascending: false })
-    .limit(10);
+    .order("created_at", { ascending: false });
 
   const moodPromise = supabase
     .from("mood_checkins")
@@ -326,11 +325,11 @@ export default async function TodayPage() {
   const currentChapter =
     (currentLesson ? ChapterList.find((Chapter) => Chapter.id === currentLesson.chapter_id) : null) ?? ChapterList[0] ?? null;
 
-  const completedLessons = completedLessonIds.size;
+  const completedLessons = lessonList.filter((lesson) => completedLessonIds.has(lesson.id)).length;
   const totalLessons = lessonList.length;
   const hasStartedCourse =
     completedLessons > 0 ||
-    progressList.some(
+    progressList.filter((progress) => lessonList.some((lesson) => lesson.id === progress.lesson_id)).some(
       (progress) =>
         progress.status === "in_progress" ||
         progress.status === "completed" ||
@@ -377,197 +376,57 @@ export default async function TodayPage() {
 
   const { data: weeklyLessonProgress } = await weeklyLessonProgressPromise;
 
-  const weeklyCompletedLessons = new Set(
-    (weeklyLessonProgress ?? [])
-      .filter((progress) => progress.completed_at)
-      .map((progress) => progress.lesson_id)
-  ).size;
-  const reflectionDays = new Set(journalHistory.map((entry) => toDateKey(entry.created_at))).size;
-  const moodCounts = moodHistory.reduce<Record<MoodValue, number>>(
-    (counts, item) => {
-      counts[item.mood] = (counts[item.mood] ?? 0) + 1;
-      return counts;
-    },
-    { low: 0, heavy: 0, uncertain: 0, hopeful: 0, steady: 0, strong: 0 }
-  );
-  const topMood = (Object.entries(moodCounts).sort((a, b) => b[1] - a[1])[0]?.[0] ?? null) as MoodValue | null;
-
-  const currentLessonCard =
-    currentLesson && currentChapter
-      ? {
-          id: currentLesson.id,
-          title: currentLesson.title,
-          description: currentLesson.subtitle,
-          estimated_minutes: currentLesson.estimated_minutes,
-          sort_order: currentLesson.sort_order,
-          ChapterId: currentChapter.id,
-          courseId,
-          courseVersionId: activeCourseVersion.id,
-          ChapterName: currentChapter.title,
-          chapter_id: currentLesson.chapter_id,
-          is_published: currentLesson.is_published,
-          created_at: currentLesson.created_at,
-          updated_at: currentLesson.updated_at,
-        }
-      : null;
+  const today = new Date();
+  const dayDates = Array.from({ length: 7 }, (_, index) => new Date(today.getTime() - (6 - index) * 86_400_000));
+  const weekDateKeys = new Set(dayDates.map((date) => toDateKey(date.toISOString())));
+  const weeklyCompletions = (weeklyLessonProgress ?? []).filter((progress) => progress.completed_at && weekDateKeys.has(toDateKey(progress.completed_at)));
+  const weeklyJournals = journalHistory.filter((entry) => weekDateKeys.has(toDateKey(entry.created_at)));
+  const weeklyMoods = moodHistory.filter((entry) => weekDateKeys.has(toDateKey(entry.created_at)));
+  const weeklyCompletedLessons = new Set(weeklyCompletions.map((progress) => progress.lesson_id)).size;
+  const reflectionDays = new Set(weeklyJournals.map((entry) => toDateKey(entry.created_at))).size;
+  const activeDateKeys = new Set([
+    ...weeklyCompletions.map((progress) => toDateKey(progress.completed_at!)),
+    ...weeklyJournals.map((entry) => toDateKey(entry.created_at)),
+    ...weeklyMoods.map((entry) => toDateKey(entry.created_at)),
+  ]);
+  const days = dayDates.map((date, index) => ({
+    date: toDateKey(date.toISOString()),
+    label: new Intl.DateTimeFormat("en", { weekday: "short", timeZone: "Africa/Johannesburg" }).format(date),
+    active: activeDateKeys.has(toDateKey(date.toISOString())),
+    isToday: index === 6,
+  }));
 
   return (
     <PageTransition>
-      <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-6 pb-6">
-        <TodayBanner
-          greeting={greeting}
-          userName={resolvedName}
-          latestMood={latestMood}
-          course={{
-            courseTitle,
-            progressPercent,
-            chaptersCompleted: completedChapters,
-            totalChapters,
-            lessonsCompleted: completedLessons,
-            totalLessons,
-            currentChapter: currentChapter?.title ?? "Current Chapter",
-            currentLessonTitle: currentLesson?.title ?? "Continue your course",
-            currentLessonSubtitle: currentLesson?.subtitle ?? courseDescription,
-            currentLessonMinutes: currentLesson?.estimated_minutes ?? null,
-            currentLessonHref: currentLesson ? `/course/${courseId}/${currentChapter?.id}/${currentLesson.id}` : "/course",
-            hasStarted: hasStartedCourse,
-          }}
-        />
-
-        <div className="grid gap-5 xl:grid-cols-[1.15fr_0.85fr]">
-          <div className="flex flex-col gap-5">
-            <MoodCheckIn
-              userId={user.id}
-              latestMood={latestMood}
-              latestMoodAt={latestMoodAt}
-              latestNote={latestNote}
-              moodHistory={moodHistory}
-              todayCheckinId={todayCheckin?.id ?? null}
-            />
-
-            <Card variant="default" padding="md">
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">Today&apos;s focus</p>
-                  <h2 className="mt-2 text-lg font-semibold text-text">Small steps become lasting change.</h2>
-                </div>
-              </div>
-              <div className="mt-4 rounded-2xl border border-[#eadfcf] bg-[#fbf9f5] px-4 py-4">
-                <p className="text-xs uppercase tracking-[0.18em] text-muted">Lesson</p>
-                <p className="mt-2 text-sm font-medium text-forest">
-                  {currentLessonCard?.title ?? "Continue your current lesson"}
-                </p>
-              </div>
-            </Card>
-
-            <Card variant="default" padding="md" className="relative top-[8px]">
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">Course progress</p>
-                  <h2 className="mt-2 text-lg font-semibold text-text">How am I progressing?</h2>
-                </div>
-                <Badge variant="sage">{progressPercent}% complete</Badge>
-              </div>
-
-              <div className="mt-4">
-                <div className="flex items-center justify-between text-sm text-muted">
-                  <span>Progress</span>
-                  <span>{completedLessons} lessons completed</span>
-                </div>
-                <div className="mt-3 h-3 rounded-full bg-mist">
-                  <div className="h-3 rounded-full bg-sage" style={{ width: `${Math.max(progressPercent, 6)}%` }} />
-                </div>
-              </div>
-
-              <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                <div className="rounded-2xl border border-mist bg-cream p-4">
-                  <p className="text-[10px] uppercase tracking-[0.18em] text-muted">Chapters complete</p>
-                  <p className="mt-2 text-xl font-semibold text-forest">{completedChapters}</p>
-                </div>
-                <div className="rounded-2xl border border-mist bg-cream p-4">
-                  <p className="text-[10px] uppercase tracking-[0.18em] text-muted">Lessons complete</p>
-                  <p className="mt-2 text-xl font-semibold text-forest">{completedLessons}</p>
-                </div>
-                <div className="rounded-2xl border border-mist bg-cream p-4">
-                  <p className="text-[10px] uppercase tracking-[0.18em] text-muted">Current Chapter</p>
-                  <p className="mt-2 text-sm font-semibold text-forest">{currentChapter?.title ?? "Current Chapter"}</p>
-                </div>
-              </div>
-            </Card>
-          </div>
-
-          <div className="flex flex-col gap-5">
-            <Card variant="default" padding="md">
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">Recent insights</p>
-                  <h2 className="mt-2 text-lg font-semibold text-text">Recent reflections</h2>
-                </div>
-              </div>
-
-              <div className="mt-4 space-y-3">
-                {reflections.length > 0 ? (
-                  reflections.map((reflection) => (
-                    <div key={reflection.id} className="rounded-2xl border border-mist bg-cream p-4">
-                      <div className="flex items-center justify-between gap-3">
-                        <Badge variant={reflection.source === "journal" ? "sage" : "gold"}>
-                          {reflection.source === "journal" ? "Journal" : "Insight"}
-                        </Badge>
-                        <span className="text-xs text-muted">{formatShortDate(reflection.created_at)}</span>
-                      </div>
-                      <p className="mt-3 text-sm leading-6 text-text">{truncate(reflection.text, 120)}</p>
-                    </div>
-                  ))
-                ) : (
-                  <p className="text-sm text-muted">No reflections saved yet.</p>
-                )}
-              </div>
-            </Card>
-
-            <Card variant="default" padding="md">
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">Course consistency</p>
-                  <h2 className="mt-2 text-lg font-semibold text-text">Gentle accountability</h2>
-                </div>
-              </div>
-
-              <div className="mt-4 grid gap-3">
-                <div className="rounded-2xl border border-mist bg-cream px-4 py-3">
-                  <p className="text-xs text-muted">Reflection days</p>
-                  <p className="mt-1 text-xl font-semibold text-forest">{reflectionDays} days this week</p>
-                </div>
-                <div className="rounded-2xl border border-mist bg-cream px-4 py-3">
-                  <p className="text-xs text-muted">Lessons completed this week</p>
-                  <p className="mt-1 text-xl font-semibold text-forest">{weeklyCompletedLessons}</p>
-                </div>
-                <div className="rounded-2xl border border-mist bg-cream px-4 py-3">
-                  <p className="text-xs text-muted">Most common mood</p>
-                  <p className="mt-1 text-xl font-semibold capitalize text-forest">{topMood ?? "Not enough data yet"}</p>
-                </div>
-              </div>
-            </Card>
-
-            <Card variant="default" padding="md">
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">Quick actions</p>
-                  <h2 className="mt-2 text-lg font-semibold text-text">Move without overthinking</h2>
-                </div>
-              </div>
-
-              <div className="mt-4 grid gap-2">
-                <Link
-                  href="/course"
-                  className="rounded-2xl border border-mist bg-cream px-4 py-3 text-sm font-medium text-forest transition hover:border-sage"
-                >
-                  Open course page
-                </Link>
-              </div>
-            </Card>
-          </div>
-        </div>
-      </div>
+      <MemberDashboard
+        greeting={greeting}
+        userName={resolvedName}
+        displayDate={new Intl.DateTimeFormat("en", { weekday: "long", day: "numeric", month: "long", timeZone: "Africa/Johannesburg" }).format(today)}
+        course={{
+          courseTitle,
+          progressPercent,
+          chaptersCompleted: completedChapters,
+          totalChapters,
+          lessonsCompleted: completedLessons,
+          totalLessons,
+          currentChapter: currentChapter?.title ?? "Current chapter",
+          currentLessonTitle: currentLesson?.title ?? "Explore your course",
+          currentLessonSubtitle: currentLesson?.subtitle ?? courseDescription,
+          currentLessonMinutes: currentLesson?.estimated_minutes ?? null,
+          currentLessonHref: currentLesson && currentChapter ? `/course/${courseId}/${currentChapter.id}/${currentLesson.id}` : "/course",
+          hasStarted: hasStartedCourse,
+        }}
+        mood={{
+          userId: user.id,
+          latestMood,
+          latestMoodAt,
+          latestNote,
+          moodHistory: weeklyMoods,
+          todayCheckinId: todayCheckin?.id ?? null,
+        }}
+        weekly={{ lessons: weeklyCompletedLessons, reflectionDays, days }}
+        reflections={reflections}
+      />
     </PageTransition>
   );
 }

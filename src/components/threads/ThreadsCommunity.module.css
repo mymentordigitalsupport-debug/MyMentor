@@ -135,6 +135,15 @@
 .comment strong { display: block; font-size: 12px; font-weight: 600; }
 .comment p { margin: 5px 0; color: #737e67; font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
 .comment button { display: inline-flex; align-items: center; gap: 5px; padding: 2px 0; border: 0; background: none; color: #637d50; font-size: 11px; }
+.commentActions { display: flex; align-items: center; gap: 12px; margin-top: 7px; color: #858d80; font-size: 11px; font-weight: 600; }
+.commentActions > button { color: #637d50; font-weight: 600; }
+.commentActions > button[aria-pressed="true"] { color: #2f563a; }
+.commentMenu { position: relative; z-index: 5; margin-left: -3px; }
+.commentMenu summary { display: grid; place-items: center; width: 20px; height: 18px; list-style: none; color: #74806c; cursor: pointer; }
+.commentMenu summary::-webkit-details-marker { display: none; }
+.commentMenu > div { position: absolute; top: 22px; left: -8px; display: grid; min-width: 205px; padding: 5px; border: 1px solid #dfe3d6; border-radius: 7px; background: #fffefa; box-shadow: 0 10px 26px #263d251e; }
+.commentMenu button { width: 100%; padding: 9px 10px; border-radius: 4px; color: #283a2c; font-size: 12px; font-weight: 500; text-align: left; }
+.commentMenu button:hover { background: #eef2e7; }
 .firstComment { margin-bottom: 22px; color: #7d8774; font-size: 14px; }
 .commentForm { position: relative; padding-top: 7px; }
 .commentForm > label { display: block; margin-bottom: 10px; font-family: Georgia, serif; font-size: 16px; font-weight: 600; }

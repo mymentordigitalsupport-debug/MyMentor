@@ -28,7 +28,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
                 <h1 className="text-3xl font-medium tracking-tight text-[#1f1710] sm:text-4xl">Welcome back</h1>
                 <p className="mt-2 text-sm text-[#595c54]">Sign in to continue your journey.</p>
               </div>
-              <LoginForm mode="user" />
+              <LoginForm mode="user" nextPath={next} />
               <p className="mt-6 text-center text-sm text-[#62665e]">New here? <Link href="/register" className="font-medium text-[#1f1710] underline underline-offset-2">Sign up</Link></p>
             </div>
           </div>
