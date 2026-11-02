@@ -66,11 +66,6 @@ export function LoginForm({ mode = "user", nextPath }: LoginFormProps) {
       const role = access?.role ?? "user";
       const onboardingCompleted = access?.onboardingCompleted ?? false;
 
-      if (mode === "admin" && role !== "admin") {
-        await supabase.auth.signOut();
-        throw new Error("This account does not have administrator access.");
-      }
-
       if (mode === "author" && role !== "author") {
         await supabase.auth.signOut();
         if (role === "author_pending") throw new Error("Your author application is still pending review.");
