@@ -36,6 +36,9 @@ export const metadata: Metadata = {
       "A guided course of healing, reflection, recovery, and personal growth.",
     type: "website",
   },
+  twitter: {
+    card: "summary",
+  },
 };
 
 export const viewport: Viewport = {

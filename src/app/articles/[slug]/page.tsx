@@ -10,11 +10,31 @@ export const revalidate = 300;
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const article = await getPublishedArticleBySlug((await params).slug).catch(() => null);
   if (!article) return { title: "Article not found" };
+  const title = article.seo_title || article.title;
+  const description = article.seo_description || article.excerpt;
+  const image = article.cover_image_url ? [article.cover_image_url] : [];
+
   return {
-    title: article.seo_title || article.title,
-    description: article.seo_description || article.excerpt,
+    title,
+    description,
     alternates: { canonical: `/articles/${article.slug}` },
-    openGraph: { type: "article", title: article.seo_title || article.title, description: article.seo_description || article.excerpt, images: article.cover_image_url ? [article.cover_image_url] : [] },
+    openGraph: {
+      type: "article",
+      url: `/articles/${article.slug}`,
+      title,
+      description,
+      images: image,
+      publishedTime: article.published_at ?? undefined,
+      modifiedTime: article.updated_at,
+      authors: article.author_name ? [article.author_name] : undefined,
+      section: article.category?.name,
+    },
+    twitter: {
+      card: image.length ? "summary_large_image" : "summary",
+      title,
+      description,
+      images: image,
+    },
   };
 }
 
