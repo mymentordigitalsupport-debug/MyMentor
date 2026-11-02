@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://mymentor.digital";
+import { PUBLIC_SITE_URL } from "@/lib/public-site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -21,7 +20,7 @@ export default function robots(): MetadataRoute.Robots {
         "/today/",
       ],
     },
-    sitemap: `${siteUrl}/sitemap.xml`,
-    host: siteUrl,
+    sitemap: `${PUBLIC_SITE_URL}/sitemap.xml`,
+    host: PUBLIC_SITE_URL,
   };
 }

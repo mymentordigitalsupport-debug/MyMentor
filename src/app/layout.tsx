@@ -8,14 +8,14 @@ import { MentorChatPreview } from "@/components/chat/MentorChatPreview";
 import { NavigationLoader } from "@/components/ui/NavigationLoader";
 import { Analytics } from "@vercel/analytics/next";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { PUBLIC_SITE_URL } from "@/lib/public-site";
 
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://mymentor.digital").replace(/\/$/, "");
 const siteStructuredData = JSON.stringify([
   {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "My Mentor",
-    url: siteUrl,
+    url: PUBLIC_SITE_URL,
     description:
       "A guided course of healing, reflection, recovery, and personal growth.",
   },
@@ -23,14 +23,12 @@ const siteStructuredData = JSON.stringify([
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "My Mentor",
-    url: siteUrl,
+    url: PUBLIC_SITE_URL,
   },
 ]).replace(/</g, "\\u003c");
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://mymentor.digital"
-  ),
+  metadataBase: new URL(PUBLIC_SITE_URL),
   title: {
     default: "My Mentor",
     template: "%s — My Mentor",

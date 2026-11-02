@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { PublicNavigation } from "@/components/landing/PublicNavigation";
 import { ArticleBody } from "@/components/articles/ArticleBody";
 import { getPublishedArticleBySlug } from "@/lib/articles";
+import { PUBLIC_SITE_URL } from "@/lib/public-site";
 
 export const revalidate = 300;
 
@@ -41,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const article = await getPublishedArticleBySlug((await params).slug).catch(() => null);
   if (!article) notFound();
-  const articleUrl = `${(process.env.NEXT_PUBLIC_SITE_URL ?? "https://mymentor.digital").replace(/\/$/, "")}/articles/${article.slug}`;
+  const articleUrl = `${PUBLIC_SITE_URL}/articles/${article.slug}`;
   const structuredData = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "BlogPosting",
