@@ -129,11 +129,12 @@ export async function POST(request: Request) {
     const attachment = form?.get("attachment");
     const file = attachment instanceof File ? attachment : null;
     if ((!body && !file) || (action === "reply" && (!body || !postId || !parentId || file))) return NextResponse.json({ error: "Write a message before posting." }, { status: 400 });
+    if (file && !user) return NextResponse.json({ error: "Sign in to share an attachment." }, { status: 401 });
     if (file && (!ACCEPTED_MEDIA.has(file.type) || file.size > (file.type.startsWith("video/") ? 50 : 10) * 1024 * 1024)) return NextResponse.json({ error: "Choose a supported image up to 10 MB or video up to 50 MB." }, { status: 400 });
     let mediaPath: string | null = null;
     if (file) {
       const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "-").slice(-100) || "attachment";
-      mediaPath = `${user.id}/${crypto.randomUUID()}-${safeName}`;
+      mediaPath = `${user!.id}/${crypto.randomUUID()}-${safeName}`;
       const { error: uploadError } = await supabase.storage.from("threads_media").upload(mediaPath, file, { contentType: file.type, upsert: false });
       if (uploadError) return NextResponse.json({ error: "Unable to upload your attachment." }, { status: 400 });
     }
