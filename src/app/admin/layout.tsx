@@ -1,9 +1,14 @@
 import { AdminSidebar } from "@/components/layout/AdminSidebar";
+import type { Metadata } from "next";
 import { getAdminReviewCounts } from "@/lib/admin/overview";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { ADMIN_OVERRIDE_COOKIE } from "@/lib/admin/auth";
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 export const dynamic = "force-dynamic";
 

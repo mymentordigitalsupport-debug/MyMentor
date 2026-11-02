@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import { redirect } from "next/navigation";
 import { ArrowUpRight, PenLine } from "lucide-react";
@@ -6,6 +7,10 @@ import { getArticleActor, isApprovedAuthor } from "@/lib/article-access";
 import { AuthorAccountMenu } from "@/components/articles/AuthorAccountMenu";
 import { CommunityTexture } from "@/components/threads/ThreadPaper";
 import styles from "@/components/threads/ThreadsCommunity.module.css";
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 export const dynamic = "force-dynamic";
 

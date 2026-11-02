@@ -1,6 +1,11 @@
 import { DesktopSidebar } from "@/components/layout/DesktopSidebar";
+import type { Metadata } from "next";
 import "@/components/today/member-dashboard.css";
 import "@/components/course/course-dashboard.css";
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 export default function AppLayout({
   children,
