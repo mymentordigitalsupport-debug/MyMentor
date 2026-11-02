@@ -6,6 +6,8 @@ import { Badge } from "@/components/ui/Badge";
 import { shouldHideGuidanceLabel } from "@/lib/course-library";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { PaperPin, PaperSurface } from "@/components/threads/ThreadPaper";
+import styles from "@/components/threads/ThreadsCommunity.module.css";
 
 export const dynamic = "force-dynamic";
 
@@ -105,14 +107,17 @@ export default async function CoursePage({ params }: Props) {
 
   return (
     <PageTransition>
-      <div className="flex flex-col gap-5 py-8">
+      <div className={`${styles.community} flex flex-col gap-5 py-8`}>
         {/* Back */}
         <Link href="/course" className="text-sm text-muted hover:text-text transition-colors flex items-center gap-1">
           ← All Courses
         </Link>
 
         {/* Header */}
-        <div>
+        <div className={styles.composer}>
+          <PaperSurface seed={147} warm />
+          <PaperPin className={styles.conversationPinRight} />
+          <div className={styles.composerContent}>
           {!shouldHideGuidanceLabel(course.title) ? (
             <Badge variant={courseVersion.guidance_path === "christian" ? "gold" : "sage"} className="mb-3">
               {courseVersion.guidance_path === "christian" ? "Christian Guided" : "Religious Guidance"}
@@ -124,10 +129,11 @@ export default async function CoursePage({ params }: Props) {
           {course.description && (
             <p className="text-muted text-sm leading-relaxed">{course.description}</p>
           )}
+          </div>
         </div>
 
         {/* Chapters */}
-        <div className="flex flex-col gap-3">
+        <div className={`${styles.feed} flex flex-col gap-5`}>
           {ChapterData.map((mod) => (
             <ChapterCard
               key={mod.id}

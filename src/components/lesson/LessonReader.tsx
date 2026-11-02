@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useState, type CSSProperties } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
@@ -12,6 +12,8 @@ import { LessonBlock } from "@/components/lesson/LessonBlock";
 import { LessonCompleteCard } from "@/components/lesson/LessonCompleteCard";
 import { cn } from "@/lib/utils";
 import type { BlockType } from "@/types";
+import { CommunityTexture, PaperPin, PaperSurface } from "@/components/threads/ThreadPaper";
+import styles from "@/components/threads/ThreadsCommunity.module.css";
 
 type LessonContentBlockRow = {
   id: string;
@@ -75,6 +77,7 @@ export function LessonReader({
     [blocks]
   );
   const [stepIndex, setStepIndex] = useState(0);
+  const textureId = `lesson-${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
 
   useEffect(() => {
     setStepIndex(0);
@@ -153,13 +156,17 @@ export function LessonReader({
   }
 
   return (
+    <div className={styles.community} style={{ "--community-grain": `url(#${textureId}-grain)`, "--community-fibres": `url(#${textureId}-fibres)` } as CSSProperties}>
+      <CommunityTexture id={textureId} />
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 py-6">
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
         <Card
           variant="elevated"
           padding="lg"
-          className="overflow-hidden border-[#e4d9c8] bg-[linear-gradient(180deg,rgba(251,249,245,0.98)_0%,rgba(247,242,233,0.96)_100%)] shadow-[0_24px_58px_-36px_rgba(31,42,36,0.22)]"
+          className={cn(styles.conversation, "overflow-hidden border-[#e4d9c8] bg-transparent shadow-none")}
         >
+          <PaperSurface seed={111} />
+          <PaperPin className={styles.conversationPinLeft} />
           <div className="flex flex-col gap-5">
             <div className="flex items-start justify-between gap-4">
               <div className="space-y-3">
@@ -228,7 +235,7 @@ export function LessonReader({
                     />
                   </div>
                 ) : (
-                  <div className="rounded-[28px] border border-[#eadfcf] bg-white/90 p-1 shadow-[0_12px_30px_-26px_rgba(31,42,36,0.18)]">
+                  <div className="rounded-[6px] border border-[#dadccf] bg-white/70 p-1 shadow-[0_12px_30px_-26px_rgba(31,42,36,0.18)]">
                     <LessonBlock
                       blockId={currentBlock.id}
                       blockType={currentBlock.block_type as BlockType}
@@ -259,7 +266,8 @@ export function LessonReader({
         </Card>
 
         <div className="space-y-4">
-          <Card variant="default" padding="md" className="sticky top-6">
+          <Card variant="default" padding="md" className={cn(styles.kindness, "sticky top-6 bg-transparent shadow-none")}>
+            <PaperSurface seed={117} warm /><PaperPin className={styles.kindnessPin} />
             <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">Lesson path</p>
             <div className="mt-4 space-y-2">
               {stepSummary.map((step, index) => (
@@ -299,15 +307,9 @@ export function LessonReader({
             </div>
           </Card>
 
-          <Card variant="mist" padding="md">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">Why this layout works</p>
-            <p className="mt-3 text-sm leading-6 text-muted">
-              The lesson moves forward one section at a time so the learner stays focused on the current thought instead of
-              scanning the entire lesson at once.
-            </p>
-          </Card>
         </div>
       </div>
+    </div>
     </div>
   );
 }

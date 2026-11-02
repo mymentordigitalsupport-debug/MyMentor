@@ -367,7 +367,9 @@ export function CourseDashboard({
         <div className="member-course-content">
         {activeTab === "overview" && (
           <div className="grid grid-cols-1 gap-5">
-            <div className="rounded-[26px] border border-[#e5ddd0] bg-[#fbf9f5] p-5 shadow-[0_16px_34px_-26px_rgba(31,42,36,0.16)]">
+            <div className="rounded-[26px] border border-[#e5ddd0] bg-[#fbf9f5] p-5 shadow-[0_16px_34px_-26px_rgba(31,42,36,0.16)] member-course-overview-paper">
+              <PaperSurface seed={57} /><PaperPin className="member-course-overview-pin" />
+              <div className="member-course-overview-content">
               <div className="grid gap-5 xl:grid-cols-[1fr_300px] member-course-active-chapter-grid">
                 <div>
                   <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">
@@ -479,6 +481,7 @@ export function CourseDashboard({
                 </button>
               </div>
             </div>
+              </div>
           </div>
         )}
 

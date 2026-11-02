@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
@@ -14,11 +15,8 @@ import {
   NotebookPen,
   Settings2,
   LogOut,
-  ArrowUpRight,
   Menu,
   X,
-  Sparkles,
-  Heart,
   MessagesSquare,
 } from "lucide-react";
 import type { ComponentType } from "react";
@@ -53,7 +51,6 @@ export function DesktopSidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const toast = useToast();
-  const isLessonRoute = /^\/(?:course|journey)\/[^/]+\/[^/]+\/[^/]+$/.test(pathname);
 
   const [menuOpen, setMenuOpen] = useState(false);
   const sidebarRef = useRef<HTMLElement>(null);
@@ -170,15 +167,15 @@ export function DesktopSidebar() {
   return (
     <>
       <div className="member-mobile-header">
-        <Link href="/today" className="member-brand"><span className="member-brand-mark"><Sparkles size={19} /></span><span>MyMentor<span className="member-brand-period">.</span></span></Link>
+        <Link href="/today" className="member-brand" aria-label="MyMentor home"><span className="member-brand-mark"><Image src="/assets/images/favicon.png" alt="" width={26} height={26} className="h-7 w-7 object-contain" priority /></span></Link>
         <button ref={menuButtonRef} type="button" className="member-icon-button" onClick={() => setMenuOpen(true)} aria-label="Open navigation" aria-expanded={menuOpen} aria-controls="member-navigation"><Menu size={22} /></button>
       </div>
       {menuOpen && <button className="member-menu-backdrop" type="button" onClick={() => setMenuOpen(false)} aria-label="Close navigation" tabIndex={-1} />}
-      <aside ref={sidebarRef} id="member-navigation" role={menuOpen ? "dialog" : undefined} aria-modal={menuOpen || undefined} aria-label="Member navigation" className={cn("member-sidebar", isLessonRoute && "member-sidebar-compact", menuOpen && "member-sidebar-open")}>
+      <aside ref={sidebarRef} id="member-navigation" role={menuOpen ? "dialog" : undefined} aria-modal={menuOpen || undefined} aria-label="Member navigation" className={cn("member-sidebar", menuOpen && "member-sidebar-open")}>
         <div className="member-sidebar-inner">
           <div className="member-sidebar-brand-row">
             <Link href="/today" className="member-brand" onClick={() => setMenuOpen(false)} title="MyMentor home">
-              <span className="member-brand-mark"><Sparkles size={21} /></span><span className="member-sidebar-label">MyMentor<span className="member-brand-period">.</span></span>
+              <span className="member-brand-mark"><Image src="/assets/images/favicon.png" alt="" width={28} height={28} className="h-7 w-7 object-contain" priority /></span>
             </Link>
             <button className="member-menu-close" type="button" onClick={() => setMenuOpen(false)} aria-label="Close navigation"><X size={20} /></button>
           </div>
@@ -198,12 +195,6 @@ export function DesktopSidebar() {
               );
             })}
           </nav>
-          <div className="member-sidebar-encouragement member-sidebar-label">
-            <span className="member-encouragement-icon"><Heart size={18} /></span>
-            <p>Good things take<br /><em>one small step.</em></p>
-            <span>A little intention goes a long way.</span>
-            <Link href="/journal/new" onClick={() => setMenuOpen(false)}>Make time for yourself <ArrowUpRight size={15} /></Link>
-          </div>
           <div className="member-sidebar-footer">
             <Link href="/settings" onClick={() => setMenuOpen(false)} className={cn("member-nav-link", pathname === "/settings" && "member-nav-active")} aria-current={pathname === "/settings" ? "page" : undefined} title="Settings"><Settings2 className="member-nav-icon" /><span className="member-sidebar-label">Settings</span></Link>
             <button type="button" onClick={handleLogout} className="member-nav-link member-logout" title="Sign out"><LogOut className="member-nav-icon" /><span className="member-sidebar-label">Sign out</span></button>

@@ -1,9 +1,12 @@
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { redirect } from "next/navigation";
 import { BookOpenText, PenLine } from "lucide-react";
 import { JournalEntryCard } from "@/components/journal/JournalEntryCard";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { JournalEntry } from "@/types";
+import { BotanicalSprig, CommunityTexture, PaperPin, PaperSurface } from "@/components/threads/ThreadPaper";
+import styles from "@/components/threads/ThreadsCommunity.module.css";
 
 export const metadata = { title: "Journal" };
 
@@ -19,5 +22,18 @@ export default async function JournalPage() {
     .order("created_at", { ascending: false });
   const journalEntries = (entries ?? []).map((entry) => ({ ...entry, prompt_id: null })) as JournalEntry[];
 
-  return <div className="mx-auto w-full max-w-6xl pb-10"><header className="flex flex-col gap-5 border-b border-mist pb-7 sm:flex-row sm:items-end sm:justify-between"><div><p className="text-xs font-semibold uppercase tracking-[0.2em] text-sage">Private space</p><h1 className="mt-2 font-serif text-4xl font-semibold tracking-[-0.04em] text-forest sm:text-5xl">Your journal</h1><p className="mt-3 max-w-xl text-sm leading-6 text-muted">Keep the thoughts, reflections, and small wins worth returning to.</p></div><Link href="/journal/new" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-forest px-5 text-sm font-semibold text-cream transition hover:bg-[#435d4d]"><PenLine className="h-4 w-4" />New entry</Link></header>{journalEntries.length ? <section className="mt-7 grid gap-4 sm:grid-cols-2 xl:grid-cols-3" aria-label="Journal entries">{journalEntries.map((entry) => <JournalEntryCard key={entry.id} entry={entry} />)}</section> : <section className="mt-8 rounded-[28px] border border-dashed border-sage/35 bg-cream px-6 py-14 text-center"><BookOpenText className="mx-auto h-9 w-9 text-sage" /><h2 className="mt-4 font-serif text-2xl font-semibold text-forest">Your first page is waiting.</h2><p className="mx-auto mt-2 max-w-md text-sm leading-6 text-muted">Write freely, or save a reflection while working through a lesson.</p><Link href="/journal/new" className="mt-6 inline-flex min-h-11 items-center justify-center rounded-full bg-forest px-5 text-sm font-semibold text-cream transition hover:bg-[#435d4d]">Write an entry</Link></section>}</div>;
+  const textureId = "journal-board";
+  return <div className={styles.community} style={{ "--community-grain": `url(#${textureId}-grain)`, "--community-fibres": `url(#${textureId}-fibres)` } as CSSProperties}>
+    <CommunityTexture id={textureId} />
+    <div className={styles.boardLayout}>
+      <aside className={styles.leftRail}>
+        <section className={styles.invitation}><PaperSurface seed={11} warm /><PaperPin className={styles.invitationPin} /><div className={styles.invitationContent}><span className={styles.newThread}>Your private space</span><h2>Make room<br />for your story.</h2><p>Keep the thoughts, reflections, and small wins worth returning to.</p><Link href="/journal/new" className={styles.greenButton}><PenLine size={16} /><span>Write a reflection</span></Link></div><BotanicalSprig className={styles.invitationLeaves} /></section>
+        <section className={styles.kindness}><PaperSurface seed={18} /><PaperPin className={styles.kindnessPin} /><div className={styles.kindnessContent}><h2><BookOpenText size={23} />Just for you</h2><p>Your journal is private. Begin with a feeling, a lesson, or one honest sentence.</p></div></section>
+      </aside>
+      <section className={styles.mainColumn}>
+        <header className={styles.composer}><PaperSurface seed={24} /><div className={styles.composerContent}><p className={styles.dialogEyebrow}>Personal journal</p><h1 className="m-0 font-serif text-[clamp(34px,4vw,52px)] font-semibold leading-none tracking-[-.05em]">Your journal</h1><p className="mt-4 max-w-2xl text-[16px] leading-7 text-[#74796d]">A gentle record of where you have been and where you are going.</p><Link href="/journal/new" className={`${styles.greenButton} mt-5`}><PenLine size={16} />New entry</Link></div></header>
+        {journalEntries.length ? <section className={`${styles.feed} mt-8`} aria-label="Journal entries">{journalEntries.map((entry) => <JournalEntryCard key={entry.id} entry={entry} />)}</section> : <section className={`${styles.emptyState} mt-8`}><PaperSurface seed={32} warm /><div><BookOpenText size={36} /><h3>Your first page is waiting.</h3><p>Write freely, or save a reflection while working through a lesson.</p><Link href="/journal/new" className={styles.greenButton}>Write an entry</Link></div></section>}
+      </section>
+    </div>
+  </div>;
 }

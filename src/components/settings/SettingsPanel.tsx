@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useState, type CSSProperties } from "react";
 import { useRouter } from "next/navigation";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { useToast } from "@/components/ui/ToastProvider";
@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { type GuidancePath, ANONYMOUS_NAMES } from "@/types";
 import { randomAnonymousName } from "@/lib/utils";
+import { CommunityTexture, PaperPin, PaperSurface } from "@/components/threads/ThreadPaper";
+import styles from "@/components/threads/ThreadsCommunity.module.css";
 
 interface SettingsPanelProps {
   userId: string;
@@ -47,6 +49,7 @@ export function SettingsPanel({
     () => anonymousName ?? randomAnonymousName(ANONYMOUS_NAMES),
     [anonymousName]
   );
+  const textureId = `settings-${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
 
   useEffect(() => {
     try {
@@ -149,8 +152,13 @@ export function SettingsPanel({
   }
 
   return (
-    <div className="grid gap-4 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
-      <section className="rounded-[24px] border border-[#eadfcf] bg-[#fbf9f5]/95 p-5 shadow-[0_18px_36px_-26px_rgba(31,42,36,0.28)]">
+    <div className={styles.community} style={{ "--community-grain": `url(#${textureId}-grain)`, "--community-fibres": `url(#${textureId}-fibres)` } as CSSProperties}>
+      <CommunityTexture id={textureId} />
+      <div className={styles.boardLayout}>
+      <section className={`${styles.mainColumn} ${styles.conversation}`} style={{ order: 2 }}>
+        <PaperSurface seed={71} />
+        <PaperPin className={styles.conversationPinRight} />
+        <div className={styles.conversationContent}>
         <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted">Profile</p>
         <h1 className="mt-1 text-2xl font-semibold text-forest">Settings</h1>
         <p className="mt-2 text-sm leading-6 text-muted">
@@ -292,10 +300,14 @@ export function SettingsPanel({
             Delete account
           </button>
         </div>
+        </div>
       </section>
 
-      <aside className="space-y-4">
-        <section className="rounded-[24px] border border-[#eadfcf] bg-[#fbf9f5]/95 p-5 shadow-[0_18px_36px_-26px_rgba(31,42,36,0.28)]">
+      <aside className={styles.leftRail}>
+        <section className={styles.invitation}><PaperSurface seed={74} warm /><PaperPin className={styles.invitationPin} /><div className={styles.invitationContent}>
+          <span className={styles.newThread}>Your account</span><h2>Settings that<br />fit your path.</h2><p>Choose the identity, guidance, and reminders that support you best.</p>
+        </div></section>
+        <section className={styles.kindness}><PaperSurface seed={77} /><PaperPin className={styles.kindnessPin} /><div className={styles.kindnessContent}>
           <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted">Account</p>
           <div className="mt-3 space-y-3 text-sm text-muted">
             <p>
@@ -304,9 +316,9 @@ export function SettingsPanel({
             <p>Mode: <span className="font-semibold text-forest">{privacyMode ? "Anonymous" : "Named"}</span></p>
             <p>Guidance: <span className="font-semibold text-forest">{path === "christian" ? "Christian" : "Religious"}</span></p>
           </div>
-        </section>
+        </div></section>
 
-        <section className="rounded-[24px] border border-[#eadfcf] bg-[#fdfbf7] p-5 shadow-[0_18px_36px_-26px_rgba(31,42,36,0.22)]">
+        <section className={styles.kindness}><PaperSurface seed={81} warm /><div className={styles.kindnessContent}>
           <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted">What this page controls</p>
           <ul className="mt-3 space-y-2 text-sm leading-6 text-forest">
             <li>- Identity mode and display name</li>
@@ -314,8 +326,9 @@ export function SettingsPanel({
             <li>- Notification preferences</li>
             <li>- Account actions</li>
           </ul>
-        </section>
+        </div></section>
       </aside>
+      </div>
     </div>
   );
 }

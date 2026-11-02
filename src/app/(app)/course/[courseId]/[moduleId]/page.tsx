@@ -6,6 +6,8 @@ import { ProgressBar } from "@/components/ui/ProgressBar";
 import { percent } from "@/lib/utils";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { PaperPin, PaperSurface } from "@/components/threads/ThreadPaper";
+import styles from "@/components/threads/ThreadsCommunity.module.css";
 
 export const dynamic = "force-dynamic";
 
@@ -60,7 +62,7 @@ export default async function ChapterPage({ params }: Props) {
 
   return (
     <PageTransition>
-      <div className="flex flex-col gap-5 py-8">
+      <div className={`${styles.community} flex flex-col gap-5 py-8`}>
         {/* Back */}
         <Link
           href={`/course/${courseId}`}
@@ -70,7 +72,10 @@ export default async function ChapterPage({ params }: Props) {
         </Link>
 
         {/* Header */}
-        <div>
+        <div className={styles.composer}>
+          <PaperSurface seed={127} />
+          <PaperPin className={styles.conversationPinRight} />
+          <div className={styles.composerContent}>
           <h1 className="font-serif text-2xl text-forest font-semibold mb-2 leading-snug">
             {mod.title}
           </h1>
@@ -84,10 +89,11 @@ export default async function ChapterPage({ params }: Props) {
             label={`${completed} of ${total} lessons complete`}
             showPercent
           />
+          </div>
         </div>
 
         {/* Lessons */}
-        <div className="flex flex-col gap-2">
+        <div className={`${styles.feed} flex flex-col gap-5`}>
           {(lessons ?? []).map((lesson) => (
             <LessonRow
               key={lesson.id}

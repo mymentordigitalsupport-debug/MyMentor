@@ -59,6 +59,10 @@
 .member-course-tab[data-profile-exempt] { outline-offset: 2px; }
 .member-course-tab[class*="bg-[#fbf9f5]"] { border-color: #e5ddd0; background: #fffdf6; color: #304832; box-shadow: 0 4px 12px #35432c12; }
 .member-course-content { min-width: 0; }
+.member-course-overview-paper { position: relative; isolation: isolate; overflow: visible; filter: drop-shadow(0 11px 12px #514d3b16); }
+.member-course-overview-paper > .member-course-overview-pin { position: absolute; z-index: 3; top: -25px; right: 12%; width: 31px; height: 59px; transform: rotate(14deg); }
+.member-course-overview-content { position: relative; z-index: 1; }
+.member-course-overview-paper .paperSurface { background: #fffdf6; }
 .member-course-content :where(p, h1, h2, h3, h4, h5, h6, li, dd, dt, blockquote) { text-align: left !important; }
 .member-course-content .member-course-chapter-description { text-align: left !important; }
 .member-course-content { container: course-content / inline-size; }

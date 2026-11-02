@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { PaperSurface, PaperTape } from "@/components/threads/ThreadPaper";
+import styles from "@/components/threads/ThreadsCommunity.module.css";
 
 interface LessonRowProps {
   courseId: string;
@@ -23,16 +25,10 @@ export function LessonRow({
   isCompleted,
 }: LessonRowProps) {
   return (
-    <Link href={`/course/${courseId}/${chapterId}/${lessonId}`}>
-      <div
-        className={cn(
-          "flex items-start gap-4 p-4 rounded-2xl border transition-all duration-200",
-          "hover:shadow-sm hover:border-sage/40",
-          isCompleted
-            ? "bg-sage/5 border-sage/20"
-            : "bg-cream border-mist"
-        )}
-      >
+    <Link href={`/course/${courseId}/${chapterId}/${lessonId}`} className={styles.conversation}>
+      <PaperSurface seed={sortOrder + 130} warm={sortOrder % 2 === 0} />
+      {sortOrder % 3 === 0 && <PaperTape className={styles.conversationTape} />}
+      <div className={cn(styles.conversationContent, "flex items-start gap-4 py-4")}>
         {/* Lesson number / check */}
         <div
           className={cn(
