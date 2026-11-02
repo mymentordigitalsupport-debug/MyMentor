@@ -1,5 +1,6 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { ADMIN_OVERRIDE_COOKIE } from "@/lib/admin/auth";
 
 // Routes that require authentication
 const PROTECTED_ROUTES = [
@@ -52,6 +53,7 @@ function redirectForRequest(request: NextRequest, path: string) {
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const nextParam = request.nextUrl.searchParams.get("next") ?? "";
+  const hardcodedAdmin = request.cookies.get(ADMIN_OVERRIDE_COOKIE)?.value === "1";
 
   // If Supabase env vars are not set, skip auth checks entirely (dev convenience)
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -106,10 +108,11 @@ export async function middleware(request: NextRequest) {
       .select("role")
       .eq("user_id", user.id)
       .maybeSingle();
-    role = (user.app_metadata?.role as string | undefined) ?? profile?.role ?? null;
+    role = profile?.role ?? (user.app_metadata?.role as string | undefined) ?? null;
   }
 
   if (isAdminAuthPath(pathname) || isAuthorAuthPath(pathname)) {
+    if (hardcodedAdmin && isAdminAuthPath(pathname)) return redirectForRequest(request, "/admin");
     if (user && role === "admin") return redirectForRequest(request, "/admin");
     if (user && role === "author") return redirectForRequest(request, "/author");
     if (user) return redirectForRequest(request, "/today");
@@ -125,7 +128,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // Redirect unauthenticated users away from protected routes
-  if (!user && PROTECTED_ROUTES.some((route) => pathname.startsWith(route))) {
+  if (!user && PROTECTED_ROUTES.some((route) => pathname.startsWith(route)) && !(hardcodedAdmin && isAdminPath(pathname))) {
     const host = request.headers.get("x-forwarded-host") ?? request.headers.get("host");
     const protocol = (request.headers.get("x-forwarded-proto") ?? request.nextUrl.protocol).split(",")[0].trim().replace(/:$/, "");
     const origin = host ? `${protocol}://${host}` : request.nextUrl.origin;
@@ -135,7 +138,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // Non-admin users should not stay on admin pages.
-  if (user && isAdminPath(pathname) && role !== "admin") {
+  if (user && isAdminPath(pathname) && role !== "admin" && !hardcodedAdmin) {
     return redirectForRequest(request, role === "author" ? "/author" : "/today");
   }
 

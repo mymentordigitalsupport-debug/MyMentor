@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
 import { useToast } from "@/components/ui/ToastProvider";
 import type { ArticleCategory, ArticleRecord } from "@/lib/articles";
+import { PaperPin, PaperSurface } from "@/components/threads/ThreadPaper";
+import styles from "@/components/threads/ThreadsCommunity.module.css";
 
 type Props = {
   article?: ArticleRecord | null;
@@ -92,7 +94,7 @@ export function ArticleEditor({ article, categories, mode }: Props) {
   const canSubmit = mode === "author" && article && ["draft", "changes_requested", "rejected"].includes(article.status);
   return (
     <div className="grid gap-6">
-      <section className="rounded-[28px] border border-mist bg-cream p-5 shadow-sm sm:p-7">
+      <section className={`${styles.conversation} border-0 bg-transparent p-5 shadow-none sm:p-7`}><PaperSurface seed={212} /><PaperPin className={styles.conversationPinLeft} />
         <div className="grid gap-5">
           <Input label="Article title" value={form.title} onChange={(event) => update("title", event.target.value)} required />
           <Input label="URL slug" value={form.slug} onChange={(event) => update("slug", event.target.value)} placeholder="recovery-support-guide" hint="Leave this close to the title; it becomes the public article address." />
@@ -122,7 +124,7 @@ export function ArticleEditor({ article, categories, mode }: Props) {
           </div>
         </div>
       </section>
-      <section className="rounded-[28px] border border-mist bg-cream p-5 shadow-sm sm:p-7">
+      <section className={`${styles.conversation} border-0 bg-transparent p-5 shadow-none sm:p-7`}><PaperSurface seed={215} warm /><PaperPin className={styles.conversationPinRight} />
         <h2 className="text-lg font-semibold text-text">Search details</h2>
         <div className="mt-5 grid gap-5">
           <Input label="SEO title" value={form.seoTitle} onChange={(event) => update("seoTitle", event.target.value)} hint="Optional. The article title is used when this is blank." />

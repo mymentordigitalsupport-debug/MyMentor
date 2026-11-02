@@ -7,6 +7,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDownRight, ArrowRight, ArrowUpRight, BookOpenText, Clock3, Eye, FilePenLine, MessageCircle, Plus, Send, Sparkles, X } from "lucide-react";
 import { ArticleBody } from "@/components/articles/ArticleBody";
 import type { ArticleRecord, ArticleStatus } from "@/lib/articles";
+import { PaperPin, PaperSurface } from "@/components/threads/ThreadPaper";
+import styles from "@/components/threads/ThreadsCommunity.module.css";
 
 type Props = { articles: ArticleRecord[]; feedback: Record<string, string> };
 const statusNames: Record<ArticleStatus, string> = { draft: "Draft", pending_review: "In review", changes_requested: "Changes requested", rejected: "Rejected", published: "Published", archived: "Archived" };
@@ -41,11 +43,12 @@ export function AuthorDashboard({ articles, feedback }: Props) {
 
   return (
     <div>
-      <motion.section initial={reduceMotion ? false : { opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .65, ease: [.22, 1, .36, 1] }} className="relative isolate overflow-hidden rounded-[28px] bg-[#1b3227] px-6 py-10 text-[#f9f5e9] shadow-[0_28px_75px_-45px_#12251b] sm:px-10 sm:py-14 lg:px-14">
+      <motion.section initial={reduceMotion ? false : { opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .65, ease: [.22, 1, .36, 1] }} className={`${styles.composer} overflow-hidden px-6 py-10 text-[#223c30] shadow-none sm:px-10 sm:py-14 lg:px-14`}>
+        <PaperSurface seed={201} warm /><PaperPin className={styles.conversationPinRight} />
         <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-40 h-[450px] w-[450px] rounded-full border border-[#d5bd89]/20 bg-[radial-gradient(circle,#b2a0753b_0%,transparent_67%)]" />
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-[.12] [background-image:radial-gradient(#e6d4aa_0.5px,transparent_0.5px)] [background-size:7px_7px]" />
         <div className="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
-          <div><p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[.32em] text-[#dcc594]"><Sparkles className="h-3.5 w-3.5" /> Author workspace <span className="ml-3 text-[#dcc594]/50">/ 001</span></p><h1 className="mt-7 font-serif text-[clamp(3.5rem,8vw,7.5rem)] leading-[.9] tracking-[-.075em]">Your <em className="font-normal text-[#d9bf87]">articles.</em></h1><p className="mt-7 max-w-xl text-sm leading-7 text-[#d4dbd0] sm:text-base">A considered space for your ideas. Shape a draft, share it with the editorial team, and bring your words into the world.</p><div className="mt-8 flex items-center gap-4 border-t border-white/15 pt-5 text-xs text-[#d3d8cf]"><BookOpenText className="h-4 w-4 text-[#d9bf87]" /><span><strong className="text-white">{articles.length}</strong> {articles.length === 1 ? "article" : "articles"} in your collection</span></div></div>
+          <div><p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[.32em] text-[#75806b]"><Sparkles className="h-3.5 w-3.5" /> Author workspace <span className="ml-3 text-[#75806b]/50">/ 001</span></p><h1 className="mt-7 font-serif text-[clamp(3.5rem,8vw,7.5rem)] leading-[.9] tracking-[-.075em]">Your <em className="font-normal text-[#6d845f]">articles.</em></h1><p className="mt-7 max-w-xl text-sm leading-7 text-[#74796d] sm:text-base">A considered space for your ideas. Shape a draft, share it with the editorial team, and bring your words into the world.</p><div className="mt-8 flex items-center gap-4 border-t border-[#dce1d0] pt-5 text-xs text-[#64705c]"><BookOpenText className="h-4 w-4 text-[#6d845f]" /><span><strong className="text-[#223c30]">{articles.length}</strong> {articles.length === 1 ? "article" : "articles"} in your collection</span></div></div>
           <motion.div whileHover={reduceMotion ? undefined : { y: -4 }} whileTap={reduceMotion ? undefined : { scale: .98 }}><Link href="/author/articles/new" className="group inline-flex min-h-14 items-center gap-5 rounded-full bg-[#d8bd83] px-6 text-sm font-semibold text-[#1d3125] shadow-[0_15px_30px_-18px_#ddc792] transition-colors hover:bg-[#ead4a6]">New article <span className="grid h-8 w-8 place-items-center rounded-full bg-[#20382a] text-[#f8efd8] transition-transform group-hover:rotate-90"><Plus className="h-4 w-4" /></span></Link></motion.div>
         </div>
       </motion.section>

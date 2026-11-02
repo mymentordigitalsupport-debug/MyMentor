@@ -51,7 +51,8 @@ export async function POST(request: Request) {
     const websiteUrl = text(raw.websiteUrl, 500);
     const portfolioUrl = text(raw.portfolioUrl, 500);
 
-    if (!await takeRateLimit(`author-registration:ip:${requestClientKey(request)}`, 3600, 5)) {
+    const shouldRateLimit = process.env.NODE_ENV === "production";
+    if (shouldRateLimit && !await takeRateLimit(`author-registration:ip:${requestClientKey(request)}`, 3600, 5)) {
       return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
     }
 
@@ -62,7 +63,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Enter a valid email address and valid website links where supplied." }, { status: 400 });
     }
 
-    if (!await takeRateLimit(`author-registration:email:${email}`, 86400, 3)) {
+    if (shouldRateLimit && !await takeRateLimit(`author-registration:email:${email}`, 86400, 3)) {
       return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
     }
 

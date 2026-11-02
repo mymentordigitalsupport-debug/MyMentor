@@ -1,8 +1,11 @@
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { redirect } from "next/navigation";
 import { ArrowUpRight, PenLine } from "lucide-react";
 import { getArticleActor, isApprovedAuthor } from "@/lib/article-access";
 import { AuthorAccountMenu } from "@/components/articles/AuthorAccountMenu";
+import { CommunityTexture } from "@/components/threads/ThreadPaper";
+import styles from "@/components/threads/ThreadsCommunity.module.css";
 
 export const dynamic = "force-dynamic";
 
@@ -10,8 +13,9 @@ export default async function AuthorLayout({ children }: { children: React.React
   const actor = await getArticleActor();
   if (!actor.user || !isApprovedAuthor(actor.role)) redirect("/authors-login");
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#f8f5ef] text-[#24352c]">
-      <header className="relative z-20 border-b border-[#b8ad96]/25 bg-[#fbf9f5]/85 backdrop-blur-xl">
+    <div className={`${styles.community} relative min-h-screen text-[#24352c]`} style={{ "--community-grain": "url(#author-board-grain)", "--community-fibres": "url(#author-board-fibres)" } as CSSProperties}>
+      <CommunityTexture id="author-board" />
+      <header className="relative z-20 border-b border-[#d8ddcc] bg-[#f6f3ed]/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-8 lg:px-12">
           <Link href="/author" className="group flex items-center gap-3" aria-label="My Mentor Authors home">
             <span className="grid h-10 w-10 place-items-center rounded-[13px] bg-[#21382c] text-[#e8d4a7] shadow-[0_8px_20px_-10px_#21382c] transition-transform group-hover:-rotate-6"><PenLine className="h-4 w-4" /></span>

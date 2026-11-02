@@ -3,13 +3,15 @@
 import { usePathname } from "next/navigation";
 import PushpinTearFooter from "@/components/layout/PushpinFooter";
 
-const MEMBER_AREAS = ["/today", "/course", "/journal", "/journey", "/progress", "/resources", "/settings"];
+const MEMBER_AREAS = ["/today", "/course", "/journal", "/journey", "/progress", "/resources", "/settings", "/admin", "/author"];
+const AUTH_AREAS = ["/login", "/register", "/admin-login", "/authors-login", "/authors-register"];
 
 export function SiteFooter() {
   const pathname = usePathname();
   const isMemberArea = MEMBER_AREAS.some((area) => pathname === area || pathname.startsWith(`${area}/`));
+  const isAuthArea = AUTH_AREAS.some((area) => pathname === area || pathname.startsWith(`${area}/`));
 
-  if (isMemberArea) return null;
+  if (isMemberArea || isAuthArea) return null;
 
   return (
     <PushpinTearFooter

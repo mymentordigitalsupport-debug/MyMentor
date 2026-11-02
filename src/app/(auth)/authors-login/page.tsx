@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { LoginForm } from "@/components/auth/LoginForm";
 import { PageLoader } from "@/components/ui/PageLoader";
 import { PenLine } from "lucide-react";
+import { PaperPin, PaperSurface } from "@/components/threads/ThreadPaper";
+import styles from "@/components/threads/ThreadsCommunity.module.css";
 import "../register/register.css";
 
 export const metadata: Metadata = { title: "Author Sign In" };
@@ -10,9 +12,9 @@ export const metadata: Metadata = { title: "Author Sign In" };
 export default function AuthorsLoginPage() {
   return (
     <PageLoader imageSrc="/assets/images/s1r.jpg">
-      <main className="register-page min-h-screen">
+      <main className={`${styles.community} register-page min-h-screen`}>
         <div className="register-card relative grid min-h-screen w-full overflow-hidden lg:grid-cols-2">
-          <div className="relative flex flex-col px-6 pb-8 pt-7 sm:px-12 sm:pt-10 lg:px-14 xl:px-20">
+          <div className={`${styles.composer} relative flex flex-col px-6 pb-8 pt-7 sm:px-12 sm:pt-10 lg:px-14 xl:px-20`}><PaperSurface seed={221} warm /><PaperPin className={styles.conversationPinRight} />
             <Link href="/" className="register-brand w-fit rounded-full border border-[#777f79]/50 px-5 py-2 text-sm text-[#27342c]">Back Home</Link>
             <div className="mx-auto w-full max-w-[470px] flex-1 pb-10 pt-12 sm:pt-20">
               <div className="mb-8 text-center">

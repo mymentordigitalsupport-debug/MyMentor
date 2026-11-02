@@ -37,6 +37,14 @@ export function LoginForm({ mode = "user", nextPath }: LoginFormProps) {
     setLoading(true);
 
     try {
+      if (mode === "admin") {
+        const response = await fetch("/api/admin/login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email, password }) });
+        if (!response.ok) throw new Error("Incorrect email or password. Please try again.");
+        toast.success("Admin access granted", "You've successfully signed in.");
+        router.replace("/admin");
+        router.refresh();
+        return;
+      }
       const supabase = createSupabaseBrowserClient();
       const { data: signInData, error: authError } = await supabase.auth.signInWithPassword({
         email,

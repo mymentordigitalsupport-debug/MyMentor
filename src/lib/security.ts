@@ -18,7 +18,18 @@ export function hasTrustedOrigin(request: Request) {
   if (!origin) return false;
 
   const requestOrigin = new URL(request.url).origin;
-  return origin === requestOrigin || configuredOrigins().includes(origin);
+  if (origin === requestOrigin || configuredOrigins().includes(origin)) return true;
+  if (process.env.NODE_ENV !== "production") {
+    try {
+      const originHost = new URL(origin).hostname;
+      const requestHost = new URL(request.url).hostname;
+      const localHosts = new Set(["localhost", "127.0.0.1"]);
+      return localHosts.has(originHost) && localHosts.has(requestHost);
+    } catch {
+      return false;
+    }
+  }
+  return false;
 }
 
 export function requestClientKey(request: Request) {
