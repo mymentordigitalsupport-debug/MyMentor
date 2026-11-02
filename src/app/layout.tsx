@@ -9,6 +9,24 @@ import { NavigationLoader } from "@/components/ui/NavigationLoader";
 import { Analytics } from "@vercel/analytics/next";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://mymentor.digital").replace(/\/$/, "");
+const siteStructuredData = JSON.stringify([
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "My Mentor",
+    url: siteUrl,
+    description:
+      "A guided course of healing, reflection, recovery, and personal growth.",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "My Mentor",
+    url: siteUrl,
+  },
+]).replace(/</g, "\\u003c");
+
 export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://mymentor.digital"
@@ -56,6 +74,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: siteStructuredData }}
+        />
+      </head>
       <body suppressHydrationWarning>
         <ToastProvider>
           <SmoothScroll />
