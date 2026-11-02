@@ -23,6 +23,7 @@ export function PublicNavigation({ overDark = false, adaptToAboutSections = fals
   const reducedMotion = useReducedMotion();
   const [lightMenu, setLightMenu] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState<boolean | null>(null);
+  const [spaceHref, setSpaceHref] = useState("/today");
 
   useEffect(() => {
     let active = true;
@@ -30,11 +31,29 @@ export function PublicNavigation({ overDark = false, adaptToAboutSections = fals
 
     try {
       const supabase = createSupabaseBrowserClient();
-      void supabase.auth.getUser().then(({ data }) => {
-        if (active) setIsSignedIn(Boolean(data.user));
+      void supabase.auth.getUser().then(async ({ data }) => {
+        if (!active) return;
+        if (!data.user) {
+          setIsSignedIn(false);
+          return;
+        }
+        const { data: sessionData } = await supabase.auth.getSession();
+        const token = sessionData.session?.access_token;
+        if (!token) {
+          setIsSignedIn(true);
+          return;
+        }
+        const response = await fetch("/api/auth/portal-access", { headers: { Authorization: `Bearer ${token}` } });
+        const access = await response.json().catch(() => null) as { role?: string } | null;
+        if (!active) return;
+        setSpaceHref(access?.role === "author" ? "/author" : access?.role === "admin" ? "/admin" : "/today");
+        setIsSignedIn(true);
       });
       const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-        if (active) setIsSignedIn(Boolean(session?.user));
+        if (active) {
+          setIsSignedIn(Boolean(session?.user));
+          if (!session?.user) setSpaceHref("/today");
+        }
       });
       unsubscribe = () => listener.subscription.unsubscribe();
     } catch {
@@ -157,7 +176,7 @@ export function PublicNavigation({ overDark = false, adaptToAboutSections = fals
           {isSignedIn === null ? (
             <span aria-hidden="true" className="h-9 w-24" />
           ) : isSignedIn ? (
-            <Link href="/today" onClick={close} className="landing-user-profile landing-user-profile--nav group"><span className="landing-user-profile-inner"><span>My space</span><ArrowRight className="transition-transform group-hover:translate-x-0.5" /></span></Link>
+            <Link href={spaceHref} onClick={close} className="landing-user-profile landing-user-profile--nav group"><span className="landing-user-profile-inner"><span>My space</span><ArrowRight className="transition-transform group-hover:translate-x-0.5" /></span></Link>
           ) : (
             <>
               <Link href="/login" onClick={close} className="landing-user-profile landing-user-profile--nav"><span className="landing-user-profile-inner"><span>Login</span></span></Link>
