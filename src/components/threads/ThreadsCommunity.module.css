@@ -86,7 +86,7 @@
 .conversationContent { position: relative; padding: 23px 32px 24px; }
 .conversationMeta { display: flex; align-items: center; gap: 18px; min-height: 24px; margin-bottom: 11px; }
 .topicBadge { display: inline-flex; align-items: center; justify-content: center; min-height: 25px; padding: 3px 13px; border-radius: 99px; background: #e3ead5; color: #526544; font-size: 12px; line-height: 1.4; }
-.topicBadge[data-topic="Career"] { background: #e1e7cb; color: #566542; }
+.topicBadge[data-topic="Progress"] { background: #e1e7cb; color: #566542; }
 .topicBadge[data-topic="Mindset"] { background: #d8e9eb; color: #3d6a72; }
 .topicBadge[data-topic="Learning"] { background: #e7e1ed; color: #746484; }
 .topicBadge[data-topic="Life"] { background: #f1ded3; color: #976e54; }
@@ -147,6 +147,10 @@
 .firstComment { margin-bottom: 22px; color: #7d8774; font-size: 14px; }
 .commentForm { position: relative; padding-top: 7px; }
 .commentForm > label { display: block; margin-bottom: 10px; font-family: Georgia, serif; font-size: 16px; font-weight: 600; }
+.guestFields { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.guestFields input { min-width: 0; padding: 10px 12px; border: 1px solid #d7deca; border-radius: 5px; background: #fffef5; color: #4f6545; font-size: 13px; outline-color: #7a9272; }
+.anonymousChoice { display: flex !important; align-items: center; gap: 8px; margin: 0 0 12px !important; color: #64705c; font-family: inherit !important; font-size: 12px !important; font-weight: 500 !important; }
+.anonymousChoice input { accent-color: #355b42; }
 .commentForm textarea { display: block; width: 100%; margin-bottom: 12px; padding: 12px; border: 1px solid #d7deca; border-radius: 5px; background: #fffef5; color: #4f6545; font-size: 13px; line-height: 1.5; resize: vertical; outline-color: #7a9272; }
 .commentForm > .greenButton { min-height: 37px; padding: 8px 14px; font-size: 12px !important; }
 .cancelReply { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 9px; padding: 0; border: 0; background: none; color: #7e876e; font-size: 11px !important; }
@@ -259,6 +263,7 @@
   .commentsHeading { gap: 13px; }
   .commentsHeading h4 { font-size: 18px; }
   .nestedComment { margin-left: 15px; padding-left: 10px; }
+  .guestFields { grid-template-columns: 1fr; }
   .dialogContent { padding: 38px 25px 29px; }
   .dialogContent h2 { font-size: 30px; }
   .dialogContent > .greenButton { width: 100%; font-size: 12px !important; }

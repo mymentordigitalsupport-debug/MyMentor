@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, type CSSProperties, type FormEvent } from "react";
-import { ArrowDown, ArrowRight, BookOpen, Brain, BriefcaseBusiness, Heart, Leaf, MessageCircle, Search, Users } from "lucide-react";
+import { ArrowDown, ArrowRight, BookOpen, Brain, Heart, Leaf, MessageCircle, Search, TrendingUp, Users } from "lucide-react";
 import { PublicNavigation } from "@/components/landing/PublicNavigation";
 import { easeTear, Pin, rng } from "@/components/layout/PushpinFooter";
 import styles from "./ThreadsHero.module.css";
 
 const topics = [
   { label: "Mindset", icon: Brain },
-  { label: "Career", icon: BriefcaseBusiness },
+  { label: "Progress", icon: TrendingUp },
   { label: "Learning", icon: BookOpen },
   { label: "Life", icon: Leaf },
   { label: "Community", icon: Users },
@@ -16,7 +16,7 @@ const topics = [
 
 const starters = [
   { topic: "Mindset", title: "How do you stay consistent when motivation fades?", body: "I’ve been struggling to keep up with my goals lately. What routines or mindset shifts have helped you stay consistent over time?", icon: Brain },
-  { topic: "Career", title: "Switching careers at 30+ — is it worth it?", body: "For those who made a career switch later in life, how did you handle the uncertainty? Would love to hear your experiences and advice.", icon: BriefcaseBusiness },
+  { topic: "Progress", title: "A small win I want to share", body: "I kept showing up this week, even on the difficult days. What progress are you proud of today?", icon: TrendingUp },
   { topic: "Learning", title: "Best resources to learn web development in 2026?", body: "Looking for up-to-date, beginner-friendly resources. Open to free and paid options. What actually worked for you?", icon: BookOpen },
   { topic: "Life", title: "How do you deal with self-doubt?", body: "Some days I feel like I’m not doing enough. Would love to hear how you manage self-doubt and stay kind to yourself.", icon: Leaf },
 ];

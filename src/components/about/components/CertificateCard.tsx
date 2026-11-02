@@ -1,12 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Compass, Award } from 'lucide-react';
+import { Compass, Award, BookOpen, Clock3 } from 'lucide-react';
 
 interface CertificateCardProps {
   title: string;
   subtitle: string;
   courseNumber: string;
-  description: string;
+  format: string;
+  isUpcoming?: boolean;
   authorName?: string;
 }
 
@@ -14,9 +15,36 @@ export const CertificateCard: React.FC<CertificateCardProps> = ({
   title,
   subtitle,
   courseNumber,
-  description,
+  format,
+  isUpcoming = false,
   authorName = 'Craig Peterson',
 }) => {
+  if (isUpcoming) {
+    return (
+      <motion.div
+        whileHover={{ y: -5 }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
+        className="relative w-full max-w-[340px] aspect-[1.35/1] overflow-hidden rounded-2xl border border-[#D4AF37]/55 bg-[#17251e] p-5 text-[#fff9ed] shadow-[0_18px_42px_rgba(0,0,0,0.42)]"
+      >
+        <div className="absolute inset-0 opacity-30 [background-image:radial-gradient(rgba(229,193,117,.45)_1px,transparent_1px)] [background-size:12px_12px]" />
+        <div className="absolute -right-16 -top-20 h-52 w-52 rounded-full border border-[#D4AF37]/20" />
+        <div className="absolute -right-8 -top-12 h-36 w-36 rounded-full border border-[#D4AF37]/15" />
+        <div className="relative flex h-full flex-col">
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex items-center gap-2 text-[#e5c175]"><span className="grid h-7 w-7 place-items-center rounded-full border border-[#e5c175]/45"><BookOpen className="h-3.5 w-3.5" /></span><span className="text-[9px] font-bold uppercase tracking-[0.2em]">Upcoming study</span></div>
+            <span className="rounded-full border border-[#e5c175]/30 bg-[#e5c175]/10 px-2.5 py-1 text-[8px] font-bold uppercase tracking-[0.12em] text-[#f6dfaa]">Coming soon</span>
+          </div>
+          <div className="my-auto pr-5">
+            <p className="mb-3 text-[9px] font-semibold uppercase tracking-[0.22em] text-[#d3bb85]">{format}</p>
+            <h3 className="font-serif-heading text-[clamp(1.35rem,2.2vw,1.8rem)] font-bold leading-[.95] tracking-[-.025em] text-white">{title}</h3>
+            <p className="mt-3 max-w-[28ch] text-[10px] leading-[1.55] text-[#e3dccd]/75">{subtitle}</p>
+          </div>
+          <div className="flex items-center gap-2 border-t border-white/10 pt-3 text-[9px] font-medium uppercase tracking-[0.12em] text-[#d8d1c2]"><Clock3 className="h-3.5 w-3.5 text-[#e5c175]" />Short guided study · In development</div>
+        </div>
+      </motion.div>
+    );
+  }
+
   return (
     <motion.div
       whileHover={{ scale: 1.03, y: -4 }}

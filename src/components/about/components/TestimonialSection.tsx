@@ -27,15 +27,16 @@ export const TestimonialSection: React.FC<TestimonialSectionProps> = ({ onSignUp
         <div className="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:40px_40px]" />
 
       <div className="relative z-10 max-w-[1360px] mx-auto w-full flex flex-col items-center">
-        {/* Three Certificate Cards Row */}
+        {/* Current course plus upcoming study programs. */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 w-full max-w-5xl mx-auto justify-items-center mb-16 sm:mb-20">
-          {MY_MENTOR_DATA.courses.slice(0, 3).map((course, idx) => (
+          {MY_MENTOR_DATA.courses.slice(0, 3).map((course) => (
             <CertificateCard
               key={course.id}
               courseNumber={course.courseNumber}
               title={course.title}
               subtitle={course.subtitle}
-              description={course.description}
+              format={course.format}
+              isUpcoming={course.availability === "upcoming"}
               authorName="Craig Petersen"
             />
           ))}

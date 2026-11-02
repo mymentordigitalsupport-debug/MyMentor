@@ -7,6 +7,7 @@ export interface CoursePathway {
   chaptersCount: number;
   lessonsCount: number;
   format: string;
+  availability: "available" | "upcoming";
   tag: string;
   chapters: {
     number: number;
@@ -85,6 +86,7 @@ export const MY_MENTOR_DATA = {
       chaptersCount: 11,
       lessonsCount: 87,
       format: "Deep, full-length course",
+      availability: "available",
       tag: "Selected Course",
       chapters: [
         {
@@ -164,8 +166,9 @@ export const MY_MENTOR_DATA = {
         "Children absorb what adults tolerate. This course equips parents, guardians, and mentors with the protective clarity and spiritual discernment needed to guard young hearts against cultural chaos, digital exposure, and generational trauma.",
       chaptersCount: 3,
       lessonsCount: 15,
-      format: "Short, practical course",
-      tag: "Family Restoration",
+      format: "Basic short study program",
+      availability: "upcoming",
+      tag: "Upcoming program",
       chapters: [
         {
           number: 1,
@@ -196,8 +199,9 @@ export const MY_MENTOR_DATA = {
         "Sobriety is only the halfway mark; leadership is the destination. Those who have been rescued from the deepest pits carry an unmatched capacity to lead with humility, courage, and discernment. This course bridges the gap from recovery to community stewardship.",
       chaptersCount: 3,
       lessonsCount: 21,
-      format: "Medium-depth transformation course",
-      tag: "Character & Service",
+      format: "Basic short study program",
+      availability: "upcoming",
+      tag: "Upcoming program",
       chapters: [
         {
           number: 1,

@@ -1,6 +1,6 @@
 export const THREAD_TOPICS = [
   { name: "Mindset", count: 124, tone: "mindset" },
-  { name: "Career", count: 312, tone: "career" },
+  { name: "Progress", count: 312, tone: "progress" },
   { name: "Learning", count: 208, tone: "learning" },
   { name: "Life", count: 176, tone: "life" },
   { name: "Community", count: 98, tone: "community" },
@@ -30,13 +30,13 @@ export type CommunityPost = {
 // UI fixtures only. Keep the presentation model independent of a future DB adapter.
 export const DEMO_THREADS: CommunityPost[] = [
   {
-    id: "career-change", topic: "Career", title: "Switching careers at 30+ — is it worth it?",
-    body: "For those who made a career switch later in life, how did you handle the uncertainty? Would love to hear your experiences and advice.",
+    id: "small-progress", topic: "Progress", title: "A small win I want to share",
+    body: "I kept showing up this week, even on the difficult days. What progress are you proud of today?",
     author: "Patrick S.", avatar: "patrick", age: "2h ago", order: 4, commentCount: 24, likes: 58,
     liked: false, disliked: false, saved: false,
     comments: [
-      { id: "career-1", author: "Nadia K.", body: "I made the switch at 34. Talking to people already in the field helped me take the first small step.", parentId: null },
-      { id: "career-2", author: "Daniel R.", body: "Giving myself a few months to learn alongside my current work made it feel much more manageable.", parentId: null },
+      { id: "progress-1", author: "Nadia K.", body: "That matters. I write down one small thing I did well each day so I can see the change over time.", parentId: null },
+      { id: "progress-2", author: "Daniel R.", body: "Thank you for sharing. Showing up on the hard days is real progress.", parentId: null },
     ],
   },
   {

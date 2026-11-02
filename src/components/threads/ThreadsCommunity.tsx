@@ -1,15 +1,16 @@
 "use client";
 
 import { useCallback, useEffect, useId, useMemo, useRef, useState, type CSSProperties, type FormEvent } from "react";
-import { ArrowDown, ArrowRight, BookOpen, Bookmark, Brain, BriefcaseBusiness, Check, ChevronDown, ChevronRight, FolderClosed, Heart, ImagePlus, Leaf, Link2, MessageCircle, MoreHorizontal, PencilLine, Send, ShieldCheck, Sparkles, ThumbsDown, Users, X } from "lucide-react";
+import { ArrowDown, ArrowRight, BookOpen, Bookmark, Brain, Check, ChevronDown, ChevronRight, FolderClosed, Heart, ImagePlus, Leaf, Link2, MessageCircle, MoreHorizontal, PencilLine, Send, ShieldCheck, Sparkles, ThumbsDown, TrendingUp, Users, X } from "lucide-react";
 import { BotanicalSprig, CommunityFooterTear, CommunityTexture, DemoAvatar, PaperPin, PaperSurface, PaperTape } from "./ThreadPaper";
 import { COMMUNITY_GUIDELINES, THREAD_TOPICS, type CommunityPost, type ThreadTopic } from "./threads-demo-data";
 import styles from "./ThreadsCommunity.module.css";
 
-const TOPIC_ICONS = { Mindset: Brain, Career: BriefcaseBusiness, Learning: BookOpen, Life: Leaf, Community: Users };
+const TOPIC_ICONS = { Mindset: Brain, Progress: TrendingUp, Learning: BookOpen, Life: Leaf, Community: Users };
 const ACCEPT = "image/jpeg,image/png,image/webp,image/gif,video/mp4,video/webm";
 type Sort = "latest" | "liked" | "discussed" | "saved";
 type Attachment = { file: File; url: string };
+type GuestDetails = { name: string; email: string; isAnonymous: boolean };
 
 type ThreadsCommunityProps = {
   query: string;
@@ -27,6 +28,7 @@ export function ThreadsCommunity({ query, onQueryChange, draft, onDraftChange, o
   const [attachment, setAttachment] = useState<Attachment | null>(null);
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
+  const [signedIn, setSignedIn] = useState(false);
   const fileInput = useRef<HTMLInputElement>(null);
   const guidelines = useRef<HTMLDialogElement>(null);
   const objectUrls = useRef(new Set<string>());
@@ -34,9 +36,10 @@ export function ThreadsCommunity({ query, onQueryChange, draft, onDraftChange, o
   const loadPosts = useCallback(async () => {
     try {
       const response = await fetch("/api/threads", { cache: "no-store" });
-      const data = await response.json() as { posts?: CommunityPost[]; error?: string };
+      const data = await response.json() as { posts?: CommunityPost[]; signedIn?: boolean; error?: string };
       if (!response.ok) throw new Error(data.error ?? "Unable to load Threads.");
       setPosts(data.posts ?? []);
+      setSignedIn(Boolean(data.signedIn));
     } catch (caughtError) {
       setError(caughtError instanceof Error ? caughtError.message : "Unable to load Threads.");
     }
@@ -101,8 +104,13 @@ export function ThreadsCommunity({ query, onQueryChange, draft, onDraftChange, o
     setSort("latest");
   }
 
-  async function addComment(id: string, text: string, parentId: string | null) {
-    const response = await fetch("/api/threads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "reply", body: text, postId: id, parentId: parentId ?? id }) });
+  async function addComment(id: string, text: string, parentId: string | null, guest?: GuestDetails) {
+    if (guest) {
+      const registration = await fetch("/api/threads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "register-commenter", ...guest }) });
+      const registrationData = await registration.json().catch(() => ({})) as { error?: string };
+      if (!registration.ok) { setError(registrationData.error ?? "Unable to save your details."); return; }
+    }
+    const response = await fetch("/api/threads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "reply", body: text, postId: id, parentId: parentId ?? id, ...(guest ? { isAnonymous: guest.isAnonymous } : {}) }) });
     const data = await response.json().catch(() => ({})) as { error?: string };
     if (response.status === 401) { window.location.assign("/login?next=/threads"); return; }
     if (!response.ok) { setError(data.error ?? "Unable to publish your reply."); return; }
@@ -156,7 +164,7 @@ export function ThreadsCommunity({ query, onQueryChange, draft, onDraftChange, o
           <button type="button" className={styles.topicHeading} onClick={resetFilters} aria-label="Browse all topics"><FolderClosed size={21} strokeWidth={1.5} /><span>Browse by topic</span></button>
           <div className={styles.topicList}>{THREAD_TOPICS.map(({ name, count }) => {
             const Icon = TOPIC_ICONS[name];
-            return <button type="button" key={name} className={styles.topicRow} data-featured={name === "Career"} aria-pressed={topic === name} onClick={() => selectTopic(name)}><Icon size={20} strokeWidth={1.6} /><span>{name}</span><span className={styles.topicCount}>{count}</span><ChevronRight size={15} /></button>;
+            return <button type="button" key={name} className={styles.topicRow} data-featured={name === "Progress"} aria-pressed={topic === name} onClick={() => selectTopic(name)}><Icon size={20} strokeWidth={1.6} /><span>{name}</span><span className={styles.topicCount}>{count}</span><ChevronRight size={15} /></button>;
           })}</div>
         </nav>
 
@@ -205,6 +213,7 @@ export function ThreadsCommunity({ query, onQueryChange, draft, onDraftChange, o
             onDislike={() => void reactToPost(post.id, post.disliked ? null : -1)}
             onSave={() => updatePost(post.id, (current) => ({ ...current, saved: !current.saved }))}
             onComment={(text, parentId) => void addComment(post.id, text, parentId)}
+            signedIn={signedIn}
             onDelete={post.canDelete ? () => void deletePost(post.id) : undefined}
             onDeleteComment={(entryId) => void deletePost(entryId, true)}
             onReactComment={(entryId, liked) => void reactToPost(entryId, liked ? null : 1)}
@@ -231,13 +240,17 @@ export function ThreadsCommunity({ query, onQueryChange, draft, onDraftChange, o
 type ConversationCardProps = {
   post: CommunityPost; index: number;
   onLike: () => void; onDislike: () => void; onSave: () => void; onHide: () => void; onCopy: () => Promise<void>; onDelete?: () => void; onDeleteComment: (entryId: string) => void; onReactComment: (entryId: string, liked: boolean) => void; onReportComment: (entryId: string) => void;
-  onComment: (body: string, parentId: string | null) => void;
+  onComment: (body: string, parentId: string | null, guest?: GuestDetails) => void;
+  signedIn: boolean;
 };
 
-function ConversationCard({ post, index, onLike, onDislike, onSave, onHide, onCopy, onComment, onDelete, onDeleteComment, onReactComment, onReportComment }: ConversationCardProps) {
+function ConversationCard({ post, index, onLike, onDislike, onSave, onHide, onCopy, onComment, onDelete, onDeleteComment, onReactComment, onReportComment, signedIn }: ConversationCardProps) {
   const [expanded, setExpanded] = useState(false);
   const [comment, setComment] = useState("");
   const [replyTo, setReplyTo] = useState<{ id: string; author: string } | null>(null);
+  const [guestName, setGuestName] = useState("");
+  const [guestEmail, setGuestEmail] = useState("");
+  const [anonymous, setAnonymous] = useState(false);
   const menu = useRef<HTMLDetailsElement>(null);
   const replyInput = useRef<HTMLTextAreaElement>(null);
   const [hiddenComments, setHiddenComments] = useState<Set<string>>(() => new Set());
@@ -256,7 +269,8 @@ function ConversationCard({ post, index, onLike, onDislike, onSave, onHide, onCo
   function submitComment(event: FormEvent) {
     event.preventDefault();
     if (!comment.trim()) return;
-    onComment(comment.trim(), replyTo?.id ?? null);
+    if (!signedIn && (!guestName.trim() || !guestEmail.trim())) return;
+    onComment(comment.trim(), replyTo?.id ?? null, signedIn ? undefined : { name: guestName.trim(), email: guestEmail.trim(), isAnonymous: anonymous });
     setComment(""); setReplyTo(null);
   }
 
@@ -282,9 +296,9 @@ function ConversationCard({ post, index, onLike, onDislike, onSave, onHide, onCo
 
       {expanded && <div id={`comments-${post.id}`} className={styles.comments}>
         <div className={styles.commentsHeading}><h4>Join the conversation</h4><button type="button" onClick={onDislike} aria-pressed={post.disliked}><ThumbsDown size={16} />{post.disliked ? "Feedback noted" : "Not for me"}</button></div>
-        {post.comments.filter((item) => !hiddenComments.has(item.id)).map((item) => <div key={item.id} className={`${styles.comment} ${item.parentId ? styles.nestedComment : ""}`}><span className={styles.commentAvatar}>{item.author.split(" ").map((name) => name[0]).slice(0, 2).join("")}</span><div><strong>{item.author}</strong><p>{item.body}</p><div className={styles.commentActions}><span>{item.age ?? "Just now"}</span><button type="button" aria-pressed={item.liked} onClick={() => onReactComment(item.id, Boolean(item.liked))}>Like{item.likes ? ` ${item.likes}` : ""}</button><button type="button" onClick={() => { setReplyTo({ id: item.id, author: item.author }); replyInput.current?.focus(); }}>Reply</button><details className={styles.commentMenu}><summary aria-label={`More options for ${item.author}'s comment`}><MoreHorizontal size={17} /></summary><div><button type="button" onClick={() => setHiddenComments((current) => new Set(current).add(item.id))}>Hide comment</button><button type="button" onClick={() => onReportComment(item.id)}>Report comment to admin</button>{item.canDelete && <button type="button" onClick={() => onDeleteComment(item.id)}>Delete comment</button>}</div></details></div></div></div>)}
+        {post.comments.filter((item) => !hiddenComments.has(item.id)).map((item) => <div key={item.id} className={`${styles.comment} ${item.parentId ? styles.nestedComment : ""}`}><span className={styles.commentAvatar}>{item.author.trim().charAt(0).toUpperCase()}</span><div><strong>{item.author}</strong><p>{item.body}</p><div className={styles.commentActions}><span>{item.age ?? "Just now"}</span><button type="button" aria-pressed={item.liked} onClick={() => onReactComment(item.id, Boolean(item.liked))}>Like{item.likes ? ` ${item.likes}` : ""}</button><button type="button" onClick={() => { setReplyTo({ id: item.id, author: item.author }); replyInput.current?.focus(); }}>Reply</button><details className={styles.commentMenu}><summary aria-label={`More options for ${item.author}'s comment`}><MoreHorizontal size={17} /></summary><div><button type="button" onClick={() => setHiddenComments((current) => new Set(current).add(item.id))}>Hide comment</button><button type="button" onClick={() => onReportComment(item.id)}>Report comment to admin</button>{item.canDelete && <button type="button" onClick={() => onDeleteComment(item.id)}>Delete comment</button>}</div></details></div></div></div>)}
         {!post.comments.length && <p className={styles.firstComment}>A little encouragement can start something good. Leave the first reply.</p>}
-        <form onSubmit={submitComment} className={styles.commentForm}><label htmlFor={`reply-${post.id}`}>{replyTo ? `Reply to ${replyTo.author}` : "Your perspective matters"}</label>{replyTo && <button type="button" className={styles.cancelReply} onClick={() => setReplyTo(null)}>Cancel reply<X size={13} /></button>}<textarea ref={replyInput} id={`reply-${post.id}`} value={comment} onChange={(event) => setComment(event.target.value)} placeholder="Share a thought or a little encouragement..." rows={2} maxLength={3000} required /><button type="submit" className={styles.greenButton}>Post reply<Send size={15} /></button></form>
+        <form onSubmit={submitComment} className={styles.commentForm}><label htmlFor={`reply-${post.id}`}>{replyTo ? `Reply to ${replyTo.author}` : "Your perspective matters"}</label>{replyTo && <button type="button" className={styles.cancelReply} onClick={() => setReplyTo(null)}>Cancel reply<X size={13} /></button>}{!signedIn && <><div className={styles.guestFields}><input value={guestName} onChange={(event) => setGuestName(event.target.value)} placeholder="Your name" maxLength={80} required /><input value={guestEmail} onChange={(event) => setGuestEmail(event.target.value)} placeholder="Email address" type="email" maxLength={254} required /></div><label className={styles.anonymousChoice}><input type="checkbox" checked={anonymous} onChange={(event) => setAnonymous(event.target.checked)} />Comment anonymously</label></>}<textarea ref={replyInput} id={`reply-${post.id}`} value={comment} onChange={(event) => setComment(event.target.value)} placeholder="Share a thought or a little encouragement..." rows={2} maxLength={3000} required /><button type="submit" className={styles.greenButton}>Post reply<Send size={15} /></button></form>
       </div>}
     </div>
   </article>;

@@ -37,6 +37,7 @@ export async function PATCH(request: Request) {
   if (!actor.user || !isArticleAdmin(actor.role)) return NextResponse.json({ error: "Administrator access required." }, { status: 403 });
   const admin = createSupabaseAdminClient();
   if (!admin) return NextResponse.json({ error: "Article service is unavailable." }, { status: 503 });
+  const reviewerId = actor.user.id === "hardcoded-admin" ? null : actor.user.id;
   const body = await request.json() as Record<string, unknown>;
 
   if (body.type === "application") {
@@ -47,7 +48,7 @@ export async function PATCH(request: Request) {
     const { data: application, error: findError } = await admin.from("article_author_applications").select("user_id,status").eq("id", id).maybeSingle();
     if (findError || !application) return NextResponse.json({ error: "Application not found." }, { status: 404 });
     const reviewedAt = new Date().toISOString();
-    const { error: applicationError } = await admin.from("article_author_applications").update({ status, reviewed_by: actor.user.id, reviewed_at: reviewedAt, review_feedback: feedback || null, updated_at: reviewedAt }).eq("id", id);
+    const { error: applicationError } = await admin.from("article_author_applications").update({ status, reviewed_by: reviewerId, reviewed_at: reviewedAt, review_feedback: feedback || null, updated_at: reviewedAt }).eq("id", id);
     if (applicationError) return NextResponse.json({ error: applicationError.message }, { status: 400 });
     const { error: profileError } = await admin.from("profiles").update({ role: status === "approved" ? "author" : "author_rejected", updated_at: reviewedAt }).eq("user_id", application.user_id);
     if (profileError) return NextResponse.json({ error: profileError.message }, { status: 400 });
@@ -92,10 +93,10 @@ export async function PATCH(request: Request) {
   const { data: article, error: articleError } = await admin.from("article_articles").select("id,author_id,title,slug,status").eq("id", articleId).maybeSingle();
   if (articleError || !article) return NextResponse.json({ error: "Article not found." }, { status: 404 });
   const update: Record<string, unknown> = { status, updated_at: now };
-  if (action === "publish") Object.assign(update, { published_at: now, published_by: actor.user.id });
+  if (action === "publish") Object.assign(update, { published_at: now, published_by: reviewerId });
   const { error } = await admin.from("article_articles").update(update).eq("id", articleId);
   if (error) return NextResponse.json({ error: error.message }, { status: 400 });
-  await admin.from("article_reviews").insert({ article_id: articleId, reviewer_id: actor.user.id, action: action === "publish" ? "published" : action === "reject" ? "rejected" : action, feedback: feedback || null });
+  await admin.from("article_reviews").insert({ article_id: articleId, reviewer_id: reviewerId, action: action === "publish" ? "published" : action === "reject" ? "rejected" : action, feedback: feedback || null });
   if ((action === "publish" || action === "reject") && article.status !== status) {
     try {
       await queueUserEmail(admin, {

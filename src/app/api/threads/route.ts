@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
+import { createHash, randomBytes } from "crypto";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { queueAdminNotification } from "@/lib/transactional-email";
+import { hasTrustedOrigin, requestClientKey, takeRateLimit } from "@/lib/security";
 
 type ThreadEntry = {
   id: string; author_id: string; author_name: string; is_anonymous: boolean;
@@ -10,6 +13,20 @@ type ThreadEntry = {
 };
 
 const ACCEPTED_MEDIA = new Set(["image/jpeg", "image/png", "image/webp", "image/gif", "video/mp4", "video/webm"]);
+const COMMENTER_COOKIE = "my_mentor_thread_commenter";
+
+function hashToken(value: string) { return createHash("sha256").update(value).digest("hex"); }
+
+async function guestCommenter() {
+  const token = (await cookies()).get(COMMENTER_COOKIE)?.value;
+  if (!token) return null;
+  const [id, secret] = token.split(".");
+  if (!id || !secret) return null;
+  const admin = createSupabaseAdminClient();
+  if (!admin) return null;
+  const { data } = await admin.from("threads_commenters").select("id,name,session_token_hash").eq("id", id).maybeSingle();
+  return data && data.session_token_hash === hashToken(secret) ? data : null;
+}
 
 function labelForDate(value: string) {
   const seconds = Math.max(0, Math.floor((Date.now() - new Date(value).getTime()) / 1000));
@@ -79,7 +96,6 @@ export async function GET() {
 export async function POST(request: Request) {
   const supabase = await createSupabaseServerClient();
   const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return NextResponse.json({ error: "Sign in to join the conversation." }, { status: 401 });
 
   const isMultipart = request.headers.get("content-type")?.includes("multipart/form-data");
   const form = isMultipart ? await request.formData().catch(() => null) : null;
@@ -87,7 +103,26 @@ export async function POST(request: Request) {
   if (!input) return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   const action = input.action;
 
+  if (action === "register-commenter") {
+    if (!hasTrustedOrigin(request)) return NextResponse.json({ error: "Invalid request origin." }, { status: 403 });
+    const name = typeof input.name === "string" ? input.name.trim().slice(0, 80) : "";
+    const email = typeof input.email === "string" ? input.email.trim().toLowerCase().slice(0, 254) : "";
+    if (!name || !/^\S+@\S+\.\S+$/.test(email)) return NextResponse.json({ error: "Enter your name and a valid email address." }, { status: 400 });
+    if (process.env.NODE_ENV === "production" && !await takeRateLimit(`thread-commenter:${requestClientKey(request)}`, 3600, 10)) return NextResponse.json({ error: "Please wait before trying again." }, { status: 429 });
+    const admin = createSupabaseAdminClient();
+    if (!admin) return NextResponse.json({ error: "Threads is not configured." }, { status: 503 });
+    const secret = randomBytes(32).toString("hex");
+    const { data: commenter, error } = await admin.from("threads_commenters").upsert({ name, email, normalized_email: email, session_token_hash: hashToken(secret), updated_at: new Date().toISOString() }, { onConflict: "normalized_email" }).select("id").single();
+    if (error || !commenter) return NextResponse.json({ error: "Unable to save your details." }, { status: 400 });
+    const response = NextResponse.json({ ok: true });
+    response.cookies.set(COMMENTER_COOKIE, `${commenter.id}.${secret}`, { httpOnly: true, sameSite: "lax", secure: process.env.NODE_ENV === "production", path: "/", maxAge: 60 * 60 * 24 * 365 });
+    return response;
+  }
+
   if (action === "post" || action === "reply") {
+    const commenter = user ? null : await guestCommenter();
+    if (!user && !commenter) return NextResponse.json({ error: "Add your name and email to comment." }, { status: 401 });
+    if (!user && action !== "reply") return NextResponse.json({ error: "Sign in to start a thread." }, { status: 401 });
     const body = requireText(input.body);
     const postId = typeof input.postId === "string" ? input.postId : null;
     const parentId = typeof input.parentId === "string" ? input.parentId : null;
@@ -102,13 +137,16 @@ export async function POST(request: Request) {
       const { error: uploadError } = await supabase.storage.from("threads_media").upload(mediaPath, file, { contentType: file.type, upsert: false });
       if (uploadError) return NextResponse.json({ error: "Unable to upload your attachment." }, { status: 400 });
     }
-    const { error } = await supabase.from("threads_entries").insert({ body: body ?? "", rules_accepted: true, ...(mediaPath ? { media_path: mediaPath, media_type: file!.type.startsWith("video/") ? "video" : "image" } : {}), ...(action === "reply" ? { post_id: postId, parent_id: parentId } : {}) });
+    const writer = user ? supabase : createSupabaseAdminClient();
+    if (!writer) return NextResponse.json({ error: "Threads is not configured." }, { status: 503 });
+    const { error } = await writer.from("threads_entries").insert({ body: body ?? "", rules_accepted: true, ...(mediaPath ? { media_path: mediaPath, media_type: file!.type.startsWith("video/") ? "video" : "image" } : {}), ...(action === "reply" ? { post_id: postId, parent_id: parentId } : {}), ...(commenter ? { author_id: null, commenter_id: commenter.id, is_anonymous: input.isAnonymous === true } : {}) });
     if (error && mediaPath) await supabase.storage.from("threads_media").remove([mediaPath]);
     if (error) return NextResponse.json({ error: error.message.includes("10 seconds") ? "Please wait a few seconds before posting again." : "Unable to publish your message." }, { status: 400 });
     return NextResponse.json({ ok: true });
   }
 
   if (action === "vote") {
+    if (!user) return NextResponse.json({ error: "Sign in to react." }, { status: 401 });
     const entryId = typeof input.entryId === "string" ? input.entryId : null;
     const value = input.value === 1 || input.value === -1 ? input.value : null;
     if (!entryId) return NextResponse.json({ error: "Invalid reaction." }, { status: 400 });
@@ -124,6 +162,7 @@ export async function POST(request: Request) {
   }
 
   if (action === "report") {
+    if (!user) return NextResponse.json({ error: "Sign in to report a comment." }, { status: 401 });
     const entryId = typeof input.entryId === "string" ? input.entryId : null;
     if (!entryId) return NextResponse.json({ error: "Invalid comment." }, { status: 400 });
     const admin = createSupabaseAdminClient();
@@ -145,6 +184,7 @@ export async function POST(request: Request) {
   }
 
   if (action === "delete") {
+    if (!user) return NextResponse.json({ error: "Sign in to delete a comment." }, { status: 401 });
     const entryId = typeof input.entryId === "string" ? input.entryId : null;
     if (!entryId) return NextResponse.json({ error: "Invalid thread." }, { status: 400 });
     const { error, count } = await supabase.from("threads_entries").delete({ count: "exact" }).eq("id", entryId).eq("author_id", user.id);

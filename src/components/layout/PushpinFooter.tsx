@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Link from "next/link"
 
 /**
  * Pushpin Tear Footer — a site footer made as a torn poster. An electric-blue
@@ -544,6 +545,9 @@ function A({ href, className, label, children, style }: { href?: string; classNa
     if (!href || href === "#") e.preventDefault()
   }
   const out = !!href && /^https?:/.test(href)
+  if (href?.startsWith("/")) {
+    return <Link href={href} className={className} aria-label={label} title={label} style={style}>{children}</Link>
+  }
   return (
     <a href={href || "#"} className={className} aria-label={label} title={label} onClick={onClick} style={style} {...(out ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
       {children}

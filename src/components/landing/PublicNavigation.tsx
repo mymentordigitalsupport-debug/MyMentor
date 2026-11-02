@@ -157,6 +157,7 @@ export function PublicNavigation({ overDark = false, adaptToAboutSections = fals
             <nav aria-label="Main navigation" className={`flex h-[52px] items-center justify-center gap-7 text-sm font-medium text-white/70 ${overDark ? "gap-8 text-xs tracking-[0.2em]" : ""}`}>
               <Link href="/" onClick={close} className="transition hover:text-white">Home</Link>
               <Link href="/about" onClick={close} className="transition hover:text-white">About us</Link>
+              <Link href="/threads" onClick={close} className="transition hover:text-white">Threads</Link>
               <button type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="explore-panel" className="landing-user-profile landing-user-profile--menu">
                 <span className="landing-user-profile-inner"><span>Explore</span><ChevronDown className={`transition-transform ${open ? "rotate-180" : ""}`} /></span>
               </button>
@@ -190,6 +191,7 @@ export function PublicNavigation({ overDark = false, adaptToAboutSections = fals
           <div className="grid gap-1 p-4 text-sm">
             <Link href="/" onClick={close} className="rounded-lg px-3 py-3 hover:bg-white/10">Home</Link>
             <Link href="/about" onClick={close} className="rounded-lg px-3 py-3 hover:bg-white/10">About us</Link>
+            <Link href="/threads" onClick={close} className="rounded-lg px-3 py-3 hover:bg-white/10">Threads</Link>
             <button type="button" aria-expanded={mobileExplore} aria-controls="mobile-explore-panel" onClick={() => setMobileExplore(!mobileExplore)} className="landing-user-profile landing-user-profile--menu-mobile"><span className="landing-user-profile-inner"><span>Explore</span><ChevronDown className={`transition-transform ${mobileExplore ? "rotate-180" : ""}`} /></span></button>
             {mobileExplore && <div id="mobile-explore-panel" className="ml-3 grid gap-1 border-l border-white/15 pl-3">{exploreLinks.map((item) => <Link key={item.title} href={item.href} onClick={close} className="rounded-lg px-3 py-2 hover:bg-white/10"><span className="block">{item.title}</span><span className="mt-1 block text-xs text-white/55">{item.description}</span></Link>)}</div>}
           </div>
