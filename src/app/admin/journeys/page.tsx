@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import { CenteredPagePlaceholder } from "@/components/ui/CenteredPagePlaceholder";
+import { LiveAdminCollection } from "@/components/admin/LiveAdminCollection";
+import { getAdminCourses } from "@/lib/admin/content";
 
 export const metadata: Metadata = {
   title: "Journeys",
-  description: "Admin placeholder page for journey management.",
+  description: "Live journey records.",
 };
 
-export default function AdminJourneysListPage() {
-  return (
-    <CenteredPagePlaceholder
-      title="Journeys"
-      description="This admin page is reserved for a future journeys list."
-    />
-  );
+export default async function AdminJourneysListPage() {
+  return <LiveAdminCollection title="Journeys" description="Live journey records from Supabase." items={await getAdminCourses()} createHref="/admin/journeys/new" createLabel="Create journey" />;
 }

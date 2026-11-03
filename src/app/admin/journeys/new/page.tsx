@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
-import { CenteredPagePlaceholder } from "@/components/ui/CenteredPagePlaceholder";
+import { JourneyWizard } from "./journey-wizard";
 
 export const metadata: Metadata = {
   title: "New Journey",
-  description: "Admin placeholder page for a new journey record.",
+  description: "Create a live journey record.",
 };
 
 export default function AdminNewJourneyRecordPage() {
-  return (
-    <CenteredPagePlaceholder
-      title="New Journey"
-      description="This admin page is reserved for creating a journey."
-    />
-  );
+  return <JourneyWizard />;
 }
