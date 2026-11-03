@@ -154,8 +154,7 @@
 .commentForm textarea { display: block; width: 100%; margin-bottom: 12px; padding: 12px; border: 1px solid #d7deca; border-radius: 5px; background: #fffef5; color: #4f6545; font-size: 13px; line-height: 1.5; resize: vertical; outline-color: #7a9272; }
 .commentForm > .greenButton { min-height: 37px; padding: 8px 14px; font-size: 12px !important; }
 .cancelReply { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 9px; padding: 0; border: 0; background: none; color: #7e876e; font-size: 11px !important; }
-.footerTear { position: absolute; z-index: 0; bottom: -1px; left: 0; right: 0; height: 100px; overflow: hidden; background-color: #1f3527; background-image: var(--community-footer-grain); background-blend-mode: soft-light; pointer-events: none; }
-.footerTear::after { content: ""; position: absolute; inset: 0; filter: var(--community-grain); opacity: .115; mix-blend-mode: multiply; }
+.footerTear { position: absolute; z-index: 0; bottom: -1px; left: 0; right: 0; height: 100px; overflow: hidden; background-color: #1f3527; background-image: var(--community-footer-grain); pointer-events: none; }
 .footerTear svg { display: block; width: 100%; height: 100%; }
 .guidelinesDialog { position: fixed; inset: 0; width: min(620px, calc(100vw - 32px)); max-height: calc(100dvh - 48px); margin: auto; padding: 0; overflow: auto; border: 1px solid #e3e3d5; border-radius: 12px; background: #faf8ee; color: var(--ink); box-shadow: 0 30px 90px #0c211b40; }
 .guidelinesDialog::backdrop { background: #102a20a8; backdrop-filter: blur(5px); }
