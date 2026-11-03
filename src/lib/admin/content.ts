@@ -156,3 +156,23 @@ export async function getAdminResources(): Promise<AdminContentItem[]> {
     updatedAt: updatedAt(resource),
   }));
 }
+
+export async function getAdminLessonBuilderData() {
+  const client = await getAdminSupabaseClient();
+  const [lessonsResult, blocksResult] = await Promise.all([
+    client
+      .from("lessons")
+      .select("id,title,estimated_minutes,sort_order,is_published,chapter_id,updated_at,chapters(title,course_versions(guidance_path,title,courses(title,slug)))")
+      .order("sort_order", { ascending: true }),
+    client
+      .from("lesson_content_blocks")
+      .select("id,lesson_id,block_type,content,sort_order")
+      .order("sort_order", { ascending: true }),
+  ]);
+  if (lessonsResult.error) throw new Error(`lessons: ${lessonsResult.error.message}`);
+  if (blocksResult.error) throw new Error(`lesson_content_blocks: ${blocksResult.error.message}`);
+  return {
+    lessons: (lessonsResult.data ?? []) as unknown as Array<Record<string, unknown>>,
+    blocks: (blocksResult.data ?? []) as unknown as Array<Record<string, unknown>>,
+  };
+}

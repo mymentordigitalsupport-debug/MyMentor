@@ -24,7 +24,7 @@ import { formatShortDate } from "@/lib/utils";
 
 type SectionKey = "welcome" | "teaching" | "video" | "reflection" | "action" | "encouragement";
 
-type LessonRow = {
+export type LessonRow = {
   id: string;
   title: string;
   estimated_minutes: number | null;
@@ -45,7 +45,7 @@ type LessonRow = {
   } | null;
 };
 
-type BlockRow = {
+export type BlockRow = {
   id: string;
   lesson_id: string;
   block_type: string;
