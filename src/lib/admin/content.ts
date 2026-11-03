@@ -12,9 +12,9 @@ export type AdminContentItem = {
   href?: string;
 };
 
-async function list(table: string, columns: string) {
+async function list(table: string, columns: string, orderBy = "updated_at") {
   const client = await getAdminSupabaseClient();
-  const { data, error } = await client.from(table).select(columns).order("updated_at", { ascending: false });
+  const { data, error } = await client.from(table).select(columns).order(orderBy, { ascending: false });
   if (error) throw new Error(`${table}: ${error.message}`);
   return (data ?? []) as unknown as ContentRow[];
 }
@@ -128,7 +128,7 @@ export async function getAdminReflections(): Promise<AdminContentItem[]> {
 export async function getAdminQuizzes(): Promise<AdminContentItem[]> {
   const [quizzes, questions] = await Promise.all([
     list("quizzes", "id,title,lesson_id,updated_at,created_at"),
-    list("quiz_questions", "id,quiz_id,updated_at,created_at"),
+    list("quiz_questions", "id,quiz_id,created_at", "created_at"),
   ]);
   const questionCount = new Map<string, number>();
   for (const question of questions) {
