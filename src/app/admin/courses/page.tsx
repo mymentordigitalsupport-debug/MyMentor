@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import { CenteredPagePlaceholder } from "@/components/ui/CenteredPagePlaceholder";
+import { LiveAdminCollection } from "@/components/admin/LiveAdminCollection";
+import { getAdminCourses } from "@/lib/admin/content";
 
 export const metadata: Metadata = {
   title: "Courses",
-  description: "Admin placeholder page for courses.",
+  description: "Live course management data.",
 };
 
-export default function AdminCoursesPage() {
-  return (
-    <CenteredPagePlaceholder
-      title="Courses"
-      description="This admin section is reserved for future course management tools."
-    />
-  );
+export default async function AdminCoursesPage() {
+  return <LiveAdminCollection title="Courses" description="Live course records from Supabase." items={await getAdminCourses()} createHref="/admin/courses/new" createLabel="Create course" />;
 }

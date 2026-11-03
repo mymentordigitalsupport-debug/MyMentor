@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import { CenteredPagePlaceholder } from "@/components/ui/CenteredPagePlaceholder";
+import { LiveAdminCollection } from "@/components/admin/LiveAdminCollection";
+import { getAdminResources } from "@/lib/admin/content";
 
 export const metadata: Metadata = {
   title: "Resources",
-  description: "Admin placeholder page for resources.",
+  description: "Live resource library data.",
 };
 
-export default function AdminResourcesPage() {
-  return (
-    <CenteredPagePlaceholder
-      title="Resources"
-      description="This admin page is reserved for a future resources overview."
-    />
-  );
+export default async function AdminResourcesPage() {
+  return <LiveAdminCollection title="Resources" description="Live resource records from Supabase." items={await getAdminResources()} />;
 }

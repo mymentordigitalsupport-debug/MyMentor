@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import { CenteredPagePlaceholder } from "@/components/ui/CenteredPagePlaceholder";
+import { LiveAdminCollection } from "@/components/admin/LiveAdminCollection";
+import { getAdminQuizzes } from "@/lib/admin/content";
 
 export const metadata: Metadata = {
   title: "Quizzes",
-  description: "Admin placeholder page for quizzes.",
+  description: "Live quiz data.",
 };
 
-export default function AdminQuizzesPage() {
-  return (
-    <CenteredPagePlaceholder
-      title="Quizzes"
-      description="This admin page is reserved for a future quizzes overview."
-    />
-  );
+export default async function AdminQuizzesPage() {
+  return <LiveAdminCollection title="Quizzes" description="Live quizzes and question counts from Supabase." items={await getAdminQuizzes()} />;
 }

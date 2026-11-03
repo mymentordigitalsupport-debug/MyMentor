@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import { CenteredPagePlaceholder } from "@/components/ui/CenteredPagePlaceholder";
+import { LiveAdminCollection } from "@/components/admin/LiveAdminCollection";
+import { getAdminReflections } from "@/lib/admin/content";
 
 export const metadata: Metadata = {
   title: "Reflections",
-  description: "Admin placeholder page for reflections.",
+  description: "Live reflection content data.",
 };
 
-export default function AdminReflectionsPage() {
-  return (
-    <CenteredPagePlaceholder
-      title="Reflections"
-      description="This admin page is reserved for a future reflections overview."
-    />
-  );
+export default async function AdminReflectionsPage() {
+  return <LiveAdminCollection title="Reflections" description="Live reflection prompts and pause cards from Supabase." items={await getAdminReflections()} />;
 }

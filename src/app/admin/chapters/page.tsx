@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import { CenteredPagePlaceholder } from "@/components/ui/CenteredPagePlaceholder";
+import { LiveAdminCollection } from "@/components/admin/LiveAdminCollection";
+import { getAdminChapters } from "@/lib/admin/content";
 
 export const metadata: Metadata = {
   title: "Chapters",
-  description: "Admin placeholder page for chapters.",
+  description: "Live chapter management data.",
 };
 
-export default function AdminChaptersPage() {
-  return (
-    <CenteredPagePlaceholder
-      title="Chapters"
-      description="This admin page is reserved for a future chapters overview."
-    />
-  );
+export default async function AdminChaptersPage() {
+  return <LiveAdminCollection title="Chapters" description="Live chapter records from Supabase." items={await getAdminChapters()} />;
 }

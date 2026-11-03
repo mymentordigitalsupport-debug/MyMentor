@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import { CenteredPagePlaceholder } from "@/components/ui/CenteredPagePlaceholder";
+import { LiveAdminCollection } from "@/components/admin/LiveAdminCollection";
+import { getAdminMedia } from "@/lib/admin/content";
 
 export const metadata: Metadata = {
   title: "Media",
-  description: "Admin placeholder page for media management.",
+  description: "Live media library data.",
 };
 
-export default function AdminMediaPage() {
-  return (
-    <CenteredPagePlaceholder
-      title="Media"
-      description="This admin page is reserved for a future media library."
-    />
-  );
+export default async function AdminMediaPage() {
+  return <LiveAdminCollection title="Media" description="Live video and audio records from Supabase." items={await getAdminMedia()} />;
 }
