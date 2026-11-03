@@ -1,6 +1,6 @@
 "use client";
 
-import { useId } from "react";
+import { useEffect, useId, useState, type CSSProperties } from "react";
 import { Pin, rng } from "@/components/layout/PushpinFooter";
 import styles from "./ThreadsCommunity.module.css";
 
@@ -52,6 +52,25 @@ export function CommunityTexture({ id }: { id: string }) {
 }
 
 export function CommunityFooterTear() {
+  const [grain, setGrain] = useState("");
+
+  useEffect(() => {
+    const canvas = document.createElement("canvas");
+    canvas.width = canvas.height = 160;
+    const context = canvas.getContext("2d");
+    if (!context) return;
+
+    const image = context.createImageData(160, 160);
+    const random = rng(42);
+    for (let index = 0; index < image.data.length; index += 4) {
+      const value = random() < 0.5 ? 0 : 255;
+      image.data[index] = image.data[index + 1] = image.data[index + 2] = value;
+      image.data[index + 3] = Math.floor(random() * 46);
+    }
+    context.putImageData(image, 0, 0);
+    setGrain(canvas.toDataURL());
+  }, []);
+
   const anchors = [[0, 73], [160, 88], [300, 39], [430, 27], [560, 62], [740, 93], [900, 52], [1050, 35], [1210, 77], [1330, 82], [1440, 70]];
   const random = rng(63);
   const points: [number, number][] = [];
@@ -63,7 +82,7 @@ export function CommunityFooterTear() {
     points.push([x, left[1] + (right[1] - left[1]) * amount + (random() - .5) * 6]);
   }
   const edge = points.reverse().map(([x, y]) => `L${x} ${y.toFixed(1)}`).join("");
-  return <div className={styles.footerTear} aria-hidden="true"><svg viewBox="0 0 1440 110" preserveAspectRatio="none"><path d={`M0 -5H1440${edge}Z`} fill="#f6f3ed" /></svg></div>;
+  return <div className={styles.footerTear} style={{ "--community-footer-grain": grain ? `url(${grain})` : "none" } as CSSProperties} aria-hidden="true"><svg viewBox="0 0 1440 110" preserveAspectRatio="none"><path d={`M0 -5H1440${edge}Z`} fill="#f6f3ed" /></svg></div>;
 }
 
 export function DemoAvatar({ variant }: { variant: "patrick" | "arjun" | "nadia" | "daniel" | "you" }) {
