@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { CenteredPagePlaceholder } from "@/components/ui/CenteredPagePlaceholder";
+import { notFound } from "next/navigation";
+import { LiveAdminDetail } from "@/components/admin/LiveAdminDetail";
+import { getAdminLessons } from "@/lib/admin/content";
 
 export const metadata: Metadata = {
   title: "Lesson Detail",
-  description: "Admin placeholder page for a lesson detail.",
+  description: "Live lesson record.",
 };
 
-export default function AdminLessonDetailPage() {
-  return (
-    <CenteredPagePlaceholder
-      title="Lesson Detail"
-      description="This admin page is reserved for a future lesson detail view."
-    />
-  );
+export default async function AdminLessonDetailPage({ params }: { params: Promise<{ lessonId: string }> }) {
+  const { lessonId } = await params;
+  const lesson = (await getAdminLessons()).find((item) => item.id === lessonId);
+  if (!lesson) notFound();
+  return <LiveAdminDetail item={lesson} backHref="/admin/lessons" backLabel="Back to lessons" />;
 }
