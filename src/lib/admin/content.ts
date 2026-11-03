@@ -127,7 +127,7 @@ export async function getAdminReflections(): Promise<AdminContentItem[]> {
 
 export async function getAdminQuizzes(): Promise<AdminContentItem[]> {
   const [quizzes, questions] = await Promise.all([
-    list("quizzes", "id,title,lesson_id,updated_at,created_at"),
+    list("quizzes", "id,title,lesson_id,created_at", "created_at"),
     list("quiz_questions", "id,quiz_id,created_at", "created_at"),
   ]);
   const questionCount = new Map<string, number>();
