@@ -59,11 +59,11 @@ export async function getAdminChapters(): Promise<AdminContentItem[]> {
 }
 
 export async function getAdminLessons(): Promise<AdminContentItem[]> {
-  const lessons = await list("lessons", "id,title,description,is_published,estimated_minutes,sort_order,chapter_id,updated_at,created_at");
+  const lessons = await list("lessons", "id,title,is_published,estimated_minutes,sort_order,chapter_id,updated_at,created_at");
   return lessons.map((lesson) => ({
     id: text(lesson.id),
     title: text(lesson.title),
-    description: optionalText(lesson.description),
+    description: null,
     status: lesson.is_published ? "Published" : "Draft",
     details: [
       `Order ${Number(lesson.sort_order) || 0}`,
