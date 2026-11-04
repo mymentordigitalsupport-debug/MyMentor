@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { LockKeyhole, Mail } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { Input } from "@/components/ui/Input";
@@ -30,6 +31,24 @@ export function LoginForm({ mode = "user", nextPath }: LoginFormProps) {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(true);
+
+  useEffect(() => {
+    if (mode !== "user") return;
+    try {
+      const rememberedEmail = localStorage.getItem("mymentor.login-email");
+      if (rememberedEmail) setEmail(rememberedEmail);
+    } catch {
+      // Sign-in also works when browser storage is unavailable.
+    }
+  }, [mode]);
+
+  function updateRememberMe(checked: boolean) {
+    setRememberMe(checked);
+    if (!checked) {
+      try { localStorage.removeItem("mymentor.login-email"); } catch { /* Storage may be unavailable. */ }
+    }
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -75,6 +94,15 @@ export function LoginForm({ mode = "user", nextPath }: LoginFormProps) {
 
       const destination = safeNextPath(nextPath);
 
+      if (mode === "user") {
+        try {
+          if (rememberMe) localStorage.setItem("mymentor.login-email", email);
+          else localStorage.removeItem("mymentor.login-email");
+        } catch {
+          // Remembering an email must never prevent sign-in.
+        }
+      }
+
       if (role === "admin") {
         toast.success("Admin access granted", "You've successfully signed in.");
         router.replace(destination?.startsWith("/admin") ? destination : "/admin");
@@ -108,6 +136,61 @@ export function LoginForm({ mode = "user", nextPath }: LoginFormProps) {
 
   const isRestricted = mode !== "user";
   const portalName = mode === "admin" ? "Admin" : "Author";
+
+  if (!isRestricted) {
+    return (
+      <>
+        <form onSubmit={handleSubmit} className="member-login-form" aria-label="Member sign in" aria-busy={loading}>
+          <div className="login-field">
+            <Mail aria-hidden="true" strokeWidth={1.8} />
+            <label htmlFor="member-login-email" className="sr-only">E-mail</label>
+            <input
+              id="member-login-email"
+              name="email"
+              type="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder="E-mail"
+              autoComplete="email"
+              autoCapitalize="none"
+              spellCheck={false}
+              required
+              aria-invalid={Boolean(error)}
+              aria-describedby={error ? "member-login-error" : undefined}
+            />
+          </div>
+          <div className="login-field">
+            <LockKeyhole aria-hidden="true" strokeWidth={1.8} />
+            <label htmlFor="member-login-password" className="sr-only">Password</label>
+            <PasswordInput
+              id="member-login-password"
+              name="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              placeholder="Password"
+              autoComplete="current-password"
+              required
+              aria-invalid={Boolean(error)}
+              aria-describedby={error ? "member-login-error" : undefined}
+            />
+          </div>
+          <div className="login-options">
+            <label className="login-remember" title="Remember your email on this device">
+              <input name="rememberEmail" type="checkbox" checked={rememberMe} onChange={(event) => updateRememberMe(event.target.checked)} />
+              <span>Remember me</span>
+            </label>
+            <button type="button" className="login-forgot" onClick={() => setShowForgotPassword(true)}>Forgot password?</button>
+          </div>
+          {error && <p id="member-login-error" className="login-error" role="alert">{error}</p>}
+          <button type="submit" disabled={loading} className="login-submit">
+            {loading && <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" aria-hidden="true" />}
+            {loading ? "Signing in..." : "Sign in"}
+          </button>
+        </form>
+        <ForgotPasswordModal isOpen={showForgotPassword} onClose={() => setShowForgotPassword(false)} />
+      </>
+    );
+  }
 
   return (
     <>
@@ -177,14 +260,6 @@ export function LoginForm({ mode = "user", nextPath }: LoginFormProps) {
           >
             {loading ? "Checking access..." : isRestricted ? `Enter ${portalName}` : "Log in"}
           </Button>
-          {mode === "user" && (
-            <a
-              href="/register?mode=anonymous"
-              className="inline-flex w-full items-center justify-center rounded-full border-2 border-sage/30 bg-sage/5 px-3 py-2.5 text-center text-sm font-medium text-forest transition-all duration-300 hover:bg-sage/10"
-            >
-              Continue Anonymously
-            </a>
-          )}
         </div>
 
         {isRestricted && (

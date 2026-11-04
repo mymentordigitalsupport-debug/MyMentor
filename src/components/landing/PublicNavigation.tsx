@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
 const exploreLinks = [
@@ -137,7 +137,7 @@ export function PublicNavigation({ overDark = false, adaptToAboutSections = fals
   const close = () => { setOpen(false); setMobileOpen(false); setMobileExplore(false); };
 
   return (
-    <header ref={headerRef} className={`inset-x-0 z-[90] px-6 sm:px-10 lg:px-14 ${lightMenu ? "about-nav-light" : ""} ${adaptToAboutSections ? "fixed top-0 text-[#1f2a24]" : stickyPhase === "normal" ? `absolute ${overDark ? "top-4 text-white" : "top-0 text-[#1f2a24]"}` : `fixed top-0 ${overDark ? "text-white" : "text-[#1f2a24]"} public-nav-${stickyPhase}`}`}>
+    <header ref={headerRef} className={`inset-x-0 z-[90] px-6 sm:px-10 lg:px-14 ${lightMenu ? "about-nav-light" : ""} ${adaptToAboutSections ? "fixed top-0" : stickyPhase === "normal" ? "absolute top-0" : `fixed top-0 public-nav-${stickyPhase}`} ${overDark ? "text-white" : "text-[#1f2a24]"}`}>
       <div className="relative mx-auto flex h-16 max-w-7xl items-center justify-between gap-3">
         <motion.div
           animate={{ opacity: stickyPhase === "normal" ? 1 : 0, y: stickyPhase === "normal" ? 0 : -16 }}
@@ -151,8 +151,8 @@ export function PublicNavigation({ overDark = false, adaptToAboutSections = fals
           </Link>
         </motion.div>
 
-        <div className={`public-nav-desktop absolute left-1/2 top-0 hidden -translate-x-1/2 lg:block ${overDark ? "w-auto" : "w-[540px]"}`} style={{ filter: overDark ? undefined : "drop-shadow(0 12px 20px rgba(0,0,0,.16))" }}>
-          {!overDark && <><svg width="20" height="20" viewBox="0 0 20 20" className="pointer-events-none absolute -left-[18px] top-0 text-[#1F3527]" aria-hidden="true"><path d="M20 20V0H0C11.046 0 20 11.046 20 20Z" fill="currentColor" /></svg><svg width="20" height="20" viewBox="0 0 20 20" className="pointer-events-none absolute -right-[18px] top-0 text-[#1F3527]" aria-hidden="true"><path d="M0 0H20C8.954 0 0 8.954 0 20Z" fill="currentColor" /></svg></>}
+        <div className={`public-nav-desktop absolute left-1/2 top-0 hidden -translate-x-1/2 lg:block ${overDark ? "w-[640px]" : "w-[540px]"}`} style={{ filter: overDark ? undefined : "drop-shadow(0 12px 20px rgba(0,0,0,.16))" }}>
+          <><svg width="20" height="20" viewBox="0 0 20 20" className="pointer-events-none absolute -left-[18px] top-0 text-[#1F3527]" aria-hidden="true"><path d="M20 20V0H0C11.046 0 20 11.046 20 20Z" fill="currentColor" /></svg><svg width="20" height="20" viewBox="0 0 20 20" className="pointer-events-none absolute -right-[18px] top-0 text-[#1F3527]" aria-hidden="true"><path d="M0 0H20C8.954 0 0 8.954 0 20Z" fill="currentColor" /></svg></>
           <motion.div animate={{ height: open ? 224 : 52 }} transition={reducedMotion ? { duration: 0 } : { type: "spring", stiffness: 300, damping: 28 }} className={`public-nav-panel overflow-hidden bg-[#1F3527] text-white ${overDark ? "rounded-b-xl" : "rounded-b-2xl"}`}>
             <nav aria-label="Main navigation" className={`flex h-[52px] items-center justify-center gap-7 text-sm font-medium text-white/70 ${overDark ? "gap-8 text-xs tracking-[0.2em]" : ""}`}>
               <Link href="/" onClick={close} className="transition hover:text-white">Home</Link>
@@ -174,6 +174,9 @@ export function PublicNavigation({ overDark = false, adaptToAboutSections = fals
         </div>
 
         <div className="flex items-center gap-2">
+          <button type="button" onClick={() => setMobileOpen(!mobileOpen)} aria-label={mobileOpen ? "Close navigation" : "Open navigation"} aria-expanded={mobileOpen} aria-controls="mobile-navigation" className="grid size-9 place-items-center rounded-full border border-current/35 transition hover:bg-white/10 lg:hidden">
+            {mobileOpen ? <X className="size-4" aria-hidden="true" /> : <Menu className="size-4" aria-hidden="true" />}
+          </button>
           {isSignedIn === null ? (
             <span aria-hidden="true" className="h-9 w-24" />
           ) : isSignedIn ? (

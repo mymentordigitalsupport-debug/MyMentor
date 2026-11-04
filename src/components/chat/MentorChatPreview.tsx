@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ChatbotHeader } from "./ChatbotHeader";
 import { ChatbotLauncher } from "./ChatbotLauncher";
 import { ChatMessage } from "./ChatMessage";
@@ -27,6 +27,7 @@ const actionReplies: Record<QuickAction["id"], Omit<ChatMessageData, "id" | "tim
 
 export function MentorChatPreview() {
   const router = useRouter();
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<ChatMessageData[]>([]);
@@ -145,6 +146,8 @@ export function MentorChatPreview() {
     setMessages((current) => [...current, message]);
     enqueueMentor(message);
   }
+
+  if (pathname === "/login" || pathname === "/register") return null;
 
   return <div className="fixed bottom-6 right-6 z-[100] sm:bottom-7 sm:right-7">
     {open ? <section className="fixed inset-6 flex h-[calc(100dvh-3rem)] w-[calc(100vw-3rem)] flex-col overflow-hidden rounded-[28px] border border-[#d5dfcf] bg-[#fffdf9] shadow-[0_28px_80px_-24px_rgba(16,35,23,.48)] motion-safe:animate-[chat-enter_.25s_ease-out] sm:inset-auto sm:bottom-10 sm:right-10 sm:h-[min(650px,calc(100dvh-5rem))] sm:w-[440px]" role="dialog" aria-modal="true" aria-label="My Mentor Guide"><ChatbotHeader onClose={closeChat} /><div ref={transcriptRef} className="min-h-0 flex-1 overflow-y-auto overscroll-contain bg-[radial-gradient(circle_at_15%_0%,rgba(228,237,220,.72),transparent_33%),#f8f6f1] px-4 py-5 sm:px-5"><div className="space-y-4">{messages.length === 0 ? <Welcome audience={audience} onSelect={selectAction} /> : messages.map((message) => <ChatMessage key={message.id} message={message} />)}{typing ? <ChatTypingIndicator /> : null}</div></div><ChatMessageInput value={input} onChange={setInput} onSubmit={sendMessage} disabled={typing} /></section> : <ChatbotLauncher onClick={() => setOpen(true)} />}

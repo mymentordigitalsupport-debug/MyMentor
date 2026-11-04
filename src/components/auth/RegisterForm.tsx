@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { ArrowLeft, ArrowRight, Check, CheckCheck, LockKeyhole, Mail, MailCheck, ShieldCheck, Sprout } from "lucide-react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
-import { Input } from "@/components/ui/Input";
 import { PasswordInput } from "@/components/ui/PasswordInput";
 import { useToast } from "@/components/ui/ToastProvider";
 import { ANONYMOUS_NAMES } from "@/types";
@@ -19,382 +19,326 @@ type BookOption = {
   courseId: string | null;
   isAvailable: boolean;
 };
+type AccountField = "email" | "password" | "confirmPassword";
+
+const STEPS = ["Your account", "Your journey", "Ready to grow"];
+const STEP_TITLES = ["First, a little about you", "Find your starting point", "Make yourself at home"];
+const STEP_DESCRIPTIONS = [
+  "Create your own space for learning and growth.",
+  "Choose the book you’d like to explore with us.",
+  "A quick check, and your next chapter can begin.",
+];
 
 export function RegisterForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const isAnonymousMode = searchParams.get("mode") === "anonymous";
   const toast = useToast();
-
+  const [step, setStep] = useState(0);
+  const stepHeading = useRef<HTMLHeadingElement>(null);
+  const previousStep = useRef(0);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<Partial<Record<AccountField, string>>>({});
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [showPopiaDetails, setShowPopiaDetails] = useState(false);
   const [books, setBooks] = useState<BookOption[]>([]);
-  const [selectedBookTitle, setSelectedBookTitle] = useState<string | null>(DEFAULT_COURSE_TITLE);
+  const [selectedBookTitle, setSelectedBookTitle] = useState(DEFAULT_COURSE_TITLE);
   const [loadingBooks, setLoadingBooks] = useState(true);
-
+  const [booksError, setBooksError] = useState(false);
+  const [booksAttempt, setBooksAttempt] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [confirmationEmail, setConfirmationEmail] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (previousStep.current !== step && stepHeading.current) {
+      stepHeading.current.focus({ preventScroll: true });
+      const headingTop = stepHeading.current.getBoundingClientRect().top;
+      if (headingTop < 24 || headingTop > window.innerHeight - 80) {
+        window.scrollTo({ top: window.scrollY + headingTop - 24, behavior: "instant" });
+      }
+    }
+    previousStep.current = step;
+  }, [step]);
 
   useEffect(() => {
     let isMounted = true;
-
     async function loadBooks() {
+      setLoadingBooks(true);
+      setBooksError(false);
       try {
         const supabase = createSupabaseBrowserClient();
-        const { data } = await supabase
+        const { data, error } = await supabase
           .from("course_versions")
           .select("course_id, title, description, status, guidance_path")
           .eq("status", "published")
           .eq("guidance_path", "religious");
+        if (error) throw error;
 
         const courseMap = new Map<string, { id: string; description: string }>();
-
         for (const version of data ?? []) {
           const matchedBook = COURSE_LIBRARY.find((book) =>
             normalizeCourseKey(version.title).startsWith(normalizeCourseKey(book.title))
           );
-
-          if (!matchedBook || courseMap.has(normalizeCourseKey(matchedBook.title))) {
-            continue;
-          }
-
+          if (!matchedBook || courseMap.has(normalizeCourseKey(matchedBook.title))) continue;
           courseMap.set(normalizeCourseKey(matchedBook.title), {
             id: version.course_id,
             description: version.description ?? "",
           });
         }
-
         if (isMounted) {
-          setBooks(
-            COURSE_LIBRARY.map((book) => {
-              const course = courseMap.get(normalizeCourseKey(book.title)) ?? null;
-              return {
-                title: book.title,
-                description: course?.description || book.description,
-                image: book.image,
-                courseId: course?.id ?? null,
-                isAvailable: book.isAvailable,
-              };
-            })
-          );
-          setSelectedBookTitle(DEFAULT_COURSE_TITLE);
+          setBooks(COURSE_LIBRARY.map((book) => {
+            const course = courseMap.get(normalizeCourseKey(book.title));
+            return { ...book, description: course?.description || book.description, courseId: course?.id ?? null };
+          }));
         }
+      } catch {
+        if (isMounted) setBooksError(true);
       } finally {
-        if (isMounted) {
-          setLoadingBooks(false);
-        }
+        if (isMounted) setLoadingBooks(false);
       }
     }
-
     void loadBooks();
+    return () => { isMounted = false; };
+  }, [booksAttempt]);
 
-    return () => {
-      isMounted = false;
-    };
-  }, []);
+  const selectedBook = books.find((book) => book.title === selectedBookTitle) ?? null;
 
-  const selectedBook = useMemo(
-    () => books.find((book) => book.title === selectedBookTitle) ?? null,
-    [books, selectedBookTitle]
-  );
+  function clearFieldError(field: AccountField) {
+    setFieldErrors((current) => ({ ...current, [field]: undefined }));
+  }
 
-  const selectedBookCourseId = selectedBook?.courseId ?? null;
+  function goToStep(nextStep: number) {
+    setSubmitError(null);
+    setStep(nextStep);
+  }
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  function validateAccount() {
+    const errors: Partial<Record<AccountField, string>> = {};
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) errors.email = "Enter a valid email address.";
+    if (password.length < 8) errors.password = "Use at least 8 characters for your password.";
+    if (!confirmPassword || password !== confirmPassword) errors.confirmPassword = "Your passwords need to match.";
+    setFieldErrors(errors);
+    const firstInvalidField = (Object.keys(errors) as AccountField[])[0];
+    if (firstInvalidField) {
+      document.getElementById(`register-${firstInvalidField}`)?.focus();
+      return false;
+    }
+    return true;
+  }
 
-
-    if (!email) {
-
-      toast.error("Missing Email", "Please enter your email address.");
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (loading) return;
+    setSubmitError(null);
+    if (step === 0) {
+      if (validateAccount()) goToStep(1);
       return;
     }
-
-    if (password !== confirmPassword) {
-
-      toast.error("Password Mismatch", "The passwords you entered do not match.");
+    if (step === 1) {
+      if (!loadingBooks && !booksError && selectedBook?.isAvailable) goToStep(2);
       return;
     }
-
-    if (password.length < 8) {
-
-      toast.error("Weak Password", "Password must be at least 8 characters long.");
-      return;
-    }
-
+    if (!validateAccount()) { goToStep(0); return; }
+    if (loadingBooks || booksError || !selectedBook?.isAvailable) { goToStep(1); return; }
     if (!privacyAccepted) {
-
-      toast.error("POPIA Notice", "Please acknowledge the privacy notice before creating your account.");
-      return;
-    }
-
-    if (!selectedBook || !selectedBook.isAvailable) {
-
-      toast.error("Choose a Book", "Please select the book you want to study before continuing.");
+      setSubmitError("Please acknowledge the privacy notice to continue.");
       return;
     }
 
     setLoading(true);
-
-    const supabase = createSupabaseBrowserClient();
-    let resolvedCourseId = selectedBookCourseId;
-
-    if (!resolvedCourseId) {
-      const { data: fallbackCourse, error: fallbackError } = await supabase
-        .from("course_versions")
-        .select("course_id")
-        .eq("status", "published")
-        .eq("guidance_path", "religious")
-        .ilike("title", `${selectedBook.title} - %`)
-        .maybeSingle();
-
-      if (!fallbackError) {
-        resolvedCourseId = fallbackCourse?.course_id ?? null;
+    try {
+      const supabase = createSupabaseBrowserClient();
+      let resolvedCourseId = selectedBook.courseId;
+      if (!resolvedCourseId) {
+        const { data: fallbackCourse, error: fallbackError } = await supabase
+          .from("course_versions")
+          .select("course_id")
+          .eq("status", "published")
+          .eq("guidance_path", "religious")
+          .ilike("title", `${selectedBook.title} - %`)
+          .maybeSingle();
+        if (!fallbackError) resolvedCourseId = fallbackCourse?.course_id ?? null;
       }
-    }
+      if (!resolvedCourseId) throw new Error("This book does not have an active study path yet. Please try again later.");
 
-    if (!resolvedCourseId) {
-
-      toast.error(
-        "Book Unavailable",
-        "The selected book does not have an active study path yet. Please choose the available book."
-      );
-      setLoading(false);
-      return;
-    }
-
-    // Generate a display name for anonymous mode
-    const baseUsername = email.split("@")[0]?.trim() || "Friend";
-    const displayName = isAnonymousMode
-      ? randomAnonymousName(ANONYMOUS_NAMES)
-      : baseUsername;
-
-    const { data, error: authError } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
-          display_name: displayName,
-          anonymous_name: isAnonymousMode ? displayName : null,
-          is_anonymous: isAnonymousMode,
-          preferred_guidance_path: "religious",
-          selected_course_id: resolvedCourseId,
-          username: isAnonymousMode ? null : baseUsername,
+      const normalizedEmail = email.trim();
+      const baseUsername = normalizedEmail.split("@")[0]?.trim() || "Friend";
+      const displayName = isAnonymousMode ? randomAnonymousName(ANONYMOUS_NAMES) : baseUsername;
+      const { data, error: authError } = await supabase.auth.signUp({
+        email: normalizedEmail,
+        password,
+        options: {
+          data: {
+            display_name: displayName,
+            anonymous_name: isAnonymousMode ? displayName : null,
+            is_anonymous: isAnonymousMode,
+            preferred_guidance_path: "religious",
+            selected_course_id: resolvedCourseId,
+            username: isAnonymousMode ? null : baseUsername,
+          },
         },
-      },
-    });
-
-    if (authError) {
-      setLoading(false);
-
-      // Check for duplicate email error
-      if (
-        authError.message.toLowerCase().includes("already registered") ||
-        authError.message.toLowerCase().includes("already exists") ||
-        authError.message.toLowerCase().includes("user already registered")
-      ) {
-
-        toast.error("Account Exists", "An account with this email already exists. Please sign in instead.");
+      });
+      if (authError) {
+        if (/already registered|already exists/i.test(authError.message)) {
+          throw new Error("An account with this email already exists. Please sign in instead.");
+        }
+        throw authError;
+      }
+      if (!data.user) throw new Error("Unable to create your account. Please try again.");
+      if (!data.session) {
+        setConfirmationEmail(normalizedEmail);
         return;
       }
 
-      toast.error("Registration Failed", authError.message);
-      return;
-    }
-
-    // Check if user was actually created
-    if (!data.user) {
-
-      toast.error("Registration Failed", "Failed to create account. Please try again.");
-      setLoading(false);
-      return;
-    }
-
-    // Update profile with display_name_mode
-    await supabase
-      .from("profiles")
-      .update({
+      await supabase.from("profiles").update({
         display_name: displayName,
         display_name_mode: isAnonymousMode ? "nickname" : "real_name",
         anonymous_name: isAnonymousMode ? displayName : null,
         is_anonymous: isAnonymousMode,
         selected_course_id: resolvedCourseId,
         username: isAnonymousMode ? null : baseUsername,
-      })
-      .eq("user_id", data.user.id);
+      }).eq("user_id", data.user.id);
+      await fetch("/api/auth/member-welcome", { method: "POST" }).catch(() => undefined);
+      toast.success("Account Created!", "Your account has been created successfully. Welcome!");
+      router.push("/onboarding");
+      router.refresh();
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Unable to create your account right now. Please try again.";
+      setSubmitError(message);
+      toast.error("Registration unavailable", message);
+    } finally {
+      setLoading(false);
+    }
+  }
 
-    // The endpoint is authenticated by the new session and failures never affect registration.
-    await fetch("/api/auth/member-welcome", { method: "POST" }).catch(() => undefined);
-
-    // Success!
-    toast.success("Account Created!", "Your account has been created successfully. Welcome!");
-
-    // Redirect to onboarding - profile is created by DB trigger
-    router.push("/onboarding");
-    router.refresh();
+  if (confirmationEmail) {
+    return (
+      <div className="signup-confirmation" role="status">
+        <span className="signup-confirmation-icon"><MailCheck size={36} strokeWidth={1.5} aria-hidden="true" /></span>
+        <p className="signup-eyebrow">One last little step</p>
+        <h2>Check your inbox</h2>
+        <p>We’ve sent a confirmation link to <strong>{confirmationEmail}</strong>. Follow the link to finish creating your account.</p>
+        <p className="signup-fine-print">Can’t find it? Take a look in your spam folder.</p>
+        <Link href="/login" className="signup-primary">Back to sign in <ArrowRight size={19} aria-hidden="true" /></Link>
+      </div>
+    );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="register-form flex flex-col gap-4" noValidate>
-      {isAnonymousMode && (
-        <div className="rounded-2xl border border-sage/30 bg-sage/10 px-4 py-3">
-          <p className="text-sm text-forest">
-            🌿 <strong>Anonymous mode</strong> - you&apos;ll receive a private nickname.
-            Your email is only used for account recovery.
-          </p>
-        </div>
-      )}
+    <form onSubmit={handleSubmit} className="member-signup-form" aria-label="Create a member account" aria-busy={loading} noValidate>
+      <nav className="signup-progress" aria-label="Registration progress">
+        <ol>
+          {STEPS.map((label, index) => (
+            <li key={label} className={index < step ? "is-complete" : index === step ? "is-current" : ""}>
+              <button type="button" onClick={() => goToStep(index)} disabled={index > step || loading} aria-current={index === step ? "step" : undefined}>
+                <span className="signup-step-number">{index < step ? <Check size={16} strokeWidth={2.5} aria-hidden="true" /> : index + 1}</span>
+                <span>{label}</span>
+              </button>
+            </li>
+          ))}
+        </ol>
+      </nav>
 
-      <Input
-        label="Email address"
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="your@email.com"
-        autoComplete="email"
-        required
-      />
-      <div className="grid grid-cols-2 gap-3">
-      <PasswordInput
-        label="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="At least 8 characters"
-        autoComplete="new-password"
-        showStrengthMeter={true}
-        required
-      />
-      <PasswordInput
-        label="Confirm password"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
-        placeholder="Repeat your password"
-        autoComplete="new-password"
-        required
-      />
-      </div>
-
-      <div className="rounded-2xl border border-sage/20 bg-white/80 p-3 shadow-sm">
-        <div className="flex items-center justify-between gap-2">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-forest">Choose your course</p>
-            <p className="mt-1 text-sm text-muted">Uprooting Drug Abuse is currently available. The other journeys are coming soon.</p>
-          </div>
-          {selectedBook ? (
-            <span className="rounded-full border border-sage/20 bg-sage/10 px-3 py-1 text-xs font-semibold text-forest">
-              Selected
-            </span>
-          ) : null}
+      <div className="signup-step-body" key={step}>
+        <div className="signup-step-heading">
+          <h2 ref={stepHeading} tabIndex={-1}>{STEP_TITLES[step]}</h2>
+          <p>{STEP_DESCRIPTIONS[step]}</p>
         </div>
 
-        {loadingBooks ? (
-          <div className="mt-3 flex items-center justify-center rounded-2xl border border-mist bg-cream py-5">
-            <div className="h-5 w-5 animate-spin rounded-full border-2 border-sage border-t-transparent" />
-          </div>
-        ) : (
-          <div className="mt-3 grid gap-2.5 md:grid-cols-3">
-            {books.map((book) => {
-              const selected = book.title === selectedBookTitle;
-              const available = book.isAvailable;
-
-                return (
-                  <button
-                    key={book.title}
-                    type="button"
-                    onClick={() => available && setSelectedBookTitle(book.title)}
-                    disabled={!available}
-                    aria-pressed={selected}
-                    className={`group relative overflow-hidden rounded-2xl border text-left outline-none transform-gpu will-change-transform transition-[transform,box-shadow,border-color,background-color,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:ring-2 focus-visible:ring-sage/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed ${
-                      selected
-                        ? "border-sage/70 bg-sage/10 shadow-[0_16px_30px_-26px_rgba(84,112,73,0.45)] scale-[1.01]"
-                        : available
-                          ? "border-mist bg-cream hover:border-sage/35 hover:shadow-[0_12px_24px_-24px_rgba(31,42,36,0.2)] hover:-translate-y-0.5"
-                          : "border-mist/70 bg-cream/60 opacity-60"
-                    }`}
-                  >
-                    <div className="relative flex h-[136px] items-center justify-center p-3">
-                      <div
-                        className={`relative h-[108px] w-[80px] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                          selected ? "scale-[1.04]" : "group-hover:scale-[1.02]"
-                        }`}
-                      >
-                        <Image src={book.image} alt={book.title} fill className="object-contain" />
-                      </div>
-                      <span
-                        className={`absolute bottom-3 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                          selected ? "scale-100 bg-sage opacity-100" : "scale-75 bg-sage/40 opacity-0 group-hover:opacity-45"
-                        }`}
-                        aria-hidden="true"
-                      />
-                      {!available ? (
-                        <span className="absolute right-3 top-3 rounded-full border border-mist bg-cream px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-muted">
-                          Coming soon
-                        </span>
-                      ) : null}
-                    </div>
-                  </button>
-                );
-              })}
-          </div>
+        {step === 0 && (
+          <>
+            <div className="signup-account-fields">
+              <div>
+                <div className="login-field">
+                  <Mail strokeWidth={1.7} aria-hidden="true" />
+                  <label htmlFor="register-email" className="sr-only">Email address</label>
+                  <input id="register-email" name="email" type="email" value={email} onChange={(event) => { setEmail(event.target.value); clearFieldError("email"); }} placeholder="E-mail address" autoComplete="email" autoCapitalize="none" spellCheck={false} required aria-invalid={Boolean(fieldErrors.email)} aria-describedby={fieldErrors.email ? "register-email-error" : undefined} />
+                </div>
+                {fieldErrors.email && <p className="signup-field-error" id="register-email-error" role="alert">{fieldErrors.email}</p>}
+              </div>
+              <div>
+                <div className="login-field">
+                  <LockKeyhole strokeWidth={1.7} aria-hidden="true" />
+                  <label htmlFor="register-password" className="sr-only">Password</label>
+                  <PasswordInput id="register-password" name="password" value={password} onChange={(event) => { setPassword(event.target.value); clearFieldError("password"); }} placeholder="Create a password" autoComplete="new-password" required minLength={8} aria-invalid={Boolean(fieldErrors.password)} aria-describedby={fieldErrors.password ? "register-password-error" : "register-password-hint"} />
+                </div>
+                {fieldErrors.password ? <p className="signup-field-error" id="register-password-error" role="alert">{fieldErrors.password}</p> : <p className={`signup-password-hint${password.length >= 8 ? " is-valid" : ""}`} id="register-password-hint">{password.length >= 8 && <Check size={13} aria-hidden="true" />}At least 8 characters. Make it your own.</p>}
+              </div>
+              <div>
+                <div className="login-field">
+                  <CheckCheck strokeWidth={1.7} aria-hidden="true" />
+                  <label htmlFor="register-confirmPassword" className="sr-only">Confirm password</label>
+                  <PasswordInput id="register-confirmPassword" name="confirmPassword" value={confirmPassword} onChange={(event) => { setConfirmPassword(event.target.value); clearFieldError("confirmPassword"); }} placeholder="Confirm your password" autoComplete="new-password" required aria-invalid={Boolean(fieldErrors.confirmPassword)} aria-describedby={fieldErrors.confirmPassword ? "register-confirmPassword-error" : undefined} />
+                </div>
+                {fieldErrors.confirmPassword && <p className="signup-field-error" id="register-confirmPassword-error" role="alert">{fieldErrors.confirmPassword}</p>}
+              </div>
+            </div>
+            <div className={`signup-privacy-mode${isAnonymousMode ? " is-active" : ""}`}>
+              <ShieldCheck size={19} strokeWidth={1.6} aria-hidden="true" />
+              <p>{isAnonymousMode ? "Your profile will use a private nickname." : "Prefer a little privacy?"} <Link href={isAnonymousMode ? "/register" : "/register?mode=anonymous"} scroll={false}>{isAnonymousMode ? "Use my name" : "Use a nickname"}</Link></p>
+            </div>
+          </>
         )}
 
+        {step === 1 && (
+          <>
+            {loadingBooks ? <div className="signup-loading" role="status"><span className="signup-spinner" />Finding your next chapter…</div> : booksError ? (
+              <div className="signup-load-error" role="alert"><p>We couldn’t load the journeys. Please try again.</p><button type="button" className="signup-text-button" onClick={() => setBooksAttempt((attempt) => attempt + 1)}>Try again</button></div>
+            ) : (
+              <fieldset className="signup-books">
+                <legend className="sr-only">Choose your journey</legend>
+                {books.map((book) => {
+                  const selected = book.title === selectedBookTitle;
+                  return (
+                    <label key={book.title} className={`signup-book${selected ? " is-selected" : ""}${!book.isAvailable ? " is-coming-soon" : ""}`}>
+                      <input type="radio" name="journey" value={book.title} checked={selected} disabled={!book.isAvailable} onChange={() => setSelectedBookTitle(book.title)} />
+                      <Image src={book.image} alt="" width={51} height={67} className="signup-book-cover" />
+                      <span className="signup-book-copy"><span className="signup-book-status">{book.isAvailable ? "Available now" : "Coming soon"}</span><strong>{book.title}</strong><span className="signup-book-description">{book.description}</span></span>
+                      <span className="signup-book-check" aria-hidden="true">{selected && <Check size={14} strokeWidth={2.5} />}</span>
+                    </label>
+                  );
+                })}
+              </fieldset>
+            )}
+          </>
+        )}
+
+        {step === 2 && (
+          <>
+            <div className="signup-review">
+              <div className="signup-review-row"><Mail size={19} aria-hidden="true" /><div><span>Your account</span><strong>{email.trim()}</strong>{isAnonymousMode && <small>Community profile: private nickname</small>}</div><button type="button" onClick={() => goToStep(0)} className="signup-text-button" aria-label="Edit account">Edit</button></div>
+              <div className="signup-review-row"><Sprout size={20} aria-hidden="true" /><div><span>Your journey</span><strong>{selectedBook?.title}</strong></div><button type="button" onClick={() => goToStep(1)} className="signup-text-button" aria-label="Edit journey">Edit</button></div>
+            </div>
+            <div className="signup-notice">
+              <h3><ShieldCheck size={18} aria-hidden="true" />Your privacy matters</h3>
+              <p>We process your account and learning data to provide MyMentor.</p>
+              <button type="button" className="signup-text-button" aria-expanded={showPopiaDetails} aria-controls="signup-popia-details" onClick={() => setShowPopiaDetails((shown) => !shown)}>{showPopiaDetails ? "Close privacy notice" : "Read the POPIA notice"}</button>
+              {showPopiaDetails && <div id="signup-popia-details" className="signup-notice-details">
+                <p>By creating an account, you acknowledge that My Mentor will store and process your account information and profile settings, and any content you choose to add while using the app, such as progress, journal entries, mood check-ins, and saved insights.</p>
+                <p>We use essential cookies and session data to sign you in, keep your session active, and make the app work correctly.</p>
+                <p>Our database is hosted in Singapore. We use reasonable safeguards to protect your personal information.</p>
+                <Link href="/privacy" target="_blank" rel="noopener noreferrer">Full privacy policy <ArrowRight size={12} aria-hidden="true" /></Link>
+              </div>}
+            </div>
+            <label className={`signup-consent${privacyAccepted ? " is-accepted" : ""}`}>
+              <input type="checkbox" checked={privacyAccepted} onChange={(event) => setPrivacyAccepted(event.target.checked)} />
+              <span>I have read and understand the POPIA notice.</span>
+            </label>
+          </>
+        )}
       </div>
 
-
-      <div className="rounded-2xl border border-sage/20 bg-white/70 px-4 py-3 text-left shadow-sm">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-forest">
-          POPIA notice
-        </p>
-        <p className="mt-2.5 text-xs leading-relaxed text-muted">
-          We process your account and learning data to provide My Mentor.
-        </p>
-        {showPopiaDetails && <div className="mt-2.5 space-y-1.5 text-xs leading-relaxed text-muted">
-          <p>
-            By creating an account, you acknowledge that My Mentor will store and process your
-            account information and profile settings, and any content you choose to add while
-            using the app, such as progress, journal entries, mood check-ins, and saved insights.
-          </p>
-          <p>
-            We use essential cookies and session data to sign you in, keep your session active,
-            and make the app work correctly.
-          </p>
-          <p>
-            Our database is hosted in Singapore. We use reasonable safeguards to protect your
-            personal information.
-          </p>
-        </div>}
-        <button type="button" onClick={() => setShowPopiaDetails(!showPopiaDetails)} className="mt-2 text-xs font-semibold text-forest underline underline-offset-2 hover:text-[#24392f]">
-          {showPopiaDetails ? "Read less" : "Read more"}
+      {submitError && <p className="signup-submit-error" role="alert">{submitError}</p>}
+      <div className={`signup-actions${step === 0 ? " signup-actions--first" : ""}`}>
+        {step > 0 && <button type="button" className="signup-back" onClick={() => goToStep(step - 1)} disabled={loading}><ArrowLeft size={18} aria-hidden="true" />Back</button>}
+        <button type="submit" className="signup-primary" disabled={loading || (step === 1 && (loadingBooks || booksError || !selectedBook?.isAvailable)) || (step === 2 && !privacyAccepted)}>
+          {loading ? <><span className="signup-spinner" />Creating your account…</> : <>{step === 0 ? "Choose my journey" : step === 1 ? "Continue" : "Create my account"}<ArrowRight size={19} aria-hidden="true" /></>}
         </button>
-
-        <label className="mt-3 flex items-start gap-3 text-xs leading-relaxed text-text">
-          <input
-            type="checkbox"
-            checked={privacyAccepted}
-            onChange={(e) => setPrivacyAccepted(e.target.checked)}
-            className="mt-0.5 h-4 w-4 rounded border-sage/40 text-sage focus:ring-sage/50"
-          />
-          <span>I have read and understand this POPIA notice.</span>
-        </label>
       </div>
-
-      <div className="mt-1 grid grid-cols-2 gap-3">
-        <button
-          type="submit"
-          disabled={!privacyAccepted || loading}
-          className="w-full rounded-full bg-[#e8c573] px-6 py-3.5 text-sm font-semibold text-[#1f1710] transition hover:bg-[#dcb45d] disabled:cursor-not-allowed disabled:opacity-60"
-        >
-          {loading ? "Creating account…" : isAnonymousMode ? "Continue Anonymously" : "Create Account"}
-        </button>
-        <Link
-        href={isAnonymousMode ? "/register" : "/register?mode=anonymous"}
-        className="inline-flex w-full items-center justify-center rounded-full border-2 border-sage/30 bg-sage/5 px-3 py-2.5 text-center text-sm font-medium text-forest transition-all duration-300 hover:bg-sage/10"
-      >
-        {isAnonymousMode ? "Continue with Name" : "Continue Anonymously"}
-      </Link>
-      </div>
+      <p className="signup-signin">Already part of MyMentor? <Link href="/login">Sign in</Link></p>
     </form>
   );
 }
