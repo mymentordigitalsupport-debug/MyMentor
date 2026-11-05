@@ -106,6 +106,7 @@ function ResetPasswordContent() {
               onChange={(event) => { setNewPassword(event.target.value); setError(null); }}
               placeholder="New password"
               autoComplete="new-password"
+              showStrengthMeter
               required
               autoFocus
               aria-invalid={Boolean(error)}
