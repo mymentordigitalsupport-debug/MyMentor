@@ -70,6 +70,8 @@
 .member-login-form .login-submit:disabled { opacity: .65; cursor: wait; }
 .member-login-form .login-submit:hover { background: #31533c; box-shadow: 0 3px 12px #1d39231c; }
 .login-error { margin: 0; border-radius: 10px; padding: 10px 12px; background: #a6433410; color: #8a342b; font-size: 14px; }
+.reset-password-message { display: flex; flex-direction: column; gap: 14px; color: #2e3e32; font-size: 17px; line-height: 1.45; }
+.reset-password-message p { margin: 0; }
 .login-divider { display: flex; align-items: center; justify-content: space-between; gap: 22px; margin: 27px 11px 22px; }
 .login-divider span { flex: 1; height: 1px; background: #a4aa98; }
 .login-divider p { margin: 0; font-family: "Login Handwriting", cursive; font-size: 22px; white-space: nowrap; }

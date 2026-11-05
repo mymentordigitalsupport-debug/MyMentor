@@ -1,12 +1,13 @@
 "use client";
 
-import { Suspense, useState, useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
+import { LockKeyhole } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
-import Image from "next/image";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
+import { MemberAuthShell } from "@/components/auth/MemberAuthShell";
 import { PasswordInput } from "@/components/ui/PasswordInput";
-import { Button } from "@/components/ui/Button";
 import { PageLoader } from "@/components/ui/PageLoader";
+import "../../(auth)/login/login.css";
 
 function getErrorMessage(error: unknown) {
   return error instanceof Error ? error.message : "Failed to update password. Please try again.";
@@ -40,213 +41,99 @@ function ResetPasswordContent() {
     void checkSession();
   }, [searchParams]);
 
-  const validatePassword = (password: string): string | null => {
-    if (password.length < 8) {
-      return "Password must be at least 8 characters long.";
-    }
-    if (!/[a-z]/.test(password)) {
-      return "Password must contain at least one lowercase letter.";
-    }
-    if (!/[A-Z]/.test(password)) {
-      return "Password must contain at least one uppercase letter.";
-    }
-    if (!/[0-9]/.test(password)) {
-      return "Password must contain at least one number.";
-    }
-    return null;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  async function handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
     setError(null);
 
-    // Validate passwords
-    const passwordError = validatePassword(newPassword);
-    if (passwordError) {
-      setError(passwordError);
+    if (newPassword.length < 8) {
+      setError("Password must be at least 8 characters long.");
       return;
     }
-
+    if (!/[a-z]/.test(newPassword) || !/[A-Z]/.test(newPassword) || !/[0-9]/.test(newPassword)) {
+      setError("Password needs uppercase, lowercase, and a number.");
+      return;
+    }
     if (newPassword !== confirmPassword) {
       setError("Passwords do not match.");
       return;
     }
 
     setLoading(true);
-
     try {
       const supabase = createSupabaseBrowserClient();
-      
-      const { error: updateError } = await supabase.auth.updateUser({
-        password: newPassword,
-      });
-
-      if (updateError) {
-        throw updateError;
-      }
-
+      const { error: updateError } = await supabase.auth.updateUser({ password: newPassword });
+      if (updateError) throw updateError;
       setSuccess(true);
-
-      // Redirect to login after 2 seconds
-      setTimeout(() => {
-        router.push("/login");
-      }, 2000);
-    } catch (err: unknown) {
-      setError(getErrorMessage(err));
-      console.error("Password update error:", err);
+      window.setTimeout(() => router.push("/login"), 2000);
+    } catch (caughtError) {
+      setError(getErrorMessage(caughtError));
     } finally {
       setLoading(false);
     }
-  };
+  }
 
-  // Show loading while checking session
   if (validSession === null) {
     return <PageLoader imageSrc="/assets/images/s1r.jpg"><div /></PageLoader>;
   }
 
-  // Show error if session is invalid
   if (validSession === false) {
     return (
-      <PageLoader imageSrc="/assets/images/s1r.jpg">
-        <div className="min-h-screen bg-white lg:grid lg:grid-cols-[3fr_2fr]">
-          <div className="relative hidden min-h-screen overflow-hidden lg:block">
-            <Image
-              src="/assets/images/s1r.jpg"
-              alt="My Mentor"
-              fill
-              className="object-cover object-center"
-              priority
-              quality={100}
-            />
-          </div>
-
-          <div className="relative flex min-h-screen w-full items-start justify-center overflow-y-auto bg-white px-6 py-8 lg:px-12">
-            <div className="w-full max-w-md rounded-3xl bg-cream p-8 shadow-lg lg:p-10">
-              <div className="text-center space-y-4">
-                <div className="flex items-center justify-center w-16 h-16 mx-auto bg-danger/20 rounded-full">
-                  <svg className="w-8 h-8 text-danger" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                  </svg>
-                </div>
-                <h2 className="text-2xl font-bold text-text">Invalid or Expired Link</h2>
-                <p className="text-sm text-muted">
-                  This password reset link is invalid or has expired. Please request a new one.
-                </p>
-                <Button
-                  onClick={() => router.push("/login")}
-                  fullWidth
-                  className="mt-4"
-                >
-                  Back to Login
-                </Button>
-              </div>
-            </div>
-          </div>
+      <MemberAuthShell title="Reset password" description="This password reset link is invalid or has expired.">
+        <div className="reset-password-message">
+          <p className="login-error">Request a new password reset email, then use its latest link.</p>
+          <button type="button" className="login-submit" onClick={() => router.push("/login")}>Back to sign in</button>
         </div>
-      </PageLoader>
+      </MemberAuthShell>
     );
   }
 
   return (
-    <PageLoader imageSrc="/assets/images/s1r.jpg">
-      <div className="min-h-screen bg-white lg:grid lg:grid-cols-[3fr_2fr]">
-        <div className="relative hidden min-h-screen overflow-hidden lg:block">
-          <Image
-            src="/assets/images/s1r.jpg"
-            alt="My Mentor"
-            fill
-            className="object-cover object-center"
-            priority
-            quality={100}
-          />
+    <MemberAuthShell title="Reset password" description="Choose a new password for your MyMentor account.">
+      {success ? (
+        <div className="reset-password-message" role="status">
+          <p>Your password has been updated.</p>
+          <p>Taking you to sign in…</p>
         </div>
-
-        <div className="relative flex min-h-screen w-full items-start justify-center overflow-y-auto bg-white px-6 py-8 lg:px-12">
-          <div className="w-full max-w-md">
-            <div className="lg:hidden text-center mb-8">
-              <Image
-                src="/assets/branding/logo.png"
-                alt="My Mentor Logo"
-                width={80}
-                height={80}
-                className="w-20 h-20 object-contain mx-auto mb-4"
-                priority
-              />
-              <h1 className="text-2xl font-bold text-forest">My Mentor</h1>
-            </div>
-
-            <div className="rounded-3xl p-8 lg:p-10">
-              {!success ? (
-                <>
-                  <div className="text-center mb-8">
-                    <p className="text-sm text-muted mb-2">Reset Your Password</p>
-                    <h2 className="text-3xl font-bold text-text">New Password</h2>
-                  </div>
-
-                  <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-                    <PasswordInput
-                      label="New password"
-                      value={newPassword}
-                      onChange={(e) => {
-                        setNewPassword(e.target.value);
-                        setError(null);
-                      }}
-                      placeholder="Enter new password"
-                      autoComplete="new-password"
-                      showStrengthMeter={true}
-                      required
-                      autoFocus
-                    />
-
-                    <PasswordInput
-                      label="Confirm new password"
-                      value={confirmPassword}
-                      onChange={(e) => {
-                        setConfirmPassword(e.target.value);
-                        setError(null);
-                      }}
-                      placeholder="Confirm new password"
-                      autoComplete="new-password"
-                      required
-                    />
-
-                    {error && (
-                      <p className="text-sm text-danger bg-danger/10 rounded-xl px-4 py-3">
-                        {error}
-                      </p>
-                    )}
-
-                    <Button
-                      type="submit"
-                      fullWidth
-                      loading={loading}
-                      disabled={loading || !newPassword || !confirmPassword}
-                      className="mt-2"
-                    >
-                      Update Password
-                    </Button>
-                  </form>
-                </>
-              ) : (
-                <div className="text-center space-y-6">
-                  <div className="flex items-center justify-center w-16 h-16 mx-auto bg-sage/20 rounded-full">
-                    <svg className="w-8 h-8 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <div className="space-y-2">
-                    <h3 className="text-2xl font-bold text-text">Password Updated!</h3>
-                    <p className="text-sm text-muted">
-                      Your password has been successfully updated. Redirecting to login...
-                    </p>
-                  </div>
-                </div>
-              )}
-            </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="member-login-form" noValidate aria-busy={loading}>
+          <div className="login-field">
+            <LockKeyhole aria-hidden="true" strokeWidth={1.8} />
+            <label htmlFor="new-password" className="sr-only">New password</label>
+            <PasswordInput
+              id="new-password"
+              name="newPassword"
+              value={newPassword}
+              onChange={(event) => { setNewPassword(event.target.value); setError(null); }}
+              placeholder="New password"
+              autoComplete="new-password"
+              required
+              autoFocus
+              aria-invalid={Boolean(error)}
+              aria-describedby={error ? "reset-password-error" : undefined}
+            />
           </div>
-        </div>
-      </div>
-    </PageLoader>
+          <div className="login-field">
+            <LockKeyhole aria-hidden="true" strokeWidth={1.8} />
+            <label htmlFor="confirm-new-password" className="sr-only">Confirm new password</label>
+            <PasswordInput
+              id="confirm-new-password"
+              name="confirmNewPassword"
+              value={confirmPassword}
+              onChange={(event) => { setConfirmPassword(event.target.value); setError(null); }}
+              placeholder="Confirm new password"
+              autoComplete="new-password"
+              required
+              aria-invalid={Boolean(error)}
+              aria-describedby={error ? "reset-password-error" : undefined}
+            />
+          </div>
+          {error && <p id="reset-password-error" className="login-error" role="alert">{error}</p>}
+          <button type="submit" disabled={loading || !newPassword || !confirmPassword} className="login-submit">
+            {loading ? "Updating password…" : "Update password"}
+          </button>
+        </form>
+      )}
+    </MemberAuthShell>
   );
 }
 

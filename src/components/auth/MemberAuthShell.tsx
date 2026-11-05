@@ -28,8 +28,22 @@ function LeafSprig({ className }: { className: string }) {
   );
 }
 
-export function MemberAuthShell({ children, mode = "login" }: { children: ReactNode; mode?: "login" | "register" }) {
+export function MemberAuthShell({
+  children,
+  mode = "login",
+  title,
+  description,
+}: {
+  children: ReactNode;
+  mode?: "login" | "register";
+  title?: string;
+  description?: string;
+}) {
   const isRegister = mode === "register";
+  const heading = title ?? (isRegister ? "Join MyMentor" : "Welcome back");
+  const intro = description ?? (isRegister
+    ? "A place to learn, grow, and take your next step."
+    : "Continue your learning journey with a community that grows with you.");
 
   return (
     <main className={`member-login${isRegister ? " member-register" : ""}`}>
@@ -47,9 +61,9 @@ export function MemberAuthShell({ children, mode = "login" }: { children: ReactN
             <Brand />
             <div className="login-intro">
               <span className="login-emphasis" aria-hidden="true"><i /><i /><i /></span>
-              <h1 id="login-title">{isRegister ? "Join MyMentor" : "Welcome back"}</h1>
+              <h1 id="login-title">{heading}</h1>
               <svg className="login-heading-underline" viewBox="0 0 200 20" fill="none" aria-hidden="true"><path d="M3 10C53 0 139 0 197 7M24 17C72 6 136 7 185 11" /></svg>
-              <p>{isRegister ? "A place to learn, grow, and take your next step." : "Continue your learning journey with a community that grows with you."}</p>
+              <p>{intro}</p>
             </div>
             {children}
           </div>
