@@ -4,9 +4,9 @@ import { getAdminQuizzes } from "@/lib/admin/content";
 
 export const metadata: Metadata = {
   title: "Quizzes",
-  description: "Live quiz data.",
+  description: "Live lesson quiz questions and member response data.",
 };
 
 export default async function AdminQuizzesPage() {
-  return <LiveAdminCollection title="Quizzes" description="Live quizzes and question counts from Supabase." items={await getAdminQuizzes()} />;
+  return <LiveAdminCollection title="Quizzes" description="Live lesson questions, answer totals, and correctness rates." items={await getAdminQuizzes()} />;
 }

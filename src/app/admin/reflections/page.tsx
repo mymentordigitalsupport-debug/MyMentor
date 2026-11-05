@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { LiveAdminCollection } from "@/components/admin/LiveAdminCollection";
-import { getAdminReflections } from "@/lib/admin/content";
+import { ReflectionsAdminPanel } from "@/components/admin/ReflectionsAdminPanel";
+import { getAdminReflectionRecords } from "@/lib/admin/content";
 
 export const metadata: Metadata = {
   title: "Reflections",
-  description: "Live reflection content data.",
+  description: "Live reflection prompts and member responses.",
 };
 
 export default async function AdminReflectionsPage() {
-  return <LiveAdminCollection title="Reflections" description="Live reflection prompts and pause cards from Supabase." items={await getAdminReflections()} />;
+  return <ReflectionsAdminPanel records={await getAdminReflectionRecords()} />;
 }
