@@ -39,7 +39,7 @@ export function MemberResourceLibrary({ resources }: { resources: Resource[] }) 
       {!resources.length ? <article className={styles.conversation}><PaperSurface seed={60} warm /><div className={styles.conversationContent}><h3>Your resources are being prepared.</h3><p className={styles.conversationBody}>Please check back shortly.</p></div></article> : null}
     </section>
 
-    <Modal isOpen={Boolean(selected)} onClose={() => setSelected(null)} title={selected?.title} className="flex h-[min(86vh,900px)] max-w-6xl flex-col overflow-hidden p-0">
+    <Modal isOpen={Boolean(selected)} onClose={() => setSelected(null)} className="flex !h-[calc(100dvh-2rem)] !w-[calc(100vw-2rem)] !max-w-none flex-col overflow-hidden !p-0">
       <div className="flex items-center justify-between gap-4 border-b border-mist px-6 py-4 pr-16">
         <div className="min-w-0"><p className="truncate font-semibold text-text">{selected?.title}</p><p className="mt-1 text-xs capitalize text-muted">{selected?.category}</p></div>
         {selected?.url ? <a href={selected.url} target="_blank" rel="noopener noreferrer" className="inline-flex shrink-0 items-center gap-1 text-xs font-semibold text-forest underline underline-offset-4">Open separately <ExternalLink size={13} /></a> : null}
