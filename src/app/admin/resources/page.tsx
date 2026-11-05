@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminResourcesPage() {
-  return <LiveAdminCollection title="Resources" description="Live resource records from Supabase." items={await getAdminResources()} />;
+  return <LiveAdminCollection title="Resources" description="Published resource records and files in the resources storage bucket." items={await getAdminResources()} />;
 }

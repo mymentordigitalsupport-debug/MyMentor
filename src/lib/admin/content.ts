@@ -1,4 +1,5 @@
 import { getAdminSupabaseClient } from "@/lib/admin/data";
+import { getStoredResourceFiles } from "@/lib/resource-library";
 
 type ContentRow = Record<string, unknown>;
 
@@ -10,6 +11,7 @@ export type AdminContentItem = {
   details: string[];
   updatedAt: string;
   href?: string;
+  externalHref?: string;
 };
 
 async function list(table: string, columns: string, orderBy = "updated_at") {
@@ -146,15 +148,28 @@ export async function getAdminQuizzes(): Promise<AdminContentItem[]> {
 }
 
 export async function getAdminResources(): Promise<AdminContentItem[]> {
-  const resources = await list("resources", "id,title,description,category,url,is_published,sort_order,updated_at,created_at");
-  return resources.map((resource) => ({
+  const [resources, files] = await Promise.all([
+    list("resources", "id,title,description,category,file_url,is_published,sort_order,updated_at,created_at"),
+    getStoredResourceFiles(),
+  ]);
+  const databaseItems = resources.map((resource) => ({
     id: text(resource.id),
     title: text(resource.title),
     description: optionalText(resource.description),
     status: resource.is_published ? "Published" : "Draft",
-    details: [optionalText(resource.category) ?? "Uncategorized", `Order ${Number(resource.sort_order) || 0}`, resource.url ? "Link attached" : "No link"],
+    details: [optionalText(resource.category) ?? "Uncategorized", `Order ${Number(resource.sort_order) || 0}`, resource.file_url ? "File attached" : "No file"],
     updatedAt: updatedAt(resource),
   }));
+  const storedItems = files.map((file) => ({
+    id: file.id,
+    title: file.title,
+    description: "Stored in the resources bucket.",
+    status: "Storage file",
+    details: [file.category, file.path],
+    updatedAt: file.createdAt,
+    externalHref: file.downloadUrl ?? undefined,
+  }));
+  return [...databaseItems, ...storedItems];
 }
 
 export async function getAdminLessonBuilderData() {

@@ -50,6 +50,7 @@ export function LiveAdminCollection({
               <p className="mt-3 text-xs text-muted">Updated {item.updatedAt ? formatShortDate(item.updatedAt) : "unknown"}</p>
             </div>
             {item.href ? <Button asChild variant="secondary" size="sm"><Link href={item.href}>Open<ArrowRight className="h-4 w-4" /></Link></Button> : null}
+            {item.externalHref ? <Button asChild variant="secondary" size="sm"><a href={item.externalHref} target="_blank" rel="noopener noreferrer">Open file<ArrowRight className="h-4 w-4" /></a></Button> : null}
           </div>
         </Card>)}
         {items.length === 0 ? <Card variant="default" padding="lg"><p className="text-sm text-muted">No records yet.</p></Card> : null}
