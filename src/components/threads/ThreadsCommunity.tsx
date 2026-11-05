@@ -259,6 +259,7 @@ function ConversationCard({ post, index, onLike, onDislike, onSave, onHide, onCo
   const [guestEmail, setGuestEmail] = useState("");
   const [guestCode, setGuestCode] = useState("");
   const [codeSent, setCodeSent] = useState(false);
+  const [verificationError, setVerificationError] = useState("");
   const [anonymous, setAnonymous] = useState(false);
   const menu = useRef<HTMLDetailsElement>(null);
   const replyInput = useRef<HTMLTextAreaElement>(null);
@@ -276,15 +277,18 @@ function ConversationCard({ post, index, onLike, onDislike, onSave, onHide, onCo
   }, []);
 
   async function sendCode() {
-    if (!guestName.trim() || !guestEmail.trim()) return;
+    if (!guestName.trim() || !guestEmail.trim()) { setVerificationError("Enter your name and email first."); return; }
     const response = await fetch("/api/threads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "send-comment-otp", name: guestName.trim(), email: guestEmail.trim() }) });
-    if (response.ok) setCodeSent(true);
+    const data = await response.json().catch(() => ({})) as { error?: string };
+    if (!response.ok) { setVerificationError(data.error ?? "Unable to send a verification code."); return; }
+    setVerificationError("");
+    setCodeSent(true);
   }
 
   function submitComment(event: FormEvent) {
     event.preventDefault();
     if (!comment.trim()) return;
-    if (!signedIn && (!guestName.trim() || !guestEmail.trim() || !guestCode.trim())) return;
+    if (!signedIn && (!guestName.trim() || !guestEmail.trim() || !guestCode.trim())) { setVerificationError("Verify your email before posting."); return; }
     onComment(comment.trim(), replyTo?.id ?? null, signedIn ? undefined : { name: guestName.trim(), email: guestEmail.trim(), isAnonymous: anonymous }, guestCode);
     setComment(""); setReplyTo(null);
   }
@@ -313,7 +317,7 @@ function ConversationCard({ post, index, onLike, onDislike, onSave, onHide, onCo
         <div className={styles.commentsHeading}><h4>Join the conversation</h4><button type="button" onClick={onDislike} aria-pressed={post.disliked}><ThumbsDown size={16} />{post.disliked ? "Feedback noted" : "Not for me"}</button></div>
         {post.comments.filter((item) => !hiddenComments.has(item.id)).map((item) => <div key={item.id} className={`${styles.comment} ${item.parentId ? styles.nestedComment : ""}`}><span className={styles.commentAvatar}>{item.author.trim().charAt(0).toUpperCase()}</span><div><strong>{item.author}</strong><p>{item.body}</p><div className={styles.commentActions}><span>{item.age ?? "Just now"}</span><button type="button" aria-pressed={item.liked} onClick={() => onReactComment(item.id, Boolean(item.liked))}>Like{item.likes ? ` ${item.likes}` : ""}</button><button type="button" onClick={() => { setReplyTo({ id: item.id, author: item.author }); replyInput.current?.focus(); }}>Reply</button><details className={styles.commentMenu}><summary aria-label={`More options for ${item.author}'s comment`}><MoreHorizontal size={17} /></summary><div><button type="button" onClick={() => setHiddenComments((current) => new Set(current).add(item.id))}>Hide comment</button><button type="button" onClick={() => onReportComment(item.id)}>Report comment to admin</button>{item.canDelete && <button type="button" onClick={() => onDeleteComment(item.id)}>Delete comment</button>}</div></details></div></div></div>)}
         {!post.comments.length && <p className={styles.firstComment}>A little encouragement can start something good. Leave the first reply.</p>}
-        <form onSubmit={submitComment} className={styles.commentForm}><label htmlFor={`reply-${post.id}`}>{replyTo ? `Reply to ${replyTo.author}` : "Your perspective matters"}</label>{replyTo && <button type="button" className={styles.cancelReply} onClick={() => setReplyTo(null)}>Cancel reply<X size={13} /></button>}{!signedIn && <><div className={styles.guestFields}><input value={guestName} onChange={(event) => setGuestName(event.target.value)} placeholder="Your name" maxLength={80} required /><input value={guestEmail} onChange={(event) => setGuestEmail(event.target.value)} placeholder="Email address" type="email" maxLength={254} required /></div>{codeSent ? <input value={guestCode} onChange={(event) => setGuestCode(event.target.value.replace(/\D/g, "").slice(0, 6))} placeholder="6-digit email code" inputMode="numeric" maxLength={6} required /> : <button type="button" className={styles.verifyEmailButton} onClick={() => void sendCode()}>Verify email to comment</button>}<label className={styles.anonymousChoice}><input type="checkbox" checked={anonymous} onChange={(event) => setAnonymous(event.target.checked)} />Comment anonymously</label></>}<textarea ref={replyInput} id={`reply-${post.id}`} value={comment} onChange={(event) => setComment(event.target.value)} placeholder="Share a thought or a little encouragement..." rows={2} maxLength={3000} required /><button type="submit" className={styles.greenButton}>Post reply<Send size={15} /></button></form>
+        <form onSubmit={submitComment} className={styles.commentForm}><label htmlFor={`reply-${post.id}`}>{replyTo ? `Reply to ${replyTo.author}` : "Your perspective matters"}</label>{replyTo && <button type="button" className={styles.cancelReply} onClick={() => setReplyTo(null)}>Cancel reply<X size={13} /></button>}{!signedIn && <><div className={styles.guestFields}><input value={guestName} onChange={(event) => { setGuestName(event.target.value); setVerificationError(""); }} placeholder="Your name" maxLength={80} required /><input value={guestEmail} onChange={(event) => { setGuestEmail(event.target.value); setVerificationError(""); }} placeholder="Email address" type="email" maxLength={254} required /></div>{codeSent ? <input value={guestCode} onChange={(event) => setGuestCode(event.target.value.replace(/\D/g, "").slice(0, 6))} placeholder="6-digit email code" inputMode="numeric" maxLength={6} required /> : <button type="button" className={styles.verifyEmailButton} onClick={() => void sendCode()}>Verify email to comment</button>}{verificationError && <p className={styles.error} role="alert">{verificationError}</p>}<label className={styles.anonymousChoice}><input type="checkbox" checked={anonymous} onChange={(event) => setAnonymous(event.target.checked)} />Comment anonymously</label></>}<textarea ref={replyInput} id={`reply-${post.id}`} value={comment} onChange={(event) => setComment(event.target.value)} placeholder="Share a thought or a little encouragement..." rows={2} maxLength={3000} required /><button type="submit" disabled={!signedIn && !codeSent} className={styles.greenButton}>Post reply<Send size={15} /></button></form>
       </div>}
     </div>
   </article>;

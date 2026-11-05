@@ -125,7 +125,7 @@ export async function POST(request: Request) {
     const name = typeof input.name === "string" ? input.name.trim().slice(0, 80) : "";
     const email = typeof input.email === "string" ? input.email.trim().toLowerCase().slice(0, 254) : "";
     if (!name || !/^\S+@\S+\.\S+$/.test(email)) return NextResponse.json({ error: "Enter your name and a valid email address." }, { status: 400 });
-    if (process.env.NODE_ENV === "production" && !await takeRateLimit(`thread-commenter:${requestClientKey(request)}`, 3600, 10)) return NextResponse.json({ error: "Please wait before trying again." }, { status: 429 });
+    if (process.env.NODE_ENV === "production" && !await takeRateLimit(`thread-comment-otp:${email}:${requestClientKey(request)}`, 600, 3)) return NextResponse.json({ error: "Too many codes requested. Try again in 10 minutes." }, { status: 429 });
     const admin = createSupabaseAdminClient();
     if (!admin) return NextResponse.json({ error: "Threads is not configured." }, { status: 503 });
     if (await isBanned(admin, email)) return NextResponse.json({ error: "This email address cannot comment." }, { status: 403 });

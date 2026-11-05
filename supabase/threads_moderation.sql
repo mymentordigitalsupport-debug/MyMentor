@@ -1,6 +1,8 @@
 -- Run once in Supabase SQL Editor before deploying Threads moderation.
 -- Community topics, guest email verification, and permanent comment bans.
 
+-- Also run threads_otp_rate_limit.sql if security_take_rate_limit does not already exist.
+
 create table if not exists public.threads_topics (
   id uuid primary key default gen_random_uuid(),
   name text not null unique check (char_length(trim(name)) between 1 and 50),
