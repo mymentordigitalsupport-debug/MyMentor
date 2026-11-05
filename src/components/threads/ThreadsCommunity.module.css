@@ -56,6 +56,8 @@
 .composer { scroll-margin-top: 98px; transform: rotate(.35deg); }
 .composerContent { position: relative; padding: 30px 30px 26px; }
 .composerContent > label { display: block; margin-bottom: 17px; font-family: "Times New Roman", Georgia, serif; font-size: 27px; font-weight: 600; line-height: 1.2; letter-spacing: -.025em; }
+.topicSelect { display: flex !important; align-items: center; gap: 8px; margin: -5px 0 12px !important; font-family: inherit !important; font-size: 13px !important; letter-spacing: 0 !important; }
+.topicSelect select { min-width: 150px; border: 1px solid #d7deca; border-radius: 999px; background: #fffef5; padding: 7px 10px; color: #365140; }
 .composer textarea { display: block; width: 100%; min-height: 118px; max-height: 420px; padding: 15px 17px; border: 1px solid #d8d9cf; border-radius: 5px; background: #fffefaab; box-shadow: inset 0 1px 3px #7f7d6e05; color: var(--ink); font-size: 16px; line-height: 1.5; resize: vertical; outline: none; }
 .composer textarea::placeholder { color: #a0a295; opacity: 1; }
 .composer textarea:focus { border-color: #7a9272; box-shadow: 0 0 0 3px #7a92721a; }
@@ -149,6 +151,8 @@
 .commentForm > label { display: block; margin-bottom: 10px; font-family: Georgia, serif; font-size: 16px; font-weight: 600; }
 .guestFields { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
 .guestFields input { min-width: 0; padding: 10px 12px; border: 1px solid #d7deca; border-radius: 5px; background: #fffef5; color: #4f6545; font-size: 13px; outline-color: #7a9272; }
+.commentForm > input { width: 100%; margin: 0 0 10px; padding: 10px 12px; border: 1px solid #d7deca; border-radius: 5px; background: #fffef5; color: #4f6545; font-size: 13px; outline-color: #7a9272; }
+.verifyEmailButton { margin: 0 0 10px; border: 1px solid #58714f; border-radius: 999px; padding: 8px 12px; color: #31533b; font-size: 12px; font-weight: 700; }
 .anonymousChoice { display: flex !important; align-items: center; gap: 8px; margin: 0 0 12px !important; color: #64705c; font-family: inherit !important; font-size: 12px !important; font-weight: 500 !important; }
 .anonymousChoice input { accent-color: #355b42; }
 .commentForm textarea { display: block; width: 100%; margin-bottom: 12px; padding: 12px; border: 1px solid #d7deca; border-radius: 5px; background: #fffef5; color: #4f6545; font-size: 13px; line-height: 1.5; resize: vertical; outline-color: #7a9272; }

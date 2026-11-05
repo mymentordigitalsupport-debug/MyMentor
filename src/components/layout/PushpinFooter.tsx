@@ -181,7 +181,7 @@ export function mixHex(a: string, b: string, t: number) {
 // #endregion
 
 export type IconName =
-  | "github" | "21st" | "x" | "ig" | "linkedin" | "dribbble" | "chat" | "globe" | "mail" | "link" | "shield" | "doc"
+  | "github" | "21st" | "facebook" | "x" | "ig" | "linkedin" | "dribbble" | "chat" | "globe" | "mail" | "link" | "shield" | "doc"
 
 export type TearLink = { label: string; href?: string }
 export type IconLink = { icon: IconName; label: string; href?: string }
@@ -241,6 +241,8 @@ function Icon({ name }: { name: IconName | "chevL" | "copy" | "squiggle" | "arro
     case "squiggle": return svg(<path d="M3.5 15c1.8-3.2 3.6-3.2 5.4 0s3.6 3.2 5.4 0 3.6-3.2 5.4 0" />)
     case "github":
       return svg(<path fillRule="evenodd" d="M12 2.8a9.3 9.3 0 0 0-2.9 18.1c.5.1.6-.2.6-.5v-1.7c-2.6.6-3.1-1.1-3.1-1.1-.4-1.1-1-1.4-1-1.4-.9-.6.1-.6.1-.6.9.1 1.4 1 1.4 1 .8 1.4 2.2 1 2.7.8.1-.6.3-1 .6-1.2-2.1-.2-4.2-1-4.2-4.6 0-1 .4-1.8 1-2.5-.1-.2-.4-1.2.1-2.5 0 0 .8-.3 2.6 1a8.8 8.8 0 0 1 4.6 0c1.8-1.2 2.6-1 2.6-1 .5 1.3.2 2.3.1 2.5.6.7 1 1.5 1 2.5 0 3.6-2.2 4.4-4.2 4.6.3.3.6.8.6 1.6v2.4c0 .3.2.6.7.5A9.3 9.3 0 0 0 12 2.8z" />, true)
+    case "facebook":
+      return svg(<path fillRule="evenodd" d="M13.6 21v-8h2.7l.4-3.1h-3.1V8c0-.9.3-1.5 1.6-1.5h1.7V3.7c-.3 0-1.3-.2-2.5-.2-2.5 0-4.2 1.5-4.2 4.3v2.1H7.4V13h2.8v8z" />, true)
     case "21st":
       return svg(<><rect x="3.5" y="3.5" width="17" height="17" rx="4.5" /><path d="M7.6 10.2a1.9 1.9 0 0 1 3.7.4c0 1.6-3.7 2.6-3.7 4.6h3.8M14.2 10.4l1.9-1.4v6.4" /></>)
     case "linkedin":

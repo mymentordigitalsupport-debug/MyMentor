@@ -6,7 +6,7 @@ export const THREAD_TOPICS = [
   { name: "Community", count: 98, tone: "community" },
 ] as const;
 
-export type ThreadTopic = typeof THREAD_TOPICS[number]["name"];
+export type ThreadTopic = string;
 export type DemoComment = { id: string; author: string; body: string; parentId: string | null; age?: string; likes?: number; liked?: boolean; canDelete?: boolean };
 export type CommunityPost = {
   id: string;

@@ -24,6 +24,11 @@ export function SiteFooter() {
       paperInk="#1F3527"
       timeZone="Asia/Singapore"
       timeLabel="SGT"
+      socials={[
+        { icon: "facebook", label: "Facebook", href: "https://www.facebook.com/mymentordigitalsupportsystem" },
+        { icon: "ig", label: "Instagram", href: "https://www.instagram.com/mymentordigitalsupportsystem/" },
+        { icon: "x", label: "X", href: "https://x.com/mymentordigital" },
+      ]}
       copyright={`© ${new Date().getFullYear()} MyMentor`}
       credit="Walk with purpose. Build with clarity."
       chat={{ label: "say hi", href: "mailto:hello@mymentor.digital" }}

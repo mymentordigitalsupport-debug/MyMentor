@@ -263,7 +263,7 @@ export function RegisterForm() {
                 <div className="login-field">
                   <LockKeyhole strokeWidth={1.7} aria-hidden="true" />
                   <label htmlFor="register-password" className="sr-only">Password</label>
-                  <PasswordInput id="register-password" name="password" value={password} onChange={(event) => { setPassword(event.target.value); clearFieldError("password"); }} placeholder="Create a password" autoComplete="new-password" required minLength={8} aria-invalid={Boolean(fieldErrors.password)} aria-describedby={fieldErrors.password ? "register-password-error" : "register-password-hint"} />
+                  <PasswordInput id="register-password" name="password" value={password} onChange={(event) => { setPassword(event.target.value); clearFieldError("password"); }} placeholder="Create a password" autoComplete="new-password" showStrengthMeter required minLength={8} aria-invalid={Boolean(fieldErrors.password)} aria-describedby={fieldErrors.password ? "register-password-error" : "register-password-hint"} />
                 </div>
                 {fieldErrors.password ? <p className="signup-field-error" id="register-password-error" role="alert">{fieldErrors.password}</p> : <p className={`signup-password-hint${password.length >= 8 ? " is-valid" : ""}`} id="register-password-hint">{password.length >= 8 && <Check size={13} aria-hidden="true" />}At least 8 characters. Make it your own.</p>}
               </div>
