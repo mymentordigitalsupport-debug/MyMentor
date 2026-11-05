@@ -110,12 +110,7 @@ export function ThreadsCommunity({ query, onQueryChange, draft, onDraftChange, o
     setSort("latest");
   }
 
-  async function addComment(id: string, text: string, parentId: string | null, guest?: GuestDetails, code?: string) {
-    if (guest) {
-      const registration = await fetch("/api/threads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "verify-commenter", email: guest.email, code }) });
-      const registrationData = await registration.json().catch(() => ({})) as { error?: string };
-      if (!registration.ok) { setError(registrationData.error ?? "Unable to save your details."); return; }
-    }
+  async function addComment(id: string, text: string, parentId: string | null, guest?: GuestDetails) {
     const response = await fetch("/api/threads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "reply", body: text, postId: id, parentId: parentId ?? id, ...(guest ? { isAnonymous: guest.isAnonymous } : {}) }) });
     const data = await response.json().catch(() => ({})) as { error?: string };
     if (response.status === 401) { window.location.assign("/login?next=/threads"); return; }
@@ -219,7 +214,7 @@ export function ThreadsCommunity({ query, onQueryChange, draft, onDraftChange, o
             onLike={() => void reactToPost(post.id, post.liked ? null : 1)}
             onDislike={() => void reactToPost(post.id, post.disliked ? null : -1)}
             onSave={() => updatePost(post.id, (current) => ({ ...current, saved: !current.saved }))}
-            onComment={(text, parentId, guest, code) => void addComment(post.id, text, parentId, guest, code)}
+            onComment={(text, parentId, guest) => void addComment(post.id, text, parentId, guest)}
             signedIn={signedIn}
             onDelete={post.canDelete ? () => void deletePost(post.id) : undefined}
             onDeleteComment={(entryId) => void deletePost(entryId, true)}
@@ -247,7 +242,7 @@ export function ThreadsCommunity({ query, onQueryChange, draft, onDraftChange, o
 type ConversationCardProps = {
   post: CommunityPost; index: number;
   onLike: () => void; onDislike: () => void; onSave: () => void; onHide: () => void; onCopy: () => Promise<void>; onDelete?: () => void; onDeleteComment: (entryId: string) => void; onReactComment: (entryId: string, liked: boolean) => void; onReportComment: (entryId: string) => void;
-  onComment: (body: string, parentId: string | null, guest?: GuestDetails, code?: string) => void;
+  onComment: (body: string, parentId: string | null, guest?: GuestDetails) => void;
   signedIn: boolean;
 };
 
@@ -259,6 +254,7 @@ function ConversationCard({ post, index, onLike, onDislike, onSave, onHide, onCo
   const [guestEmail, setGuestEmail] = useState("");
   const [guestCode, setGuestCode] = useState("");
   const [codeSent, setCodeSent] = useState(false);
+  const [emailVerified, setEmailVerified] = useState(false);
   const [verificationError, setVerificationError] = useState("");
   const [anonymous, setAnonymous] = useState(false);
   const menu = useRef<HTMLDetailsElement>(null);
@@ -283,13 +279,22 @@ function ConversationCard({ post, index, onLike, onDislike, onSave, onHide, onCo
     if (!response.ok) { setVerificationError(data.error ?? "Unable to send a verification code."); return; }
     setVerificationError("");
     setCodeSent(true);
+    setEmailVerified(false);
+  }
+
+  async function verifyCode() {
+    const response = await fetch("/api/threads", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "verify-commenter", email: guestEmail.trim(), code: guestCode }) });
+    const data = await response.json().catch(() => ({})) as { error?: string };
+    if (!response.ok) { setEmailVerified(false); setVerificationError(data.error ?? "Incorrect verification code."); return; }
+    setEmailVerified(true);
+    setVerificationError("Email verified. You can post your reply.");
   }
 
   function submitComment(event: FormEvent) {
     event.preventDefault();
     if (!comment.trim()) return;
-    if (!signedIn && (!guestName.trim() || !guestEmail.trim() || !guestCode.trim())) { setVerificationError("Verify your email before posting."); return; }
-    onComment(comment.trim(), replyTo?.id ?? null, signedIn ? undefined : { name: guestName.trim(), email: guestEmail.trim(), isAnonymous: anonymous }, guestCode);
+    if (!signedIn && !emailVerified) { setVerificationError("Verify your email before posting."); return; }
+    onComment(comment.trim(), replyTo?.id ?? null, signedIn ? undefined : { name: guestName.trim(), email: guestEmail.trim(), isAnonymous: anonymous });
     setComment(""); setReplyTo(null);
   }
 
@@ -317,7 +322,7 @@ function ConversationCard({ post, index, onLike, onDislike, onSave, onHide, onCo
         <div className={styles.commentsHeading}><h4>Join the conversation</h4><button type="button" onClick={onDislike} aria-pressed={post.disliked}><ThumbsDown size={16} />{post.disliked ? "Feedback noted" : "Not for me"}</button></div>
         {post.comments.filter((item) => !hiddenComments.has(item.id)).map((item) => <div key={item.id} className={`${styles.comment} ${item.parentId ? styles.nestedComment : ""}`}><span className={styles.commentAvatar}>{item.author.trim().charAt(0).toUpperCase()}</span><div><strong>{item.author}</strong><p>{item.body}</p><div className={styles.commentActions}><span>{item.age ?? "Just now"}</span><button type="button" aria-pressed={item.liked} onClick={() => onReactComment(item.id, Boolean(item.liked))}>Like{item.likes ? ` ${item.likes}` : ""}</button><button type="button" onClick={() => { setReplyTo({ id: item.id, author: item.author }); replyInput.current?.focus(); }}>Reply</button><details className={styles.commentMenu}><summary aria-label={`More options for ${item.author}'s comment`}><MoreHorizontal size={17} /></summary><div><button type="button" onClick={() => setHiddenComments((current) => new Set(current).add(item.id))}>Hide comment</button><button type="button" onClick={() => onReportComment(item.id)}>Report comment to admin</button>{item.canDelete && <button type="button" onClick={() => onDeleteComment(item.id)}>Delete comment</button>}</div></details></div></div></div>)}
         {!post.comments.length && <p className={styles.firstComment}>A little encouragement can start something good. Leave the first reply.</p>}
-        <form onSubmit={submitComment} className={styles.commentForm}><label htmlFor={`reply-${post.id}`}>{replyTo ? `Reply to ${replyTo.author}` : "Your perspective matters"}</label>{replyTo && <button type="button" className={styles.cancelReply} onClick={() => setReplyTo(null)}>Cancel reply<X size={13} /></button>}{!signedIn && <><div className={styles.guestFields}><input value={guestName} onChange={(event) => { setGuestName(event.target.value); setVerificationError(""); }} placeholder="Your name" maxLength={80} required /><input value={guestEmail} onChange={(event) => { setGuestEmail(event.target.value); setVerificationError(""); }} placeholder="Email address" type="email" maxLength={254} required /></div>{codeSent ? <input value={guestCode} onChange={(event) => setGuestCode(event.target.value.replace(/\D/g, "").slice(0, 6))} placeholder="6-digit email code" inputMode="numeric" maxLength={6} required /> : <button type="button" className={styles.verifyEmailButton} onClick={() => void sendCode()}>Verify email to comment</button>}{verificationError && <p className={styles.error} role="alert">{verificationError}</p>}<label className={styles.anonymousChoice}><input type="checkbox" checked={anonymous} onChange={(event) => setAnonymous(event.target.checked)} />Comment anonymously</label></>}<textarea ref={replyInput} id={`reply-${post.id}`} value={comment} onChange={(event) => setComment(event.target.value)} placeholder="Share a thought or a little encouragement..." rows={2} maxLength={3000} required /><button type="submit" disabled={!signedIn && !codeSent} className={styles.greenButton}>Post reply<Send size={15} /></button></form>
+        <form onSubmit={submitComment} className={styles.commentForm}><label htmlFor={`reply-${post.id}`}>{replyTo ? `Reply to ${replyTo.author}` : "Your perspective matters"}</label>{replyTo && <button type="button" className={styles.cancelReply} onClick={() => setReplyTo(null)}>Cancel reply<X size={13} /></button>}{!signedIn && <><div className={styles.guestFields}><input value={guestName} onChange={(event) => { setGuestName(event.target.value); setVerificationError(""); setEmailVerified(false); }} placeholder="Your name" maxLength={80} required /><input value={guestEmail} onChange={(event) => { setGuestEmail(event.target.value); setVerificationError(""); setEmailVerified(false); }} placeholder="Email address" type="email" maxLength={254} required /></div>{codeSent ? <><input value={guestCode} onChange={(event) => { setGuestCode(event.target.value.replace(/\D/g, "").slice(0, 6)); setEmailVerified(false); }} placeholder="6-digit email code" inputMode="numeric" maxLength={6} required /><button type="button" className={styles.verifyEmailButton} disabled={guestCode.length !== 6 || emailVerified} onClick={() => void verifyCode()}>{emailVerified ? "Email verified" : "Verify code"}</button></> : <button type="button" className={styles.verifyEmailButton} onClick={() => void sendCode()}>Verify email to comment</button>}{verificationError && <p className={emailVerified ? styles.notice : styles.error} role="status">{verificationError}</p>}<label className={styles.anonymousChoice}><input type="checkbox" checked={anonymous} onChange={(event) => setAnonymous(event.target.checked)} />Comment anonymously</label></>}<textarea ref={replyInput} id={`reply-${post.id}`} value={comment} onChange={(event) => setComment(event.target.value)} placeholder="Share a thought or a little encouragement..." rows={2} maxLength={3000} required /><button type="submit" disabled={!signedIn && !emailVerified} className={styles.greenButton}>Post reply<Send size={15} /></button></form>
       </div>}
     </div>
   </article>;
