@@ -2,7 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
+
+const heroHeadlines = [
+  ["We transform", "together."],
+  ["Overcome Substance", "Dependence"],
+  ["Reclaim Your", "Independence"],
+  ["Rise Above", "Addiction"],
+  ["Rewrite Your", "Story"],
+] as const;
 
 const pathways = [
   { title: "Recovery", href: "/about#books", image: "/assets/images/hero-pathway-recovery.jpg", position: "left-[8%] top-[18%]" },
@@ -12,6 +21,17 @@ const pathways = [
 ] as const;
 
 export function HeroSection() {
+  const [headlineIndex, setHeadlineIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setHeadlineIndex((current) => (current + 1) % heroHeadlines.length);
+    }, 4200);
+    return () => window.clearInterval(interval);
+  }, []);
+
+  const [headline, emphasis] = heroHeadlines[headlineIndex];
+
   return (
     <section id="hero" className="relative h-[calc(100vh+6rem)] min-h-screen overflow-hidden rounded-b-[11px] bg-[#090c0a] text-stone-100" aria-label="My Mentor landing hero">
       <video className="absolute inset-0 h-full w-full object-cover object-center" autoPlay muted loop playsInline preload="metadata" aria-label="My Mentor transformation video">
@@ -31,7 +51,7 @@ export function HeroSection() {
               <span className="font-mono text-xs text-stone-300/80">01</span>
             </div>
             <div>
-              <h1 className="font-serif text-5xl font-light leading-[0.9] tracking-[-0.055em] text-stone-100 sm:text-6xl lg:text-[5rem]">We transform<span className="block italic text-[#95a681]">together.</span></h1>
+              <h1 className="font-serif text-5xl font-light leading-[0.9] tracking-[-0.055em] text-stone-100 sm:text-6xl lg:text-[5rem]" aria-live="polite"><span key={headlineIndex} className="block animate-[pulse_420ms_ease-out]">{headline}<span className="block italic text-[#95a681]">{emphasis}</span></span></h1>
               <p className="mt-6 max-w-lg text-sm font-light leading-7 text-stone-200/90 sm:text-base sm:leading-8">Guided recovery, healing, family restoration, and purposeful growth through structured courses, lessons, and daily action.</p>
               <Link href="/about#books" className="landing-user-profile landing-user-profile--hero group mt-8 tracking-[0.12em]"><span className="landing-user-profile-inner"><span className="h-2.5 w-2.5 rounded-full bg-[#b8d088] shadow-[0_0_14px_#b8d088]" /><span>START YOUR JOURNEY</span><ArrowRight className="transition-transform group-hover:translate-x-1" /></span></Link>
             </div>

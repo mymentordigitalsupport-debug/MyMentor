@@ -55,7 +55,7 @@
 
 .member-login-form { display: flex; flex-direction: column; gap: 15px; }
 .login-field { position: relative; display: flex; align-items: center; min-width: 0; }
-.login-field > svg { position: absolute; z-index: 1; left: 23px; width: 25px; height: 25px; pointer-events: none; }
+.login-field > svg { position: absolute; z-index: 1; top: 25px; left: 23px; width: 25px; height: 25px; transform: translateY(-50%); pointer-events: none; }
 .login-field > div { width: 100%; }
 .login-field input { display: block; width: 100%; min-width: 0; min-height: 50px; padding: 12px 53px 12px 69px; border: 1px solid transparent; border-radius: 40px; background: #dadcce; color: #233b2d; font: inherit; font-size: 17px; box-shadow: none; }
 .login-field input::placeholder { color: #4c5147; opacity: 1; }
