@@ -11,6 +11,6 @@ const moodImagePaths: Record<MoodValue, string> = {
   strong: "/assets/images/strong.png",
 };
 
-export function MoodImage({ mood, size = 36, className }: { mood: MoodValue; size?: number; className?: string }) {
+export function MoodImage({ mood, size = 39, className }: { mood: MoodValue; size?: number; className?: string }) {
   return <Image src={moodImagePaths[mood]} alt="" aria-hidden="true" width={size} height={size} className={cn("object-contain", className)} />;
 }

@@ -26,7 +26,7 @@ export function MoodPill({ option, selected = false, onClick }: MoodPillProps) {
       )}
       aria-pressed={selected}
     >
-      <MoodImage mood={option.value} size={34} />
+      <MoodImage mood={option.value} size={37} />
       <span>{option.label}</span>
     </button>
   );

@@ -21,7 +21,7 @@ export function JournalEntryCard({ entry }: JournalEntryCardProps) {
           <span className={styles.topicBadge}>Private reflection</span>
           <p className={styles.postAge}>{formatShortDate(entry.created_at)}</p>
           {moodOption && (
-            <span className="inline-flex" aria-label={`Mood: ${moodOption.label}`}><MoodImage mood={moodOption.value} size={22} /></span>
+            <span className="inline-flex" aria-label={`Mood: ${moodOption.label}`}><MoodImage mood={moodOption.value} size={25} /></span>
           )}
         </div>
 

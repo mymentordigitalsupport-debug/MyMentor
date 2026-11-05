@@ -61,7 +61,7 @@ export function MoodCheckIn({ userId, latestMood, latestNote, todayCheckinId }: 
       <p className="member-panel-description">Whatever you’re feeling, there’s room for it here.</p>
       <div className="member-moods" role="group" aria-label="Choose your mood">
         {MOOD_OPTIONS.map((option) => {
-          return <button key={option.value} type="button" className={`member-mood-choice ${selected === option.value ? "member-mood-selected" : ""}`} aria-pressed={selected === option.value} disabled={saving} onClick={() => { setSelected(option.value); setSaved(false); setError(null); }}><span><MoodImage mood={option.value} size={34} /></span>{option.label}</button>;
+          return <button key={option.value} type="button" className={`member-mood-choice ${selected === option.value ? "member-mood-selected" : ""}`} aria-pressed={selected === option.value} disabled={saving} onClick={() => { setSelected(option.value); setSaved(false); setError(null); }}><span><MoodImage mood={option.value} size={37} /></span>{option.label}</button>;
         })}
       </div>
       <label className="member-note-label" htmlFor={noteId}>A little more on your mind? <span>Optional</span></label>
