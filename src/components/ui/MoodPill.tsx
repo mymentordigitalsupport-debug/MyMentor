@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { type MoodOption } from "@/types";
+import { MoodImage } from "@/components/ui/MoodImage";
 
 interface MoodPillProps {
   option: MoodOption;
@@ -25,7 +26,7 @@ export function MoodPill({ option, selected = false, onClick }: MoodPillProps) {
       )}
       aria-pressed={selected}
     >
-      <span className="text-xl leading-none">{option.emoji}</span>
+      <MoodImage mood={option.value} size={34} />
       <span>{option.label}</span>
     </button>
   );

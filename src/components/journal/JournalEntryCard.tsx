@@ -3,6 +3,7 @@ import { formatShortDate, truncate } from "@/lib/utils";
 import { type JournalEntry, MOOD_OPTIONS } from "@/types";
 import { PaperSurface, PaperTape } from "@/components/threads/ThreadPaper";
 import styles from "@/components/threads/ThreadsCommunity.module.css";
+import { MoodImage } from "@/components/ui/MoodImage";
 
 interface JournalEntryCardProps {
   entry: JournalEntry;
@@ -20,9 +21,7 @@ export function JournalEntryCard({ entry }: JournalEntryCardProps) {
           <span className={styles.topicBadge}>Private reflection</span>
           <p className={styles.postAge}>{formatShortDate(entry.created_at)}</p>
           {moodOption && (
-            <span className="text-sm" aria-label={`Mood: ${moodOption.label}`}>
-              {moodOption.emoji}
-            </span>
+            <span className="inline-flex" aria-label={`Mood: ${moodOption.label}`}><MoodImage mood={moodOption.value} size={22} /></span>
           )}
         </div>
 

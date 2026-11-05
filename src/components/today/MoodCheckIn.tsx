@@ -2,10 +2,11 @@
 
 import { useId, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Check, Cloud, CloudRain, Heart, Leaf, LoaderCircle, ShieldCheck, Smile, Sun, Sunrise } from "lucide-react";
+import { Check, Heart, LoaderCircle, ShieldCheck } from "lucide-react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { type MoodValue, MOOD_OPTIONS } from "@/types";
 import { PaperSurface, PaperTape } from "@/components/threads/ThreadPaper";
+import { MoodImage } from "@/components/ui/MoodImage";
 
 interface MoodCheckInProps {
   userId: string;
@@ -15,8 +16,6 @@ interface MoodCheckInProps {
   moodHistory: Array<{ id: string; mood: MoodValue; created_at: string; note: string | null }>;
   todayCheckinId: string | null;
 }
-
-const moodIcons = { low: CloudRain, heavy: Cloud, uncertain: Smile, hopeful: Sunrise, steady: Leaf, strong: Sun };
 
 export function MoodCheckIn({ userId, latestMood, latestNote, todayCheckinId }: MoodCheckInProps) {
   const router = useRouter();
@@ -62,8 +61,7 @@ export function MoodCheckIn({ userId, latestMood, latestNote, todayCheckinId }: 
       <p className="member-panel-description">Whatever you’re feeling, there’s room for it here.</p>
       <div className="member-moods" role="group" aria-label="Choose your mood">
         {MOOD_OPTIONS.map((option) => {
-          const Icon = moodIcons[option.value];
-          return <button key={option.value} type="button" className={`member-mood-choice ${selected === option.value ? "member-mood-selected" : ""}`} aria-pressed={selected === option.value} disabled={saving} onClick={() => { setSelected(option.value); setSaved(false); setError(null); }}><span><Icon size={23} strokeWidth={1.5} /></span>{option.label}</button>;
+          return <button key={option.value} type="button" className={`member-mood-choice ${selected === option.value ? "member-mood-selected" : ""}`} aria-pressed={selected === option.value} disabled={saving} onClick={() => { setSelected(option.value); setSaved(false); setError(null); }}><span><MoodImage mood={option.value} size={34} /></span>{option.label}</button>;
         })}
       </div>
       <label className="member-note-label" htmlFor={noteId}>A little more on your mind? <span>Optional</span></label>
