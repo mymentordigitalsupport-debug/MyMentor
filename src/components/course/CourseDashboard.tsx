@@ -19,6 +19,7 @@ import {
   Clock3,
   FileText,
   Heart,
+  House,
   Lock,
   MessageSquareQuote,
   NotebookPen,
@@ -268,6 +269,13 @@ export function CourseDashboard({
       <div className="member-course-page" style={{ "--community-grain": `url(#${textureId}-grain)`, "--community-fibres": `url(#${textureId}-fibres)` } as CSSProperties}>
         <CommunityTexture id={textureId} />
         <div className="member-course-shell">
+          <Link
+            href="/today"
+            className="inline-flex w-fit items-center gap-2 rounded-full border border-[#e5ddd0] bg-[#fbf9f5] px-4 py-2 text-sm font-medium text-forest shadow-[0_10px_18px_-16px_rgba(31,42,36,0.22)] transition hover:border-[#cfc3b2] hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7a9272] focus-visible:ring-offset-2"
+          >
+            <House className="h-4 w-4" aria-hidden="true" />
+            Back to dashboard
+          </Link>
           <header className="member-course-heading"><div><p className="member-eyebrow">YOUR GUIDED PATH</p><h1>Your course<span>.</span></h1></div><span className="member-course-handwriting">one lesson at a time</span></header>
           <section className="member-course-hero">
             <div className="member-course-hero-copy"><p className="member-course-kicker"><span /> YOUR JOURNEY, YOUR PACE</p><h2>We transform<br /><em>together.</em></h2><p>{courseDescription || "Your transformation happens one lesson at a time. Stay consistent, stay honest, and keep moving forward."}</p><span className="member-course-version">{displayCourseVersionTitle}</span></div>
