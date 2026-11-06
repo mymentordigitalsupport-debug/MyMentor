@@ -1,5 +1,5 @@
-const CACHE_NAME = "my-mentor-shell-v2";
-const CORE_ASSETS = ["/", "/manifest.webmanifest", "/assets/icons/icon.svg", "/assets/icons/apple-icon.svg"];
+const CACHE_NAME = "my-mentor-shell-v3";
+const CORE_ASSETS = ["/", "/manifest.webmanifest", "/assets/images/favicon.png"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
