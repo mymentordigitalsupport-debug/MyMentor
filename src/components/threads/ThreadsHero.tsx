@@ -15,10 +15,10 @@ const topics = [
 ];
 
 const starters = [
-  { topic: "Mindset", title: "How do you stay consistent when motivation fades?", body: "I’ve been struggling to keep up with my goals lately. What routines or mindset shifts have helped you stay consistent over time?", icon: Brain },
-  { topic: "Progress", title: "A small win I want to share", body: "I kept showing up this week, even on the difficult days. What progress are you proud of today?", icon: TrendingUp },
-  { topic: "Learning", title: "Best resources to learn web development in 2026?", body: "Looking for up-to-date, beginner-friendly resources. Open to free and paid options. What actually worked for you?", icon: BookOpen },
-  { topic: "Life", title: "How do you deal with self-doubt?", body: "Some days I feel like I’m not doing enough. Would love to hear how you manage self-doubt and stay kind to yourself.", icon: Leaf },
+  { topic: "Recovery", title: "What helped you take the next right step today?", body: "Whether it was a choice, a conversation, or simply getting through a hard moment, share what helped you keep moving forward." },
+  { topic: "Progress", title: "A recovery win worth celebrating", body: "Small steps count. What is one choice, habit, or breakthrough you are proud of this week?" },
+  { topic: "Healing", title: "How are you rebuilding trust?", body: "Restoring relationships takes patience. What has helped you show up with honesty, consistency, and care?" },
+  { topic: "Growth", title: "What lesson is staying with you?", body: "Share an idea from your journey that is helping you see yourself, your choices, or your future differently." },
 ];
 
 // Seeded fibre edges keep server and browser renders identical.
@@ -143,15 +143,7 @@ function PaperTextures({ id }: { id: string }) {
 }
 
 function Sprig() {
-  return <svg className={styles.sprig} viewBox="0 0 180 150" fill="none" aria-hidden="true">
-    <defs><linearGradient id="threads-leaf" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#c0c8a2" /><stop offset="1" stopColor="#657a59" /></linearGradient></defs>
-    <path d="M90 148c-3-40-5-78 18-125M88 109 39 60m51 61 43-51" stroke="#aab591" strokeWidth="3" />
-    <path d="M84 101C57 100 38 80 30 52c28-1 51 18 54 49Z" fill="url(#threads-leaf)" />
-    <path d="M94 75c-4-32 10-56 29-65 6 31-7 54-29 65Z" fill="url(#threads-leaf)" />
-    <path d="M94 117c9-31 30-43 56-43-7 28-27 43-56 43Z" fill="url(#threads-leaf)" />
-    <path d="M84 101 35 56m59 19 27-61m-27 103 53-40" stroke="#e0e3c9" strokeOpacity=".6" />
-    <path d="m52 73 1-15m10 27 2-20m42-17 12-2m-17 14 13-1m-1 42 1-13m10 5 1-11" stroke="#d7ddbf" strokeOpacity=".4" />
-  </svg>;
+  return <svg className={styles.sprig} viewBox="0 0 180 150" fill="none" aria-hidden="true"><defs><linearGradient id="threads-leaf" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#c0c8a2" /><stop offset="1" stopColor="#657a59" /></linearGradient></defs><path d="M90 148c-3-40-5-78 18-125M88 109 39 60m51 61 43-51" stroke="#aab591" strokeWidth="3" /><path d="M84 101C57 100 38 80 30 52c28-1 51 18 54 49Z" fill="url(#threads-leaf)" /><path d="M94 75c-4-32 10-56 29-65 6 31-7 54-29 65Z" fill="url(#threads-leaf)" /><path d="M94 117c9-31 30-43 56-43-7 28-27 43-56 43Z" fill="url(#threads-leaf)" /></svg>;
 }
 
 type ThreadsHeroProps = {
@@ -243,12 +235,11 @@ export function ThreadsHero({ searchValue, onSearch, onStartConversation }: Thre
 
     <div className={styles.starterBoard}>
       <Sprig />
-      <div className={styles.starterGrid} aria-label="Conversation starters">{starters.map(({ topic, title, body, icon: Icon }, index) => <article className={styles.starter} key={topic} style={{ "--entry-index": index } as CSSProperties}>
+      <div className={styles.starterGrid} aria-label="Conversation starters">{starters.map(({ topic, title, body }, index) => <article className={styles.starter} key={topic} style={{ "--entry-index": index } as CSSProperties}>
         <div className={styles.noteSurface} style={{ clipPath: paperOutline(index + 10) }} />
         {(index === 0 || index === 3) && <span className={styles.cardPin} aria-hidden="true"><Pin base="#244d39" id={`${id}-card-pin-${index}`} /></span>}
         {index === 2 && <span className={styles.tape} aria-hidden="true" />}
         <div className={styles.starterContent}>
-          <div className={styles.cardMeta}><span><Icon size={21} strokeWidth={1.7} />{topic}</span><span>Start a conversation</span></div>
           <h2><button type="button" onClick={() => onStartConversation(`${title}\n\n${body}`)}>{title}</button></h2>
           <p>{body}</p>
           <div className={styles.cardActions}>

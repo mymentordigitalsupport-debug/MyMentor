@@ -12,6 +12,7 @@ export type AdminContentItem = {
   updatedAt: string;
   href?: string;
   externalHref?: string;
+  storagePath?: string;
 };
 
 export type AdminReflectionRecord = {
@@ -257,8 +258,9 @@ export async function getAdminResources(): Promise<AdminContentItem[]> {
     status: resource.is_published ? "Published" : "Draft",
     details: [optionalText(resource.category) ?? "Uncategorized", `Order ${Number(resource.sort_order) || 0}`, resource.file_url ? "File attached" : "No file"],
     updatedAt: updatedAt(resource),
+    storagePath: optionalText(resource.file_url) && !/^https?:\/\//i.test(optionalText(resource.file_url)!) ? optionalText(resource.file_url)! : undefined,
   }));
-  const storedItems = files.map((file) => ({
+  const storedItems = files.filter((file) => !resources.some((resource) => optionalText(resource.file_url) === file.path)).map((file) => ({
     id: file.id,
     title: file.title,
     description: "Stored in the resources bucket.",
@@ -266,6 +268,7 @@ export async function getAdminResources(): Promise<AdminContentItem[]> {
     details: [file.category, file.path],
     updatedAt: file.createdAt,
     externalHref: file.downloadUrl ?? undefined,
+    storagePath: file.path,
   }));
   return [...databaseItems, ...storedItems];
 }

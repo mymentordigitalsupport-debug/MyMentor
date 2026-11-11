@@ -5,7 +5,7 @@ import Link from "next/link"
 
 /**
  * Pushpin Tear Footer — a site footer made as a torn poster. An electric-blue
- * sheet carries the footer's chrome: back to top, socials, the KS monogram,
+ * sheet carries the footer's chrome: back to top, socials, the MM monogram,
  * copy-email, a newsletter field, an availability line, a live local clock
  * and two link columns. Its bottom has been ripped away from a glossy
  * pushpin, and the brand is printed on the paper underneath with legal links,
@@ -277,15 +277,12 @@ function Seal() {
   )
 }
 
-/** KS monogram: the K's upper arm ends in a pushpin head, the S is the tear. */
-function KMark() {
+/** MM monogram. */
+function MMMark() {
   return (
-    <svg viewBox="0 0 44 28" className="tpf-mark" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M5.5 4.5v19" />
-      <path d="M5.5 15.2 15.6 6.4" />
-      <path d="M10.4 11 17 23.5" />
-      <path d="M37.5 6.6c-1.2-1.4-3-2.1-5-2.1-3 0-5 1.6-5 3.9 0 5.2 10.4 3.5 10.4 9.1 0 2.6-2.3 4.5-5.4 4.5-2.3 0-4.4-.9-5.7-2.5" />
-      <circle cx="17" cy="5" r="3" fill="currentColor" stroke="none" className="tpf-mark-dot" />
+    <svg viewBox="0 0 48 28" className="tpf-mark" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4.5 23V5l7.5 10L19.5 5v18" />
+      <path d="M28.5 23V5l7.5 10L43.5 5v18" />
     </svg>
   )
 }
@@ -939,7 +936,7 @@ export default function PushpinTearFooter({
           ))}
         </div>
         <A href={logoHref} className="tpf-logo tpf-h" label={name + ", home"} style={H(1)}>
-          {logo ?? <KMark />}
+          {logo ?? <MMMark />}
         </A>
         <div className="tpf-h" style={{ ...H(2), position: "relative" }}>
           <button type="button" className="tpf-mail" onClick={copyEmail} aria-label={"Copy " + email} title="Copy email">

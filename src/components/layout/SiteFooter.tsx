@@ -31,7 +31,7 @@ export function SiteFooter() {
       ]}
       copyright={`© ${new Date().getFullYear()} MyMentor`}
       credit="Walk with purpose. Build with clarity."
-      chat={{ label: "say hi", href: "mailto:hello@mymentor.digital" }}
+      chat={{ label: "say hi", href: "/threads" }}
     />
   );
 }

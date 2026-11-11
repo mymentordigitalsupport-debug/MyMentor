@@ -30,13 +30,13 @@ export const MY_MENTOR_DATA = {
     tagline: "Walk with purpose. Build with clarity.",
     subtagline: "Guidance, structure, and daily action that keep people moving forward.",
     missionStatement:
-      "Because transformation should never be walked alone. My Mentor exists for people who need a guide, not a lecture. It brings together books, course structure, chapter flow, and daily action so growth becomes practical instead of theoretical.",
+      "My Mentor exists for people who need a guide, not a lecture. It brings together books, course structure, chapter flow, and daily action so growth becomes practical instead of theoretical.",
   },
   hero: {
     headlineLine1: "WE TRANSFORM",
     headlineLine2: "TOGETHER",
     subtext:
-      "Because transformation should never be walked alone. Guidance, structure, and daily action that keep people moving from survival into purpose.",
+      "Guidance, structure, and daily action that keep people moving from survival into purpose.",
   },
   pillars: [
     {

@@ -1,5 +1,4 @@
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { Resource, ResourceCategory } from "@/types";
 
 const BUCKET = "resources";
@@ -76,41 +75,33 @@ export async function getStoredResourceFiles(): Promise<StoredResourceFile[]> {
   }));
 }
 
-function storagePathFromUrl(url: string | null) {
-  if (!url) return "";
-  try {
-    return decodeURIComponent(new URL(url).pathname).split("/object/").at(-1) ?? "";
-  } catch {
-    return decodeURIComponent(url);
-  }
+async function resolveResourceUrl(admin: NonNullable<ReturnType<typeof createSupabaseAdminClient>>, value: string) {
+  if (/^https?:\/\//i.test(value)) return value;
+  const { data } = await admin.storage.from(BUCKET).createSignedUrl(value, SIGNED_URL_TTL_SECONDS);
+  return data?.signedUrl ?? null;
 }
 
 export async function getMemberResources(): Promise<Resource[]> {
-  const supabase = await createSupabaseServerClient();
-  const { data, error } = await supabase
+  const admin = createSupabaseAdminClient();
+  if (!admin) return [];
+
+  const { data, error } = await admin
     .from("resources")
     .select("id,title,category,description,file_url,is_published,sort_order,created_at,updated_at")
     .eq("is_published", true)
     .order("sort_order", { ascending: true });
 
-  const databaseResources = error
-    ? []
-    : (data ?? []).flatMap((resource): Resource[] => {
-        if (!resource.file_url) return [];
-        return [{
-          id: resource.id,
-          title: resource.title,
-          category: resource.category,
-          description: resource.description,
-          url: resource.file_url,
-          is_published: resource.is_published,
-          sort_order: resource.sort_order,
-          created_at: resource.created_at,
-          updated_at: resource.updated_at,
-        }];
-      });
+  const databaseResources: Resource[] = error ? [] : (await Promise.all((data ?? []).map(async (resource): Promise<Resource | null> => {
+    if (!resource.file_url) return null;
+    const url = await resolveResourceUrl(admin, resource.file_url);
+    return url ? { id: resource.id, title: resource.title, category: resource.category, description: resource.description, url, is_published: resource.is_published, sort_order: resource.sort_order, created_at: resource.created_at, updated_at: resource.updated_at } : null;
+  }))).filter((resource): resource is Resource => resource !== null);
   const bucketFiles = await getStoredResourceFiles();
-  const existingPaths = new Set(databaseResources.map((resource) => storagePathFromUrl(resource.url)));
+  const existingPaths = new Set(
+    (data ?? [])
+      .map((resource) => resource.file_url)
+      .filter((fileUrl): fileUrl is string => typeof fileUrl === "string" && !/^https?:\/\//i.test(fileUrl)),
+  );
   const storageResources = bucketFiles
       .filter((file) => !existingPaths.has(file.path) && file.downloadUrl)
       .map((file, index): Resource => {

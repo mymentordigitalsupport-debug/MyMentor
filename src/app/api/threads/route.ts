@@ -65,9 +65,10 @@ export async function GET() {
 
   const sessionClient = await createSupabaseServerClient();
   const { data: { user } } = await sessionClient.auth.getUser();
+  const commenter = user ? null : await guestCommenter();
   const [{ data: entries, error: entriesError }, { data: votes, error: votesError }, { data: topics, error: topicsError }] = await Promise.all([
     admin.from("threads_entries").select("id,author_id,author_name,is_anonymous,parent_id,post_id,body,media_path,media_type,topic_id,created_at").order("created_at", { ascending: false }).limit(200),
-    admin.from("threads_votes").select("entry_id,user_id,value").limit(5_000),
+    admin.from("threads_votes").select("entry_id,user_id,commenter_id,value").limit(5_000),
     admin.from("threads_topics").select("id,name,slug,position").order("position"),
   ]);
   if (entriesError || votesError || topicsError) return NextResponse.json({ error: "Unable to load Threads. Run supabase/threads_moderation.sql first." }, { status: 500 });
@@ -78,7 +79,7 @@ export async function GET() {
   for (const vote of votes ?? []) {
     const current = reactions.get(vote.entry_id) ?? { likes: 0, liked: false, disliked: false };
     current.likes += vote.value;
-    if (vote.user_id === user?.id) { current.liked = vote.value === 1; current.disliked = vote.value === -1; }
+    if (vote.user_id === user?.id || vote.commenter_id === commenter?.id) { current.liked = vote.value === 1; current.disliked = vote.value === -1; }
     reactions.set(vote.entry_id, current);
   }
   const rows = (entries ?? []) as ThreadEntry[];
@@ -107,7 +108,7 @@ export async function GET() {
       }),
     };
   });
-  return NextResponse.json({ posts, signedIn: Boolean(user), topics: topicRows.map((topic) => ({ ...topic, count: rows.filter((entry) => !entry.parent_id && entry.topic_id === topic.id).length })) });
+  return NextResponse.json({ posts, signedIn: Boolean(user), guestVerified: Boolean(commenter), topics: topicRows.map((topic) => ({ ...topic, count: rows.filter((entry) => !entry.parent_id && entry.topic_id === topic.id).length })) });
 }
 
 export async function POST(request: Request) {
@@ -164,7 +165,6 @@ export async function POST(request: Request) {
   if (action === "post" || action === "reply") {
     const commenter = user ? null : await guestCommenter();
     if (!user && !commenter) return NextResponse.json({ error: "Add your name and email to comment." }, { status: 401 });
-    if (!user && action !== "reply") return NextResponse.json({ error: "Sign in to start a thread." }, { status: 401 });
     const admin = createSupabaseAdminClient();
     const email = user?.email?.trim().toLowerCase() ?? commenter?.normalized_email;
     if (admin && email && await isBanned(admin, email)) return NextResponse.json({ error: "This email address cannot comment." }, { status: 403 });
@@ -194,17 +194,24 @@ export async function POST(request: Request) {
   }
 
   if (action === "vote") {
-    if (!user) return NextResponse.json({ error: "Sign in to react." }, { status: 401 });
+    const commenter = user ? null : await guestCommenter();
+    if (!user && !commenter) return NextResponse.json({ error: "Verify your email to react." }, { status: 401 });
     const entryId = typeof input.entryId === "string" ? input.entryId : null;
     const value = input.value === 1 || input.value === -1 ? input.value : null;
     if (!entryId) return NextResponse.json({ error: "Invalid reaction." }, { status: 400 });
     if (input.value === null) {
-      const { error } = await supabase.from("threads_votes").delete().eq("entry_id", entryId).eq("user_id", user.id);
+      const writer = user ? supabase : createSupabaseAdminClient();
+      if (!writer) return NextResponse.json({ error: "Threads is not configured." }, { status: 503 });
+      const query = writer.from("threads_votes").delete().eq("entry_id", entryId);
+      const { error } = user ? await query.eq("user_id", user.id) : await query.eq("commenter_id", commenter!.id);
       if (error) return NextResponse.json({ error: "Unable to save your reaction." }, { status: 400 });
       return NextResponse.json({ ok: true });
     }
     if (!value) return NextResponse.json({ error: "Invalid reaction." }, { status: 400 });
-    const { error } = await supabase.from("threads_votes").upsert({ entry_id: entryId, user_id: user.id, value });
+    const writer = user ? supabase : createSupabaseAdminClient();
+    if (!writer) return NextResponse.json({ error: "Threads is not configured." }, { status: 503 });
+    const vote = { entry_id: entryId, user_id: user?.id ?? null, commenter_id: commenter?.id ?? null, value };
+    const { error } = await writer.from("threads_votes").upsert(vote as never, { onConflict: user ? "entry_id,user_id" : "entry_id,commenter_id" });
     if (error) return NextResponse.json({ error: "Unable to save your reaction." }, { status: 400 });
     return NextResponse.json({ ok: true });
   }

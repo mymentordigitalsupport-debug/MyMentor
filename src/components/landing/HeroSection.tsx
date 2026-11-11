@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 
 const heroHeadlines = [
-  ["We transform", "together."],
+  ["We transform", "together"],
   ["Overcome Substance", "Dependence"],
   ["Reclaim Your", "Independence"],
   ["Rise Above", "Addiction"],
@@ -51,8 +51,8 @@ export function HeroSection() {
               <span className="font-mono text-xs text-stone-300/80">01</span>
             </div>
             <div>
-              <h1 className="font-serif text-5xl font-light leading-[0.9] tracking-[-0.055em] text-stone-100 sm:text-6xl lg:text-[5rem]" aria-live="polite"><span key={headlineIndex} className="block animate-[pulse_420ms_ease-out]">{headline}<span className="block italic text-[#95a681]">{emphasis}</span></span></h1>
-              <p className="mt-6 max-w-lg text-sm font-light leading-7 text-stone-200/90 sm:text-base sm:leading-8">Guided recovery, healing, family restoration, and purposeful growth through structured courses, lessons, and daily action.</p>
+              <h1 className="font-serif text-5xl font-light leading-[0.98] tracking-[-0.055em] text-stone-100 sm:text-6xl lg:text-[5rem]" aria-live="polite"><span key={headlineIndex} className="block whitespace-nowrap animate-[pulse_420ms_ease-out]">{headline}<span className="block whitespace-nowrap italic text-[#95a681]">{emphasis}</span></span></h1>
+              <p className="mt-6 max-w-lg text-sm font-light leading-7 text-stone-200/90 sm:text-base sm:leading-8">Breaking free from drug abuse and addiction through structured learning, deep personal healing, restored relationships, and purposeful living — one lesson, one choice, one day at a time.</p>
               <Link href="/about#books" className="landing-user-profile landing-user-profile--hero group mt-8 tracking-[0.12em]"><span className="landing-user-profile-inner"><span className="h-2.5 w-2.5 rounded-full bg-[#b8d088] shadow-[0_0_14px_#b8d088]" /><span>START YOUR JOURNEY</span><ArrowRight className="transition-transform group-hover:translate-x-1" /></span></Link>
             </div>
           </div>

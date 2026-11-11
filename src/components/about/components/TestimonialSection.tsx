@@ -22,7 +22,7 @@ export const TestimonialSection: React.FC<TestimonialSectionProps> = ({ onSignUp
 
   return (
     <section id="mission" className="relative w-full bg-[#FAF0E3] z-30">
-      <div className="relative w-full min-h-[85vh] sm:min-h-screen flex flex-col justify-center items-center bg-[#070707] text-white py-20 sm:py-28 md:py-36 px-4 xs:px-6 sm:px-10 md:px-16 overflow-hidden rounded-b-[25px] shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
+      <div className="relative w-full min-h-[85vh] sm:min-h-screen flex flex-col justify-center items-center bg-[#070707] text-white pb-20 pt-40 sm:pb-28 sm:pt-48 md:pb-36 md:pt-60 px-4 xs:px-6 sm:px-10 md:px-16 overflow-hidden rounded-b-[25px] shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
         {/* Background subtle star / dot grid pattern */}
         <div className="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:40px_40px]" />
 
