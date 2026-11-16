@@ -43,7 +43,12 @@ export function PaymentReviewClient() {
     }
   }
 
-  useEffect(() => { void load(); }, []);
+  useEffect(() => {
+    void load();
+    const refresh = () => { void load(); };
+    window.addEventListener("focus", refresh);
+    return () => window.removeEventListener("focus", refresh);
+  }, []);
 
   async function review(payment: Payment, action: "approve" | "needs_resubmission" | "reject") {
     if (payment.status !== "under_review" || !payment.proof_url) {
