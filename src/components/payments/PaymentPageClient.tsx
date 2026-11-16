@@ -66,8 +66,10 @@ export function PaymentPageClient() {
         throw new Error(body.error || "Unable to start your payment request.");
       }
       setPayment(body.payment); setBank(body.bank); setFile(null);
-      await load();
-      document.getElementById("eft-instructions")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      setRequests((current) => [body.payment, ...current.filter((row) => row.id !== body.payment.id)]);
+      window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
+        document.getElementById("eft-instructions")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }));
     } catch (error) {
       setNotice({ text: error instanceof Error ? error.message : "Unable to start your payment request.", kind: "error" });
     } finally {

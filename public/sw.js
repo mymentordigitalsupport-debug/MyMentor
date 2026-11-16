@@ -1,4 +1,4 @@
-const CACHE_NAME = "my-mentor-shell-v4";
+const CACHE_NAME = "my-mentor-shell-v5";
 const CORE_ASSETS = ["/", "/manifest.webmanifest", "/assets/images/favicon.png"];
 
 self.addEventListener("install", (event) => {
@@ -47,6 +47,25 @@ self.addEventListener("fetch", (event) => {
   }
 
   if (url.origin !== self.location.origin) {
+    return;
+  }
+
+  // Authenticated API and React Server Component responses contain live,
+  // user-specific data. Always let the browser fetch them from the network.
+  if (url.pathname.startsWith("/api/") || url.searchParams.has("_rsc")) {
+    return;
+  }
+
+  const cacheableAsset =
+    url.pathname.startsWith("/_next/static/") ||
+    url.pathname.startsWith("/assets/") ||
+    url.pathname.startsWith("/branding/") ||
+    url.pathname === "/manifest.webmanifest" ||
+    url.pathname === "/favicon.ico" ||
+    url.pathname === "/icon.svg" ||
+    url.pathname === "/apple-icon.svg";
+
+  if (!cacheableAsset) {
     return;
   }
 
