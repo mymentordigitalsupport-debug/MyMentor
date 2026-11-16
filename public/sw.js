@@ -1,4 +1,4 @@
-const CACHE_NAME = "my-mentor-shell-v3";
+const CACHE_NAME = "my-mentor-shell-v4";
 const CORE_ASSETS = ["/", "/manifest.webmanifest", "/assets/images/favicon.png"];
 
 self.addEventListener("install", (event) => {
@@ -7,19 +7,23 @@ self.addEventListener("install", (event) => {
       return cache.addAll(CORE_ASSETS);
     })
   );
+  self.skipWaiting();
 });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(
+    Promise.all([
+      caches.keys().then((keys) =>
+        Promise.all(
         keys
           .filter((key) => key !== CACHE_NAME)
           .map((key) => {
             return caches.delete(key);
           })
-      )
-    )
+        )
+      ),
+      self.clients.claim(),
+    ])
   );
 });
 
@@ -34,9 +38,10 @@ self.addEventListener("fetch", (event) => {
 
   if (request.mode === "navigate") {
     event.respondWith(
-      fetch(request).catch(() =>
-        caches.match(request).then((cachedResponse) => cachedResponse ?? caches.match("/"))
-      )
+      fetch(request).catch(async () => {
+        const cachedResponse = await caches.match(request) ?? await caches.match("/");
+        return cachedResponse ?? new Response("Temporarily offline", { status: 503 });
+      })
     );
     return;
   }
@@ -60,7 +65,7 @@ self.addEventListener("fetch", (event) => {
 
           return networkResponse;
         })
-        .catch(() => fetch(request));
+        .catch(() => new Response("Temporarily unavailable", { status: 503 }));
     })
   );
 });

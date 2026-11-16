@@ -13,23 +13,8 @@ export function PageLoader({ imageSrc, children }: PageLoaderProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
-    // Minimum loading time of 500ms for smooth transition
-    const minLoadTime = setTimeout(() => {
-      if (imageLoaded) {
-        setIsLoading(false);
-      }
-    }, 500);
-
-    return () => clearTimeout(minLoadTime);
-  }, [imageLoaded]);
-
-  useEffect(() => {
-    if (imageLoaded) {
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-      }, 500);
-      return () => clearTimeout(timer);
-    }
+    const timer = setTimeout(() => setIsLoading(false), imageLoaded ? 500 : 3000);
+    return () => clearTimeout(timer);
   }, [imageLoaded]);
 
   const text = "TOGETHER";
@@ -88,6 +73,7 @@ export function PageLoader({ imageSrc, children }: PageLoaderProps) {
           width={1920}
           height={1080}
           onLoad={() => setImageLoaded(true)}
+          onError={() => setImageLoaded(true)}
           priority
         />
       </div>

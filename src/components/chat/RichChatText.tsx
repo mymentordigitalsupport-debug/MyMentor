@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
 
 const COLORS = {
   forest: "text-[#25412f]",
@@ -9,11 +10,15 @@ const COLORS = {
 } as const;
 
 function inline(value: string): ReactNode[] {
-  const pattern = /(\*\*[^*]+\*\*|__[^_]+__|~~[^~]+~~|\[color=(?:forest|sage|gold|rose|muted)\][\s\S]*?\[\/color\])/g;
+  const pattern = /(\*\*[^*]+\*\*|__[^_]+__|~~[^~]+~~|`[^`]+`|https?:\/\/[^\s]+|\/(?:about|articles|register|login|authors-register|authors-login)(?:#[\w-]+)?|\[color=(?:forest|sage|gold|rose|muted)\][\s\S]*?\[\/color\])/g;
   return value.split(pattern).filter(Boolean).map((part, index) => {
     if (part.startsWith("**") && part.endsWith("**")) return <strong key={index} className="font-semibold">{part.slice(2, -2)}</strong>;
     if (part.startsWith("__") && part.endsWith("__")) return <span key={index} className="underline decoration-[#8ca881] decoration-2 underline-offset-2">{part.slice(2, -2)}</span>;
     if (part.startsWith("~~") && part.endsWith("~~")) return <span key={index} className="line-through decoration-[#a86a72]">{part.slice(2, -2)}</span>;
+    if (part.startsWith("`") && part.endsWith("`")) return <code key={index} className="rounded bg-[#eef2eb] px-1 py-0.5 text-[.9em] text-[#456441]">{part.slice(1, -1)}</code>;
+    if (part.startsWith("/") || part.startsWith("http://") || part.startsWith("https://")) {
+      return <Link key={index} href={part} className="font-medium text-[#456441] underline decoration-[#a9bd9e] underline-offset-2 hover:text-[#25412f]">{part}</Link>;
+    }
     const color = part.match(/^\[color=(forest|sage|gold|rose|muted)\]([\s\S]*)\[\/color\]$/);
     if (color) return <span key={index} className={COLORS[color[1] as keyof typeof COLORS]}>{color[2]}</span>;
     return part;
