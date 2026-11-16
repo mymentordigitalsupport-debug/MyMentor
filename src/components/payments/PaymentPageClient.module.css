@@ -83,11 +83,13 @@
 .bankGrid dt { margin-bottom: 5px; color: #788471; font-size: 12px; }
 .bankGrid dd { margin: 0; font-size: 16px; font-weight: 650; overflow-wrap: anywhere; }
 .bankInstructions { margin: 25px 0 0; padding: 14px 16px; border-left: 3px solid #a5b990; background: #eff1e7; color: #657361; font-size: 14px; line-height: 1.45; white-space: pre-wrap; }
-.bankUnavailable, .reviewState { display: flex; align-items: flex-start; gap: 13px; margin-top: 27px; padding: 18px; border: 1px solid #e6dfbd; border-radius: 7px; background: #f6f1dc; color: #5b6044; }
-.bankUnavailable svg, .reviewState svg { flex: none; margin-top: 2px; }
-.bankUnavailable strong, .reviewState strong { color: #324a31; font-size: 14px; }
-.bankUnavailable p, .reviewState p { margin: 5px 0 0; font-size: 13px; line-height: 1.5; }
+.bankUnavailable, .reviewState, .correctionState { display: flex; align-items: flex-start; gap: 13px; margin-top: 27px; padding: 18px; border: 1px solid #e6dfbd; border-radius: 7px; background: #f6f1dc; color: #5b6044; }
+.bankUnavailable svg, .reviewState svg, .correctionState svg { flex: none; margin-top: 2px; }
+.bankUnavailable strong, .reviewState strong, .correctionState strong { color: #324a31; font-size: 14px; }
+.bankUnavailable p, .reviewState p, .correctionState p { margin: 5px 0 0; font-size: 13px; line-height: 1.5; }
 .reviewState { border-color: #c8dcb7; background: #edf3e4; }
+.correctionState { border-color: #e4b9ad; background: #fff0eb; color: #7c4438; }
+.correctionState strong { color: #853d32; }
 .proofArea { margin-top: 29px; padding-top: 25px; border-top: 1px solid #d9decf; }
 .proofTitle { display: flex; align-items: center; gap: 10px; color: #2c5138; font-size: 16px; font-weight: 700; }
 .uploadBox { display: flex; align-items: center; flex-direction: column; justify-content: center; gap: 6px; min-height: 118px; margin-top: 15px; padding: 18px; border: 1px dashed #acbea0; border-radius: 8px; background: #f8f9f1; color: #4e6d52; text-align: center; cursor: pointer; }

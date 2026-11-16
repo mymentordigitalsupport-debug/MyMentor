@@ -13,9 +13,10 @@ const productLabels: Record<string, string> = {
 
 export async function notifyPaymentChange(admin: Admin, paymentId: string, template: PaymentTemplate) {
   try {
-    await queuePaymentChange(admin, paymentId, template);
+    return await queuePaymentChange(admin, paymentId, template);
   } catch {
     console.error("[payment-email] notification failed", { paymentId, template });
+    return false;
   }
 }
 
@@ -25,7 +26,7 @@ async function queuePaymentChange(admin: Admin, paymentId: string, template: Pay
     .eq("id", paymentId).maybeSingle();
   if (error || !payment) {
     console.error("[payment-email] payment lookup failed", { paymentId, template });
-    return;
+    return false;
   }
 
   const transition = template === "paymentProofReceived" ? payment.submitted_at : payment.updated_at;
@@ -40,9 +41,11 @@ async function queuePaymentChange(admin: Admin, paymentId: string, template: Pay
     course_url: transactionalEmailUrl("/course"),
   };
 
+  let memberNotified = true;
   try {
-    await queueUserEmail(admin, { userId: payment.user_id, eventKey, eventType, template, extraPayload });
+    memberNotified = await queueUserEmail(admin, { userId: payment.user_id, eventKey, eventType, template, extraPayload });
   } catch {
+    memberNotified = false;
     console.error("[payment-email] member notification failed", { paymentId, template });
   }
 
@@ -59,4 +62,5 @@ async function queuePaymentChange(admin: Admin, paymentId: string, template: Pay
       console.error("[payment-email] admin notification failed", { paymentId, template });
     }
   }
+  return memberNotified;
 }

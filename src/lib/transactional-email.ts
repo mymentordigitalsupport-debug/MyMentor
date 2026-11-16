@@ -105,7 +105,7 @@ export async function queueTransactionalEmail(
     payload: input.payload,
   }, { onConflict: "event_key", ignoreDuplicates: true });
   if (error) throw error;
-  await deliverTransactionalEmail(admin, input.eventKey);
+  return deliverTransactionalEmail(admin, input.eventKey);
 }
 
 export async function queueUserEmail(
@@ -117,7 +117,7 @@ export async function queueUserEmail(
     admin.auth.admin.getUserById(input.userId),
   ]);
   if (authError || !authResult?.user?.email) throw new Error("Recipient account email is unavailable.");
-  await queueTransactionalEmail(admin, {
+  return queueTransactionalEmail(admin, {
     eventKey: input.eventKey,
     eventType: input.eventType,
     template: input.template,
@@ -132,7 +132,7 @@ export async function queueAdminNotification(
 ) {
   const recipientEmail = process.env.ADMIN_NOTIFICATION_EMAIL?.trim() ?? "";
   if (!/^\S+@\S+\.\S+$/.test(recipientEmail)) throw new Error("ADMIN_NOTIFICATION_EMAIL is not configured.");
-  await queueTransactionalEmail(admin, {
+  return queueTransactionalEmail(admin, {
     eventKey: input.eventKey,
     eventType: input.eventType,
     template: "adminNotification",
