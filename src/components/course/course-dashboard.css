@@ -54,7 +54,7 @@
 .member-course-quote i { margin-left: auto; color: #8c947f; font-size: 11px; font-style: normal; }
 .member-course-progress-card { display: none; }
 .member-course-tabs { position: relative; display: flex; width: fit-content; max-width: 100%; gap: 5px; margin: 0 0 19px; padding: 7px; border: 1px solid #e3e2d6; border-radius: 7px; background: #eeeee5; }
-.member-course-tab { min-height: 38px; padding: 8px 15px; border: 1px solid transparent; border-radius: 4px; background: transparent; color: #717a69; font-size: 12px; }
+.member-course-tab { min-height: 44px; padding: 8px 15px; border: 1px solid transparent; border-radius: 4px; background: transparent; color: #717a69; font-size: 12px; }
 .member-course-tab:hover { background: #f7f7ee; color: #304832; }
 .member-course-tab[data-profile-exempt] { outline-offset: 2px; }
 .member-course-tab[class*="bg-[#fbf9f5]"] { border-color: #e5ddd0; background: #fffdf6; color: #304832; box-shadow: 0 4px 12px #35432c12; }

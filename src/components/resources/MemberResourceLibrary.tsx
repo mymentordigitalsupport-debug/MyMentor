@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ArrowUpRight, BookOpen, ExternalLink, FileText, Headphones, HeartHandshake } from "lucide-react";
+import { ArrowUpRight, BookOpen, ExternalLink, FileText, HeartHandshake } from "lucide-react";
 import type { Resource } from "@/types";
 import { Modal } from "@/components/ui/Modal";
 import { PaperPin, PaperSurface } from "@/components/threads/ThreadPaper";
@@ -9,8 +9,8 @@ import styles from "@/components/threads/ThreadsCommunity.module.css";
 
 const iconForCategory = {
   worksheet: BookOpen,
-  audio: Headphones,
-  video: HeartHandshake,
+  audio: BookOpen,
+  video: BookOpen,
   reading: BookOpen,
   support: HeartHandshake,
 };
@@ -47,9 +47,7 @@ export function MemberResourceLibrary({ resources }: { resources: Resource[] }) 
       <div className="min-h-0 flex-1 bg-[#e9e6dc]">
         {selected?.url && extension === "pdf" ? <iframe title={selected.title} src={selected.url} className="h-full w-full border-0" /> : null}
         {selected?.url && officeUrl ? <iframe title={selected.title} src={officeUrl} className="h-full w-full border-0" /> : null}
-        {selected?.url && ["mp3", "wav", "m4a", "ogg"].includes(extension) ? <div className="flex h-full items-center justify-center p-8"><audio controls src={selected.url} className="w-full max-w-xl" /></div> : null}
-        {selected?.url && ["mp4", "webm", "mov"].includes(extension) ? <div className="flex h-full items-center justify-center p-5"><video controls src={selected.url} className="max-h-full max-w-full" /></div> : null}
-        {selected?.url && !["pdf", "doc", "docx", "ppt", "pptx", "xls", "xlsx", "mp3", "wav", "m4a", "ogg", "mp4", "webm", "mov"].includes(extension) ? <div className="flex h-full flex-col items-center justify-center gap-4 p-8 text-center"><FileText className="h-10 w-10 text-forest" /><p className="max-w-sm text-sm leading-6 text-muted">This file type cannot be previewed in the browser.</p><a href={selected.url} target="_blank" rel="noopener noreferrer" className={styles.greenButton}>Open file <ExternalLink size={16} /></a></div> : null}
+        {selected?.url && !["pdf", "doc", "docx", "ppt", "pptx", "xls", "xlsx"].includes(extension) ? <div className="flex h-full flex-col items-center justify-center gap-4 p-8 text-center"><FileText className="h-10 w-10 text-forest" /><p className="max-w-sm text-sm leading-6 text-muted">This document cannot be previewed in the browser.</p><a href={selected.url} target="_blank" rel="noopener noreferrer" className={styles.greenButton}>Open file <ExternalLink size={16} /></a></div> : null}
       </div>
     </Modal>
   </>;

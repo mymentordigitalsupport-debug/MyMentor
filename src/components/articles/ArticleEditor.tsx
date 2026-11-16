@@ -66,7 +66,7 @@ export function ArticleEditor({ article, categories, mode }: Props) {
       const id = article?.id ?? result.article?.id;
       toast.success("Article saved", article ? "Your changes have been saved." : "Your new draft has been created.");
       router.push(mode === "admin" ? "/admin/articles" : `/author/articles/${id}`);
-      router.refresh();
+      if (article) router.refresh();
     } catch (error) {
       toast.error("Article not saved", error instanceof Error ? error.message : "Please try again.");
     } finally {
@@ -99,7 +99,7 @@ export function ArticleEditor({ article, categories, mode }: Props) {
           <Input label="Article title" value={form.title} onChange={(event) => update("title", event.target.value)} required />
           <Input label="URL slug" value={form.slug} onChange={(event) => update("slug", event.target.value)} placeholder="recovery-support-guide" hint="Leave this close to the title; it becomes the public article address." />
           <Textarea label="Excerpt" value={form.excerpt} onChange={(event) => update("excerpt", event.target.value)} maxLength={500} hint="A short summary used in listings and search results." />
-          <Textarea label="Article body" value={form.contentMarkdown} onChange={(event) => update("contentMarkdown", event.target.value)} className="min-h-[360px] font-mono text-sm" placeholder="# Heading\n\nWrite the article in Markdown..." required />
+          <Textarea label="Article body" value={form.contentMarkdown} onChange={(event) => update("contentMarkdown", event.target.value)} className="min-h-[360px] font-mono text-sm" placeholder={"# Heading\n\nWrite the article in Markdown..."} required />
           <div className="grid gap-5 sm:grid-cols-2">
             <div className="rounded-2xl border border-mist bg-[#fffdf8] p-4">
               <div className="flex items-start justify-between gap-3">

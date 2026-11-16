@@ -21,14 +21,14 @@ export default async function AuthorLayout({ children }: { children: React.React
     <div className={`${styles.community} relative min-h-screen text-[#24352c]`} style={{ "--community-grain": "url(#author-board-grain)", "--community-fibres": "url(#author-board-fibres)" } as CSSProperties}>
       <CommunityTexture id="author-board" />
       <header className="relative z-20 border-b border-[#d8ddcc] bg-[#f6f3ed]/90 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-8 lg:px-12">
-          <Link href="/author" className="group flex items-center gap-3" aria-label="My Mentor Authors home">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 py-4 sm:gap-4 sm:px-8 lg:px-12">
+          <Link href="/author" className="group flex shrink-0 items-center gap-2 sm:gap-3" aria-label="My Mentor Authors home">
             <span className="grid h-10 w-10 place-items-center rounded-[13px] bg-[#21382c] text-[#e8d4a7] shadow-[0_8px_20px_-10px_#21382c] transition-transform group-hover:-rotate-6"><PenLine className="h-4 w-4" /></span>
-            <span className="flex flex-col"><span className="font-serif text-lg leading-none tracking-[-0.03em]">My Mentor</span><span className="mt-1 text-[9px] font-semibold uppercase tracking-[0.28em] text-[#8d7955]">Authors</span></span>
+            <span className="flex flex-col"><span className="whitespace-nowrap font-serif text-base leading-none tracking-[-0.03em] sm:text-lg">My Mentor</span><span className="mt-1 text-[9px] font-semibold uppercase tracking-[0.28em] text-[#8d7955]">Authors</span></span>
           </Link>
-          <nav aria-label="Author navigation" className="flex items-center gap-2 sm:gap-5">
+          <nav aria-label="Author navigation" className="flex items-center gap-1 sm:gap-5">
             <Link href="/author" className="hidden min-h-11 items-center text-xs font-semibold uppercase tracking-[0.15em] text-[#435447] transition hover:text-[#9a7e4d] sm:inline-flex">My articles</Link>
-            <Link href="/" className="inline-flex min-h-11 items-center gap-1 text-xs font-semibold text-[#435447] transition hover:text-[#9a7e4d]">View site <ArrowUpRight className="h-3.5 w-3.5" /></Link>
+            <Link href="/" aria-label="View site" className="inline-flex min-h-11 min-w-11 items-center justify-center gap-1 text-xs font-semibold text-[#435447] transition hover:text-[#9a7e4d]"><span className="hidden sm:inline">View site</span><ArrowUpRight className="h-4 w-4" /></Link>
             <AuthorAccountMenu email={actor.user.email ?? "Author"} />
           </nav>
         </div>

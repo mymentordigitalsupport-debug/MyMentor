@@ -4,7 +4,12 @@
 
 html:has(.register-page),
 body:has(.register-page) {
-  overflow: hidden;
+  overflow-x: clip;
+}
+
+@media (max-width: 767px) {
+  .register-page { overflow-x: clip; }
+  .register-page .register-card > div:first-child { min-width: 0; transform: none; }
 }
 
 .register-card {

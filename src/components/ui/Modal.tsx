@@ -21,27 +21,34 @@ export function Modal({ isOpen, onClose, children, title, className }: ModalProp
       previousFocusRef.current = document.activeElement as HTMLElement;
       
       // Prevent body scroll
+      const previousOverflow = document.body.style.overflow;
       document.body.style.overflow = "hidden";
       
       // Focus the modal
       modalRef.current?.focus();
+      return () => {
+        document.body.style.overflow = previousOverflow;
+        previousFocusRef.current?.focus();
+      };
     } else {
-      // Restore body scroll
-      document.body.style.overflow = "";
-      
-      // Restore focus to the previously focused element
       previousFocusRef.current?.focus();
     }
-
-    return () => {
-      document.body.style.overflow = "";
-    };
   }, [isOpen]);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isOpen) {
         onClose();
+      }
+      if (e.key === "Tab" && isOpen) {
+        const focusable = modalRef.current?.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        );
+        if (!focusable?.length) { e.preventDefault(); modalRef.current?.focus(); return; }
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
       }
     };
 
@@ -53,7 +60,7 @@ export function Modal({ isOpen, onClose, children, title, className }: ModalProp
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm transition-opacity duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-3 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] pt-[calc(env(safe-area-inset-top)+0.75rem)] bg-black/50 backdrop-blur-sm transition-opacity duration-200 sm:p-4"
       onClick={(e) => {
         if (e.target === e.currentTarget) {
           onClose();
@@ -67,7 +74,7 @@ export function Modal({ isOpen, onClose, children, title, className }: ModalProp
         ref={modalRef}
         tabIndex={-1}
         className={cn(
-          "relative w-full max-w-md bg-cream rounded-3xl shadow-lg p-8 transition-all duration-200 scale-100 opacity-100",
+          "relative my-auto max-h-full w-full max-w-md overflow-y-auto overscroll-contain bg-cream rounded-3xl shadow-lg p-5 transition-all duration-200 scale-100 opacity-100 sm:p-8",
           "focus:outline-none",
           className
         )}
@@ -76,7 +83,7 @@ export function Modal({ isOpen, onClose, children, title, className }: ModalProp
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 text-muted hover:text-text transition-colors rounded-full hover:bg-mist"
+          className="absolute top-3 right-3 grid h-11 w-11 place-items-center text-muted hover:text-text transition-colors rounded-full hover:bg-mist sm:top-4 sm:right-4"
           aria-label="Close modal"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

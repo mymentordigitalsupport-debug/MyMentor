@@ -10,7 +10,7 @@ import { PasswordInput } from "@/components/ui/PasswordInput";
 import { useToast } from "@/components/ui/ToastProvider";
 import { ANONYMOUS_NAMES } from "@/types";
 import { randomAnonymousName } from "@/lib/utils";
-import { COURSE_LIBRARY, DEFAULT_COURSE_TITLE, normalizeCourseKey } from "@/lib/course-library";
+import { DEFAULT_COURSE_TITLE } from "@/lib/course-library";
 
 type BookOption = {
   title: string;
@@ -56,8 +56,9 @@ export function RegisterForm() {
     if (previousStep.current !== step && stepHeading.current) {
       stepHeading.current.focus({ preventScroll: true });
       const headingTop = stepHeading.current.getBoundingClientRect().top;
-      if (headingTop < 24 || headingTop > window.innerHeight - 80) {
-        window.scrollTo({ top: window.scrollY + headingTop - 24, behavior: "instant" });
+      const topClearance = window.innerWidth < 1024 ? 96 : 24;
+      if (headingTop < topClearance || headingTop > window.innerHeight - 80) {
+        window.scrollTo({ top: window.scrollY + headingTop - topClearance, behavior: "instant" });
       }
     }
     previousStep.current = step;
@@ -69,30 +70,11 @@ export function RegisterForm() {
       setLoadingBooks(true);
       setBooksError(false);
       try {
-        const supabase = createSupabaseBrowserClient();
-        const { data, error } = await supabase
-          .from("course_versions")
-          .select("course_id, title, description, status, guidance_path")
-          .eq("status", "published")
-          .eq("guidance_path", "religious");
-        if (error) throw error;
-
-        const courseMap = new Map<string, { id: string; description: string }>();
-        for (const version of data ?? []) {
-          const matchedBook = COURSE_LIBRARY.find((book) =>
-            normalizeCourseKey(version.title).startsWith(normalizeCourseKey(book.title))
-          );
-          if (!matchedBook || courseMap.has(normalizeCourseKey(matchedBook.title))) continue;
-          courseMap.set(normalizeCourseKey(matchedBook.title), {
-            id: version.course_id,
-            description: version.description ?? "",
-          });
-        }
+        const response = await fetch("/api/auth/journeys", { cache: "no-store" });
+        if (!response.ok) throw new Error("Unable to load journeys");
+        const payload = await response.json() as { books?: BookOption[] };
         if (isMounted) {
-          setBooks(COURSE_LIBRARY.map((book) => {
-            const course = courseMap.get(normalizeCourseKey(book.title));
-            return { ...book, description: course?.description || book.description, courseId: course?.id ?? null };
-          }));
+          setBooks(payload.books ?? []);
         }
       } catch {
         if (isMounted) setBooksError(true);
@@ -153,14 +135,11 @@ export function RegisterForm() {
       const supabase = createSupabaseBrowserClient();
       let resolvedCourseId = selectedBook.courseId;
       if (!resolvedCourseId) {
-        const { data: fallbackCourse, error: fallbackError } = await supabase
-          .from("course_versions")
-          .select("course_id")
-          .eq("status", "published")
-          .eq("guidance_path", "religious")
-          .ilike("title", `${selectedBook.title} - %`)
-          .maybeSingle();
-        if (!fallbackError) resolvedCourseId = fallbackCourse?.course_id ?? null;
+        const response = await fetch("/api/auth/journeys", { cache: "no-store" });
+        if (response.ok) {
+          const payload = await response.json() as { books?: BookOption[] };
+          resolvedCourseId = payload.books?.find((book) => book.title === selectedBook.title)?.courseId ?? null;
+        }
       }
       if (!resolvedCourseId) throw new Error("This book does not have an active study path yet. Please try again later.");
 
@@ -203,7 +182,7 @@ export function RegisterForm() {
       }).eq("user_id", data.user.id);
       await fetch("/api/auth/member-welcome", { method: "POST" }).catch(() => undefined);
       toast.success("Account Created!", "Your account has been created successfully. Welcome!");
-      router.push("/onboarding");
+      router.push("/payments");
       router.refresh();
     } catch (error) {
       const message = error instanceof Error ? error.message : "Unable to create your account right now. Please try again.";

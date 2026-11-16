@@ -129,6 +129,8 @@ function TabPill({
   return (
     <button
       type="button"
+      role="tab"
+      aria-selected={active}
       data-profile-exempt
       onClick={onClick}
       className={cn(
@@ -364,7 +366,7 @@ export function CourseDashboard({
           </div>
         </div>
 
-        <div className="member-course-tabs flex flex-wrap items-center gap-3">
+        <div role="tablist" aria-label="Course sections" className="member-course-tabs flex flex-wrap items-center gap-3">
           {tabs.map((tab) => (
             <TabPill key={tab.id} active={activeTab === tab.id} onClick={() => setActiveTab(tab.id)}>
               {tab.label}
@@ -438,11 +440,12 @@ export function CourseDashboard({
                         );
                       }
 
-                      return (
-                        <Link
-                          key={lesson.id}
-                          href={`/course/${courseId}/${activeChapter?.id}/${lesson.id}`}
-                          className="grid grid-cols-[28px_minmax(0,1fr)_auto] items-center gap-3 rounded-[18px] border border-[#e5ddd0] bg-[#fffdf9] px-4 py-4 transition hover:bg-[#f8f5ef]"
+                      const lessonItem = (
+                        <div
+                          className={cn(
+                            "grid grid-cols-[28px_minmax(0,1fr)_auto] items-center gap-3 rounded-[18px] border border-[#e5ddd0] bg-[#fffdf9] px-4 py-4",
+                            completed ? "transition hover:bg-[#f8f5ef]" : "cursor-not-allowed opacity-65",
+                          )}
                         >
                           <span className={cn("flex h-7 w-7 items-center justify-center rounded-full", completed ? "bg-[#8ea281] text-[#fbf9f5]" : "bg-[#f3eee7] text-muted")}>
                             {completed ? <CheckCircle2 className="h-4 w-4" /> : <Lock className="h-3.5 w-3.5" />}
@@ -459,7 +462,17 @@ export function CourseDashboard({
                               {completed ? <FileText className="h-4 w-4" /> : <Lock className="h-3.5 w-3.5" />}
                             </span>
                           </div>
+                        </div>
+                      );
+
+                      return completed ? (
+                        <Link key={lesson.id} href={`/course/${courseId}/${activeChapter?.id}/${lesson.id}`}>
+                          {lessonItem}
                         </Link>
+                      ) : (
+                        <div key={lesson.id} aria-disabled="true">
+                          {lessonItem}
+                        </div>
                       );
                     })
                   ) : (
@@ -593,11 +606,18 @@ export function CourseDashboard({
                   </div>
                   <div className="mt-4 space-y-2">
                     {Chapter.lessons.length > 0 ? (
-                      Chapter.lessons.map((lesson) => (
-                        <Link key={lesson.id} href={`/course/${courseId}/${Chapter.id}/${lesson.id}`}>
-                          <div className="grid grid-cols-[28px_minmax(0,1fr)_auto] items-center gap-3 rounded-[18px] border border-[#e5ddd0] bg-[#fffdf9] px-4 py-4 transition hover:bg-[#f8f5ef]">
-                            <span className={cn("flex h-7 w-7 items-center justify-center rounded-full", completedLessonIds.includes(lesson.id) ? "bg-sage text-cream" : "bg-[#f3eee7] text-muted")}>
-                              {completedLessonIds.includes(lesson.id) ? <CheckCircle2 className="h-4 w-4" /> : <Circle className="h-3.5 w-3.5" />}
+                      Chapter.lessons.map((lesson, lessonIndex) => {
+                        const completed = completedLessonIds.includes(lesson.id);
+                        const unlocked = completed || Chapter.lessons
+                          .slice(0, lessonIndex)
+                          .every((priorLesson) => completedLessonIds.includes(priorLesson.id));
+                        const lessonItem = (
+                          <div className={cn(
+                            "grid grid-cols-[28px_minmax(0,1fr)_auto] items-center gap-3 rounded-[18px] border border-[#e5ddd0] bg-[#fffdf9] px-4 py-4",
+                            unlocked ? "transition hover:bg-[#f8f5ef]" : "cursor-not-allowed opacity-65",
+                          )}>
+                            <span className={cn("flex h-7 w-7 items-center justify-center rounded-full", completed ? "bg-sage text-cream" : "bg-[#f3eee7] text-muted")}>
+                              {completed ? <CheckCircle2 className="h-4 w-4" /> : unlocked ? <Circle className="h-3.5 w-3.5" /> : <Lock className="h-3.5 w-3.5" />}
                             </span>
                             <div className="min-w-0">
                               <p className="truncate text-[0.98rem] font-medium text-text">
@@ -607,8 +627,16 @@ export function CourseDashboard({
                             </div>
                             <span className="text-[0.82rem] text-muted">{lesson.estimated_minutes ?? 8} min</span>
                           </div>
-                        </Link>
-                      ))
+                        );
+
+                        return unlocked ? (
+                          <Link key={lesson.id} href={`/course/${courseId}/${Chapter.id}/${lesson.id}`}>
+                            {lessonItem}
+                          </Link>
+                        ) : (
+                          <div key={lesson.id} aria-disabled="true">{lessonItem}</div>
+                        );
+                      })
                     ) : (
                       <div className="rounded-[18px] border border-[#e5ddd0] bg-[#fffdf9] px-4 py-4 text-sm text-muted">
                         No lessons found for this Chapter.

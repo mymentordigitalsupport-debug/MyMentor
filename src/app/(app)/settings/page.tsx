@@ -21,7 +21,7 @@ export default async function SettingsPage() {
   const { data: profile } = await supabase
     .from("profiles")
     .select("display_name, anonymous_name, is_anonymous, preferred_guidance_path")
-    .eq("id", user.id)
+    .eq("user_id", user.id)
     .maybeSingle();
 
   const guidancePath: GuidancePath =

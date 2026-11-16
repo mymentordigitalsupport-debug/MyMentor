@@ -68,7 +68,7 @@ export function AuthorRegistrationForm() {
 
   return (
     <form onSubmit={submit} className="grid gap-5" noValidate>
-      <div className="flex items-center gap-2" aria-label={`Step ${step + 1} of 3`}>{["Account", "Your voice", "Application"].map((label, index) => <div key={label} className="flex min-w-0 flex-1 items-center gap-2"><span className={`grid h-7 w-7 shrink-0 place-items-center rounded-full text-xs font-semibold ${index <= step ? "bg-forest text-cream" : "bg-mist text-muted"}`}>{index + 1}</span><span className={`truncate text-xs font-medium ${index === step ? "text-forest" : "text-muted"}`}>{label}</span>{index < 2 && <i className="h-px flex-1 bg-mist" />}</div>)}</div>
+      <div className="grid grid-cols-3 gap-2" aria-label={`Step ${step + 1} of 3`}>{["Account", "Your voice", "Application"].map((label, index) => <div key={label} className="flex min-w-0 flex-col items-center gap-1.5 text-center sm:flex-row sm:gap-2 sm:text-left"><span className={`grid h-8 w-8 shrink-0 place-items-center rounded-full text-xs font-semibold ${index <= step ? "bg-forest text-cream" : "bg-mist text-muted"}`}>{index + 1}</span><span className={`min-w-0 break-words text-[11px] font-medium leading-tight sm:text-xs ${index === step ? "text-forest" : "text-muted"}`}>{label}</span></div>)}</div>
       {step === 0 && <div className="grid gap-5"><div className="grid gap-5 sm:grid-cols-2">
         <Input label="Full name" value={form.fullName} onChange={(event) => setField("fullName", event.target.value)} required />
         <Input label="Public author name" value={form.publicName} onChange={(event) => setField("publicName", event.target.value)} required />

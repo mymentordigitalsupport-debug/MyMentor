@@ -12,5 +12,5 @@ export default async function AdminCoursePage({ params }: { params: Promise<{ co
   const { courseId } = await params;
   const course = (await getAdminCourses()).find((item) => item.id === courseId);
   if (!course) notFound();
-  return <LiveAdminDetail item={course} backHref="/admin/courses" backLabel="Back to courses" />;
+  return <LiveAdminDetail item={course} backHref="/admin/courses" backLabel="Back to courses" type="course" />;
 }

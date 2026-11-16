@@ -22,12 +22,12 @@ export default async function ProgressPage() {
   if (!user) redirect("/login");
 
   const [{ data: profile }, { data: courseProgress }, { data: enrollments }] = await Promise.all([
-    supabase.from("profiles").select("preferred_guidance_path, selected_course_id").eq("id", user.id).maybeSingle(),
+    supabase.from("profiles").select("preferred_guidance_path, selected_course_id, active_course_version_id").eq("user_id", user.id).maybeSingle(),
     supabase.from("user_course_progress").select("course_version_id, last_active_at").eq("user_id", user.id).order("last_active_at", { ascending: false }).limit(1),
     supabase.from("user_course_enrollments").select("course_version_id, started_at").eq("user_id", user.id).order("started_at", { ascending: false }).limit(1),
   ]);
   const guidancePath = profile?.preferred_guidance_path === "general" ? "religious" : profile?.preferred_guidance_path ?? "religious";
-  const activeVersionId = courseProgress?.[0]?.course_version_id ?? enrollments?.[0]?.course_version_id ?? null;
+  const activeVersionId = profile?.active_course_version_id ?? courseProgress?.[0]?.course_version_id ?? enrollments?.[0]?.course_version_id ?? null;
   const versionSelect = "id, title, course_id, courses(id, title)";
   const versionResult = activeVersionId
     ? await supabase.from("course_versions").select(versionSelect).eq("id", activeVersionId).maybeSingle()

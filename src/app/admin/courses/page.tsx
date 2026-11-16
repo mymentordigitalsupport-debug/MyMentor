@@ -8,5 +8,6 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminCoursesPage() {
-  return <LiveAdminCollection title="Courses" description="Live course records from Supabase." items={await getAdminCourses()} createHref="/admin/courses/new" createLabel="Create course" />;
+  const items = await getAdminCourses();
+  return <LiveAdminCollection title="Courses" description="Live course records from Supabase." items={items} createHref="/admin/courses/new" createLabel="Create course" />;
 }

@@ -4,7 +4,7 @@ const net = require("net");
 const path = require("path");
 
 const projectRoot = path.resolve(__dirname, "..");
-const nextDirectory = path.join(projectRoot, ".next");
+const nextDirectory = path.join(projectRoot, ".next-dev");
 const nextBin = path.join(projectRoot, "node_modules", "next", "dist", "bin", "next");
 const hostname = "127.0.0.1";
 const port = "3000";
@@ -13,7 +13,7 @@ const portCheck = net.createServer();
 
 portCheck.once("error", (error) => {
   if (error.code === "EADDRINUSE") {
-    console.error(`Port ${port} is already in use. Keeping .next intact.`);
+    console.error(`Port ${port} is already in use. Keeping .next-dev intact.`);
     process.exit(1);
   }
 
@@ -26,7 +26,7 @@ portCheck.once("listening", () => {
     try {
       rmSync(nextDirectory, { recursive: true, force: true });
     } catch (error) {
-      console.error("Failed to clean .next before starting dev server:", error);
+      console.error("Failed to clean .next-dev before starting dev server:", error);
     }
 
     const child = spawn(process.execPath, ["--use-system-ca", nextBin, "dev", "--hostname", hostname, "--port", port], {

@@ -80,8 +80,8 @@ export default async function CoursePage() {
 
   const profilePromise = supabase
     .from("profiles")
-    .select("preferred_guidance_path, selected_course_id")
-    .eq("id", user.id)
+    .select("preferred_guidance_path, selected_course_id, active_course_version_id")
+    .eq("user_id", user.id)
     .single();
 
   const recentCourseProgressPromise = supabase
@@ -124,7 +124,11 @@ export default async function CoursePage() {
 
   const enrollmentList = (recentEnrollments ?? []) as CourseEnrollmentRow[];
   const selectedCourseId = profile?.selected_course_id ?? null;
-  const recentCourseVersionId = recentCourseProgress?.[0]?.course_version_id ?? enrollmentList[0]?.course_version_id ?? null;
+  const recentCourseVersionId =
+    profile?.active_course_version_id ??
+    recentCourseProgress?.[0]?.course_version_id ??
+    enrollmentList[0]?.course_version_id ??
+    null;
 
   const guidedCourseVersionList = (guidedCourseVersions ?? []) as CourseVersionRow[];
   const recentCourseVersion =

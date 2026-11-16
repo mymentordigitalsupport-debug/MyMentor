@@ -91,7 +91,7 @@ export async function POST(request: Request) {
     const email = cleanEmail(input.email);
     const reason = typeof input.reason === "string" ? input.reason.trim().slice(0, 300) : null;
     if (!/^\S+@\S+\.\S+$/.test(email)) return NextResponse.json({ error: "Enter a valid email address." }, { status: 400 });
-    const bannedBy = user.id === "hardcoded-admin" ? null : user.id;
+    const bannedBy = user.id;
     const { error } = await admin.from("threads_comment_bans").upsert({ normalized_email: email, reason, banned_by: bannedBy }, { onConflict: "normalized_email" });
     if (error) return NextResponse.json({ error: "Unable to ban email address." }, { status: 400 });
     return NextResponse.json({ ok: true });

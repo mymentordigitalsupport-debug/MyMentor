@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import {
   BookOpenText,
   FileStack,
@@ -16,6 +17,8 @@ import {
   Users,
   Video,
   Wand2,
+  WalletCards,
+  Menu,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -25,6 +28,8 @@ const ADMIN_NAV = [
   { href: "/admin/chapters", label: "Chapters", icon: FileStack },
   { href: "/admin/lessons", label: "Lessons", icon: BookOpenText },
   { href: "/admin/users", label: "Users", icon: Users },
+  { href: "/admin/payments", label: "EFT Payments", icon: WalletCards },
+  { href: "/admin/payments/settings", label: "Bank Settings", icon: WalletCards },
   { href: "/admin/articles", label: "Articles", icon: Newspaper },
   { href: "/admin/threads", label: "Threads", icon: MessageSquare },
   { href: "/admin/lesson-builder", label: "Lesson Builder", icon: Wand2 },
@@ -32,14 +37,30 @@ const ADMIN_NAV = [
   { href: "/admin/quizzes", label: "Quizzes", icon: Sparkles },
   { href: "/admin/reflections", label: "Reflections", icon: ShieldCheck },
   { href: "/admin/resources", label: "Resources", icon: PlaySquare },
-  { href: "/", label: "Back to home page", icon: LogOut, isExit: true },
 ];
 
 export function AdminSidebar({ pendingArticles = 0, pendingAuthors = 0 }: { pendingArticles?: number; pendingAuthors?: number }) {
   const pathname = usePathname();
+  const router = useRouter();
   const pendingTotal = pendingArticles + pendingAuthors;
+  async function logout() {
+    await fetch("/api/auth/logout", { method: "POST" });
+    router.replace("/admin-login");
+    router.refresh();
+  }
 
   return (
+    <>
+    <header className="sticky top-0 z-40 flex w-full items-center justify-between border-b border-mist bg-cream px-4 py-3 lg:hidden">
+      <p className="font-semibold text-text">My Mentor Admin</p>
+      <details className="relative">
+        <summary className="grid h-10 w-10 cursor-pointer list-none place-items-center rounded-xl border border-mist" aria-label="Open admin navigation"><Menu size={19} /></summary>
+        <nav className="absolute right-0 mt-2 max-h-[75vh] w-64 overflow-y-auto rounded-2xl border border-mist bg-cream p-2 shadow-xl" aria-label="Mobile admin navigation">
+          {ADMIN_NAV.map((item) => <Link key={item.href} href={item.href} className="block rounded-xl px-3 py-2.5 text-sm text-text hover:bg-sand">{item.label}</Link>)}
+          <button type="button" onClick={() => void logout()} className="mt-1 flex w-full items-center gap-2 rounded-xl px-3 py-2.5 text-left text-sm font-semibold text-forest hover:bg-sand"><LogOut size={16} />Log out</button>
+        </nav>
+      </details>
+    </header>
     <aside className="hidden min-h-screen w-60 shrink-0 border-r border-mist/80 bg-cream shadow-[8px_0_30px_rgba(31,42,36,0.04)] lg:flex lg:flex-col">
       <div className="border-b border-mist/80 px-5 py-6">
         <div className="flex items-center gap-3">
@@ -78,9 +99,7 @@ export function AdminSidebar({ pendingArticles = 0, pendingAuthors = 0 }: { pend
                 "flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition-all duration-150",
                 active
                   ? "border border-sage/25 bg-sage/10 text-forest shadow-sm"
-                  : item.isExit
-                    ? "border border-sage/20 bg-sage/10 text-forest hover:bg-sage/15"
-                    : "text-muted hover:bg-sand hover:text-text"
+                  : "text-muted hover:bg-sand hover:text-text"
               )}
               aria-current={active ? "page" : undefined}
             >
@@ -90,7 +109,9 @@ export function AdminSidebar({ pendingArticles = 0, pendingAuthors = 0 }: { pend
             </Link>
           );
         })}
+        <button type="button" onClick={() => void logout()} className="mt-2 flex items-center gap-3 rounded-2xl border border-sage/20 bg-sage/10 px-4 py-3 text-sm font-medium text-forest hover:bg-sage/15"><LogOut className="h-4 w-4" />Log out</button>
       </nav>
     </aside>
+    </>
   );
 }

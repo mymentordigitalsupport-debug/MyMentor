@@ -47,7 +47,7 @@ export function MemberAuthShell({
 
   return (
     <main className={`member-login${isRegister ? " member-register" : ""}`}>
-      <PublicNavigation overDark />
+      <PublicNavigation overDark stickyOnScroll={false} />
 
       <div className="login-scene">
         <div className="login-side-note login-side-note--left" aria-hidden="true">

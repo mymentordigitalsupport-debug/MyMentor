@@ -12,5 +12,5 @@ export default async function AdminChapterDetailPage({ params }: { params: Promi
   const { chapterId } = await params;
   const chapter = (await getAdminChapters()).find((item) => item.id === chapterId);
   if (!chapter) notFound();
-  return <LiveAdminDetail item={chapter} backHref="/admin/chapters" backLabel="Back to chapters" />;
+  return <LiveAdminDetail item={chapter} backHref="/admin/chapters" backLabel="Back to chapters" type="chapter" />;
 }

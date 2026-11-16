@@ -12,5 +12,5 @@ export default async function AdminLessonDetailPage({ params }: { params: Promis
   const { lessonId } = await params;
   const lesson = (await getAdminLessons()).find((item) => item.id === lessonId);
   if (!lesson) notFound();
-  return <LiveAdminDetail item={lesson} backHref="/admin/lessons" backLabel="Back to lessons" />;
+  return <LiveAdminDetail item={lesson} backHref="/admin/lessons" backLabel="Back to lessons" type="lesson" />;
 }

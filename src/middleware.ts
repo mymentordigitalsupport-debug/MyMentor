@@ -1,6 +1,5 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
-import { ADMIN_OVERRIDE_COOKIE } from "@/lib/admin/auth";
 
 // Routes that require authentication
 const PROTECTED_ROUTES = [
@@ -11,6 +10,7 @@ const PROTECTED_ROUTES = [
   "/progress",
   "/resources",
   "/settings",
+  "/payments",
   "/onboarding",
   "/admin",
   "/admin/courses",
@@ -53,7 +53,6 @@ function redirectForRequest(request: NextRequest, path: string) {
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const nextParam = request.nextUrl.searchParams.get("next") ?? "";
-  const hardcodedAdmin = request.cookies.get(ADMIN_OVERRIDE_COOKIE)?.value === "1";
 
   // If Supabase env vars are not set, skip auth checks entirely (dev convenience)
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -102,17 +101,23 @@ export async function middleware(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   let role: string | null = null;
+  let disabled = false;
   if (user) {
     const { data: profile } = await supabase
       .from("profiles")
-      .select("role")
+      .select("role,status")
       .eq("user_id", user.id)
       .maybeSingle();
-    role = profile?.role ?? (user.app_metadata?.role as string | undefined) ?? null;
+    disabled = ["paused", "blocked", "suspended", "disabled", "anonymized"].includes(profile?.status ?? "");
+    role = disabled ? null : profile?.role ?? (user.app_metadata?.role as string | undefined) ?? null;
+  }
+
+  if (user && disabled) {
+    if (AUTH_ROUTES.some((route) => pathname.startsWith(route))) return response;
+    return redirectForRequest(request, "/login?error=account-disabled");
   }
 
   if (isAdminAuthPath(pathname) || isAuthorAuthPath(pathname)) {
-    if (hardcodedAdmin && isAdminAuthPath(pathname)) return redirectForRequest(request, "/admin");
     if (user && role === "admin") return redirectForRequest(request, "/admin");
     if (user && role === "author") return redirectForRequest(request, "/author");
     if (user) return redirectForRequest(request, "/today");
@@ -128,7 +133,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // Redirect unauthenticated users away from protected routes
-  if (!user && PROTECTED_ROUTES.some((route) => pathname.startsWith(route)) && !(hardcodedAdmin && isAdminPath(pathname))) {
+  if (!user && PROTECTED_ROUTES.some((route) => pathname.startsWith(route))) {
     const host = request.headers.get("x-forwarded-host") ?? request.headers.get("host");
     const protocol = (request.headers.get("x-forwarded-proto") ?? request.nextUrl.protocol).split(",")[0].trim().replace(/:$/, "");
     const origin = host ? `${protocol}://${host}` : request.nextUrl.origin;
@@ -138,7 +143,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // Non-admin users should not stay on admin pages.
-  if (user && isAdminPath(pathname) && role !== "admin" && !hardcodedAdmin) {
+  if (user && isAdminPath(pathname) && role !== "admin") {
     return redirectForRequest(request, role === "author" ? "/author" : "/today");
   }
 

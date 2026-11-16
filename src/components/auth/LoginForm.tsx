@@ -57,8 +57,17 @@ export function LoginForm({ mode = "user", nextPath }: LoginFormProps) {
 
     try {
       if (mode === "admin") {
-        const response = await fetch("/api/admin/login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email, password }) });
-        if (!response.ok) throw new Error("Incorrect email or password. Please try again.");
+        const supabase = createSupabaseBrowserClient();
+        const { data: signInData, error: authError } = await supabase.auth.signInWithPassword({ email, password });
+        if (authError) throw new Error("Incorrect email or password. Please try again.");
+        const accessToken = signInData.session?.access_token;
+        if (!accessToken) throw new Error("Unable to verify administrator access.");
+        const accessResponse = await fetch("/api/auth/portal-access", { headers: { Authorization: `Bearer ${accessToken}` } });
+        const access = (await accessResponse.json().catch(() => null)) as { role?: UserRole; error?: string } | null;
+        if (!accessResponse.ok || access?.role !== "admin") {
+          await supabase.auth.signOut();
+          throw new Error(access?.error ?? "This account is not an administrator.");
+        }
         toast.success("Admin access granted", "You've successfully signed in.");
         router.replace("/admin");
         router.refresh();
@@ -80,10 +89,11 @@ export function LoginForm({ mode = "user", nextPath }: LoginFormProps) {
       const accessToken = signInData.session?.access_token;
       if (!accessToken) throw new Error("Unable to verify your account access.");
       const accessResponse = await fetch("/api/auth/portal-access", { headers: { Authorization: `Bearer ${accessToken}` } });
-      const access = (await accessResponse.json().catch(() => null)) as { role?: UserRole; onboardingCompleted?: boolean; error?: string } | null;
+      const access = (await accessResponse.json().catch(() => null)) as { role?: UserRole; onboardingCompleted?: boolean; hasPaidAccess?: boolean; error?: string } | null;
       if (!accessResponse.ok) throw new Error(access?.error ?? "Unable to verify your account access.");
       const role = access?.role ?? "user";
       const onboardingCompleted = access?.onboardingCompleted ?? false;
+      const hasPaidAccess = access?.hasPaidAccess ?? false;
 
       if (mode === "author" && role !== "author") {
         await supabase.auth.signOut();
@@ -109,6 +119,9 @@ export function LoginForm({ mode = "user", nextPath }: LoginFormProps) {
       } else if (role === "author") {
         toast.success("Welcome back", "Your author workspace is ready.");
         router.replace(destination?.startsWith("/author") ? destination : "/author");
+      } else if (!hasPaidAccess) {
+        toast.success("Payment required", "Complete EFT payment review to unlock your journey.");
+        router.replace("/payments");
       } else if (!onboardingCompleted) {
         toast.success("Welcome Back!", "You've successfully signed in.");
         router.push("/onboarding");

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LiveAdminCollection } from "@/components/admin/LiveAdminCollection";
+import { AdminMediaManager } from "@/components/admin/AdminMediaManager";
 import { getAdminMedia } from "@/lib/admin/content";
 
 export const metadata: Metadata = {
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminMediaPage() {
-  return <LiveAdminCollection title="Media" description="Live video and audio records from Supabase." items={await getAdminMedia()} />;
+  return <div className="space-y-6"><div><h1 className="text-2xl font-semibold text-text">Media</h1><p className="mt-1 text-sm text-muted">Upload and manage lesson audio.</p></div><AdminMediaManager items={await getAdminMedia()} /></div>;
 }

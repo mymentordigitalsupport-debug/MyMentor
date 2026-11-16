@@ -1,10 +1,6 @@
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { cookies } from "next/headers";
-import { ADMIN_OVERRIDE_COOKIE } from "@/lib/admin/auth";
 
 export async function requireAdminSession() {
-  const cookieStore = await cookies();
-  if (cookieStore.get(ADMIN_OVERRIDE_COOKIE)?.value === "1") return { supabase: null, user: { id: "hardcoded-admin" } as never, role: "admin" as const };
   const supabase = await createSupabaseServerClient();
   const {
     data: { user },
@@ -16,12 +12,13 @@ export async function requireAdminSession() {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("role")
+    .select("role,status")
     .eq("user_id", user.id)
     .maybeSingle();
 
-  const role = (user.app_metadata?.role as string | undefined) ?? profile?.role ?? null;
+  const disabled = ["paused", "blocked", "suspended", "disabled", "anonymized"].includes(profile?.status ?? "");
+  const role = disabled ? null : profile?.role ?? (user.app_metadata?.role as string | undefined) ?? null;
 
-  return { supabase, user, role };
+  return { supabase, user, role, status: profile?.status ?? "active" };
 }
 

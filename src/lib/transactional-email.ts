@@ -7,11 +7,18 @@ export const EMAIL_TEMPLATES = {
   memberWelcome: { file: "mymentor-member-registration-welcome.html", subject: "Welcome to My Mentor" },
   authorApplicationReceived: { file: "mymentor-author-application-received.html", subject: "We received your author application" },
   authorApproved: { file: "mymentor-author-account-approved.html", subject: "Your My Mentor author account is approved" },
-  authorDeclined: { file: "mymentor-author-application-declined.html", subject: "An update on your author application" },
-  articleReceived: { file: "mymentor-article-received-pending-review.html", subject: "Your article is pending review" },
-  articlePublished: { file: "mymentor-article-published.html", subject: "Your article is now published" },
-  articleDeclined: { file: "mymentor-article-declined.html", subject: "An update on your article submission" },
-  adminNotification: { file: null, subject: "New My Mentor admin notification" },
+  authorDeclined: { file: "mymentor-author-application-declined.html", subject: "Your author application was not approved" },
+  articleReceived: { file: "mymentor-article-received-pending-review.html", subject: "Your article was submitted for review" },
+  articlePublished: { file: "mymentor-article-published.html", subject: "Your article is live on My Mentor" },
+  articleDeclined: { file: "mymentor-article-declined.html", subject: "Your article was not approved for publication" },
+  paymentRequestCreated: { file: "mymentor-payment-request-created.html", subject: "Your EFT reference and next steps" },
+  paymentProofReceived: { file: "mymentor-payment-proof-received.html", subject: "Your EFT proof is awaiting review" },
+  paymentApproved: { file: "mymentor-payment-approved.html", subject: "Your EFT is approved; course access is active" },
+  paymentNeedsResubmission: { file: "mymentor-payment-needs-resubmission.html", subject: "Action needed: submit new EFT proof" },
+  paymentRejected: { file: "mymentor-payment-rejected.html", subject: "Your EFT request was not approved" },
+  paymentCancelled: { file: "mymentor-payment-cancelled.html", subject: "Your EFT request was cancelled" },
+  adminNotification: { file: "mymentor-admin-notification.html", subject: "New My Mentor admin notification" },
+  threadVerification: { file: "mymentor-thread-verification.html", subject: "Your My Mentor verification code" },
 } as const;
 
 export type TransactionalTemplate = keyof typeof EMAIL_TEMPLATES;
@@ -33,7 +40,7 @@ function escapeHtml(value: string) {
   return value.replace(/[&<>'"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[character] ?? character);
 }
 
-function appUrl(pathname: string) {
+export function transactionalEmailUrl(pathname: string) {
   const configured = process.env.NEXT_PUBLIC_SITE_URL;
   const fallback = process.env.NODE_ENV === "production" ? "" : "http://localhost:3000";
   const base = configured || fallback;
@@ -43,7 +50,7 @@ function appUrl(pathname: string) {
   return url.toString();
 }
 
-function sender() {
+export function transactionalEmailSender() {
   const email = process.env.RESEND_FROM_EMAIL?.trim() ?? "";
   if (!/^\S+@mymentor\.digital$/i.test(email)) throw new Error("RESEND_FROM_EMAIL must use the verified mymentor.digital domain.");
   return `My Mentor <${email}>`;
@@ -51,7 +58,6 @@ function sender() {
 
 async function loadTemplate(template: TransactionalTemplate) {
   const name = EMAIL_TEMPLATES[template].file;
-  if (!name) throw new Error("This email uses an inline notification template.");
   const cached = templateCache.get(name);
   if (cached) return cached;
   const html = await readFile(path.join(process.cwd(), "public", "assets", "emails", name), "utf8");
@@ -59,17 +65,7 @@ async function loadTemplate(template: TransactionalTemplate) {
   return html;
 }
 
-function renderAdminNotification(values: TemplateData) {
-  const title = escapeHtml(values.notification_title || "New My Mentor notification");
-  const details = escapeHtml(values.notification_details || "A new item needs your attention.").replace(/\n/g, "<br>");
-  const actionUrl = values.notification_url || appUrl("/admin");
-  const url = new URL(actionUrl);
-  if (!/^https?:$/.test(url.protocol)) throw new Error("Admin notification URL must use HTTP or HTTPS.");
-  return `<!doctype html><html lang="en"><body style="margin:0;background:#f7f4ed;color:#203528;font-family:Arial,sans-serif"><main style="max-width:600px;margin:32px auto;background:#fffdf9;border:1px solid #d9e1d4;border-radius:18px;padding:32px"><p style="margin:0 0 12px;color:#647b5d;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase">My Mentor admin</p><h1 style="margin:0 0 18px;font-family:Georgia,serif;font-size:28px">${title}</h1><p style="margin:0 0 28px;font-size:16px;line-height:1.6">${details}</p><a href="${escapeHtml(url.toString())}" style="display:inline-block;border-radius:999px;background:#203b2c;color:#fff;text-decoration:none;padding:12px 20px;font-weight:700">Open admin dashboard</a></main></body></html>`;
-}
-
 export async function renderTransactionalEmail(template: TransactionalTemplate, values: TemplateData) {
-  if (template === "adminNotification") return renderAdminNotification(values);
   const html = await loadTemplate(template);
   const unknown = [...html.matchAll(/\{\{([a-z_]+)\}\}/g)].map((match) => match[1]).filter((key) => !(key in values));
   if (unknown.length) throw new Error(`Unsupported placeholders in ${EMAIL_TEMPLATES[template].file}.`);
@@ -83,14 +79,16 @@ export function emailPayload(input: {
   articleTitle?: string | null;
   reviewFeedback?: string | null;
   articleSlug?: string | null;
+  articleId?: string | null;
 }): TemplateData {
   return {
     first_name: input.firstName?.trim() || "there",
     article_title: input.articleTitle?.trim() || "your article",
-    review_feedback: input.reviewFeedback?.trim() || "No additional feedback was provided.",
-    dashboard_url: appUrl("/today"),
-    author_dashboard_url: appUrl("/author"),
-    article_url: appUrl(`/articles/${encodeURIComponent(input.articleSlug?.trim() || "")}`),
+    review_feedback: input.reviewFeedback?.trim() || "No reviewer note was recorded. Email hello@mymentor.digital if you have questions.",
+    dashboard_url: transactionalEmailUrl("/today"),
+    author_dashboard_url: transactionalEmailUrl("/author"),
+    article_url: transactionalEmailUrl(`/articles/${encodeURIComponent(input.articleSlug?.trim() || "")}`),
+    author_article_url: transactionalEmailUrl(`/author/articles/${encodeURIComponent(input.articleId?.trim() || "")}`),
   };
 }
 
@@ -112,7 +110,7 @@ export async function queueTransactionalEmail(
 
 export async function queueUserEmail(
   admin: SupabaseAdmin,
-  input: { userId: string; eventKey: string; eventType: string; template: TransactionalTemplate; articleTitle?: string | null; reviewFeedback?: string | null; articleSlug?: string | null; firstName?: string | null }
+  input: { userId: string; eventKey: string; eventType: string; template: TransactionalTemplate; articleTitle?: string | null; reviewFeedback?: string | null; articleSlug?: string | null; articleId?: string | null; firstName?: string | null; extraPayload?: TemplateData }
 ) {
   const [{ data: profile }, { data: authResult, error: authError }] = await Promise.all([
     admin.from("profiles").select("display_name").eq("user_id", input.userId).maybeSingle(),
@@ -124,7 +122,7 @@ export async function queueUserEmail(
     eventType: input.eventType,
     template: input.template,
     recipientEmail: authResult.user.email,
-    payload: emailPayload({ firstName: input.firstName ?? profile?.display_name, articleTitle: input.articleTitle, reviewFeedback: input.reviewFeedback, articleSlug: input.articleSlug }),
+    payload: { ...emailPayload({ firstName: input.firstName ?? profile?.display_name, articleTitle: input.articleTitle, reviewFeedback: input.reviewFeedback, articleSlug: input.articleSlug, articleId: input.articleId }), ...input.extraPayload },
   });
 }
 
@@ -142,7 +140,7 @@ export async function queueAdminNotification(
     payload: {
       notification_title: input.title.slice(0, 180),
       notification_details: input.details.slice(0, 2_000),
-      notification_url: appUrl(input.pathname ?? "/admin"),
+      notification_url: transactionalEmailUrl(input.pathname ?? "/admin"),
     },
   });
 }
@@ -156,8 +154,11 @@ export async function deliverTransactionalEmail(admin: SupabaseAdmin, eventKey: 
   try {
     if (!resend) throw new Error("Resend is not configured.");
     const html = await renderTransactionalEmail(event.template_name, event.payload);
+    const subject = event.template_name === "adminNotification"
+      ? `My Mentor: ${(event.payload.notification_title || "Admin update").replace(/[\r\n]/g, " ").slice(0, 120)}`
+      : EMAIL_TEMPLATES[event.template_name].subject;
     const result = await resend.emails.send(
-      { from: sender(), to: event.recipient_email, subject: EMAIL_TEMPLATES[event.template_name].subject, html },
+      { from: transactionalEmailSender(), to: event.recipient_email, subject, html },
       { idempotencyKey: event.event_key }
     );
     if (result.error) throw new Error("Resend rejected the message.");

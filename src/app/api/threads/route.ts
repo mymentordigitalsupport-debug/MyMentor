@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import { createHash, randomBytes, randomInt } from "crypto";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { queueAdminNotification } from "@/lib/transactional-email";
+import { EMAIL_TEMPLATES, queueAdminNotification, renderTransactionalEmail, transactionalEmailSender } from "@/lib/transactional-email";
 import { hasTrustedOrigin, requestClientKey, takeRateLimit } from "@/lib/security";
 import { resend } from "@/lib/resend";
 
@@ -135,7 +135,13 @@ export async function POST(request: Request) {
     const expiresAt = new Date(Date.now() + 10 * 60 * 1000).toISOString();
     const { error } = await admin.from("threads_commenter_verifications").upsert({ normalized_email: email, name, code_hash: hashToken(code), expires_at: expiresAt, attempts: 0, updated_at: new Date().toISOString() }, { onConflict: "normalized_email" });
     if (error) return NextResponse.json({ error: "Unable to create verification code." }, { status: 500 });
-    const sent = await resend.emails.send({ from: process.env.RESEND_FROM_EMAIL!, to: email, subject: "Your MyMentor comment verification code", html: `<p>Your MyMentor comment verification code is:</p><p style="font-size:28px;font-weight:700;letter-spacing:4px">${code}</p><p>This code expires in 10 minutes.</p>` });
+    let sent;
+    try {
+      const html = await renderTransactionalEmail("threadVerification", { verification_code: code });
+      sent = await resend.emails.send({ from: transactionalEmailSender(), to: email, subject: EMAIL_TEMPLATES.threadVerification.subject, html, text: `Your My Mentor verification code is ${code}. It expires in 10 minutes.` });
+    } catch {
+      return NextResponse.json({ error: "Unable to send verification email." }, { status: 502 });
+    }
     if (sent.error) return NextResponse.json({ error: "Unable to send verification email." }, { status: 502 });
     return NextResponse.json({ ok: true, verificationRequired: true });
   }

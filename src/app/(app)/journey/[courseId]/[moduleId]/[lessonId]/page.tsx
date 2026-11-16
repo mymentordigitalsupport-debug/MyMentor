@@ -2,6 +2,7 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { redirect, notFound } from "next/navigation";
 import { LessonReader } from "@/components/lesson/LessonReader";
 import { PageTransition } from "@/components/ui/PageTransition";
+import { getBlockedLessonId } from "@/lib/lesson-sequencing";
 import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
@@ -30,13 +31,30 @@ export default async function LessonPage({ params }: Props) {
 
   if (!user) redirect("/login");
 
+  const { data: chapter } = await supabase
+    .from("chapters")
+    .select("title, course_version_id")
+    .eq("id", chapterId)
+    .single();
+  if (!chapter?.course_version_id) notFound();
+  const { data: entitlement } = await supabase
+    .from("course_entitlements")
+    .select("id, access_level, chapter_id")
+    .eq("user_id", user.id)
+    .eq("course_version_id", chapter.course_version_id)
+    .eq("active", true);
+  if (!(entitlement ?? []).some((item) => item.access_level === "full_course" || item.chapter_id === chapterId)) redirect("/payments");
+
   const { data: lesson } = await supabase
     .from("lessons")
     .select("id, title, subtitle, estimated_minutes, chapter_id")
     .eq("id", lessonId)
     .single();
 
-  if (!lesson) notFound();
+  if (!lesson || lesson.chapter_id !== chapterId) notFound();
+
+  const blockedLessonId = await getBlockedLessonId(supabase, user.id, chapterId, lessonId);
+  if (blockedLessonId) redirect(`/journey/${courseId}/${chapterId}/${blockedLessonId}`);
 
   const { data: blocks } = await supabase
     .from("lesson_content_blocks")
@@ -44,13 +62,7 @@ export default async function LessonPage({ params }: Props) {
     .eq("lesson_id", lessonId)
     .order("sort_order");
 
-  const { data: chapter } = await supabase
-    .from("chapters")
-    .select("title, course_version_id")
-    .eq("id", chapterId)
-    .single();
-
-  const courseVersionId = chapter?.course_version_id ?? null;
+  const courseVersionId = chapter.course_version_id;
   const { data: progress } = await supabase
     .from("user_lesson_progress")
     .select("completed_at")

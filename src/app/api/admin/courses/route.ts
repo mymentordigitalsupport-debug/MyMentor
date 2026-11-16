@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { requireAdminSession } from "@/lib/admin/guards";
+import { hasTrustedOrigin } from "@/lib/security";
 
 type CoursePayload = {
   courseName: string;
@@ -63,33 +64,17 @@ function getLessonTitle(
 }
 
 export async function POST(request: Request) {
+  let createdCourseId: string | null = null;
   try {
-    const authClient = await createSupabaseServerClient();
-    const supabase = createSupabaseAdminClient() ?? authClient;
-
-    const {
-      data: { user },
-    } = await authClient.auth.getUser();
-
-    if (!user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const { data: profile } = await supabase
-      .from("profiles")
-      .select("role")
-      .eq("user_id", user.id)
-      .single();
-
-    const role = (user.app_metadata?.role as string | undefined) ?? profile?.role ?? null;
-
-    if (role !== "admin") {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-    }
+    if (!hasTrustedOrigin(request)) return NextResponse.json({ error: "Invalid request origin." }, { status: 403 });
+    const actor = await requireAdminSession();
+    if (!actor.user || actor.role !== "admin") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    const supabase = createSupabaseAdminClient() ?? actor.supabase;
+    if (!supabase) return NextResponse.json({ error: "Admin data service is unavailable." }, { status: 503 });
 
     const payload = (await request.json()) as CoursePayload;
 
-    if (!payload.courseName.trim()) {
+    if (!payload?.courseName?.trim() || !Array.isArray(payload.ChapterNames) || payload.ChapterNames.length > 100) {
       return NextResponse.json({ error: "Course name is required" }, { status: 400 });
     }
 
@@ -128,6 +113,7 @@ export async function POST(request: Request) {
     if (courseError || !course) {
       return NextResponse.json({ error: courseError?.message ?? "Failed to create Course" }, { status: 500 });
     }
+    createdCourseId = course.id;
 
     const createdVersions = [];
 
@@ -144,14 +130,14 @@ export async function POST(request: Request) {
         .single();
 
       if (versionError || !courseVersion) {
-        return NextResponse.json({ error: versionError?.message ?? "Failed to create course version" }, { status: 500 });
+        throw new Error(versionError?.message ?? "Failed to create course version");
       }
 
       createdVersions.push(courseVersion);
 
       for (const [ChapterIndex, ChapterShell] of payload.ChapterNames.entries()) {
         const { data: ChapterRow, error: ChapterError } = await supabase
-          .from("Chapters")
+          .from("chapters")
           .insert({
             course_version_id: courseVersion.id,
             title: ChapterShell.name.trim() || `Chapter ${ChapterIndex + 1}`,
@@ -163,7 +149,7 @@ export async function POST(request: Request) {
           .single();
 
         if (ChapterError || !ChapterRow) {
-          return NextResponse.json({ error: ChapterError?.message ?? "Failed to create Chapter" }, { status: 500 });
+          throw new Error(ChapterError?.message ?? "Failed to create Chapter");
         }
 
         const lessonTitles = payload.lessonTitles[ChapterIndex] ?? [];
@@ -180,7 +166,7 @@ export async function POST(request: Request) {
           });
 
           if (lessonError) {
-            return NextResponse.json({ error: lessonError.message ?? "Failed to create lesson" }, { status: 500 });
+            throw new Error(lessonError.message ?? "Failed to create lesson");
           }
         }
       }
@@ -191,6 +177,10 @@ export async function POST(request: Request) {
       versions: createdVersions,
     });
   } catch (error) {
+    if (createdCourseId) {
+      const cleanup = createSupabaseAdminClient();
+      if (cleanup) await cleanup.from("courses").delete().eq("id", createdCourseId);
+    }
     const message = error instanceof Error ? error.message : "Failed to create Course";
     return NextResponse.json({ error: message }, { status: 500 });
   }

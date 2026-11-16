@@ -18,6 +18,7 @@ import {
   Menu,
   X,
   MessagesSquare,
+  WalletCards,
 } from "lucide-react";
 import type { ComponentType } from "react";
 import { IdentityAvatar } from "@/components/ui/IdentityAvatar";
@@ -44,6 +45,7 @@ const PRIMARY_NAV: NavItem[] = [
   { label: "Progress", href: "/progress", icon: ChartColumn, description: "Momentum and completion" },
   { label: "Threads", href: "/threads", icon: MessagesSquare, description: "Share and support each other" },
   { label: "Resources", href: "/resources", icon: BookMarked, description: "Tools and support" },
+  { label: "Payments", href: "/payments", icon: WalletCards, description: "Manage course access" },
   { label: "Settings", href: "/settings", icon: Settings2, description: "Profile and preferences" },
 ];
 
@@ -89,7 +91,7 @@ export function DesktopSidebar() {
         const { data } = await supabase
           .from("profiles")
           .select("display_name, username, anonymous_name, is_anonymous")
-          .eq("id", userData.user.id)
+          .eq("user_id", userData.user.id)
           .single();
 
         if (isMounted) {

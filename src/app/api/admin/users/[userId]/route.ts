@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { requireAdminSession } from "@/lib/admin/guards";
 import { getAdminUserDetail } from "@/lib/admin/users";
+import { hasTrustedOrigin } from "@/lib/security";
 
 type PatchPayload =
   | {
@@ -33,7 +34,7 @@ async function assertAdmin() {
     return { error: NextResponse.json({ error: "Server configuration error" }, { status: 500 }) };
   }
 
-  return { admin };
+  return { admin, actorId: user.id };
 }
 
 export async function GET(
@@ -63,6 +64,7 @@ export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise<{ userId: string }> }
 ) {
+  if (!hasTrustedOrigin(request)) return NextResponse.json({ error: "Invalid request origin." }, { status: 403 });
   const auth = await assertAdmin();
   if ("error" in auth) {
     return auth.error;
@@ -153,12 +155,13 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ userId: string }> }
 ) {
+  if (!hasTrustedOrigin(request)) return NextResponse.json({ error: "Invalid request origin." }, { status: 403 });
   const auth = await assertAdmin();
   if ("error" in auth) {
     return auth.error;
   }
 
-  const { admin } = auth;
+  const { admin, actorId } = auth;
   const { userId } = await params;
   const body = (await request.json().catch(() => ({}))) as { confirm?: boolean };
 
@@ -166,26 +169,27 @@ export async function DELETE(
     return NextResponse.json({ error: "Confirmation required" }, { status: 400 });
   }
 
-  const tables = [
-    ["journal_entries", "user_id"],
-    ["mood_checkins", "user_id"],
-    ["saved_insights", "user_id"],
-    ["user_course_progress", "user_id"],
-    ["user_lesson_progress", "user_id"],
-    ["profiles", "user_id"],
-  ] as const;
+  if (userId === actorId) return NextResponse.json({ error: "You cannot delete your own administrator account." }, { status: 400 });
 
-  for (const [table, column] of tables) {
-    const { error } = await admin.from(table).delete().eq(column, userId);
-    if (error) {
-      return NextResponse.json({ error: `Failed to delete ${table}` }, { status: 500 });
-    }
-  }
+  const [{ data: paymentRows }, { data: threadRows }] = await Promise.all([
+    admin.from("payment_requests").select("payment_proofs(storage_path)").eq("user_id", userId),
+    admin.from("threads_entries").select("media_path").eq("author_id", userId),
+  ]);
+
+  // Published articles must survive account deletion. Transfer ownership to
+  // the administrator performing the deletion; all other user rows cascade.
+  const transfer = await admin.from("article_articles").update({ author_id: actorId, updated_at: new Date().toISOString() }).eq("author_id", userId);
+  if (transfer.error) return NextResponse.json({ error: "Unable to preserve authored articles." }, { status: 500 });
 
   const { error: authError } = await admin.auth.admin.deleteUser(userId);
   if (authError) {
     return NextResponse.json({ error: authError.message }, { status: 500 });
   }
+
+  const proofPaths = (paymentRows ?? []).flatMap((row) => (row.payment_proofs ?? []).map((proof) => proof.storage_path)).filter(Boolean);
+  const threadPaths = (threadRows ?? []).map((row) => row.media_path).filter((value): value is string => Boolean(value));
+  if (proofPaths.length) await admin.storage.from("payment_proofs").remove(proofPaths);
+  if (threadPaths.length) await admin.storage.from("threads_media").remove(threadPaths);
 
   return NextResponse.json({ success: true });
 }

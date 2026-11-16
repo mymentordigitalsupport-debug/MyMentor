@@ -6,10 +6,10 @@ import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 
 const heroHeadlines = [
-  ["We transform", "together"],
-  ["Overcome Substance", "Dependence"],
-  ["Reclaim Your", "Independence"],
-  ["Rise Above", "Addiction"],
+  ["We Transform", "Together"],
+  ["Combat Substance", "Abuse"],
+  ["Reclaim Your", "Life"],
+  ["Overcome Drug", "Addiction"],
   ["Rewrite Your", "Story"],
 ] as const;
 

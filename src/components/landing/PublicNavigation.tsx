@@ -14,7 +14,7 @@ const exploreLinks = [
 ];
 
 // Adapted from SolaceUI's Navbar Section 2 on 21st.dev.
-export function PublicNavigation({ overDark = false, adaptToAboutSections = false, brandLabel = "My Mentor" }: { overDark?: boolean; adaptToAboutSections?: boolean; brandLabel?: string }) {
+export function PublicNavigation({ overDark = false, adaptToAboutSections = false, stickyOnScroll = true, brandLabel = "My Mentor" }: { overDark?: boolean; adaptToAboutSections?: boolean; stickyOnScroll?: boolean; brandLabel?: string }) {
   const [stickyPhase, setStickyPhase] = useState<"normal" | "enter" | "exit">("normal");
   const [open, setOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -85,6 +85,7 @@ export function PublicNavigation({ overDark = false, adaptToAboutSections = fals
   }, [adaptToAboutSections]);
 
   useEffect(() => {
+    if (!stickyOnScroll) return;
     let isSticky = false;
     let exitTimer: ReturnType<typeof setTimeout> | undefined;
     function onScroll() {
@@ -111,7 +112,7 @@ export function PublicNavigation({ overDark = false, adaptToAboutSections = fals
       clearTimeout(exitTimer);
       window.removeEventListener("scroll", onScroll);
     };
-  }, [reducedMotion, adaptToAboutSections]);
+  }, [reducedMotion, adaptToAboutSections, stickyOnScroll]);
 
   useEffect(() => {
     function onPointerDown(event: PointerEvent) {
@@ -174,7 +175,7 @@ export function PublicNavigation({ overDark = false, adaptToAboutSections = fals
         </div>
 
         <div className="flex items-center gap-2">
-          <button type="button" onClick={() => setMobileOpen(!mobileOpen)} aria-label={mobileOpen ? "Close navigation" : "Open navigation"} aria-expanded={mobileOpen} aria-controls="mobile-navigation" className="grid size-9 place-items-center rounded-full border border-current/35 transition hover:bg-white/10 lg:hidden">
+          <button type="button" onClick={() => setMobileOpen(!mobileOpen)} aria-label={mobileOpen ? "Close navigation" : "Open navigation"} aria-expanded={mobileOpen} aria-controls="mobile-navigation" className="grid size-11 place-items-center rounded-full border border-current/35 transition hover:bg-white/10 lg:hidden">
             {mobileOpen ? <X className="size-4" aria-hidden="true" /> : <Menu className="size-4" aria-hidden="true" />}
           </button>
           {isSignedIn === null ? (

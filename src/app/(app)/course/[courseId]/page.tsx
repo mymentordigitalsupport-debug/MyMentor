@@ -38,7 +38,7 @@ export default async function CoursePage({ params }: Props) {
   const { data: profile } = await supabase
     .from("profiles")
     .select("preferred_guidance_path")
-    .eq("id", user.id)
+    .eq("user_id", user.id)
     .single();
   const profileGuidancePath = profile?.preferred_guidance_path as string | null;
   const guidancePath =

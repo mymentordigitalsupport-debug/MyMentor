@@ -5,8 +5,9 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import type { AdminContentItem } from "@/lib/admin/content";
 import { formatShortDate } from "@/lib/utils";
+import { ContentEditor } from "@/components/admin/ContentEditor";
 
-export function LiveAdminDetail({ item, backHref, backLabel }: { item: AdminContentItem; backHref: string; backLabel: string }) {
+export function LiveAdminDetail({ item, backHref, backLabel, type }: { item: AdminContentItem; backHref: string; backLabel: string; type?: "course" | "chapter" | "lesson" }) {
   return <div className="space-y-6">
     <Button asChild variant="secondary" size="sm"><Link href={backHref}><ArrowLeft className="h-4 w-4" />{backLabel}</Link></Button>
     <Card variant="default" padding="lg">
@@ -18,6 +19,7 @@ export function LiveAdminDetail({ item, backHref, backLabel }: { item: AdminCont
         <div><dt className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">Last updated</dt><dd className="mt-1 text-sm text-text">{item.updatedAt ? formatShortDate(item.updatedAt) : "Unknown"}</dd></div>
         {item.details.map((detail) => <div key={detail}><dt className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">Detail</dt><dd className="mt-1 text-sm text-text">{detail}</dd></div>)}
       </dl>
+      {type ? <ContentEditor item={item} type={type} /> : null}
     </Card>
   </div>;
 }

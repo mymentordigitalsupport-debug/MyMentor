@@ -20,9 +20,10 @@ interface MoodCheckInProps {
 export function MoodCheckIn({ userId, latestMood, latestNote, todayCheckinId }: MoodCheckInProps) {
   const router = useRouter();
   const noteId = useId();
-  const [selected, setSelected] = useState<MoodValue | null>(latestMood);
-  const [note, setNote] = useState(latestMood ? latestNote ?? "" : "");
-  const [saved, setSaved] = useState(Boolean(latestMood));
+  const hasTodayCheckin = Boolean(todayCheckinId);
+  const [selected, setSelected] = useState<MoodValue | null>(hasTodayCheckin ? latestMood : null);
+  const [note, setNote] = useState(hasTodayCheckin ? latestNote ?? "" : "");
+  const [saved, setSaved] = useState(hasTodayCheckin);
   const [saving, setSaving] = useState(false);
   const [checkinId, setCheckinId] = useState(todayCheckinId);
   const [error, setError] = useState<string | null>(null);

@@ -10,16 +10,21 @@ import {
   getAdminQuizzes,
   getAdminReflections,
   getAdminResources,
+  getAdminFilterOptions,
+  type AdminFilters,
 } from "@/lib/admin/content";
+import { ContentFilters } from "@/components/admin/ContentFilters";
 
 export const metadata: Metadata = {
   title: "Flow",
   description: "Live content flow overview.",
 };
 
-export default async function AdminFlowPage() {
-  const [courses, chapters, lessons, quizzes, reflections, resources] = await Promise.all([
-    getAdminCourses(), getAdminChapters(), getAdminLessons(), getAdminQuizzes(), getAdminReflections(), getAdminResources(),
+export default async function AdminFlowPage({ searchParams }: { searchParams: Promise<{ book?: string; guidance?: string }> }) {
+  const params = await searchParams;
+  const filters: AdminFilters = { book: params.book, guidance: params.guidance };
+  const [courses, chapters, lessons, quizzes, reflections, resources, filterOptions] = await Promise.all([
+    getAdminCourses(filters), getAdminChapters(filters), getAdminLessons(filters), getAdminQuizzes(filters), getAdminReflections(filters), getAdminResources(), getAdminFilterOptions(),
   ]);
   const stages = [
     { label: "Courses", count: courses.length, href: "/admin/courses" },
@@ -31,6 +36,7 @@ export default async function AdminFlowPage() {
   ];
 
   return <div className="space-y-6">
+    <ContentFilters options={filterOptions} filters={filters} basePath="/admin/flow" />
     <section><Badge variant="forest">Live data</Badge><h1 className="mt-3 text-2xl font-semibold text-text">Content Flow</h1><p className="mt-1 text-sm text-muted">Current Supabase record counts across the learning-content workflow.</p></section>
     <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">{stages.map((stage, index) => <Link key={stage.label} href={stage.href} className="group"><Card variant="default" padding="lg" className="h-full transition group-hover:border-sage"><p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">Step {index + 1}</p><div className="mt-3 flex items-center justify-between gap-3"><h2 className="text-lg font-semibold text-text">{stage.label}</h2><ArrowRight className="h-4 w-4 text-muted transition group-hover:translate-x-1 group-hover:text-forest" /></div><p className="mt-3 text-3xl font-semibold text-forest">{stage.count}</p><p className="mt-1 text-sm text-muted">live records</p></Card></Link>)}</section>
   </div>;

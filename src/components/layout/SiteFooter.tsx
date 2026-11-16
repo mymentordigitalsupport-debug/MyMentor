@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import PushpinTearFooter from "@/components/layout/PushpinFooter";
 
-const MEMBER_AREAS = ["/today", "/course", "/journal", "/journey", "/progress", "/resources", "/settings", "/admin", "/author"];
+const MEMBER_AREAS = ["/today", "/course", "/journal", "/journey", "/progress", "/resources", "/settings", "/payments", "/onboarding", "/preview-payment-design", "/admin", "/author"];
 const AUTH_AREAS = ["/login", "/register", "/admin-login", "/authors-login", "/authors-register"];
 
 export function SiteFooter() {

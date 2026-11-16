@@ -112,8 +112,8 @@ export default async function TodayPage() {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("display_name, username, anonymous_name, is_anonymous, onboarding_completed, preferred_guidance_path, selected_course_id")
-    .eq("id", user.id)
+    .select("display_name, username, anonymous_name, is_anonymous, onboarding_completed, preferred_guidance_path, selected_course_id, active_course_version_id")
+    .eq("user_id", user.id)
     .single();
 
   if (!profile?.onboarding_completed) redirect("/onboarding");
@@ -167,7 +167,11 @@ export default async function TodayPage() {
   const guidedCourseVersionList = (guidedCourseVersions ?? []) as CourseVersionRow[];
   const enrollmentList = (recentEnrollments ?? []) as CourseEnrollmentRow[];
   const selectedCourseId = profile?.selected_course_id ?? null;
-  const recentCourseVersionId = recentCourseProgress?.[0]?.course_version_id ?? enrollmentList[0]?.course_version_id ?? null;
+  const recentCourseVersionId =
+    profile?.active_course_version_id ??
+    recentCourseProgress?.[0]?.course_version_id ??
+    enrollmentList[0]?.course_version_id ??
+    null;
   const recentCourseVersion =
     recentCourseVersionId
       ? guidedCourseVersionList.find((courseVersion) => courseVersion.id === recentCourseVersionId) ??

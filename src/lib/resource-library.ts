@@ -22,9 +22,7 @@ function titleFromPath(path: string) {
 }
 
 function categoryFromFile(file: StorageFile): ResourceCategory {
-  const type = file.metadata?.mimetype?.toLowerCase() ?? "";
-  if (type.startsWith("audio/")) return "audio";
-  if (type.startsWith("video/")) return "video";
+  void file;
   return "reading";
 }
 
@@ -89,6 +87,7 @@ export async function getMemberResources(): Promise<Resource[]> {
     .from("resources")
     .select("id,title,category,description,file_url,is_published,sort_order,created_at,updated_at")
     .eq("is_published", true)
+    .in("category", ["reading", "worksheet", "support"])
     .order("sort_order", { ascending: true });
 
   const databaseResources: Resource[] = error ? [] : (await Promise.all((data ?? []).map(async (resource): Promise<Resource | null> => {
@@ -96,27 +95,5 @@ export async function getMemberResources(): Promise<Resource[]> {
     const url = await resolveResourceUrl(admin, resource.file_url);
     return url ? { id: resource.id, title: resource.title, category: resource.category, description: resource.description, url, is_published: resource.is_published, sort_order: resource.sort_order, created_at: resource.created_at, updated_at: resource.updated_at } : null;
   }))).filter((resource): resource is Resource => resource !== null);
-  const bucketFiles = await getStoredResourceFiles();
-  const existingPaths = new Set(
-    (data ?? [])
-      .map((resource) => resource.file_url)
-      .filter((fileUrl): fileUrl is string => typeof fileUrl === "string" && !/^https?:\/\//i.test(fileUrl)),
-  );
-  const storageResources = bucketFiles
-      .filter((file) => !existingPaths.has(file.path) && file.downloadUrl)
-      .map((file, index): Resource => {
-        return {
-          id: file.id,
-          title: file.title,
-          category: file.category,
-          description: "Open this resource in a new tab.",
-          url: file.downloadUrl,
-          is_published: true,
-          sort_order: databaseResources.length + index,
-          created_at: file.createdAt,
-          updated_at: file.createdAt,
-        };
-      });
-
-  return [...databaseResources, ...storageResources];
+  return databaseResources;
 }

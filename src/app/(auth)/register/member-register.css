@@ -69,7 +69,7 @@
 .signup-review-row span { color: #7b816f; font-size: 11px; }
 .signup-review-row strong { overflow-wrap: anywhere; font-size: 13px; font-weight: 600; }
 .signup-review-row small { font-size: 10px; color: #718263; }
-.signup-text-button { padding: 0; border: 0; background: none; color: #36543b; font-size: 12px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.signup-text-button { display: inline-flex; min-height: 44px; min-width: 44px; align-items: center; padding: 0; border: 0; background: none; color: #36543b; font-size: 12px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .signup-notice { margin: 20px 2px 15px; }
 .signup-notice h3 { display: flex; align-items: center; gap: 7px; margin: 0; color: #395337; font-size: 13px; font-weight: 650; }
 .signup-notice > p { margin: 8px 0; color: #6b7461; font-size: 12px; line-height: 1.5; }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useMemo, useState, type CSSProperties } from "react";
+import { useId, useMemo, useState, type CSSProperties } from "react";
 import { useRouter } from "next/navigation";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { useToast } from "@/components/ui/ToastProvider";
@@ -20,12 +20,6 @@ interface SettingsPanelProps {
   guidancePath: GuidancePath;
 }
 
-const LOCAL_NOTIFICATION_KEYS = {
-  dailyReminder: "mymentor.notifications.dailyReminder",
-  mentorMessages: "mymentor.notifications.mentorMessages",
-  progressCheckIn: "mymentor.notifications.progressCheckIn",
-} as const;
-
 export function SettingsPanel({
   userId,
   email,
@@ -42,48 +36,8 @@ export function SettingsPanel({
   const [privacyMode, setPrivacyMode] = useState(isAnonymous);
   const [path, setPath] = useState<GuidancePath>(guidancePath);
   const [saving, setSaving] = useState(false);
-  const [dailyReminder, setDailyReminder] = useState(false);
-  const [mentorMessages, setMentorMessages] = useState(true);
-  const [progressCheckIn, setProgressCheckIn] = useState(true);
-  const anonymousPreview = useMemo(
-    () => anonymousName ?? randomAnonymousName(ANONYMOUS_NAMES),
-    [anonymousName]
-  );
+  const anonymousPreview = anonymousName ?? ANONYMOUS_NAMES[0];
   const textureId = `settings-${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
-
-  useEffect(() => {
-    try {
-      setDailyReminder(window.localStorage.getItem(LOCAL_NOTIFICATION_KEYS.dailyReminder) === "true");
-      setMentorMessages(window.localStorage.getItem(LOCAL_NOTIFICATION_KEYS.mentorMessages) !== "false");
-      setProgressCheckIn(window.localStorage.getItem(LOCAL_NOTIFICATION_KEYS.progressCheckIn) !== "false");
-    } catch {
-      // Ignore storage errors.
-    }
-  }, []);
-
-  useEffect(() => {
-    try {
-      window.localStorage.setItem(LOCAL_NOTIFICATION_KEYS.dailyReminder, String(dailyReminder));
-    } catch {
-      // Ignore storage errors.
-    }
-  }, [dailyReminder]);
-
-  useEffect(() => {
-    try {
-      window.localStorage.setItem(LOCAL_NOTIFICATION_KEYS.mentorMessages, String(mentorMessages));
-    } catch {
-      // Ignore storage errors.
-    }
-  }, [mentorMessages]);
-
-  useEffect(() => {
-    try {
-      window.localStorage.setItem(LOCAL_NOTIFICATION_KEYS.progressCheckIn, String(progressCheckIn));
-    } catch {
-      // Ignore storage errors.
-    }
-  }, [progressCheckIn]);
 
   async function handleSaveProfile() {
     setSaving(true);
@@ -103,18 +57,38 @@ export function SettingsPanel({
           display_name: nextDisplayName,
           anonymous_name: nextAnonymousName,
           is_anonymous: privacyMode,
-          preferred_guidance_path: path,
           display_name_mode: privacyMode ? "nickname" : "real_name",
         })
-        .eq("id", userId);
+        .eq("user_id", userId);
 
       if (error) throw error;
 
+      if (path !== guidancePath) {
+        const response = await fetch("/api/account/guidance", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ guidancePath: path }),
+        });
+        if (!response.ok) {
+          const payload = await response.json().catch(() => null) as { error?: string } | null;
+          throw new Error(payload?.error ?? "Unable to switch guidance.");
+        }
+      }
+
       setName(nextDisplayName);
-      toast.success("Settings saved", "Your profile preferences were updated.");
+      toast.success(
+        "Settings saved",
+        path === guidancePath
+          ? "Your profile preferences were updated."
+          : "Your course has switched to the selected guidance version."
+      );
       router.refresh();
-    } catch {
-      toast.error("Save failed", "Please try again.");
+    } catch (error) {
+      setPath(guidancePath);
+      toast.error(
+        "Save failed",
+        error instanceof Error ? error.message : "Please try again."
+      );
     } finally {
       setSaving(false);
     }
@@ -208,6 +182,9 @@ export function SettingsPanel({
 
         <div className="mt-6">
           <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted">Guidance style</p>
+          <p className="mt-2 text-sm leading-6 text-muted">
+            Your course includes both guidance versions. Switch at any time; progress stays with each version.
+          </p>
           <div className="mt-3 grid gap-3 sm:grid-cols-2">
             <button
               type="button"
@@ -235,48 +212,6 @@ export function SettingsPanel({
               <p className="text-sm font-semibold text-forest">Christian</p>
               <p className="mt-1 text-xs leading-5 text-muted">Faith-based encouragement and scripture support.</p>
             </button>
-          </div>
-        </div>
-
-        <div className="mt-6 rounded-2xl border border-[#eadfcf] bg-white/80 p-4">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted">Notifications</p>
-          <div className="mt-3 space-y-3">
-            {[
-              {
-                label: "Daily reminder",
-                description: "A gentle nudge to check in each day.",
-                checked: dailyReminder,
-                onChange: setDailyReminder,
-              },
-              {
-                label: "Mentor messages",
-                description: "Receive encouragement from the app.",
-                checked: mentorMessages,
-                onChange: setMentorMessages,
-              },
-              {
-                label: "Progress updates",
-                description: "Keep track of small wins and milestones.",
-                checked: progressCheckIn,
-                onChange: setProgressCheckIn,
-              },
-            ].map((item) => (
-              <label
-                key={item.label}
-                className="flex items-start justify-between gap-4 rounded-2xl border border-[#eadfcf] bg-[#fdfbf7] px-4 py-3"
-              >
-                <span>
-                  <span className="block text-sm font-semibold text-forest">{item.label}</span>
-                  <span className="mt-1 block text-xs leading-5 text-muted">{item.description}</span>
-                </span>
-                <input
-                  type="checkbox"
-                  checked={item.checked}
-                  onChange={(event) => item.onChange(event.target.checked)}
-                  className="mt-1 h-4 w-4 rounded border-sage/40 text-sage focus:ring-sage/50"
-                />
-              </label>
-            ))}
           </div>
         </div>
 

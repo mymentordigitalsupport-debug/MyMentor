@@ -4,6 +4,8 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import type { AdminContentItem } from "@/lib/admin/content";
+import type { AdminFilterOptions, AdminFilters } from "@/lib/admin/content";
+import { ContentFilters } from "@/components/admin/ContentFilters";
 import { formatShortDate } from "@/lib/utils";
 
 function statusVariant(status?: string) {
@@ -18,13 +20,21 @@ export function LiveAdminCollection({
   items,
   createHref,
   createLabel,
+  filterOptions,
+  filters,
+  basePath,
 }: {
   title: string;
   description: string;
   items: AdminContentItem[];
   createHref?: string;
   createLabel?: string;
+  filterOptions?: AdminFilterOptions;
+  filters?: AdminFilters;
+  basePath?: string;
 }) {
+  const filterQuery = filters ? new URLSearchParams(Object.entries(filters).filter(([, value]) => Boolean(value)) as string[][]).toString() : "";
+  const withFilters = (href: string) => filterQuery ? `${href}${href.includes("?") ? "&" : "?"}${filterQuery}` : href;
   return (
     <div className="space-y-6">
       <section className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -33,8 +43,10 @@ export function LiveAdminCollection({
           <h1 className="mt-3 text-2xl font-semibold text-text">{title}</h1>
           <p className="mt-1 text-sm text-muted">{description}</p>
         </div>
-        {createHref && createLabel ? <Button asChild variant="primary" size="sm"><Link href={createHref}>{createLabel}<ArrowRight className="h-4 w-4" /></Link></Button> : null}
+        {createHref && createLabel ? <Button asChild variant="primary" size="sm"><Link href={withFilters(createHref)}>{createLabel}<ArrowRight className="h-4 w-4" /></Link></Button> : null}
       </section>
+
+      {filterOptions && filters && basePath ? <ContentFilters options={filterOptions} filters={filters} basePath={basePath} /> : null}
 
       <Card variant="mist" padding="sm">
         <div className="flex items-center gap-3 text-sm text-muted"><Database className="h-4 w-4 text-forest" /><span>{items.length} live record{items.length === 1 ? "" : "s"}</span></div>
@@ -49,7 +61,7 @@ export function LiveAdminCollection({
               <div className="mt-3 flex flex-wrap gap-2">{item.details.map((detail) => <Badge key={detail} variant="muted">{detail}</Badge>)}</div>
               <p className="mt-3 text-xs text-muted">Updated {item.updatedAt ? formatShortDate(item.updatedAt) : "unknown"}</p>
             </div>
-            {item.href ? <Button asChild variant="secondary" size="sm"><Link href={item.href}>Open<ArrowRight className="h-4 w-4" /></Link></Button> : null}
+            {item.href ? <Button asChild variant="secondary" size="sm"><Link href={withFilters(item.href)}>Open<ArrowRight className="h-4 w-4" /></Link></Button> : null}
             {item.externalHref ? <Button asChild variant="secondary" size="sm"><a href={item.externalHref} target="_blank" rel="noopener noreferrer">Open file<ArrowRight className="h-4 w-4" /></a></Button> : null}
           </div>
         </Card>)}

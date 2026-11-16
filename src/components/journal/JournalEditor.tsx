@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { type MoodValue, MOOD_OPTIONS } from "@/types";
 import { Input } from "@/components/ui/Input";
@@ -14,7 +13,6 @@ interface JournalEditorProps {
 }
 
 export function JournalEditor({ userId }: JournalEditorProps) {
-  const router = useRouter();
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [mood, setMood] = useState<MoodValue | null>(null);
@@ -46,10 +44,7 @@ export function JournalEditor({ userId }: JournalEditorProps) {
       setError(saveError.message);
       return;
     }
-    if (data) {
-      router.push(`/journal/${data.id}`);
-      router.refresh();
-    }
+    if (data) window.location.assign(`/journal/${data.id}`);
   }
 
   return (

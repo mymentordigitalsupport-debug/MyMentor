@@ -1,5 +1,6 @@
 import { getAdminSupabaseClient } from "@/lib/admin/data";
 import { getStoredResourceFiles } from "@/lib/resource-library";
+import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 type ContentRow = Record<string, unknown>;
 
@@ -13,6 +14,16 @@ export type AdminContentItem = {
   href?: string;
   externalHref?: string;
   storagePath?: string;
+};
+
+export type AdminFilters = {
+  book?: string;
+  guidance?: string;
+};
+
+export type AdminFilterOptions = {
+  books: Array<{ slug: string; title: string }>;
+  guidancePaths: Array<{ value: string; label: string }>;
 };
 
 export type AdminReflectionRecord = {
@@ -35,6 +46,56 @@ async function list(table: string, columns: string, orderBy = "updated_at") {
   return (data ?? []) as unknown as ContentRow[];
 }
 
+export async function getAdminFilterOptions(): Promise<AdminFilterOptions> {
+  const client = await getAdminSupabaseClient();
+  const [coursesResult, versionsResult] = await Promise.all([
+    client.from("courses").select("slug,title").order("sort_order", { ascending: true }),
+    client.from("course_versions").select("guidance_path"),
+  ]);
+  if (coursesResult.error) throw new Error(`courses: ${coursesResult.error.message}`);
+  if (versionsResult.error) throw new Error(`course_versions: ${versionsResult.error.message}`);
+  const paths = new Set((versionsResult.data ?? []).map((row) => row.guidance_path).filter(Boolean));
+  const labels: Record<string, string> = { religious: "Religious Guidance", christian: "Christian Guided" };
+  return {
+    books: (coursesResult.data ?? []).map((row) => ({ slug: row.slug, title: row.title })),
+    guidancePaths: [...paths].sort().map((value) => ({ value, label: labels[value] ?? value })),
+  };
+}
+
+async function getFilterContext(filters: AdminFilters) {
+  const client = await getAdminSupabaseClient();
+  const coursesQuery = client.from("courses").select("id,slug");
+  if (filters.book) coursesQuery.eq("slug", filters.book);
+  const coursesResult = await coursesQuery;
+  if (coursesResult.error) throw new Error(`courses: ${coursesResult.error.message}`);
+  const courseIds = (coursesResult.data ?? []).map((row) => row.id);
+  if (filters.book && courseIds.length === 0) return { courseIds: [], versionIds: [], chapterIds: [], lessonIds: [] };
+
+  const versionsQuery = client.from("course_versions").select("id,course_id,guidance_path");
+  if (courseIds.length) versionsQuery.in("course_id", courseIds);
+  if (filters.guidance) versionsQuery.eq("guidance_path", filters.guidance);
+  const versionsResult = await versionsQuery;
+  if (versionsResult.error) throw new Error(`course_versions: ${versionsResult.error.message}`);
+  const versionIds = (versionsResult.data ?? []).map((row) => row.id);
+  const scopedCourseIds = filters.guidance ? [...new Set((versionsResult.data ?? []).map((row) => row.course_id))] : courseIds;
+  if (filters.guidance || filters.book) {
+    if (!versionIds.length) return { courseIds: scopedCourseIds, versionIds: [], chapterIds: [], lessonIds: [] };
+  }
+
+  const chaptersQuery = client.from("chapters").select("id");
+  if (versionIds.length) chaptersQuery.in("course_version_id", versionIds);
+  const chaptersResult = await chaptersQuery;
+  if (chaptersResult.error) throw new Error(`chapters: ${chaptersResult.error.message}`);
+  const chapterIds = (chaptersResult.data ?? []).map((row) => row.id);
+  if ((filters.guidance || filters.book) && !chapterIds.length) return { courseIds: scopedCourseIds, versionIds, chapterIds: [], lessonIds: [] };
+
+  const lessonsQuery = client.from("lessons").select("id");
+  if (chapterIds.length) lessonsQuery.in("chapter_id", chapterIds);
+  const lessonsResult = await lessonsQuery;
+  if (lessonsResult.error) throw new Error(`lessons: ${lessonsResult.error.message}`);
+  return { courseIds: scopedCourseIds, versionIds, chapterIds, lessonIds: (lessonsResult.data ?? []).map((row) => row.id) };
+}
+
 function text(value: unknown) {
   return typeof value === "string" ? value : "";
 }
@@ -48,8 +109,10 @@ function updatedAt(row: ContentRow) {
   return text(row.updated_at) || text(row.created_at);
 }
 
-export async function getAdminCourses(): Promise<AdminContentItem[]> {
+export async function getAdminCourses(filters: AdminFilters = {}): Promise<AdminContentItem[]> {
   const courses = await list("courses", "id,title,description,is_published,sort_order,updated_at,created_at");
+  const context = await getFilterContext(filters);
+  const allowed = filters.book || filters.guidance ? new Set(context.courseIds) : null;
   return courses.map((course) => ({
     id: text(course.id),
     title: text(course.title),
@@ -58,11 +121,13 @@ export async function getAdminCourses(): Promise<AdminContentItem[]> {
     details: [`Order ${Number(course.sort_order) || 0}`],
     updatedAt: updatedAt(course),
     href: `/admin/courses/${text(course.id)}`,
-  }));
+  })).filter((course) => !allowed || allowed.has(course.id));
 }
 
-export async function getAdminChapters(): Promise<AdminContentItem[]> {
+export async function getAdminChapters(filters: AdminFilters = {}): Promise<AdminContentItem[]> {
   const chapters = await list("chapters", "id,title,description,is_published,sort_order,course_version_id,updated_at,created_at");
+  const context = await getFilterContext(filters);
+  const allowed = filters.book || filters.guidance ? new Set(context.chapterIds) : null;
   return chapters.map((chapter) => ({
     id: text(chapter.id),
     title: text(chapter.title),
@@ -71,11 +136,13 @@ export async function getAdminChapters(): Promise<AdminContentItem[]> {
     details: [`Order ${Number(chapter.sort_order) || 0}`, `Version ${text(chapter.course_version_id).slice(0, 8)}`],
     updatedAt: updatedAt(chapter),
     href: `/admin/chapters/${text(chapter.id)}`,
-  }));
+  })).filter((chapter) => !allowed || allowed.has(chapter.id));
 }
 
-export async function getAdminLessons(): Promise<AdminContentItem[]> {
+export async function getAdminLessons(filters: AdminFilters = {}): Promise<AdminContentItem[]> {
   const lessons = await list("lessons", "id,title,is_published,estimated_minutes,sort_order,chapter_id,updated_at,created_at");
+  const context = await getFilterContext(filters);
+  const allowed = filters.book || filters.guidance ? new Set(context.lessonIds) : null;
   return lessons.map((lesson) => ({
     id: text(lesson.id),
     title: text(lesson.title),
@@ -88,36 +155,29 @@ export async function getAdminLessons(): Promise<AdminContentItem[]> {
     ],
     updatedAt: updatedAt(lesson),
     href: `/admin/lessons/${text(lesson.id)}`,
-  }));
+  })).filter((lesson) => !allowed || allowed.has(lesson.id));
 }
 
 export async function getAdminMedia(): Promise<AdminContentItem[]> {
-  const [videos, audio] = await Promise.all([
-    list("mentor_videos", "id,title,url,thumbnail,duration_s,updated_at,created_at"),
-    list("audio_tracks", "id,title,url,duration_s,updated_at,created_at"),
-  ]);
-  return [
-    ...videos.map((video) => ({
-      id: `video-${text(video.id)}`,
-      title: text(video.title),
-      description: optionalText(video.url),
-      status: "Video",
-      details: [video.duration_s ? `${video.duration_s} sec` : "No duration", video.thumbnail ? "Thumbnail attached" : "No thumbnail"],
-      updatedAt: updatedAt(video),
-    })),
-    ...audio.map((track) => ({
+  const audio = await list("audio_tracks", "id,title,url,duration_s,updated_at,created_at");
+  const admin = createSupabaseAdminClient();
+  return Promise.all(audio.map(async (track) => {
+      const stored = optionalText(track.url);
+      const signed = stored && !/^https?:\/\//i.test(stored) && admin ? await admin.storage.from("media").createSignedUrl(stored, 3600) : null;
+      return {
       id: `audio-${text(track.id)}`,
       title: text(track.title),
-      description: optionalText(track.url),
+      description: signed?.data?.signedUrl ?? stored,
       status: "Audio",
       details: [track.duration_s ? `${track.duration_s} sec` : "No duration"],
       updatedAt: updatedAt(track),
-    })),
-  ].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
+    } satisfies AdminContentItem;
+  }));
 }
 
-export async function getAdminReflectionRecords(): Promise<AdminReflectionRecord[]> {
+export async function getAdminReflectionRecords(filters: AdminFilters = {}): Promise<AdminReflectionRecord[]> {
   const client = await getAdminSupabaseClient();
+  const context = await getFilterContext(filters);
   const [blocksResult, lessonsResult, journalsResult, insightsResult, moodsResult, profilesResult] = await Promise.all([
     client
       .from("lesson_content_blocks")
@@ -133,12 +193,13 @@ export async function getAdminReflectionRecords(): Promise<AdminReflectionRecord
   for (const result of [blocksResult, lessonsResult, journalsResult, insightsResult, moodsResult, profilesResult]) {
     if (result.error) throw new Error(`reflections: ${result.error.message}`);
   }
+  const allowedLessons = filters.book || filters.guidance ? new Set(context.lessonIds) : null;
   const lessonTitles = new Map((lessonsResult.data ?? []).map((lesson) => [lesson.id, lesson.title ?? "Untitled lesson"]));
   const memberNames = new Map((profilesResult.data ?? []).map((profile) => [
     profile.user_id,
     profile.is_anonymous ? profile.anonymous_name || "Anonymous member" : profile.display_name || "Member",
   ]));
-  const prompts = (blocksResult.data ?? []).map((block) => {
+  const prompts = (blocksResult.data ?? []).filter((block) => !allowedLessons || allowedLessons.has(block.lesson_id)).map((block) => {
     const value = (block.content ?? {}) as Record<string, unknown>;
     const prompt = [value.prompt, value.question, value.message, block.title].find((item) => typeof item === "string" && item.trim()) as string | undefined;
     return {
@@ -155,7 +216,7 @@ export async function getAdminReflectionRecords(): Promise<AdminReflectionRecord
     } satisfies AdminReflectionRecord;
   });
   const responses = [
-    ...(journalsResult.data ?? []).map((entry) => ({
+    ...(journalsResult.data ?? []).filter((entry) => !allowedLessons || (entry.lesson_id && allowedLessons.has(entry.lesson_id))).map((entry) => ({
       id: `journal-${entry.id}`,
       category: "Journal" as const,
       subtype: "Journal response",
@@ -167,7 +228,7 @@ export async function getAdminReflectionRecords(): Promise<AdminReflectionRecord
       recordedAt: entry.updated_at ?? entry.created_at,
       isResponse: true,
     })),
-    ...(insightsResult.data ?? []).map((insight) => ({
+    ...(insightsResult.data ?? []).filter((insight) => !allowedLessons || (insight.lesson_id && allowedLessons.has(insight.lesson_id))).map((insight) => ({
       id: `insight-${insight.id}`,
       category: "Insight" as const,
       subtype: "Saved insight",
@@ -179,7 +240,7 @@ export async function getAdminReflectionRecords(): Promise<AdminReflectionRecord
       recordedAt: insight.created_at,
       isResponse: true,
     })),
-    ...(moodsResult.data ?? []).map((mood) => ({
+    ...(moodsResult.data ?? []).filter((mood) => !allowedLessons || (mood.lesson_id && allowedLessons.has(mood.lesson_id))).map((mood) => ({
       id: `mood-${mood.id}`,
       category: "Mood" as const,
       subtype: "Mood check-in",
@@ -198,8 +259,8 @@ export async function getAdminReflectionRecords(): Promise<AdminReflectionRecord
   ].sort((a, b) => b.recordedAt.localeCompare(a.recordedAt));
 }
 
-export async function getAdminReflections(): Promise<AdminContentItem[]> {
-  const records = await getAdminReflectionRecords();
+export async function getAdminReflections(filters: AdminFilters = {}): Promise<AdminContentItem[]> {
+  const records = await getAdminReflectionRecords(filters);
   return records.map((record) => ({
     id: record.id,
     title: record.title,
@@ -210,8 +271,9 @@ export async function getAdminReflections(): Promise<AdminContentItem[]> {
   }));
 }
 
-export async function getAdminQuizzes(): Promise<AdminContentItem[]> {
+export async function getAdminQuizzes(filters: AdminFilters = {}): Promise<AdminContentItem[]> {
   const client = await getAdminSupabaseClient();
+  const context = await getFilterContext(filters);
   const [blocksResult, answersResult, lessonsResult] = await Promise.all([
     client.from("lesson_content_blocks").select("id,lesson_id,content,sort_order,created_at,updated_at").eq("block_type", "quiz").order("updated_at", { ascending: false }),
     client.from("lesson_quiz_answers").select("block_id,is_correct"),
@@ -229,7 +291,8 @@ export async function getAdminQuizzes(): Promise<AdminContentItem[]> {
     stat.correct += answer.is_correct ? 1 : 0;
     answerStats.set(answer.block_id, stat);
   }
-  return (blocksResult.data ?? []).map((block) => {
+  const allowedLessons = filters.book || filters.guidance ? new Set(context.lessonIds) : null;
+  return (blocksResult.data ?? []).filter((block) => !allowedLessons || allowedLessons.has(block.lesson_id)).map((block) => {
     const content = (block.content ?? {}) as Record<string, unknown>;
     const options = Array.isArray(content.options) ? content.options : [];
     const correct = options.find((option) => option && typeof option === "object" && (option as Record<string, unknown>).is_correct);
@@ -273,8 +336,9 @@ export async function getAdminResources(): Promise<AdminContentItem[]> {
   return [...databaseItems, ...storedItems];
 }
 
-export async function getAdminLessonBuilderData() {
+export async function getAdminLessonBuilderData(filters: AdminFilters = {}) {
   const client = await getAdminSupabaseClient();
+  const context = await getFilterContext(filters);
   const [lessonsResult, blocksResult] = await Promise.all([
     client
       .from("lessons")
@@ -287,8 +351,9 @@ export async function getAdminLessonBuilderData() {
   ]);
   if (lessonsResult.error) throw new Error(`lessons: ${lessonsResult.error.message}`);
   if (blocksResult.error) throw new Error(`lesson_content_blocks: ${blocksResult.error.message}`);
+  const allowedLessons = filters.book || filters.guidance ? new Set(context.lessonIds) : null;
   return {
-    lessons: (lessonsResult.data ?? []) as unknown as Array<Record<string, unknown>>,
-    blocks: (blocksResult.data ?? []) as unknown as Array<Record<string, unknown>>,
+    lessons: (lessonsResult.data ?? []).filter((lesson) => !allowedLessons || allowedLessons.has(lesson.id)) as unknown as Array<Record<string, unknown>>,
+    blocks: (blocksResult.data ?? []).filter((block) => !allowedLessons || allowedLessons.has(block.lesson_id)) as unknown as Array<Record<string, unknown>>,
   };
 }

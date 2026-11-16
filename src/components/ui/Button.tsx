@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
   [
-    "site-profile-button inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium",
+    "site-profile-button inline-flex min-h-11 items-center justify-center gap-2 text-center font-medium",
     "transition-all duration-200 ease-in-out",
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/80 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
     "disabled:pointer-events-none disabled:opacity-50",
@@ -36,7 +36,7 @@ const buttonVariants = cva(
         sm: "px-4 py-2 text-sm rounded-xl",
         md: "px-6 py-3 text-base rounded-2xl",
         lg: "px-8 py-4 text-lg rounded-2xl",
-        icon: "h-10 w-10 rounded-xl p-0",
+        icon: "h-11 w-11 rounded-xl p-0",
       },
     },
     defaultVariants: {

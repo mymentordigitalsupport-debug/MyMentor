@@ -113,11 +113,11 @@ function textFromContent(content: Record<string, unknown>, keys: string[]) {
 
 function createTemplateState(lesson: LessonRow, blocks: BlockRow[]): TemplateState {
   const welcomeBlocks = blocks.filter((block) => block.block_type === "welcome");
-  const teachingBlocks = blocks.filter((block) => ["reading", "mentor_note", "scripture", "quote"].includes(block.block_type));
-  const videoBlocks = blocks.filter((block) => ["mentor_video", "audio"].includes(block.block_type));
-  const reflectionBlocks = blocks.filter((block) => ["pause_reflect", "reflection_prompt", "journal_prompt", "quiz"].includes(block.block_type));
+  const teachingBlocks = blocks.filter((block) => block.block_type === "reading");
+  const videoBlocks = blocks.filter((block) => block.block_type === "video");
+  const reflectionBlocks = blocks.filter((block) => block.block_type === "pause_reflect");
   const actionBlocks = blocks.filter((block) => block.block_type === "daily_action");
-  const encouragementBlocks = blocks.filter((block) => ["encouragement", "complete"].includes(block.block_type));
+  const encouragementBlocks = blocks.filter((block) => block.block_type === "complete");
 
   return {
     welcomeMessage:
@@ -205,10 +205,33 @@ export function LessonBuilderClient({
     [lesson, lessonBlocks]
   );
   const [template, setTemplate] = React.useState<TemplateState | null>(lessonTemplate);
+  const [saving, setSaving] = React.useState(false);
+  const [saveMessage, setSaveMessage] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     setTemplate(lessonTemplate);
+    setSaveMessage(null);
   }, [lessonTemplate]);
+
+  async function saveLesson(status: "draft" | "published") {
+    if (!template || !lesson) return;
+    setSaving(true);
+    setSaveMessage(null);
+    try {
+      const response = await fetch("/api/admin/lesson-builder", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ lessonId: lesson.id, status, template }),
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(result.error ?? "Unable to save lesson.");
+      setSaveMessage(status === "published" ? "Lesson published." : "Draft saved.");
+    } catch (error) {
+      setSaveMessage(error instanceof Error ? error.message : "Unable to save lesson.");
+    } finally {
+      setSaving(false);
+    }
+  }
 
   if (!lesson || !template) {
     return (
@@ -303,11 +326,11 @@ export function LessonBuilderClient({
             <Eye className="h-4 w-4" />
             {previewMode ? "Exit Preview" : "Preview Mode"}
           </Button>
-          <Button variant="secondary" size="sm">
+          <Button variant="secondary" size="sm" onClick={() => void saveLesson("draft")} loading={saving}>
             <Save className="h-4 w-4" />
             Save as Draft
           </Button>
-          <Button variant="primary" size="sm">
+          <Button variant="primary" size="sm" onClick={() => void saveLesson("published")} loading={saving}>
             <CheckCircle2 className="h-4 w-4" />
             Publish Lesson
           </Button>
@@ -318,6 +341,7 @@ export function LessonBuilderClient({
             </Link>
           </Button>
         </div>
+        {saveMessage ? <p className="mt-3 text-sm font-medium text-forest" role="status">{saveMessage}</p> : null}
       </section>
 
       <Card variant="default" padding="lg">
@@ -595,7 +619,7 @@ export function LessonBuilderClient({
           )}
 
           <div className="mt-5 flex flex-wrap gap-2">
-            <Button variant="secondary" size="sm" onClick={() => setSelectedSectionKey("welcome")}>
+            <Button variant="secondary" size="sm" onClick={() => setTemplate(lessonTemplate)} disabled={saving}>
               <Pencil className="h-4 w-4" />
               Reset Section
             </Button>

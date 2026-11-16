@@ -20,7 +20,7 @@ export async function GET(request: Request) {
       const { data: { user } } = await supabase.auth.getUser();
       const admin = createSupabaseAdminClient();
       if (user && admin) {
-        const { data: profile } = await supabase.from("profiles").select("role").eq("id", user.id).maybeSingle();
+        const { data: profile } = await supabase.from("profiles").select("role").eq("user_id", user.id).maybeSingle();
         if (profile?.role === "user") {
           try {
             await queueUserEmail(admin, { userId: user.id, eventKey: `member-welcome:${user.id}`, eventType: "member_welcome", template: "memberWelcome" });

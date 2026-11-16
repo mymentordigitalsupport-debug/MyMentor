@@ -3,6 +3,7 @@ import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { getArticleActor, isArticleAdmin } from "@/lib/article-access";
 import { getAdminArticles, getAuthorApplications, slugifyArticle } from "@/lib/articles";
 import { queueUserEmail } from "@/lib/transactional-email";
+import { hasTrustedOrigin } from "@/lib/security";
 
 export async function GET() {
   const actor = await getArticleActor();
@@ -12,6 +13,7 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  if (!hasTrustedOrigin(request)) return NextResponse.json({ error: "Invalid request origin." }, { status: 403 });
   const actor = await getArticleActor();
   if (!actor.user || !isArticleAdmin(actor.role)) return NextResponse.json({ error: "Administrator access required." }, { status: 403 });
   const admin = createSupabaseAdminClient();
@@ -33,11 +35,12 @@ export async function POST(request: Request) {
 }
 
 export async function PATCH(request: Request) {
+  if (!hasTrustedOrigin(request)) return NextResponse.json({ error: "Invalid request origin." }, { status: 403 });
   const actor = await getArticleActor();
   if (!actor.user || !isArticleAdmin(actor.role)) return NextResponse.json({ error: "Administrator access required." }, { status: 403 });
   const admin = createSupabaseAdminClient();
   if (!admin) return NextResponse.json({ error: "Article service is unavailable." }, { status: 503 });
-  const reviewerId = actor.user.id === "hardcoded-admin" ? null : actor.user.id;
+  const reviewerId = actor.user.id;
   const body = await request.json() as Record<string, unknown>;
 
   if (body.type === "application") {
@@ -106,6 +109,7 @@ export async function PATCH(request: Request) {
         template: action === "publish" ? "articlePublished" : "articleDeclined",
         articleTitle: article.title,
         articleSlug: article.slug,
+        articleId: article.id,
         reviewFeedback: feedback,
       });
     } catch {
@@ -116,6 +120,7 @@ export async function PATCH(request: Request) {
 }
 
 export async function DELETE(request: Request) {
+  if (!hasTrustedOrigin(request)) return NextResponse.json({ error: "Invalid request origin." }, { status: 403 });
   const actor = await getArticleActor();
   if (!actor.user || !isArticleAdmin(actor.role)) return NextResponse.json({ error: "Administrator access required." }, { status: 403 });
   const admin = createSupabaseAdminClient();
