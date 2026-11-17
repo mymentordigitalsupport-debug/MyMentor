@@ -30,12 +30,12 @@ function LearnBook({ className }: { className: string }) {
 
 function StaticBookGroup({ className = '' }: { className?: string }) {
   return (
-    <div className={`relative h-[330px] w-full max-w-[980px] sm:h-[390px] md:h-[520px] lg:h-[540px] ${className}`} aria-label="My Mentor book collection">
+    <div className={`relative h-[410px] w-full max-w-[980px] xs:h-[440px] sm:h-[500px] md:h-[600px] lg:h-[650px] ${className}`} aria-label="My Mentor book collection">
       <div className="absolute inset-x-0 bottom-4 h-8 bg-[radial-gradient(ellipse,rgba(45,28,15,0.22),transparent_70%)] blur-md sm:bottom-8" aria-hidden="true" />
       <div className="absolute inset-0 flex items-center justify-center" style={{ perspective: '1400px' }}>
         {books.map((book) => (
           <div key={book.id} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ zIndex: book.zIndex }}>
-            <div className="w-[clamp(200px,30vw,340px)]" style={{ transform: book.transform, transformStyle: 'preserve-3d', filter: book.zIndex === 3 ? 'drop-shadow(0 32px 24px rgba(35, 22, 12, 0.34))' : 'drop-shadow(0 20px 16px rgba(35, 22, 12, 0.22))' }}>
+            <div className="w-[clamp(245px,42vw,390px)]" style={{ transform: book.transform, transformStyle: 'preserve-3d', filter: book.zIndex === 3 ? 'drop-shadow(0 32px 24px rgba(35, 22, 12, 0.34))' : 'drop-shadow(0 20px 16px rgba(35, 22, 12, 0.22))' }}>
               <img src={book.src} alt={book.title} className="block h-auto w-full select-none object-contain" loading={book.zIndex === 3 ? 'eager' : 'lazy'} draggable={false} />
             </div>
           </div>

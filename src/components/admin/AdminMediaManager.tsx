@@ -36,6 +36,28 @@ export function AdminMediaManager({ items }: { items: AdminContentItem[] }) {
     }
   }
 
+  async function generate(form: HTMLFormElement) {
+    const data = new FormData(form);
+    const files = Array.from(data.getAll("files")).filter((value): value is File => value instanceof File && value.size > 0);
+    if (!files.length) return;
+    setBusy(true);
+    setMessage("");
+    try {
+      for (const file of files) {
+        const payload = new FormData();
+        payload.set("file", file);
+        payload.set("title", file.name.replace(/\.md$/i, ""));
+        const response = await fetch("/api/admin/media", { method: "POST", body: payload });
+        const result = await response.json().catch(() => ({})) as Record<string, string>;
+        if (!response.ok) throw new Error(result.error ?? `Unable to generate ${file.name}.`);
+      }
+      window.location.reload();
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Audio generation failed.");
+      setBusy(false);
+    }
+  }
+
   async function remove(id: string) {
     if (!confirm("Delete this audio track?")) return;
     setBusy(true);
@@ -49,6 +71,12 @@ export function AdminMediaManager({ items }: { items: AdminContentItem[] }) {
   }
 
   return <div className="space-y-5">
+    <form onSubmit={(event) => { event.preventDefault(); void generate(event.currentTarget); }} className="grid gap-3 rounded-2xl border border-gold/30 bg-[#fffaf0] p-5 md:grid-cols-2">
+      <h2 className="text-lg font-semibold text-text md:col-span-2">Generate audio from Markdown</h2>
+      <p className="text-sm leading-6 text-muted md:col-span-2">Upload one or more `.md` files. Markdown formatting is removed before each file is sent to ElevenLabs.</p>
+      <input name="files" required multiple type="file" accept=".md,text/markdown" className="rounded-xl border border-mist bg-white px-3 py-2.5 md:col-span-2" />
+      <button disabled={busy} className="inline-flex items-center justify-center gap-2 rounded-xl bg-forest px-4 py-2.5 font-semibold text-cream disabled:opacity-50 md:col-span-2"><Upload size={16} />Generate audio</button>
+    </form>
     <form onSubmit={(event) => { event.preventDefault(); void upload(event.currentTarget); }} className="grid gap-3 rounded-2xl border border-mist bg-cream p-5 md:grid-cols-2">
       <h2 className="text-lg font-semibold text-text md:col-span-2">Add audio</h2>
       <input name="title" required maxLength={180} placeholder="Audio title" className="rounded-xl border border-mist bg-white px-3 py-2.5" />

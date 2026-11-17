@@ -34,10 +34,12 @@ export async function GET() {
   const admin = createSupabaseAdminClient();
   let bank = null;
   let accessLevel: AccessLevel = null;
+  let onboardingCompleted = false;
   if (admin) {
     const { data: settings } = await admin.from("payment_settings").select("bank_name,account_holder,account_number,branch_code,instructions").eq("is_active", true).maybeSingle();
     bank = settings ?? null;
-    const { data: profile } = await admin.from("profiles").select("selected_course_id,active_course_version_id").eq("user_id", user.id).maybeSingle();
+    const { data: profile } = await admin.from("profiles").select("selected_course_id,active_course_version_id,onboarding_completed").eq("user_id", user.id).maybeSingle();
+    onboardingCompleted = Boolean(profile?.onboarding_completed);
     let courseId = profile?.selected_course_id ?? null;
     if (!courseId && profile?.active_course_version_id) {
       const { data: activeVersion } = await admin.from("course_versions").select("course_id").eq("id", profile.active_course_version_id).maybeSingle();
@@ -51,7 +53,13 @@ export async function GET() {
       }
     }
   }
-  return NextResponse.json({ requests: data ?? [], activePayment, bank, accessLevel });
+  return NextResponse.json({
+    requests: data ?? [],
+    activePayment,
+    bank,
+    accessLevel,
+    onboardingCompleted,
+  });
 }
 
 export async function POST(request: Request) {

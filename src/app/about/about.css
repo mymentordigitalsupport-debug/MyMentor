@@ -7,6 +7,18 @@
 .about-page .font-script { font-family: "Alex Brush", cursive; }
 .about-page .bg-starfield { background-image: radial-gradient(1.5px 1.5px at 20px 30px, #fff 100%, transparent), radial-gradient(1.5px 1.5px at 40px 70px, #E7C77E 100%, transparent), radial-gradient(1px 1px at 90px 40px, #fff 100%, transparent), radial-gradient(1.2px 1.2px at 160px 120px, #FFD782 100%, transparent), radial-gradient(1.5px 1.5px at 230px 210px, #fff 100%, transparent), radial-gradient(1px 1px at 290px 160px, #E2C374 100%, transparent); background-size: 320px 320px; }
 
+@media (max-width: 639px) {
+  .about-page .about-hero-copy {
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    padding-inline: 20px;
+    margin-top: 0;
+  }
+}
+
 .about-page .public-nav-toggle { background: #1f1710; color: #fff; }
 @media (prefers-reduced-motion: no-preference) {
   .about-page .public-nav-toggle,

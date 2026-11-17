@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AlertCircle, ArrowRight, Check, CheckCircle2, Clipboard, CreditCard, FileImage, Heart, Info, Landmark, Leaf, LockKeyhole, ShieldCheck, UploadCloud, X } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { BotanicalSprig, CommunityTexture, PaperPin, PaperSurface, PaperTape } from "@/components/threads/ThreadPaper";
 import styles from "./PaymentPageClient.module.css";
 
@@ -21,6 +22,7 @@ const labelFor = (code: string) => code === "chapter_1" ? "Chapter one" : code =
 const money = (cents: number) => `R${(cents / 100).toFixed(2)}`;
 
 export function PaymentPageClient() {
+  const router = useRouter();
   const [requests, setRequests] = useState<RequestRow[]>([]);
   const [bank, setBank] = useState<Bank>(null);
   const [payment, setPayment] = useState<RequestRow | null>(null);
@@ -30,6 +32,8 @@ export function PaymentPageClient() {
   const [loading, setLoading] = useState(true);
   const [notice, setNotice] = useState<Notice>(null);
   const [accessLevel, setAccessLevel] = useState<AccessLevel>(null);
+  const [onboardingCompleted, setOnboardingCompleted] = useState(true);
+  const paymentDetailsRef = useRef<HTMLElement | null>(null);
   const history = requests.filter((row) => !ACTIVE_STATUSES.has(row.status));
   const plans = accessLevel === "chapter_1"
     ? [
@@ -47,6 +51,7 @@ export function PaymentPageClient() {
       setPayment(body.activePayment ?? null);
       setBank(body.bank ?? null);
       setAccessLevel(body.accessLevel === "chapter_1" || body.accessLevel === "full_course" ? body.accessLevel : null);
+      setOnboardingCompleted(Boolean(body.onboardingCompleted));
     } catch (error) {
       setNotice({ text: error instanceof Error ? error.message : "Unable to load payment details.", kind: "error" });
     } finally {
@@ -54,6 +59,18 @@ export function PaymentPageClient() {
     }
   }
   useEffect(() => { void load(); }, []);
+  useEffect(() => {
+    if (!payment || payment.status !== "under_review") return;
+    const interval = window.setInterval(() => { void load(); }, 15_000);
+    return () => window.clearInterval(interval);
+  }, [payment?.id, payment?.status]);
+  useEffect(() => {
+    if (accessLevel && !onboardingCompleted) router.replace("/onboarding");
+  }, [accessLevel, onboardingCompleted, router]);
+  useEffect(() => {
+    if (!payment) return;
+    paymentDetailsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [payment?.id]);
 
   async function start(productCode: ProductCode) {
     if (busy || payment) return;
@@ -67,9 +84,6 @@ export function PaymentPageClient() {
       }
       setPayment(body.payment); setBank(body.bank); setFile(null);
       setRequests((current) => [body.payment, ...current.filter((row) => row.id !== body.payment.id)]);
-      window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
-        document.getElementById("eft-instructions")?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }));
     } catch (error) {
       setNotice({ text: error instanceof Error ? error.message : "Unable to start your payment request.", kind: "error" });
     } finally {
@@ -165,7 +179,7 @@ export function PaymentPageClient() {
 
       {notice && <div className={styles.notice} data-kind={notice.kind} role={notice.kind === "error" ? "alert" : "status"}>{notice.kind === "error" ? <Info size={18} /> : <CheckCircle2 size={18} />}{notice.text}</div>}
 
-      {payment && <section id="eft-instructions" className={styles.paymentSection} aria-label="Your EFT instructions">
+      {payment && <section ref={paymentDetailsRef} id="eft-instructions" className={styles.paymentSection} aria-label="Your EFT instructions">
         <div className={styles.paymentPaper}>
           <PaperSurface seed={31} /><PaperTape className={styles.paymentTape} />
           <div className={styles.paymentHeader}><div><p className={styles.sectionEyebrow}>YOUR PAYMENT REQUEST</p><h2>{payment.status === "under_review" ? "We’re checking your EFT" : payment.status === "needs_resubmission" ? "A new proof is needed" : "Make your EFT"}</h2><p>{labelFor(payment.product_code)} · {money(payment.amount_cents)}</p></div>{CANCELLABLE_STATUSES.has(payment.status) && <button type="button" className={styles.cancel} onClick={() => void cancelPayment()} disabled={busy} aria-label="Cancel this payment request and choose another option" title="Cancel and choose another option"><X size={21} /></button>}</div>

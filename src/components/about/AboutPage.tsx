@@ -6,6 +6,7 @@ import { HeroSection } from "./components/HeroSection";
 import { TestimonialSection } from "./components/TestimonialSection";
 import { AuthorSection } from "./components/AuthorSection";
 import { GiftSection } from "./components/GiftSection";
+import { PricingSection } from "./components/PricingSection";
 import { ScrollExperience } from "./components/ScrollExperience";
 
 export function AboutPage() {
@@ -19,6 +20,7 @@ export function AboutPage() {
       <TestimonialSection onSignUp={signUp} onExploreBooks={explore} />
       <AuthorSection onSignUp={signUp} onExploreBooks={explore} />
       <GiftSection onSignUp={signUp} />
+      <PricingSection />
       <ScrollExperience onSignUp={signUp} onExploreBooks={explore} />
     </main>
   );

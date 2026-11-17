@@ -29,7 +29,7 @@ export type OnboardingProfile = {
 };
 
 type Props = { journey: OnboardingJourney; profile: OnboardingProfile };
-const STEPS = ["Welcome", "Your name", "Your intention", "Check in"] as const;
+const STEPS = ["Welcome", "Guidance", "Your name", "Your intention", "Check in"] as const;
 const GOALS = ["Take one healthy step each day", "Understand myself better", "Rebuild trust with my family", "Find freedom from dependency"];
 const MOOD_IMAGES: Record<MoodValue, string> = {
   low: "/assets/images/low.png",
@@ -45,6 +45,7 @@ export function OnboardingShell({ journey, profile }: Props) {
   const [step, setStep] = useState(0);
   const [isAnonymous, setIsAnonymous] = useState(profile.isAnonymous);
   const [displayName, setDisplayName] = useState(profile.isAnonymous ? profile.anonymousName ?? profile.displayName : profile.displayName);
+  const [guidancePath, setGuidancePath] = useState<GuidancePath>(journey.guidancePath);
   const [goal, setGoal] = useState(profile.goal);
   const [mood, setMood] = useState<MoodValue | null>(profile.mood);
   const [saving, setSaving] = useState(false);
@@ -56,6 +57,26 @@ export function OnboardingShell({ journey, profile }: Props) {
   function moveTo(next: number) {
     setError("");
     setStep(next);
+  }
+
+  async function continueWithGuidance() {
+    if (saving) return;
+    setSaving(true);
+    setError("");
+    try {
+      const response = await fetch("/api/account/guidance", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ guidancePath }),
+      });
+      const body = await response.json().catch(() => null) as { error?: string } | null;
+      if (!response.ok) throw new Error(body?.error ?? "Unable to save your guidance choice.");
+      moveTo(2);
+    } catch (caughtError) {
+      setError(caughtError instanceof Error ? caughtError.message : "Unable to save your guidance choice.");
+    } finally {
+      setSaving(false);
+    }
   }
 
   async function finish() {
@@ -77,7 +98,7 @@ export function OnboardingShell({ journey, profile }: Props) {
         anonymous_name: isAnonymous ? name : null,
         is_anonymous: isAnonymous,
         display_name_mode: isAnonymous ? "nickname" : "real_name",
-        preferred_guidance_path: journey.guidancePath,
+        preferred_guidance_path: guidancePath,
         selected_course_id: journey.courseId,
         personal_goal: goal.trim() || null,
         mood_baseline: mood,
@@ -103,7 +124,7 @@ export function OnboardingShell({ journey, profile }: Props) {
   }
 
   const accessLabel = journey.accessLevel === "full_course" ? "Full course access" : "Chapter 1 access";
-  const guidanceLabel = journey.guidancePath === "christian" ? "Christian guidance" : "Religious guidance";
+  const guidanceLabel = guidancePath === "christian" ? "Christian guidance" : "Religious guidance";
 
   return <main className={styles.root}>
     <div className={styles.grain} aria-hidden="true" />
@@ -144,6 +165,22 @@ export function OnboardingShell({ journey, profile }: Props) {
             </>}
 
             {step === 1 && <>
+              <div className={styles.stepIcon}><Sparkles size={25} strokeWidth={1.6} /></div>
+              <p className={styles.kicker}>Choose your path</p>
+              <h2 ref={heading} tabIndex={-1}>What kind of guidance feels right?</h2>
+              <p className={styles.description}>Both paths cover the same journey. Choose the voice and support that feels most natural to you.</p>
+              <div className={styles.guidanceChoices} role="radiogroup" aria-label="Guidance path">
+                <button type="button" role="radio" aria-checked={guidancePath === "religious"} onClick={() => setGuidancePath("religious")}>
+                  <Leaf size={24} aria-hidden="true" /><span><strong>Religious guidance</strong><small>Spiritual reflection, purpose, and identity growth.</small></span>
+                </button>
+                <button type="button" role="radio" aria-checked={guidancePath === "christian"} onClick={() => setGuidancePath("christian")}>
+                  <Heart size={24} aria-hidden="true" /><span><strong>Christian guidance</strong><small>Scripture, prayer, and faith-based encouragement.</small></span>
+                </button>
+              </div>
+              <p className={styles.privacyNote}><ShieldCheck size={17} /> You can change this later in settings.</p>
+            </>}
+
+            {step === 2 && <>
               <div className={styles.stepIcon}><Heart size={25} strokeWidth={1.6} /></div>
               <p className={styles.kicker}>Make it yours</p>
               <h2 ref={heading} tabIndex={-1}>What should we call you?</h2>
@@ -156,7 +193,7 @@ export function OnboardingShell({ journey, profile }: Props) {
               <p className={styles.privacyNote}><LockKeyhole size={17} /> Your name is never shown in your course progress.</p>
             </>}
 
-            {step === 2 && <>
+            {step === 3 && <>
               <div className={styles.stepIcon}><Leaf size={25} strokeWidth={1.6} /></div>
               <p className={styles.kicker}>A personal intention</p>
               <h2 ref={heading} tabIndex={-1}>What brings you here?</h2>
@@ -166,7 +203,7 @@ export function OnboardingShell({ journey, profile }: Props) {
               <p className={styles.skipHint}>You can leave this blank for now.</p>
             </>}
 
-            {step === 3 && <>
+            {step === 4 && <>
               <div className={styles.stepIcon}><Heart size={25} strokeWidth={1.6} /></div>
               <p className={styles.kicker}>Just for today</p>
               <h2 ref={heading} tabIndex={-1}>How are you feeling?</h2>
@@ -182,7 +219,7 @@ export function OnboardingShell({ journey, profile }: Props) {
           {error && <p className={styles.error} role="alert">{error}</p>}
           <div className={styles.actions}>
             {step > 0 && <button type="button" className={styles.back} onClick={() => moveTo(step - 1)} disabled={saving}><ArrowLeft size={17} />Back</button>}
-            <button type="button" className={styles.next} onClick={step === STEPS.length - 1 ? () => void finish() : () => moveTo(step + 1)} disabled={saving || (step === 1 && !isAnonymous && !displayName.trim())}>
+            <button type="button" className={styles.next} onClick={step === STEPS.length - 1 ? () => void finish() : step === 1 ? () => void continueWithGuidance() : () => moveTo(step + 1)} disabled={saving || (step === 2 && !isAnonymous && !displayName.trim())}>
               {saving ? "Saving…" : step === STEPS.length - 1 ? "Enter my journey" : step === 0 ? "Let’s begin" : "Continue"}<ArrowRight size={18} />
             </button>
           </div>
