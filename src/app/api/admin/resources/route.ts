@@ -4,7 +4,7 @@ import { requireAdminSession } from "@/lib/admin/guards";
 import { hasTrustedOrigin } from "@/lib/security";
 
 const BUCKET = "resources";
-const categories = new Set(["reading", "worksheet", "support"]);
+const categories = new Set(["book", "reading", "worksheet", "support"]);
 const allowedExtensions = new Set(["pdf", "doc", "docx", "ppt", "pptx", "xls", "xlsx", "txt"]);
 
 function safeCategory(value: unknown) {

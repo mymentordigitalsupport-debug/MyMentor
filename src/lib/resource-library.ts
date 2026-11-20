@@ -21,9 +21,18 @@ function titleFromPath(path: string) {
     .trim();
 }
 
+function memberCategory(title: string, category: string): ResourceCategory {
+  const normalized = title.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  const bookTitles = [
+    "uprooting drug abuse",
+    "from addicts to leaders",
+    "protecting the next generation",
+  ];
+  return category === "book" || bookTitles.some((bookTitle) => normalized.includes(bookTitle)) ? "book" : "general";
+}
+
 function categoryFromFile(file: StorageFile): ResourceCategory {
-  void file;
-  return "reading";
+  return memberCategory(file.name, "reading");
 }
 
 async function listBucketFiles(prefix = ""): Promise<Array<{ file: StorageFile; path: string }>> {
@@ -79,7 +88,7 @@ async function resolveResourceUrl(admin: NonNullable<ReturnType<typeof createSup
   return data?.signedUrl ?? null;
 }
 
-export async function getMemberResources(): Promise<Resource[]> {
+export async function getMemberResources(canAccessBooks = false): Promise<Resource[]> {
   const admin = createSupabaseAdminClient();
   if (!admin) return [];
 
@@ -87,13 +96,17 @@ export async function getMemberResources(): Promise<Resource[]> {
     .from("resources")
     .select("id,title,category,description,file_url,is_published,sort_order,created_at,updated_at")
     .eq("is_published", true)
-    .in("category", ["reading", "worksheet", "support"])
+    .in("category", ["book", "reading", "worksheet", "support"])
     .order("sort_order", { ascending: true });
 
   const databaseResources: Resource[] = error ? [] : (await Promise.all((data ?? []).map(async (resource): Promise<Resource | null> => {
     if (!resource.file_url) return null;
     const url = await resolveResourceUrl(admin, resource.file_url);
-    return url ? { id: resource.id, title: resource.title, category: resource.category, description: resource.description, url, is_published: resource.is_published, sort_order: resource.sort_order, created_at: resource.created_at, updated_at: resource.updated_at } : null;
+    const category = memberCategory(resource.title, resource.category);
+    const isBook = category === "book";
+    return url && (!isBook || canAccessBooks)
+      ? { id: resource.id, title: resource.title, category, description: resource.description, url, is_published: resource.is_published, sort_order: resource.sort_order, created_at: resource.created_at, updated_at: resource.updated_at }
+      : { id: resource.id, title: resource.title, category, description: resource.description, url: null, is_published: resource.is_published, sort_order: resource.sort_order, created_at: resource.created_at, updated_at: resource.updated_at };
   }))).filter((resource): resource is Resource => resource !== null);
   return databaseResources;
 }

@@ -1,18 +1,30 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ArrowUpRight, BookOpen, ExternalLink, FileText, HeartHandshake } from "lucide-react";
+import { ArrowUpRight, BookOpen, ExternalLink, FileText, HeartHandshake, LockKeyhole } from "lucide-react";
 import type { Resource } from "@/types";
 import { Modal } from "@/components/ui/Modal";
 import { PaperPin, PaperSurface } from "@/components/threads/ThreadPaper";
 import styles from "@/components/threads/ThreadsCommunity.module.css";
 
 const iconForCategory = {
+  book: BookOpen,
+  general: BookOpen,
   worksheet: BookOpen,
   audio: BookOpen,
   video: BookOpen,
   reading: BookOpen,
   support: HeartHandshake,
+};
+
+const categoryLabels: Record<Resource["category"], string> = {
+  book: "Books",
+  general: "General resources",
+  reading: "Readings",
+  worksheet: "Worksheets",
+  support: "Support guides",
+  audio: "Audio",
+  video: "Video",
 };
 
 function fileExtension(url: string) {
@@ -23,20 +35,32 @@ function fileExtension(url: string) {
   }
 }
 
-export function MemberResourceLibrary({ resources }: { resources: Resource[] }) {
+export function MemberResourceLibrary({ resources, hasFullAccess }: { resources: Resource[]; hasFullAccess: boolean }) {
   const [selected, setSelected] = useState<Resource | null>(null);
+  const [categoryFilter, setCategoryFilter] = useState<"all" | "book" | "general">("all");
+  const visibleResources = categoryFilter === "all" ? resources : resources.filter((resource) => resource.category === categoryFilter);
   const extension = useMemo(() => selected?.url ? fileExtension(selected.url) : "", [selected]);
   const officeUrl = selected?.url && ["doc", "docx", "ppt", "pptx", "xls", "xlsx"].includes(extension)
     ? `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(selected.url)}`
     : null;
 
   return <>
+    <div className="mt-8 flex flex-wrap items-end border-b border-[#2e3d31]" role="tablist" aria-label="Resource categories">
+      {(["all", "book", "general"] as const).map((category) => <button key={category} type="button" role="tab" aria-selected={categoryFilter === category} onClick={() => setCategoryFilter(category)} className={`relative -mb-px px-3 pb-3 pt-2 font-sans text-[16px] font-normal transition-colors ${categoryFilter === category ? "border border-b-[#f7f5ed] bg-[#f7f5ed] text-[#23392b]" : "border border-transparent text-[#536653] hover:text-[#23392b]"}`}>
+        {category === "all" ? "Everything" : categoryLabels[category]}
+        <span className="ml-2 font-sans text-xs text-[#a0a99a]">{category === "all" ? resources.length : resources.filter((resource) => resource.category === category).length}</span>
+      </button>)}
+    </div>
     <section className={`${styles.feed} mt-8`} aria-label="Member resources">
-      {resources.map((resource, index) => {
+      {[...new Set(visibleResources.map((resource) => resource.category))].map((category) => <div key={category} className="mb-10 last:mb-0">
+        <div className="mb-4 flex items-center gap-3"><h2 className="font-serif text-2xl font-semibold text-[#23392b]">{categoryLabels[category]}</h2>{category === "book" && !hasFullAccess ? <span className="inline-flex items-center gap-1 rounded-full bg-[#eee9dc] px-3 py-1 text-xs font-semibold text-[#7a6e58]"><LockKeyhole size={13} /> Full payment required</span> : null}</div>
+      {visibleResources.filter((resource) => resource.category === category).map((resource, index) => {
         const Icon = iconForCategory[resource.category] ?? BookOpen;
-        return <article key={resource.id} className={styles.conversation} data-decoration={index % 3}><PaperSurface seed={60 + index} warm={index === 1} /><PaperPin className={index % 2 ? styles.conversationPinRight : styles.conversationPinLeft} /><div className={styles.conversationContent}><div className={styles.conversationMeta}><span className={styles.topicBadge}>{resource.category}</span></div><h3><Icon className="mr-3 inline-block h-5 w-5 text-[#637d50]" />{resource.title}</h3>{resource.description ? <p className={styles.conversationBody}>{resource.description}</p> : null}{resource.url ? <button type="button" onClick={() => setSelected(resource)} className={`${styles.greenButton} mt-5`}>Open resource <ArrowUpRight size={16} /></button> : null}</div></article>;
+        const locked = resource.category === "book" && !hasFullAccess;
+        return <article key={resource.id} className={styles.conversation} data-decoration={index % 3}><PaperSurface seed={60 + index} warm={index === 1} /><PaperPin className={index % 2 ? styles.conversationPinRight : styles.conversationPinLeft} /><div className={styles.conversationContent}><div className={styles.conversationMeta}><span className={styles.topicBadge}>{categoryLabels[resource.category]}</span></div><h3><Icon className="mr-3 inline-block h-5 w-5 text-[#637d50]" />{resource.title}</h3>{resource.description ? <p className={styles.conversationBody}>{resource.description}</p> : null}{locked ? <p className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#7a6e58]"><LockKeyhole size={16} /> Available after full payment</p> : resource.url ? <button type="button" onClick={() => setSelected(resource)} className={`${styles.greenButton} mt-5`}>Open resource <ArrowUpRight size={16} /></button> : null}</div></article>;
       })}
-      {!resources.length ? <article className={styles.conversation}><PaperSurface seed={60} warm /><div className={styles.conversationContent}><h3>Your resources are being prepared.</h3><p className={styles.conversationBody}>Please check back shortly.</p></div></article> : null}
+      </div>)}
+      {!visibleResources.length ? <article className={styles.conversation}><PaperSurface seed={60} warm /><div className={styles.conversationContent}><h3>No resources in this category.</h3><p className={styles.conversationBody}>Choose another category or check back shortly.</p></div></article> : null}
     </section>
 
     <Modal isOpen={Boolean(selected)} onClose={() => setSelected(null)} className="flex !h-[calc(100dvh-2rem)] !w-[calc(100vw-2rem)] !max-w-none flex-col overflow-hidden !p-0">

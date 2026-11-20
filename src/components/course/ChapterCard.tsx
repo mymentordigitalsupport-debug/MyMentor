@@ -4,6 +4,7 @@ import { ProgressBar } from "@/components/ui/ProgressBar";
 import { percent } from "@/lib/utils";
 import { PaperPin, PaperSurface, PaperTape } from "@/components/threads/ThreadPaper";
 import styles from "@/components/threads/ThreadsCommunity.module.css";
+import { LockKeyhole } from "lucide-react";
 
 interface ChapterCardProps {
   courseId: string;
@@ -13,6 +14,8 @@ interface ChapterCardProps {
   sortOrder: number;
   lessonsCompleted: number;
   lessonsTotal: number;
+  isLocked?: boolean;
+  lockedUntilChapter?: number;
 }
 
 export function ChapterCard({
@@ -23,12 +26,17 @@ export function ChapterCard({
   sortOrder,
   lessonsCompleted,
   lessonsTotal,
+  isLocked = false,
+  lockedUntilChapter,
 }: ChapterCardProps) {
   const pct = percent(lessonsCompleted, lessonsTotal);
   const isComplete = lessonsTotal > 0 && lessonsCompleted === lessonsTotal;
 
-  return (
-    <Link href={`/course/${courseId}/${chapterId}`} className={styles.conversation}>
+  const content = (
+    <div
+      className={`${styles.conversation} ${isLocked ? "cursor-not-allowed opacity-70" : ""}`}
+      aria-disabled={isLocked || undefined}
+    >
       <PaperSurface seed={sortOrder + 140} warm={sortOrder % 2 === 0} />
       {sortOrder % 3 === 0 ? <PaperTape className={styles.conversationTape} /> : <PaperPin className={styles.conversationPinLeft} />}
       <Card
@@ -48,19 +56,40 @@ export function ChapterCard({
           </div>
 
           <div className="flex-1 min-w-0">
-            <h3 className="font-medium text-text mb-1 leading-snug">{title}</h3>
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-1">
+              <h3 className="font-medium text-text leading-snug">{title}</h3>
+              {isLocked ? (
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-forest/15 bg-mist px-3 py-1 text-xs font-semibold text-forest">
+                  <LockKeyhole className="h-3.5 w-3.5" aria-hidden="true" />
+                  Locked
+                </span>
+              ) : null}
+            </div>
             {description && (
               <p className="text-xs text-muted leading-relaxed mb-3">{description}</p>
             )}
-            <div className="flex items-center gap-3">
-              <ProgressBar value={pct} size="sm" className="flex-1" />
-              <span className="text-xs text-muted shrink-0">
-                {lessonsCompleted}/{lessonsTotal}
-              </span>
-            </div>
+            {isLocked ? (
+              <p className="flex items-center gap-2 text-sm font-semibold text-forest">
+                <LockKeyhole className="h-4 w-4" aria-hidden="true" />
+                Locked until Chapter {lockedUntilChapter} is finished
+              </p>
+            ) : (
+              <div className="flex items-center gap-3">
+                <ProgressBar value={pct} size="sm" className="flex-1" />
+                <span className="text-xs text-muted shrink-0">
+                  {lessonsCompleted}/{lessonsTotal}
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </Card>
+    </div>
+  );
+
+  return isLocked ? content : (
+    <Link href={`/course/${courseId}/${chapterId}`} className="block">
+      {content}
     </Link>
   );
 }

@@ -8,6 +8,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { PaperPin, PaperSurface } from "@/components/threads/ThreadPaper";
 import styles from "@/components/threads/ThreadsCommunity.module.css";
+import { getBlockedChapterId } from "@/lib/chapter-sequencing";
 
 export const dynamic = "force-dynamic";
 
@@ -37,11 +38,19 @@ export default async function ChapterPage({ params }: Props) {
 
   const { data: mod } = await supabase
     .from("chapters")
-    .select("id, title, description")
+    .select("id, title, description, course_version_id")
     .eq("id", chapterId)
     .single();
 
   if (!mod) notFound();
+
+  const blockedChapterId = await getBlockedChapterId(
+    supabase,
+    user.id,
+    mod.course_version_id,
+    chapterId,
+  );
+  if (blockedChapterId) redirect(`/course/${courseId}/${blockedChapterId}`);
 
   const { data: lessons } = await supabase
     .from("lessons")
@@ -94,7 +103,11 @@ export default async function ChapterPage({ params }: Props) {
 
         {/* Lessons */}
         <div className={`${styles.feed} flex flex-col gap-5`}>
-          {(lessons ?? []).map((lesson) => (
+          {(lessons ?? []).map((lesson, index) => {
+            const blockingLesson = (lessons ?? [])
+              .slice(0, index)
+              .find((priorLesson) => !completedIds.has(priorLesson.id));
+            return (
             <LessonRow
               key={lesson.id}
               courseId={courseId}
@@ -105,8 +118,11 @@ export default async function ChapterPage({ params }: Props) {
               estimatedMinutes={lesson.estimated_minutes}
               sortOrder={lesson.sort_order}
               isCompleted={completedIds.has(lesson.id)}
+              isLocked={Boolean(blockingLesson)}
+              lockMessage={blockingLesson ? `Locked until Lesson ${blockingLesson.sort_order} is finished` : undefined}
             />
-          ))}
+            );
+          })}
         </div>
       </div>
     </PageTransition>

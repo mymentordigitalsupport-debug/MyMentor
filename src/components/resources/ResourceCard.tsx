@@ -1,6 +1,6 @@
 import { type Resource, type ResourceCategory } from "@/types";
 
-const CATEGORY_CONFIG: Record<ResourceCategory, { emoji: string; label: string }> = {
+const CATEGORY_CONFIG: Partial<Record<ResourceCategory, { emoji: string; label: string }>> = {
   worksheet: { emoji: "📋", label: "Worksheet" },
   audio:     { emoji: "🎧", label: "Audio" },
   video:     { emoji: "🎬", label: "Video" },

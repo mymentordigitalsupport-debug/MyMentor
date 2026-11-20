@@ -3,6 +3,7 @@ import { redirect, notFound } from "next/navigation";
 import { LessonReader } from "@/components/lesson/LessonReader";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { getBlockedLessonId } from "@/lib/lesson-sequencing";
+import { getBlockedChapterId } from "@/lib/chapter-sequencing";
 import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
@@ -44,6 +45,14 @@ export default async function LessonPage({ params }: Props) {
     .eq("course_version_id", chapter.course_version_id)
     .eq("active", true);
   if (!(entitlement ?? []).some((item) => item.access_level === "full_course" || item.chapter_id === chapterId)) redirect("/payments");
+
+  const blockedChapterId = await getBlockedChapterId(
+    supabase,
+    user.id,
+    chapter.course_version_id,
+    chapterId,
+  );
+  if (blockedChapterId) redirect(`/course/${courseId}/${blockedChapterId}`);
 
   const { data: lesson } = await supabase
     .from("lessons")
@@ -171,12 +180,22 @@ export default async function LessonPage({ params }: Props) {
         lessonTitle={lesson.title}
         lessonSubtitle={lesson.subtitle}
         estimatedMinutes={lesson.estimated_minutes}
-        blocks={(blocks ?? []).map((block) => ({
-          id: block.id,
-          block_type: block.block_type,
-          content: block.content as Record<string, unknown>,
-          sort_order: block.sort_order,
-        }))}
+        blocks={(blocks ?? []).map((block) => {
+          const content = block.content as Record<string, unknown>;
+          return {
+            id: block.id,
+            block_type: block.block_type,
+            content: block.block_type === "audio" && typeof content.storage_path === "string"
+              ? {
+                  title: content.title,
+                  url: `/api/lesson-audio/${lessonId}`,
+                  transcript: content.transcript,
+                  alignment: content.alignment,
+                }
+              : content,
+            sort_order: block.sort_order,
+          };
+        })}
         nextHref={nextHref}
         backHref={`/course/${courseId}/${chapterId}`}
         isCompleted={Boolean(progress?.completed_at)}

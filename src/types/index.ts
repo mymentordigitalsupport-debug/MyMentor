@@ -21,6 +21,8 @@ export type BlockType =
   | "complete";
 
 export type ResourceCategory =
+  | "book"
+  | "general"
   | "worksheet"
   | "audio"
   | "video"

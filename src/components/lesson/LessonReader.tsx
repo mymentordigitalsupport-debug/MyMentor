@@ -43,6 +43,7 @@ const STEP_LABELS: Record<string, string> = {
   welcome: "Welcome",
   reading: "Teaching",
   video: "Video",
+  audio: "Audio",
   mentor_note: "Reflection quote",
   pause_reflect: "Pause & reflect",
   journal_prompt: "Journal",

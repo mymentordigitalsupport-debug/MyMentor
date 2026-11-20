@@ -1,13 +1,47 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ChangeEvent } from "react";
 import { Trash2, Upload } from "lucide-react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import type { AdminContentItem } from "@/lib/admin/content";
 
+function readableMarkdown(markdown: string) {
+  return markdown
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/^\s*#{1,6}\s*/gm, "")
+    .replace(/!\[([^\]]*)\]\([^)]*\)/g, "$1")
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .replace(/[*_`>]/g, "")
+    .replace(/^\s*[-+]\s+/gm, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function countAudioSections(markdown: string) {
+  const matches = [...markdown.matchAll(/^\s*(?:\*\*)?Lesson\s+\d+\s*:?[ \t]*(.*?)(?:\*\*)?\s*$/gim)];
+  return matches.filter((match, index) => {
+    const start = (match.index ?? 0) + match[0].length;
+    const end = matches[index + 1]?.index ?? markdown.length;
+    return readableMarkdown(markdown.slice(start, end));
+  }).length;
+}
+
 export function AdminMediaManager({ items }: { items: AdminContentItem[] }) {
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
+  const [sectionCount, setSectionCount] = useState(0);
+  const [guidancePath, setGuidancePath] = useState<"christian" | "religious">("christian");
+
+  async function inspectMarkdown(event: ChangeEvent<HTMLInputElement>) {
+    const files = Array.from(event.currentTarget.files ?? []);
+    let count = 0;
+    for (const file of files) {
+      const markdown = await file.text();
+      count += countAudioSections(markdown);
+    }
+    setSectionCount(count);
+    setMessage(files.length && !count ? "No Lesson sections found. No credits will be used." : "");
+  }
 
   async function api(body: Record<string, unknown>) {
     const response = await fetch("/api/admin/media", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
@@ -39,7 +73,8 @@ export function AdminMediaManager({ items }: { items: AdminContentItem[] }) {
   async function generate(form: HTMLFormElement) {
     const data = new FormData(form);
     const files = Array.from(data.getAll("files")).filter((value): value is File => value instanceof File && value.size > 0);
-    if (!files.length) return;
+    if (!files.length || !sectionCount) return;
+    if (!confirm(`Generate ${sectionCount} separate ${guidancePath === "christian" ? "Christian" : "Religious"} audio files? This will use ElevenLabs credits.`)) return;
     setBusy(true);
     setMessage("");
     try {
@@ -47,6 +82,7 @@ export function AdminMediaManager({ items }: { items: AdminContentItem[] }) {
         const payload = new FormData();
         payload.set("file", file);
         payload.set("title", file.name.replace(/\.md$/i, ""));
+        payload.set("guidancePath", guidancePath);
         const response = await fetch("/api/admin/media", { method: "POST", body: payload });
         const result = await response.json().catch(() => ({})) as Record<string, string>;
         if (!response.ok) throw new Error(result.error ?? `Unable to generate ${file.name}.`);
@@ -73,9 +109,11 @@ export function AdminMediaManager({ items }: { items: AdminContentItem[] }) {
   return <div className="space-y-5">
     <form onSubmit={(event) => { event.preventDefault(); void generate(event.currentTarget); }} className="grid gap-3 rounded-2xl border border-gold/30 bg-[#fffaf0] p-5 md:grid-cols-2">
       <h2 className="text-lg font-semibold text-text md:col-span-2">Generate audio from Markdown</h2>
-      <p className="text-sm leading-6 text-muted md:col-span-2">Upload one or more `.md` files. Markdown formatting is removed before each file is sent to ElevenLabs.</p>
-      <input name="files" required multiple type="file" accept=".md,text/markdown" className="rounded-xl border border-mist bg-white px-3 py-2.5 md:col-span-2" />
-      <button disabled={busy} className="inline-flex items-center justify-center gap-2 rounded-xl bg-forest px-4 py-2.5 font-semibold text-cream disabled:opacity-50 md:col-span-2"><Upload size={16} />Generate audio</button>
+      <p className="text-sm leading-6 text-muted md:col-span-2">Each Lesson section becomes a separate MP3 audio file. Markdown formatting is removed before conversion.</p>
+      <label className="grid gap-1 text-sm font-semibold text-text md:col-span-2">Guidance path<select name="guidancePath" value={guidancePath} onChange={(event) => setGuidancePath(event.target.value as "christian" | "religious")} className="rounded-xl border border-mist bg-white px-3 py-2.5 font-normal"><option value="christian">Christian</option><option value="religious">Religious</option></select></label>
+      <input name="files" required multiple type="file" accept=".md,text/markdown" onChange={(event) => void inspectMarkdown(event)} className="rounded-xl border border-mist bg-white px-3 py-2.5 md:col-span-2" />
+      {sectionCount > 0 ? <p className="rounded-xl bg-gold/10 px-4 py-3 text-sm font-semibold text-forest md:col-span-2">Ready: {sectionCount} separate {guidancePath === "christian" ? "Christian" : "Religious"} audio files. Generation starts only after confirmation.</p> : null}
+      <button disabled={busy || sectionCount === 0} className="inline-flex items-center justify-center gap-2 rounded-xl bg-forest px-4 py-2.5 font-semibold text-cream disabled:opacity-50 md:col-span-2"><Upload size={16} />{sectionCount ? `Generate ${sectionCount} audio files` : "Select Markdown files"}</button>
     </form>
     <form onSubmit={(event) => { event.preventDefault(); void upload(event.currentTarget); }} className="grid gap-3 rounded-2xl border border-mist bg-cream p-5 md:grid-cols-2">
       <h2 className="text-lg font-semibold text-text md:col-span-2">Add audio</h2>

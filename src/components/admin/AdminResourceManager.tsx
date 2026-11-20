@@ -18,7 +18,7 @@ export function AdminResourceManager({ items }: { items: AdminContentItem[] }) {
     setEditing(item.id);
     setTitle(item.title);
     setDescription(item.description ?? "");
-    setCategory(["reading", "worksheet", "support"].includes(item.details[0]) ? item.details[0] : "reading");
+    setCategory(["book", "reading", "worksheet", "support"].includes(item.details[0]) ? item.details[0] : "reading");
     setPublished(item.status === "Published");
     setOrder(Number(item.details.find((value) => value.startsWith("Order "))?.replace("Order ", "")) || 0);
     setMessage("");
@@ -49,7 +49,7 @@ export function AdminResourceManager({ items }: { items: AdminContentItem[] }) {
     <form onSubmit={(event) => { event.preventDefault(); void upload(event.currentTarget); }} className="grid gap-3 rounded-2xl border border-mist bg-cream p-5 md:grid-cols-2">
       <h2 className="text-lg font-semibold text-text md:col-span-2">Upload document</h2>
       <input name="title" required maxLength={180} placeholder="Member-facing title" className="rounded-xl border border-mist bg-white px-3 py-2.5" />
-      <select name="category" className="rounded-xl border border-mist bg-white px-3 py-2.5"><option value="reading">Reading</option><option value="worksheet">Worksheet</option><option value="support">Support guide</option></select>
+      <select name="category" className="rounded-xl border border-mist bg-white px-3 py-2.5"><option value="book">Book</option><option value="reading">Reading</option><option value="worksheet">Worksheet</option><option value="support">Support guide</option></select>
       <textarea name="description" maxLength={500} placeholder="Optional description" className="rounded-xl border border-mist bg-white px-3 py-2.5 md:col-span-2" />
       <input name="file" required type="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt" className="rounded-xl border border-mist bg-white px-3 py-2.5" />
       <button disabled={busy} className="inline-flex items-center justify-center gap-2 rounded-xl bg-forest px-4 py-2.5 font-semibold text-cream disabled:opacity-50"><Upload size={16} />Upload as draft</button>

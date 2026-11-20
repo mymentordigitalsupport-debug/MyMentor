@@ -5,13 +5,22 @@ import { BotanicalSprig, CommunityTexture, PaperPin, PaperSurface } from "@/comp
 import styles from "@/components/threads/ThreadsCommunity.module.css";
 import { getMemberResources } from "@/lib/resource-library";
 import { MemberResourceLibrary } from "@/components/resources/MemberResourceLibrary";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 export const metadata: Metadata = { title: "Resources" };
 export const dynamic = "force-dynamic";
 
 export default async function ResourcesPage() {
   const textureId = "resources-board";
-  const resources = await getMemberResources();
+  const supabase = await createSupabaseServerClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  const admin = createSupabaseAdminClient();
+  const { data: fullEntitlement } = user && admin
+    ? await admin.from("course_entitlements").select("id").eq("user_id", user.id).eq("access_level", "full_course").eq("active", true).limit(1).maybeSingle()
+    : { data: null };
+  const hasFullAccess = Boolean(fullEntitlement);
+  const resources = await getMemberResources(hasFullAccess);
 
   return (
     <div className={styles.community} style={{ "--community-grain": `url(#${textureId}-grain)`, "--community-fibres": `url(#${textureId}-fibres)` } as CSSProperties}>
@@ -23,7 +32,7 @@ export default async function ResourcesPage() {
         </aside>
         <section className={styles.mainColumn}>
           <header className={styles.composer}><PaperSurface seed={54} /><div className={styles.composerContent}><p className={styles.dialogEyebrow}>Resources</p><h1 className="m-0 font-serif text-[clamp(34px,4vw,52px)] font-semibold leading-none tracking-[-.05em]">Support for your next step.</h1><p className="mt-4 max-w-2xl text-[16px] leading-7 text-[#74796d]">Reading, listening, and practical tools—here when you need them.</p></div></header>
-          <MemberResourceLibrary resources={resources} />
+          <MemberResourceLibrary resources={resources} hasFullAccess={hasFullAccess} />
         </section>
       </div>
     </div>

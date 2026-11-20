@@ -134,7 +134,11 @@ export default async function CoursePage({ params }: Props) {
 
         {/* Chapters */}
         <div className={`${styles.feed} flex flex-col gap-5`}>
-          {ChapterData.map((mod) => (
+          {ChapterData.map((mod, index) => {
+            const blockingChapter = ChapterData
+              .slice(0, index)
+              .find((chapter) => chapter.lessonsTotal > 0 && chapter.lessonsCompleted < chapter.lessonsTotal);
+            return (
             <ChapterCard
               key={mod.id}
               courseId={courseId}
@@ -144,8 +148,11 @@ export default async function CoursePage({ params }: Props) {
               sortOrder={mod.sort_order}
               lessonsCompleted={mod.lessonsCompleted}
               lessonsTotal={mod.lessonsTotal}
+              isLocked={Boolean(blockingChapter)}
+              lockedUntilChapter={blockingChapter?.sort_order}
             />
-          ))}
+            );
+          })}
         </div>
       </div>
     </PageTransition>

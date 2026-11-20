@@ -117,6 +117,12 @@ function formatLessonCount(count: number) {
   return `${count} lesson${count === 1 ? "" : "s"}`;
 }
 
+function getBlockingChapter(chapters: CourseChapter[], chapterIndex: number) {
+  return chapters
+    .slice(0, chapterIndex)
+    .find((chapter) => chapter.lessonsTotal > 0 && chapter.lessonsCompleted < chapter.lessonsTotal);
+}
+
 function TabPill({
   active,
   children,
@@ -211,12 +217,16 @@ export function CourseDashboard({
   }, []);
 
   const activeChapterLessons = activeChapter?.lessons ?? [];
-  const activeChapterLessonsPreview = activeChapterLessons.slice(0, 4).map((lesson) => {
+  const activeChapterLessonsPreview = activeChapterLessons.slice(0, 4).map((lesson, lessonIndex) => {
+    const blockingLesson = activeChapterLessons
+      .slice(0, lessonIndex)
+      .find((priorLesson) => !completedLessonIds.includes(priorLesson.id));
     return {
       ...lesson,
       completed: completedLessonIds.includes(lesson.id),
       current: lesson.id === activeLessonId,
       locked: lesson.id !== activeLessonId && !completedLessonIds.includes(lesson.id),
+      blockedByLesson: blockingLesson?.sort_order,
     };
   });
 
@@ -455,6 +465,12 @@ export function CourseDashboard({
                               {lesson.title}
                             </p>
                             {lesson.description ? <p className="mt-1 text-[0.82rem] text-muted">{lesson.description}</p> : null}
+                            {!completed ? (
+                              <p className="mt-2 flex items-center gap-1.5 text-sm font-semibold text-forest">
+                                <Lock className="h-3.5 w-3.5" aria-hidden="true" />
+                                Locked until Lesson {lesson.blockedByLesson} is finished
+                              </p>
+                            ) : null}
                           </div>
                           <div className="flex items-center gap-3 text-[0.82rem] text-muted">
                             <span>{lesson.estimated_minutes ?? 8} min</span>
@@ -517,16 +533,31 @@ export function CourseDashboard({
                 <Badge variant="sage">{ChapterData.length} total</Badge>
               </div>
               <div className="mt-4 space-y-3">
-                {ChapterData.map((Chapter) => {
+                {ChapterData.map((Chapter, chapterIndex) => {
                   const complete = Chapter.lessonsTotal > 0 && Chapter.lessonsCompleted === Chapter.lessonsTotal;
                   const lessonPreview = Chapter.lessons.slice(0, 3);
-                  return (
-                    <Link key={Chapter.id} href={`/course/${courseId}/${Chapter.id}`}>
-                      <div className="rounded-2xl border border-mist bg-cream p-4 hover:border-sage/40 hover:shadow-sm transition">
+                  const blockingChapter = getBlockingChapter(ChapterData, chapterIndex);
+                  const locked = Boolean(blockingChapter);
+                  const chapterCard = (
+                      <div
+                        className={cn(
+                          "rounded-2xl border p-4 transition",
+                          locked
+                            ? "cursor-not-allowed border-forest/15 bg-mist/60 opacity-75"
+                            : "border-mist bg-cream hover:border-sage/40 hover:shadow-sm",
+                        )}
+                        aria-disabled={locked || undefined}
+                      >
                         <div className="flex items-start justify-between gap-4">
                           <div className="min-w-0">
                             <p className="text-sm font-medium text-text">{Chapter.title}</p>
                             {Chapter.description ? <p className="member-course-chapter-catalog-description mt-1 text-xs leading-5 text-muted">{Chapter.description}</p> : null}
+                            {locked ? (
+                              <p className="mt-3 flex items-center gap-2 text-sm font-semibold text-forest">
+                                <Lock className="h-4 w-4" aria-hidden="true" />
+                                Locked until Chapter {blockingChapter?.sort_order} is finished
+                              </p>
+                            ) : null}
                             <div className="mt-3 flex flex-wrap items-center gap-2">
                               <span className="rounded-full bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted">
                                 {formatLessonCount(Chapter.lessonsTotal)}
@@ -541,11 +572,18 @@ export function CourseDashboard({
                               ))}
                             </div>
                           </div>
-                          <span className={cn("rounded-full px-2.5 py-1 text-[10px] font-semibold", complete ? "bg-sage/15 text-forest" : "bg-mist text-muted")}>
-                            {Chapter.lessonsCompleted}/{Chapter.lessonsTotal}
+                          <span className={cn("inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-semibold", locked ? "bg-forest/10 text-forest" : complete ? "bg-sage/15 text-forest" : "bg-mist text-muted")}>
+                            {locked ? <><Lock className="h-3 w-3" aria-hidden="true" /> Locked</> : `${Chapter.lessonsCompleted}/${Chapter.lessonsTotal}`}
                           </span>
                         </div>
                       </div>
+                  );
+
+                  return locked ? (
+                    <div key={Chapter.id}>{chapterCard}</div>
+                  ) : (
+                    <Link key={Chapter.id} href={`/course/${courseId}/${Chapter.id}`}>
+                      {chapterCard}
                     </Link>
                   );
                 })}
@@ -592,8 +630,11 @@ export function CourseDashboard({
         {activeTab === "lessons" && (
           <div className="grid gap-5">
             {ChapterData.length > 0 ? (
-              ChapterData.map((Chapter) => (
-                <Card key={Chapter.id} variant="default" padding="md">
+              ChapterData.map((Chapter, chapterIndex) => {
+                const blockingChapter = getBlockingChapter(ChapterData, chapterIndex);
+                const chapterLocked = Boolean(blockingChapter);
+                return (
+                <Card key={Chapter.id} variant="default" padding="md" className={chapterLocked ? "cursor-not-allowed opacity-70" : undefined}>
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-muted">Chapter {Chapter.sort_order}</p>
@@ -601,16 +642,23 @@ export function CourseDashboard({
                       {Chapter.description ? <p className="mt-1 text-sm leading-6 text-muted">{Chapter.description}</p> : null}
                     </div>
                     <Badge variant={Chapter.lessonsTotal > 0 && Chapter.lessonsCompleted === Chapter.lessonsTotal ? "sage" : "muted"}>
-                      {Chapter.lessonsCompleted}/{Chapter.lessonsTotal}
+                      {chapterLocked ? <span className="inline-flex items-center gap-1"><Lock className="h-3 w-3" /> Locked</span> : `${Chapter.lessonsCompleted}/${Chapter.lessonsTotal}`}
                     </Badge>
                   </div>
+                  {chapterLocked ? (
+                    <p className="mt-4 flex items-center gap-2 rounded-xl border border-forest/15 bg-mist/60 px-4 py-3 text-sm font-semibold text-forest">
+                      <Lock className="h-4 w-4" aria-hidden="true" />
+                      Locked until Chapter {blockingChapter?.sort_order} is finished
+                    </p>
+                  ) : null}
                   <div className="mt-4 space-y-2">
                     {Chapter.lessons.length > 0 ? (
                       Chapter.lessons.map((lesson, lessonIndex) => {
                         const completed = completedLessonIds.includes(lesson.id);
-                        const unlocked = completed || Chapter.lessons
+                        const blockingLesson = Chapter.lessons
                           .slice(0, lessonIndex)
-                          .every((priorLesson) => completedLessonIds.includes(priorLesson.id));
+                          .find((priorLesson) => !completedLessonIds.includes(priorLesson.id));
+                        const unlocked = !chapterLocked && !blockingLesson;
                         const lessonItem = (
                           <div className={cn(
                             "grid grid-cols-[28px_minmax(0,1fr)_auto] items-center gap-3 rounded-[18px] border border-[#e5ddd0] bg-[#fffdf9] px-4 py-4",
@@ -624,6 +672,14 @@ export function CourseDashboard({
                                 Lesson {lesson.sort_order}: {lesson.title}
                               </p>
                               {lesson.description ? <p className="mt-1 text-[0.82rem] text-muted">{lesson.description}</p> : null}
+                              {!unlocked ? (
+                                <p className="mt-2 flex items-center gap-1.5 text-sm font-semibold text-forest">
+                                  <Lock className="h-3.5 w-3.5" aria-hidden="true" />
+                                  {chapterLocked
+                                    ? `Locked until Chapter ${blockingChapter?.sort_order} is finished`
+                                    : `Locked until Lesson ${blockingLesson?.sort_order} is finished`}
+                                </p>
+                              ) : null}
                             </div>
                             <span className="text-[0.82rem] text-muted">{lesson.estimated_minutes ?? 8} min</span>
                           </div>
@@ -644,7 +700,8 @@ export function CourseDashboard({
                     )}
                   </div>
                 </Card>
-              ))
+                );
+              })
             ) : (
               <EmptyState title="No lessons yet" body="Add published lessons to show them here." />
             )}
