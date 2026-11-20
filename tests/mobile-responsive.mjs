@@ -192,6 +192,35 @@ try {
           await writeFile(path.join(outputDir, `${slug(route)}-${width}-${stateName}-${phase}.png`), Buffer.from(shot.data, "base64"));
         }
       }
+      if (route === "/" && process.argv.includes("--hero-rotation")) {
+        await cdp.send("Runtime.evaluate", { expression: "window.scrollTo({ top: 0, behavior: 'instant' })" }, sessionId);
+        const seen = new Set();
+        const deadline = Date.now() + 24000;
+        while (seen.size < 5 && Date.now() < deadline) {
+          const heading = await cdp.send("Runtime.evaluate", { expression: `(() => {
+            const title = document.querySelector('#hero h1');
+            if (!title) return null;
+            const lines = [...title.querySelectorAll('span')].flatMap((span) => {
+              const range = document.createRange();
+              range.selectNodeContents(span);
+              return [...range.getClientRects()].map((rect) => ({ left: rect.left, right: rect.right }));
+            });
+            return { text: title.innerText, lines, viewport: innerWidth };
+          })()`, returnByValue: true }, sessionId);
+          const current = heading.result.value;
+          if (current && !seen.has(current.text)) {
+            seen.add(current.text);
+            if (current.lines.some((line) => line.left < -2 || line.right > current.viewport + 2)) failures.push(`/ ${width}px clipped headline: ${current.text}`);
+            if (!auditOnly) {
+              const shot = await cdp.send("Page.captureScreenshot", { format: "png", captureBeyondViewport: false }, sessionId);
+              await writeFile(path.join(outputDir, `home-${width}-headline-${seen.size}-${phase}.png`), Buffer.from(shot.data, "base64"));
+            }
+            console.log(JSON.stringify({ route, width, headline: current.text, clipped: current.lines.some((line) => line.left < -2 || line.right > current.viewport + 2) }));
+          }
+          await new Promise((resolve) => setTimeout(resolve, 250));
+        }
+        if (seen.size !== 5) failures.push(`/ ${width}px saw only ${seen.size} of 5 headlines`);
+      }
       if (width <= 430 && route === "/about") {
         await cdp.send("Runtime.evaluate", { expression: "window.scrollTo({ top: 0, behavior: 'instant' })" }, sessionId);
         await new Promise((resolve) => setTimeout(resolve, 450));

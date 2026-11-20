@@ -43,15 +43,15 @@ export function HeroSection() {
       <svg className="pointer-events-none absolute bottom-0 z-[5] h-[48vh] w-full opacity-40" viewBox="0 0 1440 480" preserveAspectRatio="none"><defs><linearGradient id="topo" x1="0" x2="1440"><stop stopColor="#d97706" stopOpacity=".15"/><stop offset=".5" stopColor="#f59e0b" stopOpacity=".6"/><stop offset="1" stopColor="#d97706" stopOpacity=".2"/></linearGradient></defs><path d="M-50 480C150 430 320 460 520 400C720 340 950 440 1150 370C1320 310 1400 360 1500 350M-50 410C120 340 320 380 520 320C720 260 940 330 1100 280C1260 230 1360 270 1500 260M-50 310C180 230 340 260 540 210C740 160 980 220 1180 180C1340 140 1420 170 1500 160" fill="none" stroke="url(#topo)" strokeWidth="1.2"/><ellipse cx="720" cy="470" rx="330" ry="90" fill="none" stroke="url(#topo)"/></svg>
 
       <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-6 pb-24 pt-28 sm:px-10 lg:items-start lg:px-16 lg:pt-[320px]">
-        <div className="max-w-2xl">
+        <div className="min-w-0 max-w-2xl">
           <div className="flex gap-5 sm:gap-7">
             <div className="flex w-5 shrink-0 flex-col items-center pt-2" aria-hidden="true">
               <span className="h-5 w-5 rounded-full border border-stone-300/70 p-1"><span className="block h-full w-full rounded-full bg-[#b8d088] shadow-[0_0_14px_#b8d088]" /></span>
               <span className="my-3 h-24 w-px bg-gradient-to-b from-stone-300/70 via-stone-400/30 to-stone-300/70" />
               <span className="font-mono text-xs text-stone-300/80">01</span>
             </div>
-            <div>
-              <h1 className="font-serif text-5xl font-light leading-[0.98] tracking-[-0.055em] text-stone-100 sm:text-6xl lg:text-[5rem]" aria-live="polite"><span key={headlineIndex} className="block whitespace-nowrap animate-[pulse_420ms_ease-out]">{headline}<span className="block whitespace-nowrap italic text-[#95a681]">{emphasis}</span></span></h1>
+            <div className="min-w-0">
+              <h1 className="font-serif text-[clamp(2.5rem,12vw,3rem)] font-light leading-[0.98] tracking-[-0.055em] text-stone-100 sm:text-6xl lg:text-[5rem]" aria-live="polite"><span key={headlineIndex} className="block animate-[pulse_420ms_ease-out]">{headline}<span className="block italic text-[#95a681]">{emphasis}</span></span></h1>
               <p className="mt-6 max-w-lg text-sm font-light leading-7 text-stone-200/90 sm:text-base sm:leading-8">Breaking free from drug abuse and addiction through structured learning, deep personal healing, restored relationships, and purposeful living — one lesson, one choice, one day at a time.</p>
               <Link href="/about#books" className="landing-user-profile landing-user-profile--hero group mt-8 tracking-[0.12em]"><span className="landing-user-profile-inner"><span className="h-2.5 w-2.5 rounded-full bg-[#b8d088] shadow-[0_0_14px_#b8d088]" /><span>START YOUR JOURNEY</span><ArrowRight className="transition-transform group-hover:translate-x-1" /></span></Link>
             </div>
